@@ -1,6 +1,9 @@
 # SLogo Design Plan
 ### NAMES
+Alex Bildner, Leo Cao, Edison Ooi, Marcus Ortiz
+
 ### TEAM
+7
 
 
 #### Examples
