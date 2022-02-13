@@ -39,7 +39,10 @@ taken from [Brilliant Examples of Sketched UI Wireframes and Mock-Ups](https://o
 
 ## Team Responsibilities
 
- * Team Member #1
+ * Team Member #1: Edison
+   * Fullstack
+   * Controller class which orchestrates communication between frontend
+   and backend
 
  * Team Member #2
 
