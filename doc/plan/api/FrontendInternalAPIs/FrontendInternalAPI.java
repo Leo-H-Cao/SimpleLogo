@@ -18,4 +18,24 @@ public interface FrontendInternalAPI {
 
   }
 
+  /**
+   * Used to create the different buttons for the display
+   * @param buttonType (String) - defines the type of button, plan is to have Button as a superclass and then
+   *                              have the individual buttons be the
+   * @return
+   */
+  private Button createButton(String buttonType){
+
+  }
+  private Toolbar createToolbar(List<Button> buttons, List<Slider> sliders){
+
+  }
+  private Slider createSlider(){
+
+  }
+  private InputBox createInputBox(){
+
+  }
+  private
+
 }
