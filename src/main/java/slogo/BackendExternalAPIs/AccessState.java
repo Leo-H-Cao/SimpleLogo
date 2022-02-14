@@ -1,4 +1,6 @@
-public interface accessState {
+package slogo.BackendExternalAPIs;
+
+public interface AccessState {
   /**
    * This method retrives the current Turtle state
    * from the backend. This turtle state is returned

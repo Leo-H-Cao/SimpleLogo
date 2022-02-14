@@ -10,7 +10,9 @@ Alex Bildner, Leo Cao, Edison Ooi, Marcus Ortiz
 
 
 ## Overview
-* Backend API External Controller/Model
+* Backend API External Controller/Model: dictates functionality for the model, including state access, state modification, initialization, error
+checking, and controlling the turtle. These are all functions that will be used by the view or controller, so they need to be external
+APIs
     * returns the next state of the turtle after processing
     * Possibly use a Queue, to have the future states set up
     * get the next instruction(s) from the front end
@@ -26,6 +28,11 @@ Alex Bildner, Leo Cao, Edison Ooi, Marcus Ortiz
     * checkValidity    // Checking if the command is valid
     * checkResult  // Checking what the valid result is
     * getErrorText
+
+* Backend API Internal:
+  * Parsing
+  * running
+  * updating
 
 * Frontend API External
     * getInputText

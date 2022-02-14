@@ -1,4 +1,6 @@
-public interface modifiesModelState {
+package slogo.BackendExternalAPIs;
+
+public interface ModifiesModelState {
   /**
    * Sets command language.
    *
