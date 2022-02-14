@@ -8,4 +8,8 @@ module slogo_app {
 
     // allow other classes to access listed packages in your project
     exports slogo;
+    exports slogo.BackendExternalAPIs;
+    exports slogo.BackendInternalAPIs;
+    exports slogo.Backend;
+
 }

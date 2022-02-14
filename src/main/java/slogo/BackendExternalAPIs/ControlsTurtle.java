@@ -1,5 +1,7 @@
 package slogo.BackendExternalAPIs;
 
+import slogo.Backend.Turtle;
+
 public interface ControlsTurtle {
   /**
    * This methods sends an instruction entered by the user to the backend
@@ -8,7 +10,7 @@ public interface ControlsTurtle {
    * @return Boolean which represents if the instruction was processed by the backend without issue,
    * True indicates success, False indicates something went wrong.
    */
-  public Boolean putInstruction(String instructionText);
+  Boolean putInstruction(String instructionText);
 
 
   /**
@@ -16,6 +18,6 @@ public interface ControlsTurtle {
    *
    * @return the next turtle state
    */
-  public Turtle getNextTurtleState();
+  Turtle getNextTurtleState();
 
 }

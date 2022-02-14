@@ -1,18 +1,23 @@
 package slogo.BackendExternalAPIs;
 
+import java.nio.file.Path;
+import java.util.HashMap;
+import slogo.Backend.InitializationState;
+import slogo.Backend.classType;
+
 public interface Initializes {
 
   /**
    *
-   * @param info
-   * @return
+   * @param info is the information needed to initialize the backend
+   * @return Boolean which is True on initialization success and False otherwise
    */
-  public Boolean initalizeBackend(InitializationState info);
+  Boolean initalizeBackend(InitializationState info);
 
   /**
    * Load state from files boolean.
    *
    * @return the boolean
    */
-  public Boolean loadStateFromFiles(HashMao<Class, Path>);
+  Boolean loadStateFromFiles(HashMap<classType, Path> state);
 }

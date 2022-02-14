@@ -1,5 +1,12 @@
 package slogo.BackendExternalAPIs;
 
+import slogo.Backend.CommandLanguage;
+import slogo.Backend.History;
+import slogo.Backend.Tracks;
+import slogo.Backend.Turtle;
+import slogo.Backend.UserCommands;
+import slogo.Backend.UserVariables;
+
 public interface AccessState {
   /**
    * This method retrives the current Turtle state
@@ -10,7 +17,7 @@ public interface AccessState {
    *
    * @return Turtle object with the current turtle state
    */
-  public Turtle getCurrentTurtleState();
+  Turtle getCurrentTurtleState();
 
   /**
    * A method which calls on the backend to get all the tracks created by the Turtle
@@ -19,33 +26,33 @@ public interface AccessState {
    *
    * @return Tracks object which has the backend's understanding of the current tracks
    */
-  public Tracks getTracks();
+  Tracks getTracks();
 
   /**
    * Gets history.
    *
    * @return the history
    */
-  public History getHistory();
+  History getHistory();
 
   /**
    * Gets user variables.
    *
    * @return the user variables
    */
-  public UserVariables getUserVariables();
+  UserVariables getUserVariables();
 
   /**
    * Gets user commands.
    *
    * @return the user commands
    */
-  public UserCommands getUserCommands();
+  UserCommands getUserCommands();
 
   /**
    * Gets command language.
    *
    * @return the command language
    */
-  public CommandLanguage getCommandLanguage();
+  CommandLanguage getCommandLanguage();
 }

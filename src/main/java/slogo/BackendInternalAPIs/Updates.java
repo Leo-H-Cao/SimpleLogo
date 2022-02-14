@@ -1,5 +1,9 @@
 package slogo.BackendInternalAPIs;
 
+import slogo.Backend.AST;
+import slogo.Backend.ASTNode;
+import slogo.Backend.Turtle;
+
 public interface Updates {
   /**
    * Iterate through the AST for numInstructions instructions and return the final turtle state
@@ -10,7 +14,7 @@ public interface Updates {
    * @param numInstructions the number of instructions to execute
    * @return the turtle in its final state
    */
-  public Turtle step(Turtle initialState, AST tree, ASTNode current, int numInstructions);
+  Turtle step(Turtle initialState, AST tree, ASTNode current, int numInstructions);
 
 
   /**
@@ -19,5 +23,5 @@ public interface Updates {
    * @param current the turtle to be added
    * @return true if the addition was sucessful, false if an error occured (e.g. stack overflow)
    */
-  public Boolean addTurtleToHistory(Turtle current);
+  Boolean addTurtleToHistory(Turtle current);
 }

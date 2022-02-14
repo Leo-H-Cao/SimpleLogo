@@ -6,5 +6,5 @@ public interface ModifiesModelState {
    *
    * @return the command language
    */
-  public Boolean setCommandLanguage();
+  Boolean setCommandLanguage();
 }

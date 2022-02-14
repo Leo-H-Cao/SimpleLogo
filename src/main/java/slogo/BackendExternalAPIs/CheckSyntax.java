@@ -1,5 +1,8 @@
 package slogo.BackendExternalAPIs;
 
+import slogo.Backend.ErrorText;
+import slogo.Backend.ValidityResult;
+
 public interface CheckSyntax {
   /**
    * Check validity validity result.
@@ -7,12 +10,12 @@ public interface CheckSyntax {
    * @param instruction the instruction
    * @return the validity result
    */
-  public ValidityResult checkValidity(String instruction);
+  ValidityResult checkValidity(String instruction);
 
   /**
    * Gets error text.
    *
    * @return the error text
    */
-  public ErrorText getErrorText();
+  ErrorText getErrorText();
 }
