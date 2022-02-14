@@ -14,6 +14,8 @@ public interface BackendExternalAPI {
    */
   public Turtle getCurrentTurtleState();
 
+  public Boolean initalizeBackend(InitializationState info);
+
   /**
    * This methods sends an instruction entered by the user to the backend
    *
