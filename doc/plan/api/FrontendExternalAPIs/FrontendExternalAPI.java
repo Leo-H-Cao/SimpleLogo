@@ -15,14 +15,14 @@ public interface FrontendExternalAPI {
   /**
    *
    */
-  public displayTurle(){
+  public void displayTurle(){
 
   }
 
   /**
-   *
+   * Controller can set the turtle state for the frontend
    */
-  public putTurtleState(){
+  public void putTurtleState(){
 
   }
   /**

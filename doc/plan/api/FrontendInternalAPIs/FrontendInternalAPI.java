@@ -7,14 +7,14 @@ public interface FrontendInternalAPI {
    * this will just lead to a static reference page
    * of the initial commands available
    */
-  private void displayHelp(){
+  public void displayHelp(){
 
   }
 
   /**
    * Used to adjust the speed of the animations, this will be done by adjusting the speed of drawing for a single command, the way to change the speed would be in the UI
    */
-  private void setSpeed(int speed){
+  public void setSpeed(int speed){
 
   }
 
@@ -22,20 +22,36 @@ public interface FrontendInternalAPI {
    * Used to create the different buttons for the display
    * @param buttonType (String) - defines the type of button, plan is to have Button as a superclass and then
    *                              have the individual buttons be the
-   * @return
+   * @return Button - an instance of the type of button that was requested
    */
-  private Button createButton(String buttonType){
+  public Button createButton(String buttonType){
 
   }
-  private Toolbar createToolbar(List<Button> buttons, List<Slider> sliders){
+
+  /**
+   * Creates a tool bar for the display
+   * @param buttons - any buttons or tabs that are going to be shown in the bar
+   * @param sliders - any sliders that are going to be shown in the bar
+   * @return Toolbar - the toolbar that holds all these items in its box
+   */
+  public Toolbar createToolbar(List<Button> buttons, List<Slider> sliders){
 
   }
-  private Slider createSlider(){
+
+  /**
+   * Creating a sliding bar of the type passed
+   * @param sliderType (String) - the type of slider you want
+   * @return Slider - the slider with the specific instance of the type
+   */
+  public Slider createSlider(String sliderType){
 
   }
-  private InputBox createInputBox(){
+
+  /**
+   * Creates an input box for the user
+   * @return - an input box for the user to type in
+   */
+  public InputBox createInputBox(){
 
   }
-  private
-
 }
