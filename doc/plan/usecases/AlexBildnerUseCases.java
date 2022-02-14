@@ -32,6 +32,11 @@ public class AlexBildnerUseCases {
    * debugging purposes).
    */
   public void thirdUseCase()  {
-
+    CommandLanguage lang = AccessState.getCommandLanguage();
+    History commandHistory = ModelState.getHistory();
+    UserVariables vars = ModelState.getUserVariables();
+    System.out.println(lang);
+    System.out.println(commandHistory);
+    System.out.println(vars);
   }
 }
