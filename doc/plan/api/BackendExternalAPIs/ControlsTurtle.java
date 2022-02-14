@@ -1,10 +1,4 @@
-/**
- * The interface Backend external api.
- */
-public interface BackendExternalAPI {
-
-
-
+public interface ControlsTurtle {
   /**
    * This methods sends an instruction entered by the user to the backend
    *
@@ -15,7 +9,6 @@ public interface BackendExternalAPI {
   public Boolean putInstruction(String instructionText);
 
 
-
   /**
    *
    *
@@ -23,18 +16,4 @@ public interface BackendExternalAPI {
    */
   public Turtle getNextTurtleState();
 
-
-  /**
-   * Check validity validity result.
-   *
-   * @param instruction the instruction
-   * @return the validity result
-   */
-  public ValidityResult checkValidity(String instruction);
-
-  /**
-   * Gets error text.
-   *
-   * @return the error text
-   */
-  public ErrorText getErrorText();
+}

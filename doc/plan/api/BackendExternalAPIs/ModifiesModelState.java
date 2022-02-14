@@ -1,4 +1,4 @@
-public interface modifiesModelState {
+public interface ModifiesModelState {
   /**
    * Sets command language.
    *
