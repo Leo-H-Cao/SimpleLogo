@@ -1,4 +1,4 @@
-public interface Runnable {
+public interface Runs {
 
   /**
    * Run lexical analyzer on the user inputted instruction

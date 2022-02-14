@@ -1,4 +1,4 @@
-public interface Steps {
+public interface Updates {
   /**
    * Iterate through the AST for numInstructions instructions and return the final turtle state
    *
