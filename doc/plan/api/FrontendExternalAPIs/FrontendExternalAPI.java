@@ -5,13 +5,13 @@
 public interface FrontendExternalAPI {
 
   /**
-   * Used so the controller can get the input from the text entered
+   * Used so the controller can get the input from the text entered for commands
    * for the commands
+   * @return (String) - String of the command text that was typed out
    */
   public String getInputText(){
 
   }
-
   /**
    *
    */
@@ -29,21 +29,23 @@ public interface FrontendExternalAPI {
    * Used by the controller to set the style for the document
    * Note: This is not the command to set the different command languages
    * but rather just the style/language of the UI
+   * @param interfaceStyle (String) - takes in the name of the style file that is going to be used
    */
   public void setStyle(String interfaceStyle){
 
   }
-
   /**
-   * Backend will use this to tell the frontend the error it needs
-   * to display on a screen
+   * This displays the error that the backend tells it to
+   * @param errorMessage (String) - The error message that is to be displayed to the user
    */
-  public void putError(String errorMessage){
+  public void displayError(String errorMessage){
 
   }
 
   /**
-   * This is to set the actual language of the thing that
+   * This is to set the actual language of the commands, so instead of having repeat, we would have
+   * something in say french
+   * @param commandLanguage (String) - takes in the name of the language file for the commands
    */
   public void setLanguage(String commandLanguage){
   }
