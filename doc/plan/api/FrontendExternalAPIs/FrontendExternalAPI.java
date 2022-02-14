@@ -15,7 +15,7 @@ public interface FrontendExternalAPI {
   /**
    *
    */
-  public void displayTurle(){
+  public void displayTurtle(){
 
   }
 
