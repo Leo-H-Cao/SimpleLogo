@@ -20,30 +20,30 @@ public interface AccessState {
   public Tracks getTracks();
 
   /**
-   * Gets history.
+   * Gets command history.
    *
-   * @return the history
+   * @return History object of user's command history
    */
   public History getHistory();
 
   /**
-   * Gets user variables.
+   * Gets current user variables in current state
    *
-   * @return the user variables
+   * @return a UserVariables Object which has the user variables
    */
   public UserVariables getUserVariables();
 
   /**
-   * Gets user commands.
+   * Gets user defined commands.
    *
-   * @return the user commands
+   * @return a UserCommands object which has the user defined commands
    */
   public UserCommands getUserCommands();
 
   /**
-   * Gets command language.
+   * Gets command language currently in use.
    *
-   * @return the command language
+   * @return a CommandLanguage object which has the command language
    */
   public CommandLanguage getCommandLanguage();
 }
