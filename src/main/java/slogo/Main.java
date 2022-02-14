@@ -20,6 +20,7 @@ public class Main {
      */
     public String getCommand (String language, String command) {
         ResourceBundle resources = ResourceBundle.getBundle(LANGUAGE_RESOURCE_PATH + language);
+
         return resources.getString(command);
     }
 
