@@ -60,7 +60,7 @@ public interface BackendExternalAPI {
    *
    * @return the boolean
    */
-  public Boolean loadStateFromFiles(HashMao<Class, Path>);
+  public Boolean loadStateFromFiles(HashMap<Class, Path>);
 
   /**
    * Gets command language.
