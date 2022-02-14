@@ -29,12 +29,22 @@ public interface FrontendInternalAPI {
   }
 
   /**
+   * Used to create the different selection dropdowns for the display
+   * @param selectType (String) - defines the type of select
+   * @return Select - an instance of the type of select that was requested
+   */
+  public Select createSelect(String selectType){
+
+  }
+
+  /**
    * Creates a tool bar for the display
    * @param buttons - any buttons or tabs that are going to be shown in the bar
    * @param sliders - any sliders that are going to be shown in the bar
+   * @param selects - any selects that are going to be shown in the bar
    * @return Toolbar - the toolbar that holds all these items in its box
    */
-  public Toolbar createToolbar(List<Button> buttons, List<Slider> sliders){
+  public Toolbar createToolbar(List<Button> buttons, List<Slider> sliders, List<Select> selects){
 
   }
 
