@@ -10,7 +10,8 @@ Alex Bildner, Leo Cao, Edison Ooi, Marcus Ortiz
 
 
 ## Overview
-* Backend API External Controller/Model
+* Backend API External Controller/Model: dictates functionality for the model, including state access, initialization, error
+checking, 
     * returns the next state of the turtle after processing
     * Possibly use a Queue, to have the future states set up
     * get the next instruction(s) from the front end
