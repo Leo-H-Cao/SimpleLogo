@@ -45,7 +45,7 @@ User interacts with program through toolbar and buttons to set speed, colors, pl
 User observes turtle drawing, text outputs, errors. User
 can input scripts and define commands with user input box.
 
-![UI sketch](ui.png "An initial UI")
+![UI sketch](wireframe/ui.png "An initial UI")
 
 
 ## Design Details
@@ -53,17 +53,22 @@ can input scripts and define commands with user input box.
 
 ## Design Considerations
 Design Issue: How to check for errors
-* Have the front end check for any errors
-  * If there is display errors
-  * If no error, display next state
+* Have the front end check for any errors and if it finds one, display that error and if not just display the next state
+  * Advantages: The backend does not need to make a call to the frontend lowering dependencies and also making the model less reliable on the frontend that is used (can easily be interchanged)
+  * Disadvantages: This means that the frontend has to do a lot of thinking that should be delegated to the backend
 * Have the backend handle everything
-  * Using the stop from Operating Systems
+  * Advantages: The backend/controller has quick knowledge of the errors and it is where most of the error handling should occur rather than the frontend
+  * Disadvantages: Increases dependencies
+* Our Current Decision: Have backend handle it
 
-Design Issue:
-* Who handles the speed of the animation
+Design Issue: Who handles the speed of the animation
   * Controller
+    * Advantages: It's easy to keep track of the overall time and states of the program all in the controller
+    * Disadvantages: The job of animation speed is certainly a task that should be given to the frontend
   * Frontend
-    * How is the actual thing happening
+    * Advantages: The frontend should hold most of the animation control, and the user already calls the button for the speed in the user interface making it quite easy and clean to implement
+    * Disadvantages: It's easy to keep track of the overall time and states of the program all in the controller
+  * Our Current Decision: Frontend
 
 Assumptions and Dependencies
 * All unique shapes can be done using combinations of the basic commands, including repeat
