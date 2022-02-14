@@ -88,25 +88,59 @@ controller, so that adds a level of predictability to the possible inputs
 or times that the external API methods could be called.
 
 ### Test Scenarios
-#### Feature 1: 
-* Test case 1:
-* Test case 2:
-* Test case 3:
+#### Feature 1: Passing a command to backend to be parsed and turned into turtle states
+* Test case 1: Input a command that uses the repeat x [] functionality. The number
+of next states generated should equal x. This can be checked by looking at the size of the queue
+of next states immediately after the command has finished processing.
+* Test case 2: Input a series of x commands. Besides the turtle moving and
+drawing in the expected manner, the command history should show the same
+x commands ordered by recency. This can be checked by calling getHistory().
+* Test case 3: Pass a malformed command into BackendExternalAPI.putInstruction().
+The return value of this method should be false, and we should expect some
+nonempty error message if we call getErrorText() immediately after.
 
-#### Feature 2:
-* Test case 1:
-* Test case 2:
-* Test case 3:
+#### Feature 2: Customizable UI attributes
+* Test case 1: Ensure that the turtle speeds up or slows down appropriately
+when the respective button is pressed. In the case that the speed is equal
+to the max allowable speed, ensure that pressing the speed-up button does not
+do anything, and that any commands run instantaneously move the turtle to
+the final state. AKA, the parameter passed into FrontendInternalAPI.setSpeed()
+should never be greater than the turtle max speed.
+* Test case 2: Test a variety of theme resource files, and ensure the visual
+properties match what is in the file. If there is an invalid field, the program
+should not crash or throw an error, but instead provide a default value.
+* Test case 3: Pass in a configuration file that contains an invalid language
+option, or one that is not supported. Then call getErrorText() and expect
+some valid text relevant to the invalid language choice, prompting the user
+to modify the file.
 
-#### Feature 3:
-* Test case 1:
-* Test case 2:
-* Test case 3:
+#### Feature 3: Moving the turtle and drawing line
+* Test case 1: Pass the example command to draw a circle. 
+Observe to see if the turtle actually moves in a circle. Also, the final state of
+  the turtle after it completes all of the steps should have the same location and
+  direction as the initial state. This can be done by comparing the result of
+  getCurrentTurtleState() before and after the command is run.
+* Test case 2: Execute a command which moves the turtle x units to the right.
+Then change the pen color, and move the turtle x/2 units back to the left. The
+resulting line should be colored half with the old color, and half with the
+new color.
+* Test case 3: Pass a command that causes the turtle to move past the bounds
+of the screen. Detect this error and display the text obtained from getErrorText()
+before trying to update the next state of the turtle (invalid states will not be
+added to the queue).
 
-#### Feature 4:
-* Test case 1:
-* Test case 2:
-* Test case 3:
+#### Feature 4: Saving/loading states
+* Test case 1: Run a series of 5 commands and record what the initial and final
+states are. Then run the same 5 commands except in between each command we save
+the current state, exit the program, and then load the state back. The initial
+and final states of that trial should be identical to the continuous trial.
+* Test case 2: Load a state with the turtle out of bounds. There should be
+an error text inside getErrorText() describing the error.
+* Test case 3: Run the circle command. Then save the state, exit the program,
+and change the resource file such that the turtle is a different image.
+When we load back the state, everything should be the same, including
+command history, the lines drawn, and position/direction of turtle. The only
+change should be how the turtle looks.
 
 
 ## Team Responsibilities
