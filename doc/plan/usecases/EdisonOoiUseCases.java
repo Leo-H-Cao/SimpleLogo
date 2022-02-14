@@ -21,7 +21,16 @@ public class EdisonOoiUseCases {
     FrontendExternalAPI.displayError(c.getErrorText());
   }
 
-  public void useCase3() {
+  /**
+   * Add to the history of turtle states
+   */
+  public void useCase3(String instruction) {
+    Runner runner = new Runner();
+    LexResult result = runner.runLexicalAnalyzer(instruction);
+    Parser parser = new Parser();
+    AST tree = parser.parseCommand(result);
 
+    Updater updater = new Updater();
+    updater.addTurtleToHistory(new Turtle());
   }
 }

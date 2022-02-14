@@ -1,11 +1,25 @@
 # SLogo Design Plan
 ### NAMES
-Alex Bildner, Leo Cao, Edison Ooi, Marcus Ortiz
+Alex Bildner, Leo Cao, Edison Ooi, Marcus Ortiz, Jed Yang
 
 ### TEAM
 7
 
 ## Introduction
+Our implementation of SLogo will allow a user to input commands and have
+a turtle draw out patterns. We aim to give the user as much flexibility as
+possible, including defining custom commands and variables, customizing the
+GUI, and modifying simulation parameters during runtime.
+
+This project will follow a Model-View-Controller architecture. Our goal
+is to design external frontend and backend API's such that the controller can
+dictate when certain functionality on both ends needs to be activated
+based on user interactions. We also intend to design our program such that
+the frontend will never have to directly communicate with the backend.
+The frontend and backend will also each have internal API's that allow
+communication to happen smoothly within classes in each respective domain.
+Additionally, we aim to have our views be as dumb as possible, meaning little
+to no logic should be inside classes that explicitly represent UI components.
 
 
 
