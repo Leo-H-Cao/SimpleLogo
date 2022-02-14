@@ -33,9 +33,11 @@ public interface BackendExternalAPI {
   public Tracks getTracks();
 
   /**
-   * Instantiates a new Get next turtle state.
+   *
+   *
+   * @return the next turtle state
    */
-  public getNextTurtleState();
+  public Turtle getNextTurtleState();
 
   /**
    * Gets help.
