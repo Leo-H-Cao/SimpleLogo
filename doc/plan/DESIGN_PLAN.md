@@ -34,12 +34,12 @@ Alex Bildner, Leo Cao, Edison Ooi, Marcus Ortiz
     * putTurtleState
     * setStyle
     * putError
-    * displayHelp
     * setLanguage
 
 
 * Frontend API Internal
     * setSpeed
+    * displayHelp
 
 ## User Interface
 User interacts with program through toolbar and buttons to set speed, colors, play/pause, etc.
@@ -53,18 +53,25 @@ can input scripts and define commands with user input box.
 
 
 ## Design Considerations
-Design Issue: Getting next state
-Have the frontend check error 
+Design Issue: How to check for errors
 * Have the front end check for any errors
-* If there is display errors
-* If no error, display next state
-Have the backend handle everything
-* Using the stop from Operating Systems
+  * If there is display errors
+  * If no error, display next state
+* Have the backend handle everything
+  * Using the stop from Operating Systems
 
 Design Issue:
-* The speed of the animation, who handles it
-    * How is the acutal thing happening
+* Who handles the speed of the animation
+  * Controller
+  * Frontend
+    * How is the actual thing happening
 
+Assumptions and Dependencies
+* All unique shapes can be done using combinations of the basic commands, including repeat
+* The Controller will handle both the frontend and backend and will depend on both
+* The Frontend will have a large external API, but for the purpose of communicating to the controller not the backend
+* The help display is static and does not show the help for the exact command, but rather all the commands
+* We can use the AnimateFX github package that will allow quite a bit of timeline manipulation that our design is looking for
 
 ## Test Plan
 
