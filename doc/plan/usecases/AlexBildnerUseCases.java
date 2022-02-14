@@ -6,7 +6,10 @@ public class AlexBildnerUseCases {
    * command language to French
    */
   public void firstUseCase()  {
-
+    CommandLanguage lang = AccessState.getCommandLanguage();
+    if(lang.equals(CommandLanguage.ENGLISH)){
+      ModelState.setCommandLanguage(CommandLanguage.FRENCH);
+    }
   }
 
   /**
