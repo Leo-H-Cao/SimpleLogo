@@ -17,8 +17,12 @@ public class AlexBildnerUseCases {
    * of the syntax of a user entered instruction, and upon realizing the incorrect syntax
    * of this instruction, getting the error message and sending it to the Display
    */
-  public void secondUseCase()  {
-
+  public void secondUseCase(String instruc)  {
+    ValidityResult valid = Validator.checkValidity(instruc);
+    if (!ValidityResult)  {
+      ErrorText text = Validator.getErrorText();
+      displayError(text);
+    }
   }
 
   /**
