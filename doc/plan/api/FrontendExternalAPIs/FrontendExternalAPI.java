@@ -35,10 +35,10 @@ public interface FrontendExternalAPI {
 
   }
   /**
-   * This displays the error that the backend tells it to
+   * This displays the error that the backend tells it to get or the help depending on what subclass object was made
    * @param errorMessage (String) - The error message that is to be displayed to the user
    */
-  public void displayError(String errorMessage){
+  public void displayError(String message){
 
   }
 

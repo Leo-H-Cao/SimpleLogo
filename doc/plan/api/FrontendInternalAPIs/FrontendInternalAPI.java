@@ -3,11 +3,11 @@
  */
 public interface FrontendInternalAPI {
   /**
-   * Used to display a help message when a button is clicked
+   * Used to display a window when a button is clicked
    * this will just lead to a static reference page
    * of the initial commands available
    */
-  public void displayHelp(){
+  public void display(){
 
   }
 
@@ -52,6 +52,20 @@ public interface FrontendInternalAPI {
    * @return - an input box for the user to type in
    */
   public InputBox createInputBox(){
+
+  }
+  // Abstract method that decides what happens when a button is pushed
+  public abstract void pushed();
+  // Sets the slider position using an int
+  public void setSlide(int x){
+
+  }
+  // get the slider position as an int
+  public int getSlide(){
+
+  }
+  // Sets the speed of the turtle object
+  public void setTurtleSpeed(int speed){
 
   }
 }
