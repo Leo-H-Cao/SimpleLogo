@@ -7,6 +7,11 @@ import slogo.BackendExternalAPIs.Initializes;
 import slogo.BackendExternalAPIs.ModifiesModelState;
 
 public class ModelState implements Initializes, ModifiesModelState, AccessState {
+  private CommandLanguage commandLanguage;
+  private Turtle turtle;
+  private Tracks tracks;
+  private History history;
+  private UserVariables userVariables;
 
   /**
    * This method retrives the current Turtle state from the backend. This turtle state is returned
@@ -69,8 +74,9 @@ public class ModelState implements Initializes, ModifiesModelState, AccessState 
    */
   @Override
   public CommandLanguage getCommandLanguage() {
-    return null;
+    return commandLanguage;
   }
+
 
   /**
    * @param info is the information needed to initialize the backend
