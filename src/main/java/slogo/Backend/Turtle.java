@@ -3,12 +3,12 @@ package slogo.Backend;
 import javafx.scene.control.skin.TextInputControlSkin.Direction;
 
 public class Turtle {
-  private Coordinates coordinates;
+  private Coordinate coordinate;
   private Direction direction;
 
 
-  public Coordinates getLocation()  {
-    return coordinates;
+  public Coordinate getLocation()  {
+    return coordinate;
   }
 
   public Direction getDirection() {

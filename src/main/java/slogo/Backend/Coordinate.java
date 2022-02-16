@@ -1,6 +1,6 @@
 package slogo.Backend;
 
-public class Coordinates {
+public class Coordinate {
 
   private double x;
   private double y;
