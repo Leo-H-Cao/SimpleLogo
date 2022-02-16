@@ -37,7 +37,7 @@ public class ModelState implements Initializes, ModifiesModelState, AccessState 
    */
   @Override
   public Tracks getTracks() {
-    return null;
+    return this.tracks;
   }
 
   /**
