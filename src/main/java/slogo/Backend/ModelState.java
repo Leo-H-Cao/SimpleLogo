@@ -15,6 +15,7 @@ public class ModelState implements Initializes, ModifiesModelState, AccessState 
   private Tracks tracks;
   private History history;
   private UserVariables userVariables;
+  private UserCommands userCommands;
 
   /**
    * This method retrives the current Turtle state from the backend. This turtle state is returned
@@ -57,7 +58,7 @@ public class ModelState implements Initializes, ModifiesModelState, AccessState 
    */
   @Override
   public UserVariables getUserVariables() {
-    return null;
+    return userVariables;
   }
 
   /**
@@ -67,7 +68,7 @@ public class ModelState implements Initializes, ModifiesModelState, AccessState 
    */
   @Override
   public UserCommands getUserCommands() {
-    return null;
+    return userCommands;
   }
 
   /**
