@@ -1,12 +1,12 @@
-package slogo.Backend.Parser;
+package slogo.Backend.SyntaxParser;
 
 import java.util.ArrayList;
 
-public class Operation extends Command {
+public class ArithmeticOp extends Command {
   private int ArgNum = 2;
   private String type;
 
-  public Operation(String type, Command op1, Command op2){
+  public ArithmeticOp(String type, Command op1, Command op2){
     this.arguments = new ArrayList<Command>();
     this.arguments.add(op1);
     this.arguments.add(op2);
@@ -15,16 +15,16 @@ public class Operation extends Command {
 
   public double getRetVal(){
     switch (type){
-      case("add"):{
+      case("sum"):{
         return this.arguments.get(0).getRetVal() + this.arguments.get(1).getRetVal();
       }
-      case("sub"):{
+      case("difference"):{
         return this.arguments.get(0).getRetVal() - this.arguments.get(1).getRetVal();
       }
-      case("mult"):{
+      case("product"):{
         return this.arguments.get(0).getRetVal() * this.arguments.get(1).getRetVal();
       }
-      case("div"):{
+      case("quotient"):{
         return this.arguments.get(0).getRetVal() / this.arguments.get(1).getRetVal();
       }
       default:{

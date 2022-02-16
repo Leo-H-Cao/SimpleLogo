@@ -1,4 +1,4 @@
-package slogo.Backend.Parser;
+package slogo.Backend.SyntaxParser;
 
 import java.util.ArrayList;
 
