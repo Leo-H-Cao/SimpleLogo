@@ -1,7 +1,10 @@
 package slogo.Backend;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.nio.file.Path;
 import java.util.HashMap;
+import java.util.Locale;
 import slogo.BackendExternalAPIs.AccessState;
 import slogo.BackendExternalAPIs.Initializes;
 import slogo.BackendExternalAPIs.ModifiesModelState;
@@ -101,11 +104,23 @@ public class ModelState implements Initializes, ModifiesModelState, AccessState 
 
   /**
    * Sets command language.
-   *
+   * See https://docs.oracle.com/javase/7/docs/api/java/lang/String.html#toUpperCase() for why toUpperCase(Locale.ENGLISH)
    * @return the command language
    */
   @Override
-  public Boolean setCommandLanguage() {
-    return null;
+  public Boolean setCommandLanguage(String commandLanguage) throws IllegalArgumentException, NullPointerException{
+    Boolean success = Boolean.FALSE;
+    try {
+      this.commandLanguage = CommandLanguage.valueOf(commandLanguage.toUpperCase(Locale.ENGLISH));
+      success = Boolean.TRUE;
+    }
+    catch (IllegalArgumentException|NullPointerException exception)  {
+      Logger.getGlobal().throwing(this.getClass().getName(),
+          this.getClass().getEnclosingMethod().toGenericString(),
+          exception);
+    } catch (Exception exception) {
+      Logger.getGlobal().logp(Level.SEVERE, this.getClass().getName(), this.getClass().getEnclosingMethod().toGenericString(), "Unexpected exception not in method signature", exception);
+    }
+    return success;
   }
 }
