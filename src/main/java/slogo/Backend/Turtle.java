@@ -15,154 +15,154 @@ public class Turtle {
     return direction;
   }
 
-  protected Turtle forward {
+  protected Turtle forward() {
     return null;
   }
-  protected Turtle backward {
+  protected Turtle backward() {
     return null;
   }
-  protected Turtle left {
+  protected Turtle left() {
     return null;
   }
-  protected Turtle right {
+  protected Turtle right() {
     return null;
   }
-  protected Turtle setHeading {
+  protected Turtle setHeading() {
     return null;
   }
-  protected Turtle setTowards {
+  protected Turtle setTowards() {
     return null;
   }
-  protected Turtle setPosition {
+  protected Turtle setPosition() {
     return null;
   }
-  protected Turtle penDown {
+  protected Turtle penDown() {
     return null;
   }
-  protected Turtle penUp {
+  protected Turtle penUp() {
     return null;
   }
-  protected Turtle showTurtle {
+  protected Turtle showTurtle() {
     return null;
   }
-  protected Turtle hideTurtle {
+  protected Turtle hideTurtle() {
     return null;
   }
-  protected Turtle home {
+  protected Turtle home() {
     return null;
   }
-  protected Turtle clearScreen {
+  protected Turtle clearScreen() {
     return null;
   }
-  protected Turtle xCoordinate {
+  protected Turtle xCoordinate() {
     return null;
   }
-  protected Turtle yCoordinate {
+  protected Turtle yCoordinate() {
     return null;
   }
-  protected Turtle heading {
+  protected Turtle heading() {
     return null;
   }
-  protected Turtle isPenDown {
+  protected Turtle isPenDown() {
     return null;
   }
-  protected Turtle isShowing {
+  protected Turtle isShowing() {
     return null;
   }
-  protected Turtle sum {
+  protected Turtle sum() {
     return null;
   }
-  protected Turtle difference {
+  protected Turtle difference() {
     return null;
   }
-  protected Turtle product {
+  protected Turtle product() {
     return null;
   }
-  protected Turtle quotient {
+  protected Turtle quotient() {
     return null;
   }
-  protected Turtle remainder {
+  protected Turtle remainder() {
     return null;
   }
-  protected Turtle minus {
+  protected Turtle minus() {
     return null;
   }
-  protected Turtle random {
+  protected Turtle random() {
     return null;
   }
-  protected Turtle randomRange {
+  protected Turtle randomRange() {
     return null;
   }
-  protected Turtle sine {
+  protected Turtle sine() {
     return null;
   }
-  protected Turtle cosine {
+  protected Turtle cosine() {
     return null;
   }
-  protected Turtle tangent {
+  protected Turtle tangent() {
     return null;
   }
-  protected Turtle arcTangent {
+  protected Turtle arcTangent() {
     return null;
   }
-  protected Turtle squareRoot {
+  protected Turtle squareRoot() {
     return null;
   }
-  protected Turtle naturalLog {
+  protected Turtle naturalLog() {
     return null;
   }
-  protected Turtle power {
+  protected Turtle power() {
     return null;
   }
-  protected Turtle pi {
+  protected Turtle pi() {
     return null;
   }
-  protected Turtle lessThan {
+  protected Turtle lessThan() {
     return null;
   }
-  protected Turtle lessEqual {
+  protected Turtle lessEqual() {
     return null;
   }
-  protected Turtle greaterThan {
+  protected Turtle greaterThan() {
     return null;
   }
-  protected Turtle greaterEgual {
+  protected Turtle greaterEgual() {
     return null;
   }
-  protected Turtle equal {
+  protected Turtle equal() {
     return null;
   }
-  protected Turtle notEqual {
+  protected Turtle notEqual() {
     return null;
   }
-  protected Turtle and {
+  protected Turtle and() {
     return null;
   }
-  protected Turtle or {
+  protected Turtle or() {
     return null;
   }
-  protected Turtle not {
+  protected Turtle not() {
     return null;
   }
-  protected Turtle makeVariable {
+  protected Turtle makeVariable() {
     return null;
   }
-  protected Turtle repeat {
+  protected Turtle repeat() {
     return null;
   }
-  protected Turtle doTimes {
+  protected Turtle doTimes() {
     return null;
   }
-  protected Turtle for {
+  protected Turtle For() {
     return null;
   }
-  protected Turtle if {
+  protected Turtle If() {
     return null;
   }
-  protected Turtle ifElse {
+  protected Turtle ifElse() {
     return null;
   }
-  protected Turtle makeUserInstruction {
+  protected Turtle makeUserInstruction() {
     return null;
   }
   
