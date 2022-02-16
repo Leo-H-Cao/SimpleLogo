@@ -26,7 +26,7 @@ public class ModelState implements Initializes, ModifiesModelState, AccessState 
    */
   @Override
   public Turtle getCurrentTurtleState() {
-    return null;
+    return turtle;
   }
 
   /**
