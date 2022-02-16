@@ -47,7 +47,7 @@ public class ModelState implements Initializes, ModifiesModelState, AccessState 
    */
   @Override
   public History getHistory() {
-    return null;
+    return history;
   }
 
   /**
