@@ -1,5 +1,11 @@
 package slogo.Backend;
 
-public class History {
+import java.util.Deque;
 
+public class History {
+  private Deque<Deque<Turtle>> turtleHistory;
+
+  public Deque<Deque<Turtle>> getTurtleHistory() {
+    return turtleHistory;
+  }
 }
