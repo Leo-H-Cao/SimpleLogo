@@ -1,6 +1,7 @@
 package slogo.Backend;
 
 import java.util.Queue;
+import slogo.Backend.LexicalAnalyzer.LexResult;
 import slogo.BackendInternalAPIs.Runs;
 
 public class Runner implements Runs {
@@ -15,7 +16,7 @@ public class Runner implements Runs {
    */
   @Override
   public LexResult runLexicalAnalyzer(String instruction) {
-    return null;
+    return new LexResult(instruction);
   }
 
   /**
@@ -23,7 +24,6 @@ public class Runner implements Runs {
    *
    * @return True if success, False if failure
    */
-  @Override
   public boolean addTurtleQueueToHistory(Queue<Turtle> turtleQueue) {
     return false;
   }

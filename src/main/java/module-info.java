@@ -13,5 +13,6 @@ module slogo_app {
     exports slogo.BackendInternalAPIs;
     exports slogo.Backend;
     exports slogo.Backend.SyntaxParser;
+    exports slogo.Backend.LexicalAnalyzer;
 
 }

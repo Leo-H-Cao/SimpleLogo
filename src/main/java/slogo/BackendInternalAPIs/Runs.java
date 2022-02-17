@@ -1,7 +1,7 @@
 package slogo.BackendInternalAPIs;
 
 import java.util.Queue;
-import slogo.Backend.LexResult;
+import slogo.Backend.LexicalAnalyzer.LexResult;
 import slogo.Backend.Turtle;
 
 public interface Runs {
