@@ -15,16 +15,16 @@ public class Turtle {
     return direction;
   }
 
-  protected Turtle forward() {
+  protected Turtle forward(double distance) {
     return null;
   }
-  protected Turtle backward() {
+  protected Turtle backward(double distance) {
     return null;
   }
-  protected Turtle left() {
+  protected Turtle left(double distance) {
     return null;
   }
-  protected Turtle right() {
+  protected Turtle right(double distance) {
     return null;
   }
   protected Turtle setHeading() {
@@ -33,7 +33,7 @@ public class Turtle {
   protected Turtle setTowards() {
     return null;
   }
-  protected Turtle setPosition() {
+  protected Turtle setPosition(Coordinate coordinate) {
     return null;
   }
   protected Turtle penDown() {
@@ -63,16 +63,16 @@ public class Turtle {
   protected Turtle heading() {
     return null;
   }
-  protected Turtle isPenDown() {
+  protected Boolean isPenDown() {
     return null;
   }
-  protected Turtle isShowing() {
+  protected Boolean isShowing() {
     return null;
   }
-  protected Turtle sum() {
+  protected Double sum() {
     return null;
   }
-  protected Turtle difference() {
+  protected Double difference() {
     return null;
   }
   protected Turtle product() {
@@ -165,5 +165,5 @@ public class Turtle {
   protected Turtle makeUserInstruction() {
     return null;
   }
-  
+
 }
