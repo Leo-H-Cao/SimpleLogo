@@ -5,12 +5,13 @@ module slogo_app {
     requires javafx.base;
     requires javafx.media;
     requires javafx.web;
-  requires java.logging;
+    requires java.logging;
 
   // allow other classes to access listed packages in your project
     exports slogo;
     exports slogo.BackendExternalAPIs;
     exports slogo.BackendInternalAPIs;
     exports slogo.Backend;
+    exports slogo.Backend.SyntaxParser;
 
 }
