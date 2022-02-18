@@ -1,5 +1,5 @@
 package slogo.Backend;
 
-public class CommandLanguage {
-
+public enum CommandLanguage {
+  CHINESE, ENGLISH, FRENCH, GERMAN, ITALIAN, RUSSIAN, SPANISH, URDU
 }

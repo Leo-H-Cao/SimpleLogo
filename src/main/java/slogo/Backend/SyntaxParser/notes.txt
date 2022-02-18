@@ -1,0 +1,14 @@
+Notes on Syntax Parser from looking at it from outside perspective:
+
+1) I like having a unified API through Command. My only suggestion would be that I think that
+unless you plan on adding concrete fields and/or methods to Command that it might be better to
+make it an interface instead of a parent class.
+
+2) I think that perhaps ArithmeticOp type values should be an enumeration instead of a String, I think that
+while it may make the code more verbose that it would be a better design. I added a sample of how this
+class could look.
+
+3) I think instead of having a switch statement for the logic of ArithmeticOp that it would be a better
+design principal to subclass ArithmeticOp, especially because this makes it easier to add more ArithmeticOp
+commands (such as exponentiation) while leaving the code "closed to modification." Also this could allow
+for easier error checking in operation specific edge cases like checking for divide by zero for division.

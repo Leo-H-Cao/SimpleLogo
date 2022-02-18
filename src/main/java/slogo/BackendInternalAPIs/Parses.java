@@ -1,7 +1,7 @@
 package slogo.BackendInternalAPIs;
 
 import slogo.Backend.AST;
-import slogo.Backend.LexResult;
+import slogo.Backend.LexicalAnalyzer.LexResult;
 
 public interface Parses {
   /**
