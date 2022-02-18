@@ -11,13 +11,13 @@ public abstract class Sslider {
   public Sslider(double min, double max, double startingValue){
     mySlider = new Slider(min, max, startingValue);
     mySlider.setShowTickMarks(TICK_MARKS);
-    //myHbox = FXUtils.createHBox(mySlider);
+//    myHbox = new HBox(mySlider);
   }
 
   private HBox getHBox(){
     return myHbox;
   }
-  private Slider getSlider(){
+  public Slider getSlider(){
     return mySlider;
   }
 }
