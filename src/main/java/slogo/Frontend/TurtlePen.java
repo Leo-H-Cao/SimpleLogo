@@ -4,6 +4,10 @@ import slogo.FrontendInternalAPIs.DisplayPen;
 
 public class TurtlePen implements DisplayPen {
 
+  public TurtlePen(){
+
+  }
+
   @Override
   public void setPenColor(){
 

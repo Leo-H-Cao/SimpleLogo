@@ -25,17 +25,20 @@ public class TurtleView implements DisplayTurtle, DisplayCanvas {
 
   private Node turtleNode;
   private ImageView turtleImage;
+  private Turtle initialTurtle;
+  private Turtle turtle;
 
   public TurtleView(){
     turtleNode = makeActor();
   }
 
   // create sequence of animations
-  Animation makeAnimation () {
+  Animation makeAnimation (Turtle nextTurtle) {
+
     // create something to follow
     Path path = new Path();
-    path.getElements().addAll(new MoveTo(50,50),
-        new LineTo(350, 50));
+    path.getElements().addAll(new MoveTo(turtle.getLocation().getX(), turtle.getLocation().getY()),
+        new LineTo(nextTurtle.getLocation().getX(), nextTurtle.getLocation().getY()));
     // create an animation where the shape follows a path
     PathTransition pt = new PathTransition(Duration.seconds(4), path, turtleNode);
     // create an animation that rotates the shape
@@ -70,6 +73,8 @@ public class TurtleView implements DisplayTurtle, DisplayCanvas {
     double y = initialTurtle.getLocation().getY();
     Direction direction = initialTurtle.getDirection();
     turtleImage = (ImageView) makeActor();
+    turtle = initialTurtle;
+    this.initialTurtle = initialTurtle;
   }
 
   /**
@@ -78,10 +83,10 @@ public class TurtleView implements DisplayTurtle, DisplayCanvas {
    */
   @Override
   public void moveTurtle(Turtle nextTurtle){
-    double x = nextTurtle.getLocation().getX();
-    double y = nextTurtle.getLocation().getY();
-    Direction direction = nextTurtle.getDirection();
-    makeAnimation();
+//    double x = nextTurtle.getLocation().getX();
+//    double y = nextTurtle.getLocation().getY();
+//    Direction direction = nextTurtle.getDirection();
+    makeAnimation(nextTurtle);
   }
 
   /**
@@ -111,6 +116,7 @@ public class TurtleView implements DisplayTurtle, DisplayCanvas {
    */
   @Override
   public void resetDisplay(){
+    createTurtle(initialTurtle);
 
   }
 
