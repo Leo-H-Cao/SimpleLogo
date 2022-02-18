@@ -17,6 +17,7 @@ public class MainUI{
   public MainUI(Stage myStage) {
     layout = new VBox();
     myScene = new Scene(layout,800, 800);
+    myScene.getStylesheets().add("stylesheet.css");
     addingUINodes();
     layout.prefWidthProperty().bind(myScene.widthProperty().multiply(0.80));
     myStage.setResizable(false);
@@ -28,7 +29,7 @@ public class MainUI{
     myOutput = new OutputView();
     mySpeedSlider = new SpeedSlider();
     layout.getChildren().add(myMenuBar.getMenuBar());
-    layout.getChildren().add(myOutput.getOutputView());
+//    layout.getChildren().add(myOutput.getOutputView());
     layout.getChildren().add(mySpeedSlider.getSlider());
   }
   private TurtleView addingTurtle(){
