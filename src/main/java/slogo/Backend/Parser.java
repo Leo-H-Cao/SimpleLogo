@@ -1,5 +1,6 @@
 package slogo.Backend;
 
+import slogo.Backend.LexicalAnalyzer.LexResult;
 import slogo.BackendInternalAPIs.Parses;
 
 public class Parser implements Parses {

@@ -20,4 +20,6 @@ public interface Initializes {
    * @return the boolean
    */
   Boolean loadStateFromFiles(HashMap<classType, Path> state);
+
+  Boolean setCommandLanguage(String commandLanguage);
 }
