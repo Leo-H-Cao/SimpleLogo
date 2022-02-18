@@ -6,23 +6,24 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import slogo.FrontendInternalAPIs.ControlView;
 
-public class MainUI {
+public class MainUI{
 
-  private Pane layout;
+  private Pane root;
   private Scene myScene;
   private MenuBarUI myMenuBar;
 
   public MainUI(Stage myStage) {
-    layout = new VBox();
-    myScene = new Scene(layout,800, 800);
+    root = new VBox();
+    myScene = new Scene(root,800, 800);
     myMenuBar = new MenuBarUI();
-    layout.getChildren().add(myMenuBar.getMenuBar());
-    layout.prefWidthProperty().bind(myScene.widthProperty().multiply(0.80));
+    root.getChildren().add(myMenuBar.getMenuBar());
+    root.prefWidthProperty().bind(myScene.widthProperty().multiply(0.80));
     myStage.setResizable(false);
 
     TurtleView testTurtle = new TurtleView();
-    layout.getChildren().add(testTurtle.getTurtleNode());
+    root.getChildren().add(testTurtle.getTurtleNode());
     Animation animation = testTurtle.makeAnimation();
     animation.play();
   }

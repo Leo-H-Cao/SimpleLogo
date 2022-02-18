@@ -1,27 +1,27 @@
 package slogo.FrontendInternalAPIs;
 
-import javafx.scene.layout.Pane;
+import javafx.scene.Node;
 
 public interface ControlView {
 
   /**
    * Called when initializing root Pane object for display
    */
-  public void createRoot();
+   void createRoot();
 
   /**
    * to add any pages to the scene
    */
-  public void addToRoot();
+   void addToRoot(Node node);
 
   /**
    * remove any pages from the scene
    */
-  public void removeFromRoot();
+  void removeFromRoot(Node node);
 
   /**
    * creates a popup window
    */
-  public void showPopupWindow();
+  void showPopupWindow();
 
 }

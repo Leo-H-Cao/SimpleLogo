@@ -11,9 +11,12 @@ import javafx.animation.RotateTransition;
 import javafx.animation.SequentialTransition;
 import javafx.scene.shape.LineTo;
 import javafx.util.Duration;
+import slogo.Backend.Turtle;
+import slogo.FrontendExternalAPIs.DisplayCanvas;
+import slogo.FrontendExternalAPIs.DisplayTurtle;
 
 
-public class TurtleView {
+public class TurtleView implements DisplayTurtle, DisplayCanvas {
 
   public static final String TURTLE_IMAGE_PATH = "test-turtle.png";
   public static final int TURTLE_SIZE = 40;
@@ -52,6 +55,59 @@ public class TurtleView {
 
   public Node getTurtleNode(){
     return turtleNode;
+  }
+
+  /**
+   * creates turtle at coordinates specified by turtle object
+   * @param initialTurtle
+   */
+  @Override
+  public void createTurtle(Turtle initialTurtle){
+  }
+
+  /**
+   * move turtle to coordinates as specified by turtle object
+   * @param nextTurtle
+   */
+  @Override
+  public void moveTurtle(Turtle nextTurtle){
+
+  }
+
+  /**
+   * Change image for turtle (instead of CSS style's default)
+   * @param turtleImage
+   */
+  @Override
+  public void setTurtleImage(Image turtleImage){
+  }
+
+  @Override
+  public void rotateTurtle(){
+  }
+
+  /**
+   * returns current turtle graphic
+   * @return
+   */
+  @Override
+  public Image getCurrentTurtleImage(){
+    return turtleImage.getImage();
+  }
+
+  /**
+   * clears screen and resets turtle to original position
+   */
+  @Override
+  public void resetDisplay(){
+
+  }
+
+  /**
+   * changes background color
+   */
+  @Override
+  public void setBackGroundColor(){
 
   }
 

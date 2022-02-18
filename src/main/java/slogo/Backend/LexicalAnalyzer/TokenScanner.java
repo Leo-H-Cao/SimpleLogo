@@ -10,7 +10,7 @@ public class TokenScanner {
   private TokenScanner()  {
 
     ResourceBundle syntaxResource = ResourceBundle.getBundle("slogo/languages/Syntax");
-    syntaxResource;
+//    syntaxResource;
   }
 
   public static TokenScanner getTokenScanner() {
