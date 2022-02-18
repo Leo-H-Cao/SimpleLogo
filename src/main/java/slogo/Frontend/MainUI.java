@@ -1,7 +1,6 @@
 package slogo.Frontend;
 
 import javafx.animation.Animation;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -18,22 +17,27 @@ public class MainUI {
   public MainUI(Stage myStage) {
     layout = new VBox();
     myScene = new Scene(layout,800, 800);
-    addingLayoutNodes();
+    addingUINodes();
     layout.prefWidthProperty().bind(myScene.widthProperty().multiply(0.80));
     myStage.setResizable(false);
-
-    TurtleView testTurtle = new TurtleView();
-    layout.getChildren().add(testTurtle.getTurtleNode());
-    Animation animation = testTurtle.makeAnimation();
-    animation.play();
+    TurtleView testTurtle  = addingTurtle();
+    playTurtleAnimation(testTurtle);
   }
-  private void addingLayoutNodes(){
+  private void addingUINodes(){
     myMenuBar = new MenuBarUI();
     myOutput = new OutputView();
     mySpeedSlider = new SpeedSlider();
     layout.getChildren().add(myMenuBar.getMenuBar());
     layout.getChildren().add(myOutput.getOutputView());
     layout.getChildren().add(mySpeedSlider.getSlider());
+  }
+  private TurtleView addingTurtle(){
+    TurtleView testTurtle = new TurtleView();
+    layout.getChildren().add(testTurtle.getTurtleNode());
+    return testTurtle;
+  }
+  private void playTurtleAnimation(TurtleView turtle){
+    turtle.makeAnimation().play();
   }
 
   public Scene getScene(){
