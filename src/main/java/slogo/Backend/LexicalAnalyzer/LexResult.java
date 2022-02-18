@@ -9,7 +9,8 @@ public class LexResult {
   private String instruction;
   private Deque<String> splitByWhiteSpace;
   private Deque<String> scanned;
-  private Deque<String> tokens;
+  private Deque<Token> tokens;
+  private TokenScanner scanner = TokenScanner.getTokenScanner();
 
   public LexResult(String instruction) {
     this.instruction = instruction;
@@ -26,6 +27,10 @@ public class LexResult {
     return null;
   }
 
+  /**
+   * Fix to be all white space
+   * @return
+   */
   protected Deque<String> splitInstruction()  {
     String[] s = this.instruction.split(" ");
     return new ArrayDeque<String>(List.of(s));
