@@ -23,10 +23,6 @@ public interface DisplayTurtle {
    */
   public void setTurtleImage(Image turtleImage);
 
-  /**
-   * clears screen and resets turtle to original position
-   */
-  public void resetDisplay();
 
   public void rotateTurtle();
 

@@ -1,4 +1,4 @@
-package slogo.FrontendExternalAPIs;
+package slogo.FrontendInternalAPIs;
 
 public interface DisplayPen {
 
