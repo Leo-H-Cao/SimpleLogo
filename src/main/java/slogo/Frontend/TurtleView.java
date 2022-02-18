@@ -2,6 +2,7 @@ package slogo.Frontend;
 
 import javafx.animation.Animation;
 import javafx.scene.Node;
+import javafx.scene.control.skin.TextInputControlSkin.Direction;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.MoveTo;
@@ -11,6 +12,7 @@ import javafx.animation.RotateTransition;
 import javafx.animation.SequentialTransition;
 import javafx.scene.shape.LineTo;
 import javafx.util.Duration;
+import slogo.Backend.Coordinate;
 import slogo.Backend.Turtle;
 import slogo.FrontendExternalAPIs.DisplayCanvas;
 import slogo.FrontendExternalAPIs.DisplayTurtle;
@@ -59,10 +61,15 @@ public class TurtleView implements DisplayTurtle, DisplayCanvas {
 
   /**
    * creates turtle at coordinates specified by turtle object
+   * FIXME: Have not yet done the actual changing of coords in box
    * @param initialTurtle
    */
   @Override
   public void createTurtle(Turtle initialTurtle){
+    double x = initialTurtle.getLocation().getX();
+    double y = initialTurtle.getLocation().getY();
+    Direction direction = initialTurtle.getDirection();
+    turtleImage = (ImageView) makeActor();
   }
 
   /**
@@ -71,7 +78,10 @@ public class TurtleView implements DisplayTurtle, DisplayCanvas {
    */
   @Override
   public void moveTurtle(Turtle nextTurtle){
-
+    double x = nextTurtle.getLocation().getX();
+    double y = nextTurtle.getLocation().getY();
+    Direction direction = nextTurtle.getDirection();
+    makeAnimation();
   }
 
   /**
@@ -80,6 +90,7 @@ public class TurtleView implements DisplayTurtle, DisplayCanvas {
    */
   @Override
   public void setTurtleImage(Image turtleImage){
+//    turtleImage =
   }
 
   @Override
