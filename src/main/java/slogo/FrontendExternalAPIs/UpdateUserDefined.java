@@ -3,7 +3,7 @@ package slogo.FrontendExternalAPIs;
 import slogo.Backend.UserCommands;
 import slogo.Backend.UserVariables;
 
-public interface UpdateUserDefined {
+public abstract interface UpdateUserDefined {
 
   /**
    * update user defined commands state

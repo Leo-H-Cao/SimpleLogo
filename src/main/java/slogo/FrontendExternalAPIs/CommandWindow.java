@@ -3,7 +3,7 @@ package slogo.FrontendExternalAPIs;
 import slogo.Backend.CommandLanguage;
 import slogo.Backend.History;
 
-public interface CommandWindow {
+public abstract interface CommandWindow {
 
   /**
    * Returns command input from user

@@ -1,10 +1,10 @@
 package slogo.FrontendInternalAPIs;
 
-public interface DisplayPen {
+public abstract interface DisplayPen {
 
-  public void setPenColor();
+  public void setPenColor(String color);
 
-  public void setPenSize();
+  public void setPenSize(int size);
 
   public void setPenVisible();
 

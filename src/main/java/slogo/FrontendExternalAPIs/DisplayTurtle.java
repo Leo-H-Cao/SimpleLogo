@@ -3,7 +3,7 @@ package slogo.FrontendExternalAPIs;
 import javafx.scene.image.Image;
 import slogo.Backend.Turtle;
 
-public interface DisplayTurtle {
+public abstract interface DisplayTurtle {
 
   /**
    * creates turtle at coordinates specified by turtle object

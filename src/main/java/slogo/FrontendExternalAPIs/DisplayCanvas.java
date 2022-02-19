@@ -1,6 +1,6 @@
 package slogo.FrontendExternalAPIs;
 
-public interface DisplayCanvas {
+public abstract interface DisplayCanvas {
 
   /**
    * clears screen and resets turtle to original position
