@@ -19,6 +19,9 @@ public class Main extends Application {
     private static final String LANGUAGE_RESOURCE_PATH = "/slogo/languages/";
     private static final String EXAMPLE_PROGRAMS_PATH = "/examples";
 
+    // Instance of Slogo controller/client
+    private SLogoController controller;
+
     /**
      * Get command in a given language.
      */
@@ -42,9 +45,9 @@ public class Main extends Application {
     /**
      * A method to test (and a joke :).
      */
-    public double getVersion () {
-        return 0.001;
-    }
+//    public double getVersion () {
+//        return 0.001;
+//    }
 
     // this code is dense, hard to read, and throws exceptions so better to wrap in method
     private List<String> readFile (String filename, String delimiter) {
@@ -62,17 +65,18 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        View view = new View(primaryStage);
+        controller = new SLogoController(primaryStage);
+        controller.setupNewSlogo();
     }
 
     /**
      * Start of the program.
      */
-    public static void main (String[] args) {
-        Main m = new Main();
-        System.out.println(m.getVersion());
-        System.out.println(m.getCommand("English", "Forward"));
-        System.out.println(m.getExampleProgram("loops", "star"));
-        launch(args);
-    }
+//    public static void main (String[] args) {
+//        Main m = new Main();
+//        System.out.println(m.getVersion());
+//        System.out.println(m.getCommand("English", "Forward"));
+//        System.out.println(m.getExampleProgram("loops", "star"));
+//        launch(args);
+//    }
 }
