@@ -2,7 +2,7 @@ package slogo.Backend.SyntaxParser;
 
 import java.util.ArrayList;
 
-public class Constant extends Command{
+public class Constant extends Operator {
 
   public Constant(int value){
     retVal = value;
