@@ -8,4 +8,6 @@ public abstract interface DisplayPen {
 
   public void setPenVisible();
 
+  public void setPenInvisible();
+
 }
