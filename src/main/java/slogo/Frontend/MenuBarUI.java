@@ -20,9 +20,11 @@ public class MenuBarUI {
   }
 
   public void createMenuBar(){
-    MenuUI test = new MenuUI("Help");
+    MenuUI help = new MenuUI("Help");
     MenuItemUI project = new MenuItemUI("Reference Page");
-    test.addMenuItem(project);
-    this.addToMenuBar(test);
+    help.addMenuItem(project);
+    this.addToMenuBar(help);
+
+
   }
 }

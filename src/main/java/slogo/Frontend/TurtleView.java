@@ -34,7 +34,6 @@ public class TurtleView implements DisplayTurtle, DisplayCanvas {
 
   // create sequence of animations
   Animation makeAnimation (Turtle nextTurtle) {
-
     // create something to follow
     Path path = new Path();
     path.getElements().addAll(new MoveTo(turtle.getLocation().getX(), turtle.getLocation().getY()),
@@ -86,7 +85,7 @@ public class TurtleView implements DisplayTurtle, DisplayCanvas {
 //    double x = nextTurtle.getLocation().getX();
 //    double y = nextTurtle.getLocation().getY();
 //    Direction direction = nextTurtle.getDirection();
-    makeAnimation(nextTurtle);
+    makeAnimation(nextTurtle).play();
   }
 
   /**
