@@ -61,10 +61,16 @@ public class ASTMaker {
       Operator nextOperator = unevaluated.getLast();
       handleOperator(nextOperator);
     }
+    root = evaluated.pop();
   }
 
 
   private void handleOperator(Operator operator){
-    int numOperands;
+    int numOperands = operator.getMyNumArgs();
+    while(numOperands >0){
+      operator.addArgument(evaluated.pop());
+      numOperands--;
+    }
+    evaluated.addLast(operator);
   }
 }

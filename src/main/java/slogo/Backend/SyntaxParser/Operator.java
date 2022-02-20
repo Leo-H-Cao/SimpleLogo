@@ -13,4 +13,8 @@ public abstract class Operator {
     return myNumArgs;
   }
 
+  public void addArgument(Operator o){
+    this.arguments.add(arguments.size()-1, o);
+  }
+
 }
