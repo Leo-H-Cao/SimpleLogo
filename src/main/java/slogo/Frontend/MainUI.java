@@ -10,13 +10,13 @@ public class MainUI{
   private Pane layout;
   private Scene myScene;
   private MenuBarUI myMenuBar;
-  private OutputView myOutput;
   private Sslider mySpeedSlider;
   private CommandInput myCommandInput;
 
+  // Might add a reflection thing to talk to a .properties file
   public MainUI(Stage myStage) {
     layout = new VBox();
-    myScene = new Scene(layout,800, 800);
+    myScene = new Scene(layout,600, 600);
     myScene.getStylesheets().add("stylesheet.css");
     addingUINodes();
     layout.prefWidthProperty().bind(myScene.widthProperty().multiply(0.80));
@@ -25,12 +25,10 @@ public class MainUI{
   }
   private void addingUINodes(){
     myMenuBar = new MenuBarUI();
-    myOutput = new OutputView();
     mySpeedSlider = new SpeedSlider();
     myCommandInput = new CommandInput();
     layout.getChildren().add(myMenuBar.getMenuBar());
-//    layout.getChildren().add(myOutput.getOutputView());
-    layout.getChildren().add(mySpeedSlider.getSlider());
+    layout.getChildren().add(mySpeedSlider.getSliderBox());
     layout.getChildren().addAll(myCommandInput.getTextArea(), myCommandInput.getExecuteButton());
 
   }

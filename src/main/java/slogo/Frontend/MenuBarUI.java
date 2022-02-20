@@ -1,6 +1,7 @@
 package slogo.Frontend;
 
 import javafx.scene.control.MenuBar;
+import javafx.scene.input.Mnemonic;
 
 public class MenuBarUI {
 
@@ -22,6 +23,10 @@ public class MenuBarUI {
   public void createMenuBar(){
     MenuUI help = new MenuUI("Help");
     MenuItemUI project = new MenuItemUI("Reference Page");
+    MenuUI commands = new MenuUI("Commands");
+    MenuItemUI commandHistory = new MenuItemUI("Command History");
+    commands.addMenuItem(commandHistory);
+    this.addToMenuBar(commands);
     help.addMenuItem(project);
     this.addToMenuBar(help);
 
