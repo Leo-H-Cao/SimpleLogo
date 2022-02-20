@@ -53,7 +53,7 @@ public class TurtleView implements DisplayTurtle, DisplayCanvas {
     ImageView myImageView = new ImageView(turtleImage);
     myImageView.setFitWidth(TURTLE_SIZE);
     myImageView.setFitHeight(TURTLE_SIZE);
-    myImageView.setId("turtle_graphic");
+    myImageView.getStyleClass().add("turtle-image");
     return myImageView;
   }
 

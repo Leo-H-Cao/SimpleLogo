@@ -1,13 +1,12 @@
 package slogo.Frontend;
 
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 public class MainUI{
 
-  private Pane layout;
+  private BorderPane layout;
   private Scene myScene;
   private MenuBarUI myMenuBar;
   private Sslider mySpeedSlider;
@@ -15,27 +14,30 @@ public class MainUI{
 
   // Might add a reflection thing to talk to a .properties file
   public MainUI(Stage myStage) {
-    layout = new VBox();
+    layout = new BorderPane();
     myScene = new Scene(layout,600, 600);
     myScene.getStylesheets().add("stylesheet.css");
-    addingUINodes();
+    createUINodes();
     layout.prefWidthProperty().bind(myScene.widthProperty().multiply(0.80));
     myStage.setResizable(false);
-    TurtleView testTurtle  = addingTurtle();
+    addingTurtle();
   }
-  private void addingUINodes(){
+  private void createUINodes(){
     myMenuBar = new MenuBarUI();
     mySpeedSlider = new SpeedSlider();
     myCommandInput = new CommandInput();
-    layout.getChildren().add(myMenuBar.getMenuBar());
-    layout.getChildren().add(mySpeedSlider.getSliderBox());
-    layout.getChildren().addAll(myCommandInput.getTextArea(), myCommandInput.getExecuteButton());
-
+    layOutChildren();
   }
   private TurtleView addingTurtle(){
     TurtleView testTurtle = new TurtleView();
-    layout.getChildren().add(testTurtle.getTurtleNode());
+    layout.setCenter(testTurtle.getTurtleNode());
     return testTurtle;
+  }
+
+  private void layOutChildren(){
+    layout.setTop(myMenuBar.getMenuBar());
+    layout.setBottom(myCommandInput.getInputBox());
+    layout.setRight(mySpeedSlider.getSlider());
   }
 
   public Scene getScene(){

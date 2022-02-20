@@ -5,7 +5,7 @@
   -fx-snap-to-ticks: true;
   -fx-show-tick-labels: true;
   -fx-show-tick-marks: true;
-  -fx-pref-width:50;
+  -fx-pref-width: 100;
 }
 
 .speed-slider .thumb{
