@@ -95,7 +95,7 @@ public class TurtleView implements DisplayTurtle, DisplayCanvas {
    */
   @Override
   public void setTurtleImage(Image turtleImage){
-//    turtleImage =
+    this.turtleImage.setImage(turtleImage);
   }
 
   @Override
