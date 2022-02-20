@@ -9,7 +9,7 @@ public class MainUI{
   private BorderPane layout;
   private Scene myScene;
   private MenuBarUI myMenuBar;
-  private Sslider mySpeedSlider;
+  private ControlPanel myControlPanel;
   private CommandInput myCommandInput;
 
   // Might add a reflection thing to talk to a .properties file
@@ -20,11 +20,17 @@ public class MainUI{
     createUINodes();
     layout.prefWidthProperty().bind(myScene.widthProperty().multiply(0.80));
     myStage.setResizable(false);
+    addStyleClassesToBorderPane();
     addingTurtle();
   }
+
+  public Scene getScene(){
+    return myScene;
+  }
+
   private void createUINodes(){
     myMenuBar = new MenuBarUI();
-    mySpeedSlider = new SpeedSlider();
+    myControlPanel = new ControlPanel();
     myCommandInput = new CommandInput();
     layOutChildren();
   }
@@ -37,10 +43,15 @@ public class MainUI{
   private void layOutChildren(){
     layout.setTop(myMenuBar.getMenuBar());
     layout.setBottom(myCommandInput.getInputBox());
-    layout.setRight(mySpeedSlider.getSlider());
+    layout.setRight(myControlPanel.getControlPanelContainer());
   }
 
-  public Scene getScene(){
-    return myScene;
+  private void addStyleClassesToBorderPane(){
+//    layout.getLeft().getStyleClass().add("border-pane-left");
+    layout.getRight().getStyleClass().add("border-pane-right");
+    layout.getBottom().getStyleClass().add("border-pane-bottom");
+    layout.getTop().getStyleClass().add("border-pane-top");
   }
+
+
 }

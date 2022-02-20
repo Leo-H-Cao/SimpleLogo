@@ -17,7 +17,7 @@ public abstract class Sslider {
   public Sslider(double min, double max, double startingValue){
     mySlider = new Slider(min, max, startingValue);
     sliderBox = new VBox();
-    sliderBox.getChildren().add(getSlider());
+    sliderBox.getChildren().add(mySlider);
     setLabel(sliderBox);
   }
 
