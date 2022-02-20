@@ -31,7 +31,8 @@ public class MainUI{
     layout.getChildren().add(myMenuBar.getMenuBar());
 //    layout.getChildren().add(myOutput.getOutputView());
     layout.getChildren().add(mySpeedSlider.getSlider());
-    layout.getChildren().add(myCommandInput.getTextArea());
+    layout.getChildren().addAll(myCommandInput.getTextArea(), myCommandInput.getExecuteButton());
+
   }
   private TurtleView addingTurtle(){
     TurtleView testTurtle = new TurtleView();
