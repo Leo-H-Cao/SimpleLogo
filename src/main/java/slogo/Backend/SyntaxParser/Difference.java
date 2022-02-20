@@ -1,13 +1,14 @@
 package slogo.Backend.SyntaxParser;
 
 
+import java.util.ArrayList;
 
 public class Difference extends ArithmeticOp{
 
-  public Difference(Operator op1, Operator op2){
+  public Difference(ArrayList<Operator> operands){
     super();
-    this.arguments.add(op1);
-    this.arguments.add(op2);
+    this.arguments.add(operands.get(0));
+    this.arguments.add(operands.get(1));
   }
 
   public double getRetVal(){
