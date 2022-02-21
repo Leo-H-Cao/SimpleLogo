@@ -1,7 +1,7 @@
 package slogo.FrontendExternalAPIs;
 
 import javafx.scene.image.Image;
-import slogo.Backend.Turtle;
+import slogo.Backend.TurtleState.Turtle;
 
 public abstract interface DisplayTurtle {
 

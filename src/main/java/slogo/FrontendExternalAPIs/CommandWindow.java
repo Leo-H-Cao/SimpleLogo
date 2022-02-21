@@ -1,7 +1,7 @@
 package slogo.FrontendExternalAPIs;
 
-import slogo.Backend.CommandLanguage;
-import slogo.Backend.History;
+import slogo.Backend.State.CommandLanguage;
+import slogo.Backend.State.History;
 
 public abstract interface CommandWindow {
 

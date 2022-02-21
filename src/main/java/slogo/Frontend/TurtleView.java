@@ -12,8 +12,8 @@ import javafx.animation.RotateTransition;
 import javafx.animation.SequentialTransition;
 import javafx.scene.shape.LineTo;
 import javafx.util.Duration;
-import slogo.Backend.Coordinate;
-import slogo.Backend.Turtle;
+import slogo.Backend.TurtleState.Coordinate;
+import slogo.Backend.TurtleState.Turtle;
 import slogo.FrontendExternalAPIs.DisplayCanvas;
 import slogo.FrontendExternalAPIs.DisplayTurtle;
 

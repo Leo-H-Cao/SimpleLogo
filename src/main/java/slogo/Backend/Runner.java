@@ -1,6 +1,7 @@
 package slogo.Backend;
 
 import java.util.Queue;
+import slogo.Backend.LexicalAnalyzer.InvalidTokenException;
 import slogo.Backend.LexicalAnalyzer.LexResult;
 import slogo.Backend.TurtleState.Turtle;
 import slogo.BackendInternalAPIs.Runs;
@@ -16,7 +17,7 @@ public class Runner implements Runs {
    * understandable by the parser
    */
   @Override
-  public LexResult runLexicalAnalyzer(String instruction) {
+  public LexResult runLexicalAnalyzer(String instruction) throws InvalidTokenException {
     return new LexResult(instruction);
   }
 
