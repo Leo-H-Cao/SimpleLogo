@@ -1,21 +1,19 @@
 package slogo.Backend.SyntaxParser;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.ArrayDeque;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import slogo.Backend.LexicalAnalyzer.Token;
 import slogo.Backend.LexicalAnalyzer.TokenType;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 public class ASTMakerTest {
 
   private ASTMaker myASTMaker;
 
   @BeforeEach
-  void setup() {
-
-  }
+  void setup() {}
 
   @Test
   void testParseConstant() {

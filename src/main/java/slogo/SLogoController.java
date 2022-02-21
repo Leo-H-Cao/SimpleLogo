@@ -1,6 +1,5 @@
 package slogo;
 
-import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import slogo.Backend.Help.HelpInfo;
@@ -33,8 +32,7 @@ public class SLogoController {
   private ViewUserDefined userDefinedAttributesUpdater;
   private Stage myStage;
 
-  public SLogoController() {
-  }
+  public SLogoController() {}
 
   public void setupNewSLogo(Stage stage) {
     // Set up and show stage
@@ -43,8 +41,8 @@ public class SLogoController {
     gui = mainView.getMainUI();
     commandInputter = gui.getCommandInput();
     turtleView = gui.getTurtleView();
-    userDefinedAttributesUpdater = new ViewUserDefined(); //TODO: This should be owned by some class in the frontend
-
+    userDefinedAttributesUpdater =
+        new ViewUserDefined(); // TODO: This should be owned by some class in the frontend
 
     // initialize window to set parameters
     // frontend stuff to get language + other initial parameters that the backend needs to know
@@ -60,15 +58,13 @@ public class SLogoController {
     // initialize turtle
   }
 
-  public void handleKeyInput(KeyCode code) {
-
-  }
+  public void handleKeyInput(KeyCode code) {}
 
   public void handleCommandSubmitted() {
     String command = commandInputter.getCommands();
     ValidityResult isValidCommand = syntaxChecker.checkValidity(command);
 
-    //If it's not valid, do something
+    // If it's not valid, do something
 
     turtleController.putInstruction(command);
     turtleView.moveTurtle(model.getCurrentTurtleState());
@@ -77,6 +73,4 @@ public class SLogoController {
   public void handleHelpRequested() {
     HelpInfo help = helper.getHelp();
   }
-
-
 }

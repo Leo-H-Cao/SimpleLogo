@@ -1,4 +1,3 @@
 package slogo.Backend.TurtleState;
 
-public enum Transformation {
-}
+public enum Transformation {}

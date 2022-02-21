@@ -5,10 +5,10 @@ import javafx.scene.layout.VBox;
 
 public class ControlPanel {
 
-  private Pane controlPanelContainer;
-  private SpeedSlider mySpeedSlider;
+  private final Pane controlPanelContainer;
+  private final SpeedSlider mySpeedSlider;
 
-  public ControlPanel(){
+  public ControlPanel() {
     controlPanelContainer = new VBox();
     controlPanelContainer.getStyleClass().add("control-panel-container");
     mySpeedSlider = new SpeedSlider();
@@ -19,7 +19,7 @@ public class ControlPanel {
     return controlPanelContainer;
   }
 
-  private void addControlNodes(){
+  private void addControlNodes() {
     controlPanelContainer.getChildren().add(mySpeedSlider.getSliderBox());
   }
 

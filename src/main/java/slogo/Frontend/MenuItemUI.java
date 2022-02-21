@@ -4,13 +4,13 @@ import javafx.scene.control.MenuItem;
 
 public class MenuItemUI {
 
-  private MenuItem menuItem;
+  private final MenuItem menuItem;
 
-  public MenuItemUI(String itemName){
+  public MenuItemUI(String itemName) {
     menuItem = new MenuItem(itemName);
   }
 
-  public MenuItem getMenuItem(){
+  public MenuItem getMenuItem() {
     return menuItem;
   }
 }

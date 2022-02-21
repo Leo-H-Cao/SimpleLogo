@@ -8,11 +8,11 @@
   -fx-max-width: 75;
 }
 
-.speed-slider .thumb{
+.speed-slider .thumb {
   -fx-background-color: #1354cb;
 }
 
-.border-pane-right{
+.border-pane-right {
   -fx-border-width: 2;
   -fx-border-color: GRAY;
   -fx-min-width: 125;

@@ -1,5 +1,3 @@
 package slogo.Backend.State;
 
-public enum ParsePreference {
-
-}
+public enum ParsePreference {}

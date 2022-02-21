@@ -1,18 +1,15 @@
 package slogo.Frontend;
 
-import javafx.event.EventHandler;
-import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import slogo.SLogoController;
 
 public class View {
   public static final String TITLE = "SLogo Simulation";
 
-  private SLogoController myController;
-  private MainUI mainUI;
+  private final SLogoController myController;
+  private final MainUI mainUI;
 
-
-  public View(Stage primaryStage, SLogoController controller){
+  public View(Stage primaryStage, SLogoController controller) {
     myController = controller;
     mainUI = new MainUI(primaryStage, controller);
     mainUI.getScene().setOnKeyPressed(e -> controller.handleKeyInput(e.getCode()));
@@ -24,5 +21,4 @@ public class View {
   public MainUI getMainUI() {
     return mainUI;
   }
-
 }

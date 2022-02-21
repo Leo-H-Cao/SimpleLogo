@@ -9,12 +9,11 @@ public abstract class Operator {
 
   public abstract double getRetVal();
 
-  public int getMyNumArgs(){
+  public int getMyNumArgs() {
     return myNumArgs;
   }
 
-  public void addArgument(Operator o){
+  public void addArgument(Operator o) {
     this.arguments.add(o);
   }
-
 }

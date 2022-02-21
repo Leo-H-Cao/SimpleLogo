@@ -3,59 +3,54 @@ package slogo.Backend.SyntaxParser;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayDeque;
-import java.util.ArrayList;
 import slogo.Backend.LexicalAnalyzer.Token;
 
 public class ASTMaker {
-  private ArrayDeque<Token> tokens;
-  private ArrayDeque<Operator> unevaluated = new ArrayDeque<>();
-  private ArrayDeque<Operator> evaluated = new ArrayDeque<>();
+  private final ArrayDeque<Token> tokens;
+  private final ArrayDeque<Operator> unevaluated = new ArrayDeque<>();
+  private final ArrayDeque<Operator> evaluated = new ArrayDeque<>();
   private Operator root;
 
-  private String rootdirectory = "slogo.Backend.SyntaxParser.";
+  private final String rootdirectory = "slogo.Backend.SyntaxParser.";
 
-
-  public ASTMaker(ArrayDeque<Token> tokens){
+  public ASTMaker(ArrayDeque<Token> tokens) {
     this.tokens = tokens;
   }
 
-  public Operator parse(){
+  public Operator parse() {
     createArgumentStacks();
     generateAST();
     return root;
   }
 
-  private void createArgumentStacks(){
-    //TODO: create operands for all tokens and place them in the correct initial stack
-    while(!tokens.isEmpty()){
+  private void createArgumentStacks() {
+    // TODO: create operands for all tokens and place them in the correct initial stack
+    while (!tokens.isEmpty()) {
       Token t = tokens.getFirst();
       String tokenType = t.getTyoe().toString();
       try {
-        //System.out.println(tokenType);
+        // System.out.println(tokenType);
         Class<?> operatorType;
         Operator nextOperator;
-        if(tokenType.equals("COMMAND")){
-          //operatorType = Class.forName("slogo.Backend.SyntaxParser." + "Command");
+        if (tokenType.equals("COMMAND")) {
+          // operatorType = Class.forName("slogo.Backend.SyntaxParser." + "Command");
           operatorType = Class.forName(rootdirectory + t.getValue());
-          //operatorType = Class.forName("Command");
+          // operatorType = Class.forName("Command");
           Constructor<?> constructor = operatorType.getConstructor();
           nextOperator = (Operator) constructor.newInstance();
-        }
-        else{
+        } else {
           operatorType = Class.forName(rootdirectory + "Constant");
           Constructor<?> constructor = operatorType.getConstructor(double.class);
           nextOperator = (Operator) constructor.newInstance(Double.parseDouble(t.getValue()));
         }
 
-
-        if(tokenType.toString()=="CONSTANT"){
+        if (tokenType == "CONSTANT") {
           evaluated.addLast(nextOperator);
-        }
-        else{
+        } else {
           unevaluated.addLast(nextOperator);
         }
       } catch (ClassNotFoundException e) {
-        //TODO: REPLACE THIS LATER
+        // TODO: REPLACE THIS LATER
         e.printStackTrace();
       } catch (NoSuchMethodException e) {
         e.printStackTrace();
@@ -68,12 +63,11 @@ public class ASTMaker {
       }
       tokens.removeFirst();
     }
-
   }
 
-  private void generateAST(){
-    //TODO: use the stacks of operands to generate the AST;
-    while(!unevaluated.isEmpty()){
+  private void generateAST() {
+    // TODO: use the stacks of operands to generate the AST;
+    while (!unevaluated.isEmpty()) {
       Operator nextOperator = unevaluated.getFirst();
       handleOperator(nextOperator);
       unevaluated.removeFirst();
@@ -81,10 +75,9 @@ public class ASTMaker {
     root = evaluated.pop();
   }
 
-
-  private void handleOperator(Operator operator){
+  private void handleOperator(Operator operator) {
     int numOperands = operator.getMyNumArgs();
-    while(numOperands >0){
+    while (numOperands > 0) {
       operator.addArgument(evaluated.pop());
       numOperands--;
     }

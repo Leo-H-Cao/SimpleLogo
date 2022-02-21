@@ -4,17 +4,17 @@ import javafx.scene.control.Menu;
 
 public class MenuUI {
 
-  private Menu myMenu;
+  private final Menu myMenu;
 
-  public MenuUI(String menuName){
+  public MenuUI(String menuName) {
     myMenu = new Menu(menuName);
   }
 
-  public void addMenuItem(MenuItemUI item){
+  public void addMenuItem(MenuItemUI item) {
     myMenu.getItems().add(item.getMenuItem());
   }
 
-  public Menu getMenu(){
+  public Menu getMenu() {
     return myMenu;
   }
 }

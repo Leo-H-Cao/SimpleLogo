@@ -1,5 +1,3 @@
 package slogo.Backend.State;
 
-public class VariableName {
-
-}
+public class VariableName {}

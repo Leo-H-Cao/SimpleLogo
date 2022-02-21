@@ -1,15 +1,10 @@
 package slogo.FrontendExternalAPIs;
 
-public abstract interface DisplayCanvas {
+public interface DisplayCanvas {
 
-  /**
-   * clears screen and resets turtle to original position
-   */
-  public void resetDisplay();
+  /** clears screen and resets turtle to original position */
+  void resetDisplay();
 
-  /**
-   * changes background color
-   */
-  public void setBackGroundColor();
-
+  /** changes background color */
+  void setBackGroundColor();
 }

@@ -8,7 +8,6 @@ import slogo.Backend.State.classType;
 public interface Initializes {
 
   /**
-   *
    * @param info is the information needed to initialize the backend
    * @return Boolean which is True on initialization success and False otherwise
    */
