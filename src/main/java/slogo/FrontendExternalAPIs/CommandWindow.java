@@ -9,7 +9,7 @@ public abstract interface CommandWindow {
    * Returns command input from user
    * @return
    */
-  public String getCommandInput();
+  public String getCommands();
 
   /**
    * gets command history from backend
