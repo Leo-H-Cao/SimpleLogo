@@ -13,6 +13,7 @@ public class MainUI{
   private MenuBarUI myMenuBar;
   private ControlPanel myControlPanel;
   private CommandInput myCommandInput;
+  private TurtleBackground myTurtleBackground;
 
   // Might add a reflection thing to talk to a .properties file
   public MainUI(Stage myStage, SLogoController controller) {
@@ -35,18 +36,19 @@ public class MainUI{
     myMenuBar = new MenuBarUI();
     myControlPanel = new ControlPanel();
     myCommandInput = new CommandInput(myController);
+    myTurtleBackground = new TurtleBackground();
     layOutChildren();
   }
-  private TurtleView addingTurtle(){
+  private void addingTurtle(){
     TurtleView testTurtle = new TurtleView();
-    layout.setCenter(testTurtle.getTurtleNode());
-    return testTurtle;
+    myTurtleBackground.addTurtle(testTurtle);
   }
 
   private void layOutChildren(){
     layout.setTop(myMenuBar.getMenuBar());
     layout.setBottom(myCommandInput.getInputBox());
     layout.setRight(myControlPanel.getControlPanelContainer());
+    layout.setCenter(myTurtleBackground.getTurtleBackground());
   }
 
   private void addStyleClassesToBorderPane(){
