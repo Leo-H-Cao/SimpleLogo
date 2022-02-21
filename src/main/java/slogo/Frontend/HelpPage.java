@@ -1,6 +1,5 @@
 package slogo.Frontend;
 
-import
 
 import java.io.File;
 import javafx.application.HostServices;
