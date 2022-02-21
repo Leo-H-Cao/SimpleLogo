@@ -14,6 +14,7 @@ public class MainUI{
   private ControlPanel myControlPanel;
   private CommandInput myCommandInput;
   private TurtleBackground myTurtleBackground;
+  private TurtleView testTurtle;
 
   // Might add a reflection thing to talk to a .properties file
   public MainUI(Stage myStage, SLogoController controller) {
@@ -40,7 +41,7 @@ public class MainUI{
     layOutChildren();
   }
   private void addingTurtle(){
-    TurtleView testTurtle = new TurtleView();
+    testTurtle = new TurtleView();
     myTurtleBackground.addTurtle(testTurtle);
   }
 
@@ -57,8 +58,13 @@ public class MainUI{
     layout.getBottom().getStyleClass().add("border-pane-bottom");
     layout.getTop().getStyleClass().add("border-pane-top");
   }
+
   public CommandInput getCommandInput(){
     return myCommandInput;
+  }
+
+  public TurtleView getTurtleView(){
+    return testTurtle;
   }
 
 

@@ -26,6 +26,7 @@ public class CommandInput implements CommandWindow {
   private TextArea textArea;
   private Button executeButton;
   private Pane inputBox;
+  private String commandText;
 
   public CommandInput(SLogoController controller){
     //TODO: add buffer so class always keeps track of what is in text box?
@@ -38,6 +39,7 @@ public class CommandInput implements CommandWindow {
     textArea.setPromptText(PROMPT);
     textArea.setMaxSize(TEXT_BOX_SIZE, TEXT_BOX_SIZE);
     textArea.getStyleClass().add("text-input");
+    commandText = "";
 
     executeButton = new Button("Execute");
     executeButton.getStyleClass().add("execute-button");
@@ -51,9 +53,7 @@ public class CommandInput implements CommandWindow {
    */
   @Override
   public String getCommands(){
-    String commands = textArea.getText().trim();
-    textArea.clear();
-    return commands;
+    return commandText;
   }
 
   /**
@@ -74,14 +74,19 @@ public class CommandInput implements CommandWindow {
 
   private void setSubmitActions(){
     executeButton.setOnAction(event -> {
-      myController.handleCommandSubmitted();
+      submitCommand();
     });
 
     textArea.setOnKeyPressed(keyEvent -> {
       if (keyEvent.getCode() == KeyCode.ENTER)  {
-        myController.handleCommandSubmitted();
+        submitCommand();
       }
     });
+  }
+
+  private void submitCommand(){
+    commandText = textArea.getText().trim();
+    textArea.clear();
   }
 
   private void addChildNodes(){
