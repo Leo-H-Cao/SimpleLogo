@@ -8,6 +8,7 @@ import javafx.scene.layout.VBox;
 import slogo.Backend.CommandLanguage;
 import slogo.Backend.History;
 import slogo.FrontendExternalAPIs.CommandWindow;
+import slogo.SLogoController;
 
 /**
  * Test Ideas:
@@ -21,14 +22,16 @@ public class CommandInput implements CommandWindow {
   public static final int TEXT_BOX_SIZE = 700;
   public static final String PROMPT = "Enter Commands Here";
 
+  private SLogoController myController;
   private TextArea textArea;
   private Button executeButton;
   private Pane inputBox;
 
-  public CommandInput(){
+  public CommandInput(SLogoController controller){
     //TODO: add buffer so class always keeps track of what is in text box?
     // Not sure I'm understanding why we need this
 
+    myController = controller;
     inputBox = new VBox();
 
     textArea = new TextArea();
@@ -71,12 +74,12 @@ public class CommandInput implements CommandWindow {
 
   private void setSubmitActions(){
     executeButton.setOnAction(event -> {
-      getCommands();
+      myController.handleCommandSubmitted();
     });
 
     textArea.setOnKeyPressed(keyEvent -> {
       if (keyEvent.getCode() == KeyCode.ENTER)  {
-        getCommands();
+        myController.handleCommandSubmitted();
       }
     });
   }
