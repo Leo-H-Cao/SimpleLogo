@@ -2,7 +2,7 @@ package slogo.BackendInternalAPIs;
 
 import java.util.Queue;
 import slogo.Backend.LexicalAnalyzer.LexResult;
-import slogo.Backend.Turtle;
+import slogo.Backend.TurtleState.Turtle;
 
 public interface Runs {
 

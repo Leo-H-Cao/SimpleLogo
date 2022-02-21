@@ -1,5 +1,5 @@
 package slogo.Backend.SyntaxParser;
 
 public enum ArithmeticOpType {
-  SUM, DIFFERENCE, PRODUCT, QUOTIENT;
+  SUM, DIFFERENCE, PRODUCT, QUOTIENT
 }

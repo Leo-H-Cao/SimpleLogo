@@ -2,8 +2,8 @@ package slogo.Backend.LexicalAnalyzer;
 
 public class Token {
 
-  private TokenType type;
-  private String value;
+  private final TokenType type;
+  private final String value;
 
   public Token(TokenType type, String value) {
     this.type = type;
@@ -17,5 +17,4 @@ public class Token {
   public String getValue() {
     return value;
   }
-
 }

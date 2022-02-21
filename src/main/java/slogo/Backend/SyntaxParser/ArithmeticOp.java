@@ -8,7 +8,7 @@ public abstract class ArithmeticOp extends Operator {
   protected int ArgNum;
 
   public ArithmeticOp(){
-    this.arguments = new ArrayList<Operator>();
+    this.arguments = new ArrayList<>();
   }
 
   public abstract double getRetVal();

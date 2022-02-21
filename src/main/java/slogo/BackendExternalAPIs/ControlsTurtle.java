@@ -1,6 +1,6 @@
 package slogo.BackendExternalAPIs;
 
-import slogo.Backend.Turtle;
+import slogo.Backend.TurtleState.Turtle;
 
 public interface ControlsTurtle {
   /**
