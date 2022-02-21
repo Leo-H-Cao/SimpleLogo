@@ -1,10 +1,12 @@
 package slogo.Backend.SyntaxParser;
 
+import java.util.ArrayList;
+
 public class Product extends ArithmeticOp{
-  public Product(Operator op1, Operator op2){
+  public Product(ArrayList<Operator> operands){
     super();
-    this.arguments.add(op1);
-    this.arguments.add(op2);
+    this.arguments.add(operands.get(0));
+    this.arguments.add(operands.get(1));
   }
 
   public double getRetVal(){
