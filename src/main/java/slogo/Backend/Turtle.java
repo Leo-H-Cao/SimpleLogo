@@ -1,25 +1,22 @@
 package slogo.Backend;
 
+import java.lang.reflect.Method;
+import java.util.Collection;
 import javafx.scene.control.skin.TextInputControlSkin.Direction;
 
 public class Turtle {
   private Coordinate coordinate;
   private Direction direction;
 
-  private Turtle()   {
-      return Turtle;
+  private Turtle() {}
+
+  public Turtle(Turtle oldTurtle, Transformation transformation, Collection<?> arguments)  {
+    //TODO: implement reflection here to get method
+    Method method = null;
+    // TODO: apply transformation to get new Turtle;
   }
 
-  public Turtle(Turtle oldTurtle, Transformation transformation, Collection arguments)  {
-      //TODO: implement reflection here to get method
-      Method method = null;
-      //TODO: apply transformation to get new Turtle;
-      Turtle newTurtle = null; 
-      return newTurtle;
-
-  }
-
-  public getInitialTurtle() {
+  public Turtle getInitialTurtle() {
       //TODO: implement Turtle initialization
       return null;
   }
