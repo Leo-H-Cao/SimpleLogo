@@ -7,9 +7,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class ConstantTest {
+  Constant myConstant;
 
   @BeforeEach
   void setUp() {
+    myConstant = new Constant(3);
   }
 
   @AfterEach
@@ -18,5 +20,6 @@ class ConstantTest {
 
   @Test
   void getRetVal() {
+    assertEquals(3, myConstant.getRetVal());
   }
 }
