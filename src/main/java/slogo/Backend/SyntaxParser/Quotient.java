@@ -4,14 +4,20 @@ package slogo.Backend.SyntaxParser;
 import java.util.ArrayList;
 
 public class Quotient extends ArithmeticOp{
-  public Quotient(ArrayList<Operator> operands){
+
+  public Quotient(){
+    myNumArgs = 2;
+  }
+
+  public Quotient(Operator op1, Operator op2){
     super();
-    this.arguments.add(operands.get(0));
-    this.arguments.add(operands.get(1));
-    ArgNum = 2;
+    this.arguments.add(op1);
+    this.arguments.add(op2);
+    myNumArgs = 2;
   }
 
   public double getRetVal(){
     return this.arguments.get(0).getRetVal() / this.arguments.get(1).getRetVal();
   }
+
 }
