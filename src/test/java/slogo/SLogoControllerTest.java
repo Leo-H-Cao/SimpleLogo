@@ -8,6 +8,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import org.testfx.framework.junit5.ApplicationTest;
+import slogo.Backend.State.InitializationState;
+import slogo.Backend.State.ModelState;
 
 public class SLogoControllerTest extends DukeApplicationTest {
   private SLogoController slogo;
@@ -45,6 +47,15 @@ public class SLogoControllerTest extends DukeApplicationTest {
   void testInvalidCommand() {
     writeInputTo(commandInputTextArea, "hi there");
     clickOn(lookup("#ExecuteButton").query());
+  }
+
+  @Test
+  void testInvalidBackendInitialization() {
+    ModelState model = new ModelState();
+    InitializationState initializationState = new InitializationState();
+    assertNull(model.initalizeBackend(initializationState));
+    assertNull(model.getUserVariables());
+    assertThrows(NullPointerException.class, () -> model.setCommandLanguage("not a language"));
   }
 
 
