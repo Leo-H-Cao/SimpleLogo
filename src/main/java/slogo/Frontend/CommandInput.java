@@ -86,7 +86,9 @@ public class CommandInput implements CommandWindow {
 
   private void submitCommand(){
     commandText = textArea.getText().trim();
+    if(commandText.length() == 0) return;
     textArea.clear();
+    myController.handleCommandSubmitted();
   }
 
   private void addChildNodes(){
