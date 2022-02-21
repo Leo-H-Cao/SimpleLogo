@@ -8,6 +8,7 @@ import java.util.StringTokenizer;
 
 public class LexResult {
 
+  private static final String WHITESPACEREGEX = "\\s+"; //source: https://www.baeldung.com/java-regex-s-splus
   private String instruction;
   private Deque<String> splitByWhiteSpace;
   private Deque<Token> tokens;
@@ -19,6 +20,19 @@ public class LexResult {
     this.tokens = this.tokenize();
   }
 
+  /**
+   * Fix to be all white space
+   * @return Collection of Strings
+   */
+  protected Deque<String> splitInstruction()  {
+    String[] splitArray = this.instruction.split(LexResult.WHITESPACEREGEX);
+    ArrayDeque<String> deque = new ArrayDeque<>();
+    for(String s: splitArray) {
+      deque.addLast(s);
+    }
+    return deque;
+  }
+  
   protected Deque<Token> tokenize() {
     Deque<Token> tokens = new ArrayDeque<>();
     Iterator<String> iter = splitByWhiteSpace.iterator();
@@ -39,12 +53,4 @@ public class LexResult {
     return tokens;
   }
 
-  /**
-   * Fix to be all white space
-   * @return
-   */
-  protected Deque<String> splitInstruction()  {
-    String[] s = this.instruction.split(" ");
-    return new ArrayDeque<String>(List.of(s)); //reverse before adding
-  }
 }
