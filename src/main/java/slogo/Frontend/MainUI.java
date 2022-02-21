@@ -3,6 +3,7 @@ package slogo.Frontend;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import slogo.Backend.SyntaxParser.Command;
 
 public class MainUI{
 
@@ -53,6 +54,9 @@ public class MainUI{
     layout.getRight().getStyleClass().add("border-pane-right");
     layout.getBottom().getStyleClass().add("border-pane-bottom");
     layout.getTop().getStyleClass().add("border-pane-top");
+  }
+  public CommandInput getCommandInput(){
+    return myCommandInput;
   }
 
 
