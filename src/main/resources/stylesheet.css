@@ -5,9 +5,15 @@
   -fx-snap-to-ticks: true;
   -fx-show-tick-labels: true;
   -fx-show-tick-marks: true;
-  -fx-pref-width:50;
+  -fx-max-width: 75;
 }
 
 .speed-slider .thumb{
   -fx-background-color: #1354cb;
+}
+
+.border-pane-right{
+  -fx-border-width: 2;
+  -fx-border-color: GRAY;
+  -fx-min-width: 125;
 }

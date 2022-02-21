@@ -34,7 +34,6 @@ public class TurtleView implements DisplayTurtle, DisplayCanvas {
 
   // create sequence of animations
   Animation makeAnimation (Turtle nextTurtle) {
-
     // create something to follow
     Path path = new Path();
     path.getElements().addAll(new MoveTo(turtle.getLocation().getX(), turtle.getLocation().getY()),
@@ -54,7 +53,7 @@ public class TurtleView implements DisplayTurtle, DisplayCanvas {
     ImageView myImageView = new ImageView(turtleImage);
     myImageView.setFitWidth(TURTLE_SIZE);
     myImageView.setFitHeight(TURTLE_SIZE);
-    myImageView.setId("turtle_graphic");
+    myImageView.getStyleClass().add("turtle-image");
     return myImageView;
   }
 
@@ -86,7 +85,7 @@ public class TurtleView implements DisplayTurtle, DisplayCanvas {
 //    double x = nextTurtle.getLocation().getX();
 //    double y = nextTurtle.getLocation().getY();
 //    Direction direction = nextTurtle.getDirection();
-    makeAnimation(nextTurtle);
+    makeAnimation(nextTurtle).play();
   }
 
   /**
@@ -95,7 +94,7 @@ public class TurtleView implements DisplayTurtle, DisplayCanvas {
    */
   @Override
   public void setTurtleImage(Image turtleImage){
-//    turtleImage =
+    this.turtleImage.setImage(turtleImage);
   }
 
   @Override
