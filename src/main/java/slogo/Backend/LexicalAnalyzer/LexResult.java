@@ -14,7 +14,7 @@ public class LexResult {
   private Deque<Token> tokens;
   private TokenScanner scanner = TokenScanner.getTokenScanner();
 
-  public LexResult(String instruction) {
+  public LexResult(String instruction) throws InvalidTokenException {
     this.instruction = instruction;
     this.splitByWhiteSpace = this.splitInstruction();
     this.tokens = this.tokenize();
@@ -33,21 +33,16 @@ public class LexResult {
     return deque;
   }
   
-  protected Deque<Token> tokenize() {
+  protected Deque<Token> tokenize() throws InvalidTokenException {
     Deque<Token> tokens = new ArrayDeque<>();
-    Iterator<String> iter = splitByWhiteSpace.iterator();
-    while(iter.hasNext())  {
-      try {
-        Token token = Tokenizer.getToken(iter.next());
-        if(token!=null) {
-          tokens.addLast(token);
-        }
-        else  {
-          throw new InvalidTokenException();
-        }
+    for(String s: this.splitByWhiteSpace)  {
+      Token token = Tokenizer.getToken(s);
+      if(token!=null) {
+        tokens.addLast(token);
       }
-      catch (InvalidTokenException e) {
-        //implement
+      else  {
+        throw new InvalidTokenException(s + "is a bad Token");
+        //TODO: implement error text and better error message
       }
     }
     return tokens;
