@@ -2,8 +2,8 @@ package slogo.BackendExternalAPIs;
 
 import java.nio.file.Path;
 import java.util.HashMap;
-import slogo.Backend.InitializationState;
-import slogo.Backend.classType;
+import slogo.Backend.State.InitializationState;
+import slogo.Backend.State.classType;
 
 public interface Initializes {
 

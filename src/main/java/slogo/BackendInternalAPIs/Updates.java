@@ -2,7 +2,7 @@ package slogo.BackendInternalAPIs;
 
 import slogo.Backend.AST;
 import slogo.Backend.ASTNode;
-import slogo.Backend.Turtle;
+import slogo.Backend.TurtleState.Turtle;
 
 public interface Updates {
   /**
