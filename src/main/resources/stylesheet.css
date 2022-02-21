@@ -1,0 +1,19 @@
+.speed-slider {
+  -fx-control-inner-background: #1354cb;
+  -fx-major-tick-unit: 0.5;
+  -fx-minor-tick-count: 5;
+  -fx-snap-to-ticks: true;
+  -fx-show-tick-labels: true;
+  -fx-show-tick-marks: true;
+  -fx-max-width: 75;
+}
+
+.speed-slider .thumb{
+  -fx-background-color: #1354cb;
+}
+
+.border-pane-right{
+  -fx-border-width: 2;
+  -fx-border-color: GRAY;
+  -fx-min-width: 125;
+}

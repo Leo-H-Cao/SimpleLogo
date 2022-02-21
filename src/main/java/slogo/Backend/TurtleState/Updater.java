@@ -31,7 +31,6 @@ public class Updater implements Updates {
     return null;
   }
 
-
   /**
    * Iterate through the AST for numInstructions instructions and return the final turtle state
    *

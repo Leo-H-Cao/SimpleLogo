@@ -1,17 +1,21 @@
 package slogo;
 
 import java.io.IOException;
+import java.lang.ModuleLayer.Controller;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
+import javafx.application.Application;
+import javafx.stage.Stage;
+import slogo.Frontend.View;
 
 
 /**
  * Feel free to completely change this code or delete it entirely. 
  */
-public class Main {
+public class Main extends Application {
     private static final String LANGUAGE_RESOURCE_PATH = "/slogo/languages/";
     private static final String EXAMPLE_PROGRAMS_PATH = "/examples";
 
@@ -57,6 +61,10 @@ public class Main {
         }
     }
 
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        View view = new View(primaryStage);
+    }
 
     /**
      * Start of the program.
@@ -66,5 +74,6 @@ public class Main {
         System.out.println(m.getVersion());
         System.out.println(m.getCommand("English", "Forward"));
         System.out.println(m.getExampleProgram("loops", "star"));
+        launch(args);
     }
 }
