@@ -1,4 +1,3 @@
 package slogo.Backend.State;
 
-public enum classType {
-}
+public enum classType {}

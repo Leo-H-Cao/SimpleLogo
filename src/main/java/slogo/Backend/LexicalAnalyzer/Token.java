@@ -17,5 +17,4 @@ public class Token {
   public String getValue() {
     return value;
   }
-
 }

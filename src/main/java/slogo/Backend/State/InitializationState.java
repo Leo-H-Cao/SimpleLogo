@@ -1,5 +1,3 @@
 package slogo.Backend.State;
 
-public class InitializationState {
-
-}
+public class InitializationState {}

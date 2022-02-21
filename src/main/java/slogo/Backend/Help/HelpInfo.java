@@ -1,5 +1,3 @@
 package slogo.Backend.Help;
 
-public class HelpInfo {
-
-}
+public class HelpInfo {}

@@ -1,5 +1,3 @@
 package slogo.Backend.State;
 
-public class UserCommands {
-
-}
+public class UserCommands {}
