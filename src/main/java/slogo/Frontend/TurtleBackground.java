@@ -6,8 +6,9 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import slogo.FrontendExternalAPIs.DisplayCanvas;
 
-public class TurtleBackground {
+public class TurtleBackground implements DisplayCanvas {
   public static final Background DEFAULT_BACKGROUND= new Background(new BackgroundFill(Color.ALICEBLUE, CornerRadii.EMPTY, Insets.EMPTY));
 
   private StackPane turtleBackground;
@@ -24,4 +25,14 @@ public class TurtleBackground {
   public StackPane getTurtleBackground() {
     return turtleBackground;
   }
+
+  /**
+   * clears screen and resets turtle to original position
+   */
+  public void resetDisplay(){}
+
+  /**
+   * changes background color
+   */
+  public void setBackGroundColor(){}
 }
