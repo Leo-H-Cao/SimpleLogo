@@ -1,5 +1,6 @@
 module slogo_app {
     // list all imported class packages since they are dependencies
+    requires java.desktop;
     requires javafx.controls;
     requires javafx.graphics;
     requires javafx.base;
@@ -14,5 +15,10 @@ module slogo_app {
     exports slogo.Backend;
     exports slogo.Backend.SyntaxParser;
     exports slogo.Backend.LexicalAnalyzer;
+    exports slogo.Frontend;
+    exports slogo.FrontendExternalAPIs;
+    exports slogo.FrontendInternalAPIs;
+
+    opens slogo;
 
 }
