@@ -10,7 +10,6 @@ public class ViewUserDefined implements UpdateUserDefined {
    * update user defined commands state
    * @param commands
    */
-  @Override
   public void updateUserCommands(UserCommands commands){
 
   }
@@ -19,9 +18,7 @@ public class ViewUserDefined implements UpdateUserDefined {
    * update user defined variables state
    * @param variables
    */
-  @Override
   public void updateVariables(UserVariables variables){
-
   }
 
 }
