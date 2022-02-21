@@ -1,6 +1,6 @@
 package slogo.BackendExternalAPIs;
 
-import slogo.Backend.HelpInfo;
+import slogo.Backend.Help.HelpInfo;
 
 public interface Help {
   /**

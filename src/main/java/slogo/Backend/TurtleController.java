@@ -1,8 +1,11 @@
 package slogo.Backend;
 
+import slogo.Backend.TurtleState.Turtle;
 import slogo.BackendExternalAPIs.ControlsTurtle;
 
 public class TurtleController implements ControlsTurtle {
+
+  public TurtleController() {}
 
   /**
    * This methods sends an instruction entered by the user to the backend

@@ -2,8 +2,8 @@ package slogo.BackendExternalAPIs;
 
 import java.nio.file.Path;
 import java.util.HashMap;
-import slogo.Backend.InitializationState;
-import slogo.Backend.classType;
+import slogo.Backend.State.InitializationState;
+import slogo.Backend.State.classType;
 
 public interface Initializes {
 
@@ -20,4 +20,6 @@ public interface Initializes {
    * @return the boolean
    */
   Boolean loadStateFromFiles(HashMap<classType, Path> state);
+
+  Boolean setCommandLanguage(String commandLanguage);
 }

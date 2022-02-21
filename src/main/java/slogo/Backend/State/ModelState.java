@@ -1,12 +1,22 @@
-package slogo.Backend;
+package slogo.Backend.State;
 
 import java.nio.file.Path;
 import java.util.HashMap;
+import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import slogo.Backend.TurtleState.Turtle;
 import slogo.BackendExternalAPIs.AccessState;
 import slogo.BackendExternalAPIs.Initializes;
 import slogo.BackendExternalAPIs.ModifiesModelState;
 
 public class ModelState implements Initializes, ModifiesModelState, AccessState {
+  private CommandLanguage commandLanguage;
+  private Turtle turtle;
+  private Tracks tracks;
+  private History history;
+  private UserVariables userVariables;
+  private UserCommands userCommands;
 
   /**
    * This method retrives the current Turtle state from the backend. This turtle state is returned
@@ -17,7 +27,7 @@ public class ModelState implements Initializes, ModifiesModelState, AccessState 
    */
   @Override
   public Turtle getCurrentTurtleState() {
-    return null;
+    return turtle;
   }
 
   /**
@@ -29,7 +39,7 @@ public class ModelState implements Initializes, ModifiesModelState, AccessState 
    */
   @Override
   public Tracks getTracks() {
-    return null;
+    return this.tracks;
   }
 
   /**
@@ -39,7 +49,7 @@ public class ModelState implements Initializes, ModifiesModelState, AccessState 
    */
   @Override
   public History getHistory() {
-    return null;
+    return history;
   }
 
   /**
@@ -49,7 +59,7 @@ public class ModelState implements Initializes, ModifiesModelState, AccessState 
    */
   @Override
   public UserVariables getUserVariables() {
-    return null;
+    return userVariables;
   }
 
   /**
@@ -59,7 +69,7 @@ public class ModelState implements Initializes, ModifiesModelState, AccessState 
    */
   @Override
   public UserCommands getUserCommands() {
-    return null;
+    return userCommands;
   }
 
   /**
@@ -69,7 +79,7 @@ public class ModelState implements Initializes, ModifiesModelState, AccessState 
    */
   @Override
   public CommandLanguage getCommandLanguage() {
-    return null;
+    return commandLanguage;
   }
 
   /**
@@ -84,8 +94,8 @@ public class ModelState implements Initializes, ModifiesModelState, AccessState 
   /**
    * Load state from files boolean.
    *
-   * @param state HashMap where keys are enum of Object type to load and values are paths to serialized
-   * files of Java Objects
+   * @param state HashMap where keys are enum of Object type to load and values are paths to
+   *     serialized files of Java Objects
    * @return Boolean which is True on success and False on failure
    */
   @Override
@@ -94,12 +104,34 @@ public class ModelState implements Initializes, ModifiesModelState, AccessState 
   }
 
   /**
-   * Sets command language.
+   * Sets command language. See
+   * https://docs.oracle.com/javase/7/docs/api/java/lang/String.html#toUpperCase() for why
+   * toUpperCase(Locale.ENGLISH)
    *
    * @return the command language
    */
   @Override
-  public Boolean setCommandLanguage() {
-    return null;
+  public Boolean setCommandLanguage(String commandLanguage)
+      throws IllegalArgumentException, NullPointerException {
+    Boolean success = Boolean.FALSE;
+    try {
+      this.commandLanguage = CommandLanguage.valueOf(commandLanguage.toUpperCase(Locale.ENGLISH));
+      success = Boolean.TRUE;
+    } catch (IllegalArgumentException | NullPointerException exception) {
+      Logger.getGlobal()
+          .throwing(
+              this.getClass().getName(),
+              this.getClass().getEnclosingMethod().toGenericString(),
+              exception);
+    } catch (Exception exception) {
+      Logger.getGlobal()
+          .logp(
+              Level.SEVERE,
+              this.getClass().getName(),
+              this.getClass().getEnclosingMethod().toGenericString(),
+              "Unexpected exception not in method signature",
+              exception);
+    }
+    return success;
   }
 }

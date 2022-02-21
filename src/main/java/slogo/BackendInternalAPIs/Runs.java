@@ -1,8 +1,9 @@
 package slogo.BackendInternalAPIs;
 
 import java.util.Queue;
-import slogo.Backend.LexResult;
-import slogo.Backend.Turtle;
+import slogo.Backend.LexicalAnalyzer.InvalidTokenException;
+import slogo.Backend.LexicalAnalyzer.LexResult;
+import slogo.Backend.TurtleState.Turtle;
 
 public interface Runs {
 
@@ -15,7 +16,7 @@ public interface Runs {
    * @return LexResult object which contains the result of the Lexical Analysis in a form that
    * is understandable by the parser
    */
-  LexResult runLexicalAnalyzer(String instruction);
+  LexResult runLexicalAnalyzer(String instruction) throws InvalidTokenException;
 
   /**
    * Adds queue of Turtles to History

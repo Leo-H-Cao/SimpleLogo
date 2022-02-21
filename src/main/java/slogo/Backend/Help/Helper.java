@@ -1,4 +1,4 @@
-package slogo.Backend;
+package slogo.Backend.Help;
 
 import slogo.BackendExternalAPIs.Help;
 
