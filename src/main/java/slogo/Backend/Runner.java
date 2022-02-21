@@ -1,11 +1,23 @@
 package slogo.Backend;
 
 import java.util.Queue;
+import slogo.Backend.LexicalAnalyzer.InvalidTokenException;
 import slogo.Backend.LexicalAnalyzer.LexResult;
+import slogo.Backend.SyntaxParser.ASTMaker;
+import slogo.Backend.SyntaxParser.Operator;
 import slogo.Backend.TurtleState.Turtle;
+import slogo.BackendInternalAPIs.Parses;
 import slogo.BackendInternalAPIs.Runs;
 
-public class Runner implements Runs {
+public class Runner implements Runs, Parses {
+
+  public double run(String instruction) throws InvalidTokenException {
+    LexResult lexResult = new LexResult(instruction);
+    ASTMaker ast = new ASTMaker(lexResult.getTokens());
+    Operator operator = ast.parse();
+    double retValue = operator.getRetVal();
+    return retValue;
+  }
 
   /**
    * Run lexical analyzer on the user inputted instruction and return the result in the form of a
@@ -16,7 +28,7 @@ public class Runner implements Runs {
    * understandable by the parser
    */
   @Override
-  public LexResult runLexicalAnalyzer(String instruction) {
+  public LexResult runLexicalAnalyzer(String instruction) throws InvalidTokenException {
     return new LexResult(instruction);
   }
 
@@ -27,5 +39,17 @@ public class Runner implements Runs {
    */
   public boolean addTurtleQueueToHistory(Queue<Turtle> turtleQueue) {
     return false;
+  }
+
+  /**
+   * Parse a user created instruction into an AST.
+   *
+   * @param command is the user inputted command after it was ran through the lexical analyzer
+   * @return an AST object which represents the abstract sytax tree of the initial user inputted
+   * command
+   */
+  @Override
+  public AST parseCommand(LexResult command) {
+    return null;
   }
 }
