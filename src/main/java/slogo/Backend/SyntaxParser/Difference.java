@@ -9,6 +9,7 @@ public class Difference extends ArithmeticOp{
     super();
     this.arguments.add(operands.get(0));
     this.arguments.add(operands.get(1));
+    ArgNum = 2;
   }
 
   public double getRetVal(){
