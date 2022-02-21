@@ -1,7 +1,6 @@
 package slogo.Backend.LexicalAnalyzer;
 
 import java.util.ArrayDeque;
-import java.util.Deque;
 
 public class LexResult {
 
@@ -9,8 +8,8 @@ public class LexResult {
       "\\s+"; // source: https://www.baeldung.com/java-regex-s-splus
   private static final TokenScanner scanner = TokenScanner.getTokenScanner();
   private final String instruction;
-  private final Deque<String> splitByWhiteSpace;
-  private final Deque<Token> tokens;
+  private final ArrayDeque<String> splitByWhiteSpace;
+  private final ArrayDeque<Token> tokens;
 
   public LexResult(String instruction) throws InvalidTokenException {
     this.instruction = instruction;
@@ -23,7 +22,7 @@ public class LexResult {
    *
    * @return Collection of Strings
    */
-  protected Deque<String> splitInstruction() {
+  protected ArrayDeque<String> splitInstruction() {
     String[] splitArray = this.instruction.split(LexResult.WHITESPACEREGEX);
     ArrayDeque<String> deque = new ArrayDeque<>();
     for (String s : splitArray) {
@@ -32,8 +31,8 @@ public class LexResult {
     return deque;
   }
 
-  protected Deque<Token> tokenize() throws InvalidTokenException {
-    Deque<Token> tokens = new ArrayDeque<>();
+  protected ArrayDeque<Token> tokenize() throws InvalidTokenException {
+    ArrayDeque<Token> tokens = new ArrayDeque<>();
     for (String s : this.splitByWhiteSpace) {
       Token token = Tokenizer.getToken(s);
       if (token != null) {
@@ -46,7 +45,7 @@ public class LexResult {
     return tokens;
   }
 
-  public Deque<Token> getTokens() {
+  public ArrayDeque<Token> getTokens() {
     return tokens;
   }
 }

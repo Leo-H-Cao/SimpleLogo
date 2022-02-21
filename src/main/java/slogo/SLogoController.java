@@ -7,7 +7,7 @@ import slogo.Backend.Help.HelpInfo;
 import slogo.Backend.Help.Helper;
 import slogo.Backend.State.InitializationState;
 import slogo.Backend.State.ModelState;
-import slogo.Backend.TurtleState.TurtleController;
+import slogo.Backend.TurtleController;
 import slogo.Backend.Validator;
 import slogo.Backend.ValidityResult;
 import slogo.Frontend.CommandInput;

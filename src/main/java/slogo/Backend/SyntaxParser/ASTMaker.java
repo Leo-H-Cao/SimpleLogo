@@ -8,9 +8,11 @@ import slogo.Backend.LexicalAnalyzer.Token;
 
 public class ASTMaker {
   private ArrayDeque<Token> tokens;
-  private ArrayDeque<Operator> unevaluated;
-  private ArrayDeque<Operator> evaluated;
+  private ArrayDeque<Operator> unevaluated = new ArrayDeque<>();
+  private ArrayDeque<Operator> evaluated = new ArrayDeque<>();
   private Operator root;
+
+  private String rootdirectory = "slogo.Backend.SyntaxParser.";
 
 
   public ASTMaker(ArrayDeque<Token> tokens){
@@ -29,10 +31,24 @@ public class ASTMaker {
       Token t = tokens.getFirst();
       String tokenType = t.getTyoe().toString();
       try {
-        Class<?> operatorType = Class.forName("slogo.Backend.SyntaxParser." + tokenType);
-        Constructor<?> constructor = operatorType.getConstructor();
-        Operator nextOperator = (Operator) constructor.newInstance();
-        if(tokenType.toString()=="Constant"){
+        //System.out.println(tokenType);
+        Class<?> operatorType;
+        Operator nextOperator;
+        if(tokenType.equals("COMMAND")){
+          //operatorType = Class.forName("slogo.Backend.SyntaxParser." + "Command");
+          operatorType = Class.forName(rootdirectory + t.getValue());
+          //operatorType = Class.forName("Command");
+          Constructor<?> constructor = operatorType.getConstructor();
+          nextOperator = (Operator) constructor.newInstance();
+        }
+        else{
+          operatorType = Class.forName(rootdirectory + "Constant");
+          Constructor<?> constructor = operatorType.getConstructor(double.class);
+          nextOperator = (Operator) constructor.newInstance(Double.parseDouble(t.getValue()));
+        }
+
+
+        if(tokenType.toString()=="CONSTANT"){
           evaluated.addLast(nextOperator);
         }
         else{
@@ -40,15 +56,15 @@ public class ASTMaker {
         }
       } catch (ClassNotFoundException e) {
         //TODO: REPLACE THIS LATER
-        //e.printStackTrace();
+        e.printStackTrace();
       } catch (NoSuchMethodException e) {
-        //e.printStackTrace();
+        e.printStackTrace();
       } catch (InvocationTargetException e) {
-        //e.printStackTrace();
+        e.printStackTrace();
       } catch (InstantiationException e) {
-        //e.printStackTrace();
+        e.printStackTrace();
       } catch (IllegalAccessException e) {
-        //e.printStackTrace();
+        e.printStackTrace();
       }
       tokens.removeFirst();
     }
@@ -58,8 +74,9 @@ public class ASTMaker {
   private void generateAST(){
     //TODO: use the stacks of operands to generate the AST;
     while(!unevaluated.isEmpty()){
-      Operator nextOperator = unevaluated.getLast();
+      Operator nextOperator = unevaluated.getFirst();
       handleOperator(nextOperator);
+      unevaluated.removeFirst();
     }
     root = evaluated.pop();
   }

@@ -14,7 +14,7 @@ public abstract class Operator {
   }
 
   public void addArgument(Operator o){
-    this.arguments.add(arguments.size()-1, o);
+    this.arguments.add(Math.max(0,arguments.size()-1), o);
   }
 
 }
