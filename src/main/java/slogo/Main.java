@@ -43,6 +43,7 @@ public class Main {
     }
 
     // this code is dense, hard to read, and throws exceptions so better to wrap in method
+    @SuppressWarnings("SameParameterValue")
     private List<String> readFile (String filename, String delimiter) {
         try {
             String path = getClass().getResource(filename).toExternalForm();

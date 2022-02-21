@@ -9,10 +9,10 @@ import java.util.StringTokenizer;
 public class LexResult {
 
   private static final String WHITESPACEREGEX = "\\s+"; //source: https://www.baeldung.com/java-regex-s-splus
-  private String instruction;
+  private final String instruction;
   private Deque<String> splitByWhiteSpace;
   private Deque<Token> tokens;
-  private TokenScanner scanner = TokenScanner.getTokenScanner();
+  private static final TokenScanner scanner = TokenScanner.getTokenScanner();
 
   public LexResult(String instruction) throws InvalidTokenException {
     this.instruction = instruction;
@@ -48,4 +48,7 @@ public class LexResult {
     return tokens;
   }
 
+  public Deque<Token> getTokens() {
+    return tokens;
+  }
 }

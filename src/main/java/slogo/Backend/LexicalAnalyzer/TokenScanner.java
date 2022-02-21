@@ -8,8 +8,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class TokenScanner {
-  private HashMap<TokenType, Matcher> matchers;
-  private static TokenScanner tokenScanner = new TokenScanner();
+  private final HashMap<TokenType, Matcher> matchers;
+  private static final TokenScanner tokenScanner = new TokenScanner();
 
   /**
    * reference: https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html
@@ -29,17 +29,22 @@ public class TokenScanner {
     return tokenScanner;
   }
 
-  public Token attemptMatch(String s) {
+  public Token attemptMatch(String s) throws InvalidTokenException {
     for(TokenType tokenType: matchers.keySet())  {
       Matcher matcher = matchers.get(tokenType);
       matcher.reset(s);
-      Boolean matchStatus = matcher.matches();
+      boolean matchStatus = matcher.matches();
       if(matchStatus) {
         return new Token(tokenType, s);
       }
       else {
-        throw InvalidTokenException.;
+        String exceptionMessage = TokenScanner.createInvalidTokenMessage(s);
+        throw new InvalidTokenException(exceptionMessage);
       }
     }
+  }
+
+  private static String createInvalidTokenMessage(String badToken) {
+    return "The token " + badToken + "is not recognized as valid";
   }
 }
