@@ -5,9 +5,10 @@ import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import slogo.Backend.CommandLanguage;
-import slogo.Backend.History;
+import slogo.Backend.State.CommandLanguage;
+import slogo.Backend.State.History;
 import slogo.FrontendExternalAPIs.CommandWindow;
+import slogo.SLogoController;
 
 /**
  * Test Ideas:
@@ -21,22 +22,29 @@ public class CommandInput implements CommandWindow {
   public static final int TEXT_BOX_SIZE = 700;
   public static final String PROMPT = "Enter Commands Here";
 
+  private SLogoController myController;
   private TextArea textArea;
   private Button executeButton;
   private Pane inputBox;
   private String commandText;
 
-  public CommandInput(){
+  public CommandInput(SLogoController controller){
+    //TODO: add buffer so class always keeps track of what is in text box?
+    // Not sure I'm understanding why we need this
+
+    myController = controller;
     inputBox = new VBox();
 
     textArea = new TextArea();
     textArea.setPromptText(PROMPT);
     textArea.setMaxSize(TEXT_BOX_SIZE, TEXT_BOX_SIZE);
     textArea.getStyleClass().add("text-input");
+    textArea.setId("CommandInputTextArea");
     commandText = "";
 
     executeButton = new Button("Execute");
     executeButton.getStyleClass().add("execute-button");
+    executeButton.setId("ExecuteButton");
     addChildNodes();
     setSubmitActions();
   }
@@ -55,6 +63,7 @@ public class CommandInput implements CommandWindow {
    */
   @Override
   public void setCommandHistory(History history){
+
   }
 
   @Override
@@ -79,7 +88,9 @@ public class CommandInput implements CommandWindow {
 
   private void submitCommand(){
     commandText = textArea.getText().trim();
+    if(commandText.length() == 0) return;
     textArea.clear();
+    myController.handleCommandSubmitted();
   }
 
   private void addChildNodes(){

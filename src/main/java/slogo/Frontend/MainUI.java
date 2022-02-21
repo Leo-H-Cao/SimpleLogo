@@ -3,10 +3,11 @@ package slogo.Frontend;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import slogo.Backend.SyntaxParser.Command;
+import slogo.SLogoController;
 
 public class MainUI{
 
+  private SLogoController myController;
   private BorderPane layout;
   private Scene myScene;
   private MenuBarUI myMenuBar;
@@ -16,7 +17,8 @@ public class MainUI{
   private TurtleView testTurtle;
 
   // Might add a reflection thing to talk to a .properties file
-  public MainUI(Stage myStage) {
+  public MainUI(Stage myStage, SLogoController controller) {
+    myController = controller;
     layout = new BorderPane();
     myScene = new Scene(layout,600, 600);
     myScene.getStylesheets().add("stylesheet.css");
@@ -34,7 +36,7 @@ public class MainUI{
   private void createUINodes(){
     myMenuBar = new MenuBarUI();
     myControlPanel = new ControlPanel();
-    myCommandInput = new CommandInput();
+    myCommandInput = new CommandInput(myController);
     myTurtleBackground = new TurtleBackground();
     layOutChildren();
   }

@@ -14,8 +14,10 @@ open module slogo_app {
     exports slogo.Backend;
     exports slogo.Backend.SyntaxParser;
     exports slogo.Backend.LexicalAnalyzer;
-  exports slogo.Backend.State;
+    exports slogo.Backend.State;
     exports slogo.Backend.Help;
     exports slogo.Backend.TurtleState;
-
+    exports slogo.Frontend;
+    exports slogo.FrontendExternalAPIs;
+    exports slogo.FrontendInternalAPIs;
 }

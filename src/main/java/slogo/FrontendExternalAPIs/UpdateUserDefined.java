@@ -1,7 +1,7 @@
 package slogo.FrontendExternalAPIs;
 
-import slogo.Backend.UserCommands;
-import slogo.Backend.UserVariables;
+import slogo.Backend.State.UserCommands;
+import slogo.Backend.State.UserVariables;
 
 public abstract interface UpdateUserDefined {
 
