@@ -42,7 +42,7 @@ public class SLogoController {
     mainView = new View(myStage, this);
     gui = mainView.getMainUI();
     commandInputter = gui.getCommandInput();
-    turtleView = new TurtleView(); //TODO: This should be owned by some class in the frontend
+    turtleView = gui.getTurtleView();
     userDefinedAttributesUpdater = new ViewUserDefined(); //TODO: This should be owned by some class in the frontend
 
 
