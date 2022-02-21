@@ -41,5 +41,6 @@ public class TokenScanner {
         throw new InvalidTokenException(exceptionMessage);
       }
     }
+    return null; //temporarily added to compile
   }
 }
