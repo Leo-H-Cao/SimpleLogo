@@ -47,7 +47,7 @@ public class CommandInput implements CommandWindow {
    * @return
    */
   @Override
-  public String getCommandInput(){
+  public String getCommands(){
     String commands = textArea.getText().trim();
     textArea.clear();
     return commands;
@@ -71,12 +71,12 @@ public class CommandInput implements CommandWindow {
 
   private void setSubmitActions(){
     executeButton.setOnAction(event -> {
-      getCommandInput();
+      getCommands();
     });
 
     textArea.setOnKeyPressed(keyEvent -> {
       if (keyEvent.getCode() == KeyCode.ENTER)  {
-        getCommandInput();
+        getCommands();
       }
     });
   }
