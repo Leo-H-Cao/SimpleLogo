@@ -39,10 +39,12 @@ public class CommandInput implements CommandWindow {
     textArea.setPromptText(PROMPT);
     textArea.setMaxSize(TEXT_BOX_SIZE, TEXT_BOX_SIZE);
     textArea.getStyleClass().add("text-input");
+    textArea.setId("CommandInputTextArea");
     commandText = "";
 
     executeButton = new Button("Execute");
     executeButton.getStyleClass().add("execute-button");
+    executeButton.setId("ExecuteButton");
     addChildNodes();
     setSubmitActions();
   }
