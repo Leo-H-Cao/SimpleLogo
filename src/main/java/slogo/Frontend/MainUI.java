@@ -41,7 +41,7 @@ public class MainUI{
     layOutChildren();
   }
   private void addingTurtle(){
-    testTurtle = new TurtleView();
+    testTurtle = new TurtleView(myControlPanel.getSpeedSlider().getValue());
     myTurtleBackground.addTurtle(testTurtle);
   }
 

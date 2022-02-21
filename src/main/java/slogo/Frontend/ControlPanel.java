@@ -23,4 +23,7 @@ public class ControlPanel {
     controlPanelContainer.getChildren().add(mySpeedSlider.getSliderBox());
   }
 
+  public SpeedSlider getSpeedSlider() {
+    return mySpeedSlider;
+  }
 }
