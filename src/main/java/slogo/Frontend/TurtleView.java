@@ -38,14 +38,15 @@ public class TurtleView implements DisplayTurtle, DisplayCanvas {
 
   // create sequence of animations
   Animation makeAnimation (Turtle nextTurtle) {
-    // create something to follow
+    // create a path for the animation to follow
     Path path = new Path();
     path.getElements().addAll(new MoveTo(turtle.getLocation().getX(), turtle.getLocation().getY()),
         new LineTo(nextTurtle.getLocation().getX(), nextTurtle.getLocation().getY()));
-    // create an animation where the shape follows a path
+    // create an animation that follows the path
     PathTransition pt = new PathTransition(Duration.seconds(DEFAULT_SPEED / mySpeed), path, turtleNode);
-    // create an animation that rotates the shape
-    RotateTransition rt = new RotateTransition(Duration.seconds(3));
+    // animation that rotates the turtle before ending
+    RotateTransition rt = new RotateTransition(Duration.seconds(DEFAULT_SPEED / mySpeed));
+//    rt.setByAngle(nextTurtle.getDirection());
     rt.setByAngle(90);
     // put them together in order
     return new SequentialTransition(turtleNode, pt, rt);
