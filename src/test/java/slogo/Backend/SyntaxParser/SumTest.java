@@ -10,18 +10,18 @@ public class SumTest {
   Sum mySum;
 
   @BeforeEach
-  void setup(){
+  void setup() {
     mySum = new Sum(new Constant(10), new Constant(2));
   }
 
   @Test
-  void testGetRetVal(){
+  void testGetRetVal() {
     assertEquals(12.0, mySum.getRetVal());
   }
 
   @Test
-  void testGetMyNumArgs(){
-    assertEquals(2,mySum.getMyNumArgs());
+  void testGetMyNumArgs() {
+    assertEquals(2, mySum.getMyNumArgs());
   }
 
 }
