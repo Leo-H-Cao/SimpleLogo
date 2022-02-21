@@ -65,8 +65,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        controller = new SLogoController(primaryStage);
-        controller.setupNewSLogo();
+        controller = new SLogoController();
+        controller.setupNewSLogo(primaryStage);
     }
 
     /**
