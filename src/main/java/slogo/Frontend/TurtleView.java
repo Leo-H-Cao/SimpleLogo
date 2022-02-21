@@ -22,14 +22,18 @@ public class TurtleView implements DisplayTurtle, DisplayCanvas {
 
   public static final String TURTLE_IMAGE_PATH = "test-turtle.png";
   public static final int TURTLE_SIZE = 40;
+  public static final int DEFAULT_SPEED = 4;
+
 
   private Node turtleNode;
   private ImageView turtleImage;
   private Turtle initialTurtle;
   private Turtle turtle;
+  private double mySpeed;
 
-  public TurtleView(){
+  public TurtleView(double animationSpeed){
     turtleNode = makeActor();
+    mySpeed = animationSpeed;
   }
 
   // create sequence of animations
@@ -39,7 +43,7 @@ public class TurtleView implements DisplayTurtle, DisplayCanvas {
     path.getElements().addAll(new MoveTo(turtle.getLocation().getX(), turtle.getLocation().getY()),
         new LineTo(nextTurtle.getLocation().getX(), nextTurtle.getLocation().getY()));
     // create an animation where the shape follows a path
-    PathTransition pt = new PathTransition(Duration.seconds(4), path, turtleNode);
+    PathTransition pt = new PathTransition(Duration.seconds(DEFAULT_SPEED / mySpeed), path, turtleNode);
     // create an animation that rotates the shape
     RotateTransition rt = new RotateTransition(Duration.seconds(3));
     rt.setByAngle(90);

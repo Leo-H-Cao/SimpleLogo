@@ -20,5 +20,8 @@ public class SpeedSlider extends Sslider {
     Label speedLabel = new Label(SPEED_LABEL);
     speedBox.getChildren().add(speedLabel);
   }
+  public double getValue(){
+    return getSlider().getValue();
+  }
 
 }
