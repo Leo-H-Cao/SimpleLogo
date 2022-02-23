@@ -1,4 +1,4 @@
-package slogo.BackendExternalAPIs;
+package slogo.Backend;
 
 public enum className {
 }

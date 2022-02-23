@@ -1,2 +1,5 @@
-package slogo.Backend;public class Preferences {
+package slogo.Backend;
+
+public class Preferences {
+
 }

@@ -1,16 +1,18 @@
-package slogo.Backend.Help;
+package slogo.Backend;
 
-import slogo.BackendExternalAPIs.Help;
+import java.util.Optional;
+import slogo.BackendExternalAPIs.Helps;
 
-public class Helper implements Help {
+public class Helper implements Helps {
 
   /**
-   * Gets the help text to display to the user upon user request.
+   * Gets help.
    *
+   * @param token
    * @return the help
    */
   @Override
-  public HelpInfo getHelp() {
+  public HelpInformation getHelp(Optional<String> token) {
     return null;
   }
 }

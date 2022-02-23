@@ -4,7 +4,7 @@ import java.util.Deque;
 import slogo.Backend.LexicalAnalyzer.InvalidTokenException;
 import slogo.Backend.TurtleState.Turtle;
 
-public interface ControlTurtle {
+public interface ControlsTurtle {
   /**
    * This methods sends an instruction entered by the user to the backend.
    *

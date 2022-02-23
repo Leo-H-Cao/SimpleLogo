@@ -3,7 +3,7 @@ package slogo.BackendExternalAPIs;
 import java.util.Optional;
 import slogo.Backend.HelpInformation;
 
-public interface Help {
+public interface Helps {
   /**
    * This method is called when the user requests help.
    *

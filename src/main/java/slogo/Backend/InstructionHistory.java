@@ -1,2 +1,5 @@
-package slogo.Backend;public class InstructionHistory {
+package slogo.Backend;
+
+public class InstructionHistory {
+
 }

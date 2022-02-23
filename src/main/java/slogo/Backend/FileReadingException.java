@@ -1,2 +1,5 @@
-package slogo.Backend;public class FileReadingException {
+package slogo.Backend;
+
+public class FileReadingException extends Exception {
+
 }

@@ -1,13 +1,14 @@
 package slogo.BackendExternalAPIs;
 
+import slogo.Backend.InstructionHistory;
 import slogo.Backend.State.CommandLanguage;
-import slogo.Backend.State.History;
 import slogo.Backend.State.Tracks;
+import slogo.Backend.State.TurtleHistory;
 import slogo.Backend.State.UserCommands;
 import slogo.Backend.State.UserVariables;
-import slogo.Backend.TurtleState.Turtle;
 
-public interface stateAccesor {
+/** The interface Accesses state. */
+public interface AccessesState {
 
   /**
    * A method which calls on the backend to get all the tracks created by the Turtle from the
@@ -19,11 +20,12 @@ public interface stateAccesor {
   Tracks getTracks();
 
   /**
-   * Gets history.
+   * Gets the full history of the Turtle objects from this running of the model.
    *
-   * @return the history
+   * @return a TurtleHistory object which has the history of where the turtle has been and what state it
+   * was in with its Turtle objects, which can be accessed through its public methods
    */
-  History getHistory();
+  TurtleHistory getTurtleHistory();
 
   /**
    * Gets user variables.
@@ -40,9 +42,18 @@ public interface stateAccesor {
   UserCommands getUserCommands();
 
   /**
+   * Gets instruction history
+   *
+   * @return the instruction history in the form of an InstructionHistory object
+   */
+  InstructionHistory getInstructionHistory();
+
+  /**
    * Gets command language.
    *
    * @return the command language
    */
   CommandLanguage getCommandLanguage();
+
+
 }
