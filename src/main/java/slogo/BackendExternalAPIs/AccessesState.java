@@ -7,15 +7,7 @@ import slogo.Backend.State.UserCommands;
 import slogo.Backend.State.UserVariables;
 import slogo.Backend.TurtleState.Turtle;
 
-public interface AccessState {
-  /**
-   * This method retrives the current Turtle state from the backend. This turtle state is returned
-   * in the form of a Turtle object, which has all of the information relevant to the state of the
-   * turtle which is relevant to the backend.
-   *
-   * @return Turtle object with the current turtle state
-   */
-  Turtle getCurrentTurtleState();
+public interface stateAccesor {
 
   /**
    * A method which calls on the backend to get all the tracks created by the Turtle from the
