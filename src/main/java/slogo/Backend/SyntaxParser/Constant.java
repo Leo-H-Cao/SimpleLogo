@@ -1,6 +1,8 @@
 package slogo.Backend.SyntaxParser;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import slogo.Backend.TurtleState.Turtle;
 
 public class Constant extends Operator {
 
@@ -11,7 +13,7 @@ public class Constant extends Operator {
     arguments = new ArrayList<>();
   }
 
-  public double getRetVal() {
+  public double getRetVal(ArrayDeque<Turtle> turtleStack) {
     return retVal;
   }
 

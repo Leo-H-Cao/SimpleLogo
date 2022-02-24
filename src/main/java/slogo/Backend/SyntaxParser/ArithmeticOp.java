@@ -9,7 +9,6 @@ public abstract class ArithmeticOp extends Operator {
     this.arguments = new ArrayList<Operator>();
   }
 
-  public abstract double getRetVal();
 
   public int getMyNumArgs() {
     return myNumArgs;

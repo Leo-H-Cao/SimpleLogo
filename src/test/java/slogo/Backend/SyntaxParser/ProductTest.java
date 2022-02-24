@@ -2,11 +2,14 @@ package slogo.Backend.SyntaxParser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.ArrayDeque;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import slogo.Backend.TurtleState.Turtle;
 
 public class ProductTest {
   Product myProduct;
+  private ArrayDeque<Turtle> myTurtleStack;
 
   @BeforeEach
   void setup() {
@@ -15,7 +18,7 @@ public class ProductTest {
 
   @Test
   void testGetRetVal() {
-    assertEquals(20.0, myProduct.getRetVal());
+    assertEquals(20.0, myProduct.getRetVal(myTurtleStack));
   }
 
   @Test
