@@ -3,19 +3,17 @@ package slogo.FrontendExternalAPIs;
 import slogo.Backend.State.CommandLanguage;
 import slogo.Backend.State.History;
 
-public abstract interface CommandWindow {
+public interface CommandWindow {
 
   /**
    * Returns command input from user
+   *
    * @return
    */
-  public String getCommands();
+  String getCommands();
 
-  /**
-   * gets command history from backend
-   */
-  public void setCommandHistory(History history);
+  /** gets command history from backend */
+  void setCommandHistory(History history);
 
-  public void setCommandLanguage(CommandLanguage lang);
-
+  void setCommandLanguage(CommandLanguage lang);
 }

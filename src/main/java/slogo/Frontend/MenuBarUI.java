@@ -1,26 +1,25 @@
 package slogo.Frontend;
 
 import javafx.scene.control.MenuBar;
-import javafx.scene.input.Mnemonic;
 
 public class MenuBarUI {
 
-  private MenuBar myMenuBar;
+  private final MenuBar myMenuBar;
 
-  public MenuBarUI(){
+  public MenuBarUI() {
     myMenuBar = new MenuBar();
     createMenuBar();
   }
 
-  public void addToMenuBar(MenuUI menu){
+  public void addToMenuBar(MenuUI menu) {
     myMenuBar.getMenus().add(menu.getMenu());
   }
 
-  public MenuBar getMenuBar(){
+  public MenuBar getMenuBar() {
     return myMenuBar;
   }
 
-  public void createMenuBar(){
+  public void createMenuBar() {
     MenuUI help = new MenuUI("Help");
     MenuItemUI project = new MenuItemUI("Reference Page");
     MenuUI commands = new MenuUI("Commands");
@@ -29,7 +28,5 @@ public class MenuBarUI {
     this.addToMenuBar(commands);
     help.addMenuItem(project);
     this.addToMenuBar(help);
-
-
   }
 }

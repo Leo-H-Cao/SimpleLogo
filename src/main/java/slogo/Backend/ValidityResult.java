@@ -1,5 +1,3 @@
 package slogo.Backend;
 
-public class ValidityResult {
-
-}
+public class ValidityResult {}

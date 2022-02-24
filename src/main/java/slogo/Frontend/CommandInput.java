@@ -11,25 +11,21 @@ import slogo.FrontendExternalAPIs.CommandWindow;
 import slogo.SLogoController;
 
 /**
- * Test Ideas:
- * Check if the prompt goes away when clicking
- * Check if the text goes away when pressing enter
- * Check if the text goes away when pressing execute
- *
+ * Test Ideas: Check if the prompt goes away when clicking Check if the text goes away when pressing
+ * enter Check if the text goes away when pressing execute
  */
-
 public class CommandInput implements CommandWindow {
   public static final int TEXT_BOX_SIZE = 800;
   public static final String PROMPT = "Enter Commands Here";
 
-  private SLogoController myController;
-  private TextArea textArea;
-  private Button executeButton;
-  private Pane inputBox;
+  private final SLogoController myController;
+  private final TextArea textArea;
+  private final Button executeButton;
+  private final Pane inputBox;
   private String commandText;
 
-  public CommandInput(SLogoController controller){
-    //TODO: add buffer so class always keeps track of what is in text box?
+  public CommandInput(SLogoController controller) {
+    // TODO: add buffer so class always keeps track of what is in text box?
     // Not sure I'm understanding why we need this
 
     myController = controller;
@@ -51,49 +47,47 @@ public class CommandInput implements CommandWindow {
 
   /**
    * Returns command input from user
+   *
    * @return
    */
   @Override
-  public String getCommands(){
+  public String getCommands() {
     return commandText;
   }
 
-  /**
-   * gets command history from backend
-   */
+  /** gets command history from backend */
   @Override
-  public void setCommandHistory(History history){
-
-  }
+  public void setCommandHistory(History history) {}
 
   @Override
-  public void setCommandLanguage(CommandLanguage lang){
-  }
+  public void setCommandLanguage(CommandLanguage lang) {}
 
-  public Pane getInputBox(){
+  public Pane getInputBox() {
     return inputBox;
   }
 
-  private void setSubmitActions(){
-    executeButton.setOnAction(event -> {
-      submitCommand();
-    });
+  private void setSubmitActions() {
+    executeButton.setOnAction(
+        event -> {
+          submitCommand();
+        });
 
-    textArea.setOnKeyPressed(keyEvent -> {
-      if (keyEvent.getCode() == KeyCode.ENTER)  {
-        submitCommand();
-      }
-    });
+    textArea.setOnKeyPressed(
+        keyEvent -> {
+          if (keyEvent.getCode() == KeyCode.ENTER) {
+            submitCommand();
+          }
+        });
   }
 
-  private void submitCommand(){
+  private void submitCommand() {
     commandText = textArea.getText().trim();
-    if(commandText.length() == 0) return;
+    if (commandText.length() == 0) return;
     textArea.clear();
     myController.handleCommandSubmitted();
   }
 
-  private void addChildNodes(){
+  private void addChildNodes() {
     inputBox.getChildren().addAll(textArea, executeButton);
   }
 }

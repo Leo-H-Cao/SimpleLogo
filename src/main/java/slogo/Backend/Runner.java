@@ -25,7 +25,7 @@ public class Runner implements Runs, Parses {
    *
    * @param instruction the String which contains the user inputted instruction
    * @return LexResult object which contains the result of the Lexical Analysis in a form that is
-   * understandable by the parser
+   *     understandable by the parser
    */
   @Override
   public LexResult runLexicalAnalyzer(String instruction) throws InvalidTokenException {
@@ -46,7 +46,7 @@ public class Runner implements Runs, Parses {
    *
    * @param command is the user inputted command after it was ran through the lexical analyzer
    * @return an AST object which represents the abstract sytax tree of the initial user inputted
-   * command
+   *     command
    */
   @Override
   public AST parseCommand(LexResult command) {

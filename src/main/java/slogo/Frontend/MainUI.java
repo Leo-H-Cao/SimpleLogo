@@ -5,11 +5,11 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import slogo.SLogoController;
 
-public class MainUI{
+public class MainUI {
 
-  private SLogoController myController;
-  private BorderPane layout;
-  private Scene myScene;
+  private final SLogoController myController;
+  private final BorderPane layout;
+  private final Scene myScene;
   private MenuBarUI myMenuBar;
   private ControlPanel myControlPanel;
   private CommandInput myCommandInput;
@@ -30,11 +30,11 @@ public class MainUI{
     addingTurtle();
   }
 
-  public Scene getScene(){
+  public Scene getScene() {
     return myScene;
   }
 
-  private void createUINodes(){
+  private void createUINodes() {
     myMenuBar = new MenuBarUI();
     myControlPanel = new ControlPanel();
     myCommandInput = new CommandInput(myController);
@@ -42,12 +42,13 @@ public class MainUI{
     myUserVariablesContainer = new UserVariablesContainer();
     layOutChildren();
   }
-  private void addingTurtle(){
+
+  private void addingTurtle() {
     testTurtle = new TurtleView(myControlPanel.getSpeedSlider().getValue());
     myTurtleBackground.addTurtle(testTurtle);
   }
 
-  private void layOutChildren(){
+  private void layOutChildren() {
     layout.setTop(myMenuBar.getMenuBar());
     layout.setBottom(myCommandInput.getInputBox());
     layout.setRight(myControlPanel.getControlPanelContainer());
@@ -62,17 +63,15 @@ public class MainUI{
     layout.getTop().getStyleClass().add("border-pane-top");
   }
 
-  public CommandInput getCommandInput(){
+  public CommandInput getCommandInput() {
     return myCommandInput;
   }
 
-  public TurtleView getTurtleView(){
+  public TurtleView getTurtleView() {
     return testTurtle;
   }
 
   public TurtleBackground getTurtleBackground(){
     return myTurtleBackground;
   }
-
-
 }

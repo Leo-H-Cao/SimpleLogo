@@ -1,6 +1,6 @@
 package slogo.Backend.SyntaxParser;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -23,5 +23,4 @@ public class QuotientTest {
   void testGetMyNumArgs() {
     assertEquals(2, myQuotient.getMyNumArgs());
   }
-
 }
