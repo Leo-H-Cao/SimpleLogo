@@ -23,3 +23,9 @@
   -fx-border-color: GRAY;
   -fx-min-width: 150;
 }
+
+.command-history-popup-label{
+  -fx-min-width: 400;
+  -fx-min-height: 400;
+  -fx-background-color: #cccccc;
+}
