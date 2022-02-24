@@ -1,28 +1,46 @@
 package slogo.Frontend;
 
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Popup;
 import slogo.Backend.State.CommandHistory;
 
 public class CommandHistoryPopup {
+  public final int POPUP_X_LOCATION = 400;
+  public final int POPUP_Y_LOCATION = 150;
+  public final int TOP_BAR_SPACING = 325;
+  public static final String LABEL_TEXT = "Command History";
+
+
 
   private Popup myPopup;
+  private Pane layout;
 
   public CommandHistoryPopup(CommandHistory commandHistory){
     myPopup = new Popup();
-    myPopup.setX(400);
-    myPopup.setY(150);
-    setLabel();
+    layout = new VBox();
+    layout.getStyleClass().add("command-history-popup");
+    myPopup.getContent().add(layout);
+    setLayout();
+    myPopup.setX(POPUP_X_LOCATION);
+    myPopup.setY(POPUP_Y_LOCATION);
   }
 
   public Popup getPopup(){
     return myPopup;
   }
 
-  private void setLabel(){
-    Label label = new Label("Command History goes here");
-    label.getStyleClass().add("command-history-popup-label");
-    myPopup.getContent().add(label);
+  private void setLayout(){
+    Button closeButton = new Button("close");
+    closeButton.setOnAction(actionEvent -> {
+      myPopup.hide();
+    });
+    Label label = new Label(LABEL_TEXT);
+    Pane topBar = new HBox(TOP_BAR_SPACING);
+    topBar.getChildren().addAll(label, closeButton);
+    layout.getChildren().addAll(topBar);
   }
-
 }
