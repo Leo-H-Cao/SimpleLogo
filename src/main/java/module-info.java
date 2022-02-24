@@ -6,6 +6,7 @@ open module slogo_app {
   requires javafx.media;
   requires javafx.web;
   requires java.logging;
+  requires org.jooq.jool;
 
   // allow other classes to access listed packages in your project
   exports slogo;
