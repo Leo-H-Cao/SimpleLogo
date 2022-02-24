@@ -15,7 +15,7 @@ public class Runner implements Runs, Parses {
     LexResult lexResult = new LexResult(instruction);
     ASTMaker ast = new ASTMaker(lexResult.getTokens());
     Operator operator = ast.parse();
-    double retValue = operator.getRetVal();
+    double retValue = operator.getRetVal(null);
     return retValue;
   }
 
