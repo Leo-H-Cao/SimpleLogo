@@ -34,6 +34,30 @@ public class MainUI {
     return myScene;
   }
 
+  public CommandInput getCommandInput() {
+    return myCommandInput;
+  }
+
+  public TurtleView getTurtleView() {
+    return testTurtle;
+  }
+
+  public TurtleBackground getTurtleBackground(){
+    return myTurtleBackground;
+  }
+
+  public MenuBarUI getMenuBar() {
+    return myMenuBar;
+  }
+
+  public ControlPanel getControlPanel() {
+    return myControlPanel;
+  }
+
+  public UserVariablesContainer getUserVariablesContainer(){
+    return myUserVariablesContainer;
+  }
+
   private void createUINodes() {
     myMenuBar = new MenuBarUI();
     myControlPanel = new ControlPanel();
@@ -61,17 +85,5 @@ public class MainUI {
     layout.getRight().getStyleClass().add("border-pane-right");
     layout.getBottom().getStyleClass().add("border-pane-bottom");
     layout.getTop().getStyleClass().add("border-pane-top");
-  }
-
-  public CommandInput getCommandInput() {
-    return myCommandInput;
-  }
-
-  public TurtleView getTurtleView() {
-    return testTurtle;
-  }
-
-  public TurtleBackground getTurtleBackground(){
-    return myTurtleBackground;
   }
 }
