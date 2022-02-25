@@ -7,10 +7,12 @@ import javax.xml.validation.Validator;
 import slogo.Backend.HelpInformation;
 import slogo.Backend.Helper;
 import slogo.Backend.LexicalAnalyzer.InvalidTokenException;
+import slogo.Backend.Result;
 import slogo.Backend.State.InitializationState;
 import slogo.Backend.State.ModelState;
 import slogo.Backend.TurtleController;
 import slogo.Backend.TurtleState.Turtle;
+import slogo.BackendExternalAPIs.ControlsTurtle;
 import slogo.Frontend.CommandInput;
 import slogo.Frontend.CommandOutput;
 import slogo.Frontend.MainUI;
@@ -66,11 +68,11 @@ public class SLogoController {
     String command = commandInputter.getCommands();
 
     // If it's not valid, do something
-    try{
-      Deque<Turtle> turtles = turtleController.putInstruction(command);}
-    catch (InvalidTokenException exception){
-      //handle
-    }
+//    try{
+//      Result turtles = new ControlsTurtle().putInstruction(command);}
+//    catch (InvalidTokenException exception){
+//      //handle
+//    }
 
   }
 

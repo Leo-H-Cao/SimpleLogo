@@ -57,7 +57,9 @@ public class CommandInput implements CommandWindow {
 
   /** gets command history from backend */
   @Override
-  public void setCommandHistory(History history) {}
+  public void setCommandHistory(CommandHistory history) {
+
+  }
 
   @Override
   public void setCommandLanguage(CommandLanguage lang) {}

@@ -43,7 +43,7 @@ public class ModelState implements Initialiazable, ModifiesModelState, AccessesS
    */
   @Override
   public TurtleHistory getTurtleHistory() {
-    return turtleHistory;
+    return null;
   }
 
   /**
@@ -145,6 +145,6 @@ public class ModelState implements Initialiazable, ModifiesModelState, AccessesS
               "Unexpected exception not in method signature",
               exception);
     }
-    return success;
+    return;
   }
 }
