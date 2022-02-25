@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.Test;
-import slogo.Backend.State.InitializationState;
 import slogo.Backend.State.ModelState;
 
 public class SLogoControllerTest extends DukeApplicationTest {

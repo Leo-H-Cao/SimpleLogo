@@ -1,18 +1,12 @@
 package slogo;
 
-import java.util.Deque;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import javax.xml.validation.Validator;
 import slogo.Backend.HelpInformation;
 import slogo.Backend.Helper;
-import slogo.Backend.LexicalAnalyzer.InvalidTokenException;
-import slogo.Backend.Result;
-import slogo.Backend.State.InitializationState;
 import slogo.Backend.State.ModelState;
 import slogo.Backend.TurtleController;
-import slogo.Backend.TurtleState.Turtle;
-import slogo.BackendExternalAPIs.ControlsTurtle;
 import slogo.Frontend.CommandInput;
 import slogo.Frontend.CommandOutput;
 import slogo.Frontend.MainUI;

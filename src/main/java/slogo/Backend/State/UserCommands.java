@@ -6,15 +6,18 @@ import java.util.Set;
 import slogo.Backend.AST;
 
 public class UserCommands {
-  private static UserCommands userCommands;
-  private final Set<String> userCommandNames;
-  private final HashMap<CommandName, AST> commands;
-  private final ParsePreference parsePreference;
+  private Set<String> userCommandNames;
+  private HashMap<CommandName, AST> commands;
+  private ParsePreference parsePreference;
 
-  private UserCommands() {
+  public UserCommands() {
     userCommandNames = new HashSet<>();
     commands = new HashMap<>();
     parsePreference = UserCommands.getDefaultParsePreference();
+    //replace null with enum
+    if(parsePreference.equals(null)){
+      this.loadUserCommands();
+    }
   }
 
   private UserCommands(String parsePreference) {
@@ -23,18 +26,8 @@ public class UserCommands {
     this.parsePreference = ParsePreference.valueOf(parsePreference);
   }
 
-  public static UserCommands getUserCommands() {
-    return userCommands;
-  }
-
-  public static UserCommands initializeUserCommands() {
-    UserCommands.userCommands = new UserCommands();
-    return getUserCommands();
-  }
-
-  public static UserCommands initializeUserCommands(String parsePreference) {
-    UserCommands.userCommands = new UserCommands(parsePreference);
-    return getUserCommands();
+  public void loadUserCommands(){
+    return;
   }
 
   private static ParsePreference getDefaultParsePreference() {
