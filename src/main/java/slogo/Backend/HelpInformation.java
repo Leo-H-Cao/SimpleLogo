@@ -1,5 +1,2 @@
-package slogo.Backend;
-
-public class HelpInformation {
-
+package slogo.Backend;public class HelpInformation {
 }
