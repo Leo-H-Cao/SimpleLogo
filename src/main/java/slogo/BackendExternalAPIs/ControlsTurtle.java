@@ -2,6 +2,7 @@ package slogo.BackendExternalAPIs;
 
 import java.util.Deque;
 import slogo.Backend.LexicalAnalyzer.InvalidTokenException;
+import slogo.Backend.Result;
 import slogo.Backend.TurtleState.Turtle;
 
 public interface ControlsTurtle {
@@ -21,6 +22,6 @@ public interface ControlsTurtle {
    * @return Deque<Turtle> which has the Turtle objects created by executing the instruction, each
    * subsequent Turtle object separated by only one basic command.
    */
-   Deque<Turtle> postInstruction(String instructionText) throws InvalidTokenException;
+   Result postInstruction(String instructionText) throws InvalidTokenException;
 
 }

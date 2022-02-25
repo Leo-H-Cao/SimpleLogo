@@ -1,8 +1,6 @@
 package slogo.Backend;
 
-import java.util.Deque;
 import slogo.Backend.LexicalAnalyzer.InvalidTokenException;
-import slogo.Backend.TurtleState.Turtle;
 import slogo.BackendExternalAPIs.ControlsTurtle;
 
 public class TurtleController implements ControlsTurtle {
@@ -26,7 +24,7 @@ public class TurtleController implements ControlsTurtle {
    * subsequent Turtle object separated by only one basic command.
    */
   @Override
-  public Deque<Turtle> postInstruction(String instructionText) throws InvalidTokenException {
+  public Result postInstruction(String instructionText) throws InvalidTokenException {
     return null;
   }
 
