@@ -47,7 +47,7 @@ public class SLogoControllerTest extends DukeApplicationTest {
   @Test
   void testInvalidBackendInitialization() {
     ModelState model = new ModelState();
-    InitializationState initializationState = new InitializationState();
+//    InitializationState initializationState = new InitializationState();
 //    assertNull(model.initalizeBackend(initializationState));
     assertNull(model.getUserVariables());
     assertThrows(NullPointerException.class, () -> model.setCommandLanguage("not a language"));

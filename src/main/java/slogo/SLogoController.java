@@ -50,7 +50,7 @@ public class SLogoController {
     helper = new Helper();
     turtleController = new TurtleController();
 //    syntaxChecker = new Validator();
-    InitializationState initializationState = new InitializationState();
+//    InitializationState initializationState = new InitializationState();
 //    model.initalizeBackend(initializationState);
 
     // initialize turtle
