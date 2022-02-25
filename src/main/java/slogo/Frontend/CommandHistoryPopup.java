@@ -14,8 +14,6 @@ public class CommandHistoryPopup {
   public final int TOP_BAR_SPACING = 325;
   public static final String LABEL_TEXT = "Command History";
 
-
-
   private Popup myPopup;
   private Pane layout;
 
@@ -27,6 +25,8 @@ public class CommandHistoryPopup {
     setLayout();
     myPopup.setX(POPUP_X_LOCATION);
     myPopup.setY(POPUP_Y_LOCATION);
+
+    layout.setId("CommandHistoryPopup");
   }
 
   public Popup getPopup(){
@@ -40,6 +40,7 @@ public class CommandHistoryPopup {
     });
     Label label = new Label(LABEL_TEXT);
     Pane topBar = new HBox(TOP_BAR_SPACING);
+    topBar.getStyleClass().add("command-history-popup-top");
     topBar.getChildren().addAll(label, closeButton);
     layout.getChildren().addAll(topBar);
   }

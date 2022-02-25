@@ -29,3 +29,7 @@
   -fx-min-height: 400;
   -fx-background-color: #cccccc;
 }
+
+.command-history-popup-top{
+  -fx-background-color: #99ccff;
+}
