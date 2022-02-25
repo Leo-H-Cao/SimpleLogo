@@ -11,6 +11,7 @@ public class ToolBarUI {
 
   public ToolBarUI(){
     mytoolBar = new ToolBar();
+    mytoolBar.setId("ToolBar");
     createToolBar();
   }
 
@@ -20,6 +21,7 @@ public class ToolBarUI {
 
   private void createToolBar(){
     commandHistoryButton = new CommandHistoryToolbarButton("Command History");
+    commandHistoryButton.getButton().setId("CommandHistoryButton");
     mytoolBar.getItems().add(commandHistoryButton.getButton());
   }
 

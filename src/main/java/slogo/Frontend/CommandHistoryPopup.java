@@ -35,9 +35,11 @@ public class CommandHistoryPopup {
 
   private void setLayout(){
     Button closeButton = new Button("close");
+    closeButton.setId("CloseCommandHistory");
     closeButton.setOnAction(actionEvent -> {
       myPopup.hide();
     });
+
     Label label = new Label(LABEL_TEXT);
     Pane topBar = new HBox(TOP_BAR_SPACING);
     topBar.getStyleClass().add("command-history-popup-top");
