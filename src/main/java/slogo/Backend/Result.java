@@ -5,17 +5,17 @@ import slogo.Backend.TurtleState.Turtle;
 
 /** The type Result. */
 public class Result {
-  private final int intReturned;
+  private final double doubleReturned;
   private final Deque<Turtle> turtleSteps;
 
-  public Result(int intReturned, Deque<Turtle> turtleSteps)
+  public Result(double doubleReturned, Deque<Turtle> turtleSteps)
   {
-    this.intReturned = intReturned;
+    this.doubleReturned = doubleReturned;
     this.turtleSteps = turtleSteps;
   }
 
-  public int getIntReturned() {
-    return intReturned;
+  public double getIntReturned() {
+    return doubleReturned;
   }
 
   public Deque<Turtle> getTurtleSteps(){

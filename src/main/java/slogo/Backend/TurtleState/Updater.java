@@ -4,6 +4,7 @@ import slogo.Backend.AST;
 import slogo.Backend.ASTNode;
 import slogo.BackendInternalAPIs.Updates;
 
+@Deprecated
 public class Updater implements Updates {
 
   /**

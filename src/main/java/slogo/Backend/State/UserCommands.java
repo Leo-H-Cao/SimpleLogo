@@ -27,6 +27,7 @@ public class UserCommands {
   }
 
   public void loadUserCommands(){
+    //TODO: Load User Commands into AST eagerly (all at once)
     return;
   }
 
