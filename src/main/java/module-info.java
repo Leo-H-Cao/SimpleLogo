@@ -20,4 +20,6 @@ open module slogo_app {
   exports slogo.Frontend;
   exports slogo.FrontendExternalAPIs;
   exports slogo.FrontendInternalAPIs;
+  exports slogo.Backend.TurtleTransform;
+  exports slogo.Backend.TurtleTransformers;
 }
