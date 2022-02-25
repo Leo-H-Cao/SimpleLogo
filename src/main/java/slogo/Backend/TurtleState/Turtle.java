@@ -8,8 +8,18 @@ import javafx.scene.control.skin.TextInputControlSkin.Direction;
 public class Turtle {
   private Coordinate coordinate;
   private Direction direction;
+  private double headingDirection; //angle in radians
+  private boolean penDown;
 
-  private Turtle() {}
+  public Turtle(int a){
+
+  }
+
+  private Turtle(int[] location, double headingDirection, boolean penDown) {
+    this.coordinate = new Coordinate(location[0], location[1]);
+    this.headingDirection = headingDirection;
+    this.penDown = penDown;
+  }
 
   public Turtle(Turtle oldTurtle, Transformation transformation, Collection<?> arguments) {
     // TODO: implement reflection here to get method
