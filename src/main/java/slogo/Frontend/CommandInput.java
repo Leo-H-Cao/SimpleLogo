@@ -15,7 +15,7 @@ import slogo.SLogoController;
  * enter Check if the text goes away when pressing execute
  */
 public class CommandInput implements CommandWindow {
-  public static final int TEXT_BOX_SIZE = 700;
+  public static final int TEXT_BOX_SIZE = 800;
   public static final String PROMPT = "Enter Commands Here";
 
   private final SLogoController myController;
