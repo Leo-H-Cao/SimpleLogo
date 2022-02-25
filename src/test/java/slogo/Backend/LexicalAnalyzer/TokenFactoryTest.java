@@ -8,7 +8,7 @@ import org.jooq.lambda.tuple.Tuple2;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-class TokenizerTest {
+class TokenFactoryTest {
 
   @Test
   void getToken() throws InvalidTokenException {
@@ -62,7 +62,7 @@ class TokenizerTest {
       Seq<Tuple2<String, Token>> tokens =
           Seq.of(stringTokensArry).zip(testPairs.get(stringTokensArry));
       for (Tuple2<String, Token> tokenPair : tokens) {
-        Token match = Tokenizer.getToken(tokenPair.v1);
+        Token match = TokenFactory.getToken(tokenPair.v1);
         Assertions.assertNotNull(match);
         Assertions.assertInstanceOf(Token.class, match);
         Assertions.assertEquals(match, tokenPair.v2);

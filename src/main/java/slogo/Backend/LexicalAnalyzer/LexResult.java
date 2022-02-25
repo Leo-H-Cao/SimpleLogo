@@ -34,7 +34,7 @@ public class LexResult {
   protected ArrayDeque<Token> tokenize() throws InvalidTokenException {
     ArrayDeque<Token> tokens = new ArrayDeque<>();
     for (String s : this.splitByWhiteSpace) {
-      Token token = Tokenizer.getToken(s);
+      Token token = TokenFactory.getToken(s);
       if (token != null) {
         tokens.addLast(token);
       } else {

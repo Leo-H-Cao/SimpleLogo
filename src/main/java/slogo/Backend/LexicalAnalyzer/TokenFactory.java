@@ -1,6 +1,6 @@
 package slogo.Backend.LexicalAnalyzer;
 
-public class Tokenizer {
+public class TokenFactory {
   private static final TokenScanner tokenScanner = TokenScanner.getTokenScanner();
 
   public static Token getToken(String s) throws InvalidTokenException {
