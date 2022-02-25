@@ -1,12 +1,17 @@
 package slogo;
 
+import java.util.Deque;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import javax.xml.validation.Validator;
+import slogo.Backend.ErrorText;
 import slogo.Backend.HelpInformation;
 import slogo.Backend.Helper;
+import slogo.Backend.LexicalAnalyzer.InvalidTokenException;
+import slogo.Backend.Result;
 import slogo.Backend.State.ModelState;
 import slogo.Backend.TurtleController;
+import slogo.Backend.TurtleState.Turtle;
 import slogo.Frontend.CommandInput;
 import slogo.Frontend.CommandOutput;
 import slogo.Frontend.MainUI;
@@ -62,15 +67,29 @@ public class SLogoController {
     String command = commandInputter.getCommands();
 
     // If it's not valid, do something
-//    try{
-//      Result turtles = new ControlsTurtle().putInstruction(command);}
-//    catch (InvalidTokenException exception){
-//      //handle
-//    }
+    try {
+      Result commandResult = turtleController.postInstruction(command);
+      Deque<Turtle> steps = commandResult.getTurtleSteps();
+      if(steps == null) {
+        //display numeric result on console window
+      } else {
+        // TODO: Make sure this is right
+        turtleView.moveTurtle(steps.poll());
+      }
+    }
+    catch (InvalidTokenException exception){
+      //handle
+      commandOutputter.displayError(new ErrorText(exception.toString()));
+    }
 
   }
 
   public void handleHelpRequested() {
     HelpInformation help = helper.getHelp(null);
+    if(help != null) {
+      // display the help to the frontend
+    }
   }
+
+
 }
