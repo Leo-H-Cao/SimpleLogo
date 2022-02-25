@@ -18,7 +18,7 @@ public class LexResult {
   }
 
   /**
-   * Fix to be all white space
+   *
    *
    * @return Collection of Strings
    */
