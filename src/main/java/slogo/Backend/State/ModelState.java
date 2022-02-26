@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 import slogo.Backend.FileReadingException;
 import slogo.Backend.InstructionHistory;
 import slogo.Backend.Preferences;
+import slogo.Backend.TurtleController;
 import slogo.Backend.TurtleState.Turtle;
 import slogo.BackendExternalAPIs.AccessesState;
 import slogo.BackendExternalAPIs.Initialiazable;
@@ -19,10 +20,19 @@ public class ModelState implements Initialiazable, ModifiesModelState, AccessesS
   private CommandLanguage commandLanguage;
   private Turtle turtle;
   private Tracks tracks;
-  private TurtleHistory History;
+  private TurtleHistory history;
   private UserVariables userVariables;
   private UserCommands userCommands;
 
+  public ModelState() {
+    // All this initialization could go into initializeBackend()
+    this.commandLanguage = CommandLanguage.ENGLISH;
+    this.turtle = new Turtle(new int[]{0, 0}, 0, true);
+    this.tracks = new Tracks();
+    this.history = new TurtleHistory();
+    this.userVariables = new UserVariables();
+    this.userCommands = new UserCommands();
+  }
 
   /**
    * A method which calls on the backend to get all the tracks created by the Turtle from the
@@ -43,7 +53,7 @@ public class ModelState implements Initialiazable, ModifiesModelState, AccessesS
    */
   @Override
   public TurtleHistory getTurtleHistory() {
-    return null;
+    return this.history;
   }
 
   /**
