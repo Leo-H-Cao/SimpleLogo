@@ -14,16 +14,19 @@ public class Turtle {
   private double headingDirection; //angle in radians
   private boolean penDown;
 
-  public Turtle(int a){
-
-  }
-
-  private Turtle(int[] location, double headingDirection, boolean penDown) {
+  public Turtle(int[] location, double headingDirection, boolean penDown){
     this.coordinate = new Coordinate(location[0], location[1]);
     this.headingDirection = headingDirection;
     this.penDown = penDown;
   }
 
+  /*
+  private Turtle(int[] location, double headingDirection, boolean penDown) {
+    this.coordinate = new Coordinate(location[0], location[1]);
+    this.headingDirection = headingDirection;
+    this.penDown = penDown;
+  }
+*/
   public Turtle(Turtle oldTurtle, TurtleTransformer turtleTransformer, List<Double> arguments) {
     Map<String,Double> oldFields = oldTurtle.getMapOfState();
     Map<String, Double> overridingFields = turtleTransformer.transform(oldTurtle, arguments);
