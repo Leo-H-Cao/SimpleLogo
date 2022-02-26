@@ -21,4 +21,5 @@ open module slogo_app {
   exports slogo.FrontendExternalAPIs;
   exports slogo.FrontendInternalAPIs;
   exports slogo.Backend.TurtleTransformers;
+  exports slogo.Backend.SyntaxParser.Math;
 }
