@@ -51,6 +51,8 @@ public class SLogoController {
     // frontend stuff to get language + other initial parameters that the backend needs to know
     // resource file will have defaults
     // UI should allow user to change those attributes before starting up the model
+    // TODO: Almost every backend class should be "owned" by one class to avoid arbitrary object creation
+    // ModelState owns
     model = new ModelState();
     helper = new Helper();
     turtleController = new TurtleController();

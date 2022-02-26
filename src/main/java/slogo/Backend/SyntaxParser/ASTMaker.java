@@ -3,6 +3,7 @@ package slogo.Backend.SyntaxParser;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayDeque;
+import java.util.ResourceBundle;
 import slogo.Backend.LexicalAnalyzer.Token;
 
 public class ASTMaker {
@@ -12,6 +13,7 @@ public class ASTMaker {
   private Operator root;
 
   private final String rootdirectory = "slogo.Backend.SyntaxParser.";
+
 
   public ASTMaker(ArrayDeque<Token> tokens) {
     this.tokens = tokens;
@@ -28,13 +30,15 @@ public class ASTMaker {
     while (!tokens.isEmpty()) {
       Token t = tokens.getFirst();
       String tokenType = t.getTyoe().toString();
+      ResourceBundle resources = ResourceBundle.getBundle(rootdirectory + "CommandToClassDirectory");
+
       try {
         // System.out.println(tokenType);
         Class<?> operatorType;
         Operator nextOperator;
         if (tokenType.equals("COMMAND")) {
           // operatorType = Class.forName("slogo.Backend.SyntaxParser." + "Command");
-          operatorType = Class.forName(rootdirectory + t.getValue());
+          operatorType = Class.forName(rootdirectory + resources.getString(t.getValue()) + "."  + t.getValue());
           // operatorType = Class.forName("Command");
           Constructor<?> constructor = operatorType.getConstructor();
           nextOperator = (Operator) constructor.newInstance();

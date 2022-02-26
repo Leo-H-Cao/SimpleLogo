@@ -1,6 +1,8 @@
-package slogo.Backend.SyntaxParser;
+package slogo.Backend.SyntaxParser.Math;
 
 import java.util.ArrayDeque;
+import slogo.Backend.SyntaxParser.Math.ArithmeticOp;
+import slogo.Backend.SyntaxParser.Operator;
 import slogo.Backend.TurtleState.Turtle;
 
 public class Sum extends ArithmeticOp {
