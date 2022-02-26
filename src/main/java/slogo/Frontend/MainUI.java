@@ -2,6 +2,8 @@ package slogo.Frontend;
 
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import slogo.SLogoController;
 
@@ -16,6 +18,7 @@ public class MainUI {
   private TurtleBackground myTurtleBackground;
   private TurtleView testTurtle;
   private UserVariablesContainer myUserVariablesContainer;
+  private ToolBarUI myToolBar;
 
   // Might add a reflection thing to talk to a .properties file
   public MainUI(Stage myStage, SLogoController controller) {
@@ -64,6 +67,7 @@ public class MainUI {
     myCommandInput = new CommandInput(myController);
     myTurtleBackground = new TurtleBackground();
     myUserVariablesContainer = new UserVariablesContainer();
+    myToolBar = new ToolBarUI();
     layOutChildren();
   }
 
@@ -73,7 +77,10 @@ public class MainUI {
   }
 
   private void layOutChildren() {
-    layout.setTop(myMenuBar.getMenuBar());
+    Pane layoutTop = new VBox();
+    layoutTop.getChildren().addAll(myMenuBar.getMenuBar(), myToolBar.getToolBar());
+    layout.setTop(layoutTop);
+
     layout.setBottom(myCommandInput.getInputBox());
     layout.setRight(myControlPanel.getControlPanelContainer());
     layout.setCenter(myTurtleBackground.getTurtleBackground());
