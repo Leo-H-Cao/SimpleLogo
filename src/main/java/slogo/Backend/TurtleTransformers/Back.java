@@ -9,7 +9,6 @@ public class Back implements TurtleTransformer {
 
   @Override
   public Map<String, Double> transform(Turtle oldTurtle, List<Double> params) {
-    //implemented to assume forward is to move positive x for sake of example, use trig to fix later
     double turtleAngle = oldTurtle.getHeadingDirection();
     double oldX = oldTurtle.getLocation().getX();
     double oldY = oldTurtle.getLocation().getY();
