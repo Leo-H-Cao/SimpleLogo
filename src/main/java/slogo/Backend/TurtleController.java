@@ -1,5 +1,6 @@
 package slogo.Backend;
 
+import java.lang.reflect.InvocationTargetException;
 import slogo.Backend.LexicalAnalyzer.InvalidTokenException;
 import slogo.Backend.LexicalAnalyzer.LexResult;
 import slogo.Backend.State.TurtleHistory;
@@ -31,12 +32,13 @@ public class TurtleController implements ControlsTurtle {
    * subsequent Turtle object separated by only one basic command.
    */
   @Override
-  public Result postInstruction(String instructionText) throws InvalidTokenException {
+  public Result postInstruction(String instructionText)
+      throws InvalidTokenException, ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
     LexResult lexedString = new LexResult(instructionText);
     ASTMaker astMaker = new ASTMaker(lexedString.getTokens());
     Operator root =  astMaker.parse();
     Result res = new Result(root.getRetVal(), myHistory.getTurtleHistory().getLast());
-    return null;
+    return res;
   }
 
 

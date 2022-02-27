@@ -2,6 +2,7 @@ package slogo.Backend.SyntaxParser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayDeque;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -18,7 +19,8 @@ public class ProductTest {
   }
 
   @Test
-  void testGetRetVal() {
+  void testGetRetVal()
+      throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
     assertEquals(20.0, myProduct.getRetVal());
   }
 

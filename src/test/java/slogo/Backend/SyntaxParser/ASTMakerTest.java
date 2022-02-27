@@ -2,6 +2,7 @@ package slogo.Backend.SyntaxParser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayDeque;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,7 +21,8 @@ public class ASTMakerTest {
   }
 
   @Test
-  void testParseConstant() {
+  void testParseConstant()
+      throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
     ArrayDeque<Token> a = new ArrayDeque<Token>();
     Token t1 = new Token(TokenType.CONSTANT, "-1");
     a.add(t1);
@@ -29,7 +31,8 @@ public class ASTMakerTest {
   }
 
   @Test
-  void testParseOneCommand() {
+  void testParseOneCommand()
+      throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
     ArrayDeque<Token> a = new ArrayDeque<Token>();
     Token t1 = new Token(TokenType.COMMAND, "Difference");
     Token t2 = new Token(TokenType.CONSTANT, "100");

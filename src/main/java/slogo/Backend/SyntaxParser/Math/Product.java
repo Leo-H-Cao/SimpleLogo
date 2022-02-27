@@ -1,5 +1,6 @@
 package slogo.Backend.SyntaxParser.Math;
 
+import java.lang.reflect.InvocationTargetException;
 import slogo.Backend.SyntaxParser.Operator;
 
 public class Product extends ArithmeticOp {
@@ -15,7 +16,8 @@ public class Product extends ArithmeticOp {
     myNumArgs = 2;
   }
 
-  public double getRetVal() {
+  public double getRetVal()
+      throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
     return this.arguments.get(0).getRetVal() * this.arguments.get(1).getRetVal();
   }
 }

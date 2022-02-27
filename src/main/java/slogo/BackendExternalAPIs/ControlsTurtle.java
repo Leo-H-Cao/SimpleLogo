@@ -1,5 +1,6 @@
 package slogo.BackendExternalAPIs;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Deque;
 import slogo.Backend.LexicalAnalyzer.InvalidTokenException;
 import slogo.Backend.Result;
@@ -22,6 +23,7 @@ public interface ControlsTurtle {
    * @return Deque<Turtle> which has the Turtle objects created by executing the instruction, each
    * subsequent Turtle object separated by only one basic command.
    */
-   Result postInstruction(String instructionText) throws InvalidTokenException;
+   Result postInstruction(String instructionText)
+       throws InvalidTokenException, ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException;
 
 }
