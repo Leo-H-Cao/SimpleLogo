@@ -13,6 +13,7 @@ public class SpeedSlider extends Sslider {
   public SpeedSlider() {
     super(MIN_VALUE, MAX_VALUE, STARTING_VALUE);
     this.getSlider().getStyleClass().add("speed-slider");
+    this.getSlider().setId("speedSlider");
   }
 
   public void setLabel(Pane speedBox) {
