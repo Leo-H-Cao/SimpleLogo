@@ -2,6 +2,7 @@ package slogo.Backend.SyntaxParser.TurtleCommand;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import slogo.Backend.State.TurtleHistory;
 import slogo.Backend.SyntaxParser.Operator;
 
 public class Forward extends Operator {
@@ -15,7 +16,7 @@ public class Forward extends Operator {
     arguments.add(op1);
   }
 
-  public double getRetVal()
+  public double getRetVal(TurtleHistory history)
       throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
     double retVal = arguments.get(0).getRetVal();
     ArrayList<Double> argList = new ArrayList();

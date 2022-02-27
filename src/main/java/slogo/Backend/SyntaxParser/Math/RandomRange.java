@@ -1,6 +1,7 @@
 package slogo.Backend.SyntaxParser.Math;
 
 import java.lang.reflect.InvocationTargetException;
+import slogo.Backend.State.TurtleHistory;
 import slogo.Backend.SyntaxParser.Operator;
 
 public class RandomRange extends ArithmeticOp {
@@ -15,11 +16,11 @@ public class RandomRange extends ArithmeticOp {
     myNumArgs = 2;
   }
 
-  public double getRetVal()
+  public double getRetVal(TurtleHistory history)
       throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
     // TODO: Check to make sure max >= min
-    double min = this.arguments.get(0).getRetVal();
-    double max = this.arguments.get(1).getRetVal();
+    double min = this.arguments.get(0).getRetVal(history);
+    double max = this.arguments.get(1).getRetVal(history);
     return (Math.random() * (max - min)) + min;
   }
 }

@@ -9,9 +9,9 @@ public abstract class Operator {
   protected ArrayList<Operator> arguments;
   protected double retVal;
 
-  protected static TurtleHistory myHistory = new TurtleHistory();
+  //protected static TurtleHistory myHistory = new TurtleHistory();
 
-  public abstract double getRetVal()
+  public abstract double getRetVal(TurtleHistory history)
       throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException;
 
   public int getMyNumArgs() {
