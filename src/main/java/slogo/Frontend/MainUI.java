@@ -63,6 +63,8 @@ public class MainUI {
     return myUserVariablesContainer;
   }
 
+  public ToolBarUI getToolBar(){ return myToolBar; }
+
   private void createUINodes() {
     myMenuBar = new MenuBarUI();
     myControlPanel = new ControlPanel();
