@@ -1,11 +1,18 @@
 package slogo.Backend;
 
 import slogo.Backend.LexicalAnalyzer.InvalidTokenException;
+import slogo.Backend.LexicalAnalyzer.LexResult;
+import slogo.Backend.State.TurtleHistory;
+import slogo.Backend.SyntaxParser.ASTMaker;
+import slogo.Backend.SyntaxParser.Operator;
 import slogo.BackendExternalAPIs.ControlsTurtle;
 
 public class TurtleController implements ControlsTurtle {
+  TurtleHistory myHistory;
 
-  public TurtleController() {}
+  public TurtleController() {
+    myHistory = new TurtleHistory();
+  }
 
   /**
    * This methods sends an instruction entered by the user to the backend.
@@ -25,6 +32,10 @@ public class TurtleController implements ControlsTurtle {
    */
   @Override
   public Result postInstruction(String instructionText) throws InvalidTokenException {
+    LexResult lexedString = new LexResult(instructionText);
+    ASTMaker astMaker = new ASTMaker(lexedString.getTokens());
+    Operator root =  astMaker.parse();
+    Result res = new Result(root.getRetVal(), myHistory.getTurtleHistory().getLast());
     return null;
   }
 

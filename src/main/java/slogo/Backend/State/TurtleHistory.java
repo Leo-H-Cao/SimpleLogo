@@ -2,15 +2,20 @@ package slogo.Backend.State;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.List;
 import slogo.Backend.TurtleState.Turtle;
 import slogo.Backend.TurtleTransformers.TurtleTransformer;
 
 public class TurtleHistory {
-  private Deque<Deque<Turtle>> turtleHistory;
+  private ArrayDeque<ArrayDeque<Turtle>> turtleHistory;
 
-  public Deque<Deque<Turtle>> getTurtleHistory() {
+  public TurtleHistory(){
+    turtleHistory = new ArrayDeque<ArrayDeque<Turtle>>();
+  }
+
+  public ArrayDeque<ArrayDeque<Turtle>> getTurtleHistory() {
     return turtleHistory;
   }
 
