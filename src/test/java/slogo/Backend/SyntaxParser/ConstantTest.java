@@ -23,6 +23,6 @@ class ConstantTest {
 
   @Test
   void getRetVal() {
-    assertEquals(3, myConstant.getRetVal(myTurtleStack));
+    assertEquals(3, myConstant.getRetVal());
   }
 }

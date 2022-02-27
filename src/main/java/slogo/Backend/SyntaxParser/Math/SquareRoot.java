@@ -1,8 +1,6 @@
 package slogo.Backend.SyntaxParser.Math;
 
-import java.util.ArrayDeque;
 import slogo.Backend.SyntaxParser.Operator;
-import slogo.Backend.TurtleState.Turtle;
 
 public class SquareRoot extends ArithmeticOp {
 
@@ -16,8 +14,8 @@ public class SquareRoot extends ArithmeticOp {
     myNumArgs = 1;
   }
 
-  public double getRetVal(ArrayDeque<Turtle> turtleStack) {
-    double arg1 = this.arguments.get(0).getRetVal(turtleStack);
+  public double getRetVal() {
+    double arg1 = this.arguments.get(0).getRetVal();
     if(arg1 < 0) {
       //TODO: Throw an error if input is negative
     }

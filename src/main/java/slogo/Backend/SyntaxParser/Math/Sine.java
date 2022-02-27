@@ -1,8 +1,6 @@
 package slogo.Backend.SyntaxParser.Math;
 
-import java.util.ArrayDeque;
 import slogo.Backend.SyntaxParser.Operator;
-import slogo.Backend.TurtleState.Turtle;
 
 public class Sine extends ArithmeticOp {
 
@@ -16,7 +14,7 @@ public class Sine extends ArithmeticOp {
     myNumArgs = 1;
   }
 
-  public double getRetVal(ArrayDeque<Turtle> turtleStack) {
-    return Math.sin(this.arguments.get(0).getRetVal(turtleStack));
+  public double getRetVal() {
+    return Math.sin(this.arguments.get(0).getRetVal());
   }
 }

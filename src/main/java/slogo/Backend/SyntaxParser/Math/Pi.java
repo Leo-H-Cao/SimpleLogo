@@ -1,8 +1,5 @@
 package slogo.Backend.SyntaxParser.Math;
 
-import java.util.ArrayDeque;
-import slogo.Backend.TurtleState.Turtle;
-
 public class Pi extends ArithmeticOp {
 
   public Pi() {
@@ -10,7 +7,7 @@ public class Pi extends ArithmeticOp {
     myNumArgs = 0;
   }
 
-  public double getRetVal(ArrayDeque<Turtle> turtleStack) {
+  public double getRetVal() {
     return Math.PI;
   }
 }

@@ -1,8 +1,6 @@
 package slogo.Backend.SyntaxParser.Math;
 
-import java.util.ArrayDeque;
 import slogo.Backend.SyntaxParser.Operator;
-import slogo.Backend.TurtleState.Turtle;
 
 public class RandomRange extends ArithmeticOp {
   public RandomRange() {
@@ -16,10 +14,10 @@ public class RandomRange extends ArithmeticOp {
     myNumArgs = 2;
   }
 
-  public double getRetVal(ArrayDeque<Turtle> turtleStack) {
+  public double getRetVal() {
     // TODO: Check to make sure max >= min
-    double min = this.arguments.get(0).getRetVal(turtleStack);
-    double max = this.arguments.get(1).getRetVal(turtleStack);
+    double min = this.arguments.get(0).getRetVal();
+    double max = this.arguments.get(1).getRetVal();
     return (Math.random() * (max - min)) + min;
   }
 }

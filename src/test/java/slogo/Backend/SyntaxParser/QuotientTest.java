@@ -20,7 +20,7 @@ public class QuotientTest {
 
   @Test
   void testGetRetVal() {
-    assertEquals(5.0, myQuotient.getRetVal(myTurtleStack));
+    assertEquals(5.0, myQuotient.getRetVal());
   }
 
   @Test

@@ -1,15 +1,13 @@
 package slogo.Backend.SyntaxParser;
 
-import java.util.ArrayDeque;
 import java.util.ArrayList;
-import slogo.Backend.TurtleState.Turtle;
 
 public abstract class Operator {
   protected int myNumArgs;
   protected ArrayList<Operator> arguments;
   protected double retVal;
 
-  public abstract double getRetVal(ArrayDeque<Turtle> turtleStack);
+  public abstract double getRetVal();
 
   public int getMyNumArgs() {
     return myNumArgs;

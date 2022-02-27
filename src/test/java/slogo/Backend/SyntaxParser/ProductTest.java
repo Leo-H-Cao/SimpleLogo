@@ -19,7 +19,7 @@ public class ProductTest {
 
   @Test
   void testGetRetVal() {
-    assertEquals(20.0, myProduct.getRetVal(myTurtleStack));
+    assertEquals(20.0, myProduct.getRetVal());
   }
 
   @Test

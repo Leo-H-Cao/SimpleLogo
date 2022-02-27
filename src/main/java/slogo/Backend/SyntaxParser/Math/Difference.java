@@ -1,9 +1,6 @@
 package slogo.Backend.SyntaxParser.Math;
 
-import java.util.ArrayDeque;
-import slogo.Backend.SyntaxParser.Math.ArithmeticOp;
 import slogo.Backend.SyntaxParser.Operator;
-import slogo.Backend.TurtleState.Turtle;
 
 public class Difference extends ArithmeticOp {
 
@@ -18,7 +15,7 @@ public class Difference extends ArithmeticOp {
     myNumArgs = 2;
   }
 
-  public double getRetVal(ArrayDeque<Turtle> turtleStack) {
-    return this.arguments.get(0).getRetVal(turtleStack) - this.arguments.get(1).getRetVal(turtleStack);
+  public double getRetVal() {
+    return this.arguments.get(0).getRetVal() - this.arguments.get(1).getRetVal();
   }
 }
