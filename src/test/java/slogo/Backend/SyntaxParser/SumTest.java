@@ -20,7 +20,7 @@ public class SumTest {
 
   @Test
   void testGetRetVal() {
-    assertEquals(12.0, mySum.getRetVal(myTurtleStack));
+    assertEquals(12.0, mySum.getRetVal());
   }
 
   @Test

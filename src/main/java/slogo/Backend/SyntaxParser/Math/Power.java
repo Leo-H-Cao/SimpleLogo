@@ -2,13 +2,13 @@ package slogo.Backend.SyntaxParser.Math;
 
 import slogo.Backend.SyntaxParser.Operator;
 
-public class Difference extends ArithmeticOp {
+public class Power extends ArithmeticOp {
 
-  public Difference() {
+  public Power() {
     myNumArgs = 2;
   }
 
-  public Difference(Operator op1, Operator op2) {
+  public Power(Operator op1, Operator op2) {
     super();
     this.arguments.add(op1);
     this.arguments.add(op2);
@@ -16,6 +16,6 @@ public class Difference extends ArithmeticOp {
   }
 
   public double getRetVal() {
-    return this.arguments.get(0).getRetVal() - this.arguments.get(1).getRetVal();
+    return Math.pow(this.arguments.get(0).getRetVal(), this.arguments.get(1).getRetVal());
   }
 }

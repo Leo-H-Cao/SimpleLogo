@@ -1,14 +1,15 @@
 package slogo.Backend;
 
+import java.util.ArrayDeque;
 import java.util.Deque;
 import slogo.Backend.TurtleState.Turtle;
 
 /** The type Result. */
 public class Result {
   private final double doubleReturned;
-  private final Deque<Turtle> turtleSteps;
+  private final ArrayDeque<Turtle> turtleSteps;
 
-  public Result(double doubleReturned, Deque<Turtle> turtleSteps)
+  public Result(double doubleReturned, ArrayDeque<Turtle> turtleSteps)
   {
     this.doubleReturned = doubleReturned;
     this.turtleSteps = turtleSteps;
@@ -18,7 +19,7 @@ public class Result {
     return doubleReturned;
   }
 
-  public Deque<Turtle> getTurtleSteps(){
+  public ArrayDeque<Turtle> getTurtleSteps(){
     return turtleSteps;
   }
 }

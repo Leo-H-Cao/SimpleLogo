@@ -2,9 +2,6 @@ package slogo.Backend.SyntaxParser;
 
 import java.util.ArrayDeque;
 import slogo.Backend.LexicalAnalyzer.Token;
-import slogo.Backend.State.CommandHistory;
-import slogo.Backend.State.UserVariables;
-import slogo.Backend.State.TurtleHistory;
 import slogo.Backend.TurtleState.Turtle;
 
 public class InstructionRunner {
@@ -19,7 +16,7 @@ public class InstructionRunner {
     Operator root = myMaker.parse();
     ArrayDeque<Turtle> turtleStack = new ArrayDeque<>();
 //    turtleStack.add(myTurtleHistory.getTurtleHistory().getLast().getLast());
-    root.getRetVal(turtleStack);
+    root.getRetVal();
     return turtleStack.getLast();
   }
 

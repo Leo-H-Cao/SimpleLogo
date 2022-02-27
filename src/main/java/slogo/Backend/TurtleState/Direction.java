@@ -1,13 +1,13 @@
 package slogo.Backend.TurtleState;
 
 public class Direction {
-  private final double directionInDegrees;
+  private final double directionInRadians;
 
-  public Direction(Double directionInDegrees){
-    this.directionInDegrees = directionInDegrees;
+  public Direction(Double directionInRadians){
+    this.directionInRadians = directionInRadians;
   }
 
   public double getDirectionInDegrees() {
-    return directionInDegrees;
+    return (directionInRadians * 180)/Math.PI;
   }
 }

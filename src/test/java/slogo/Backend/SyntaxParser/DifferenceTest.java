@@ -19,7 +19,7 @@ public class DifferenceTest {
 
   @Test
   void testGetRetVal() {
-    assertEquals(8.0, myDifference.getRetVal(myTurtleStack));
+    assertEquals(8.0, myDifference.getRetVal());
   }
 
   @Test
