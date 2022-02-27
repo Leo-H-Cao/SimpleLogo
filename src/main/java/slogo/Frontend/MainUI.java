@@ -5,9 +5,11 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import slogo.Backend.TurtleState.Turtle;
 import slogo.SLogoController;
 
 public class MainUI {
+  public static final String DEFAULT_TURTLE_IMAGE_PATH = "test-turtle.png";
 
   private final SLogoController myController;
   private final BorderPane layout;
@@ -16,7 +18,7 @@ public class MainUI {
   private ControlPanel myControlPanel;
   private CommandInput myCommandInput;
   private TurtleBackground myTurtleBackground;
-  private TurtleView testTurtle;
+  private TurtleView testTurtleView;
   private UserVariablesContainer myUserVariablesContainer;
   private ToolBarUI myToolBar;
 
@@ -42,7 +44,7 @@ public class MainUI {
   }
 
   public TurtleView getTurtleView() {
-    return testTurtle;
+    return testTurtleView;
   }
 
   public TurtleBackground getTurtleBackground(){
@@ -72,8 +74,8 @@ public class MainUI {
   }
 
   private void addingTurtle() {
-    testTurtle = new TurtleView(myControlPanel.getSpeedSlider().getValue());
-    myTurtleBackground.addTurtle(testTurtle);
+    testTurtleView = new TurtleView(myControlPanel.getSpeedSlider().getValue(), DEFAULT_TURTLE_IMAGE_PATH);
+    myTurtleBackground.addTurtle(testTurtleView);
   }
 
   private void layOutChildren() {

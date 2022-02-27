@@ -18,19 +18,22 @@ import slogo.FrontendExternalAPIs.DisplayTurtle;
 
 public class TurtleView implements DisplayTurtle, DisplayCanvas {
 
-  public static final String TURTLE_IMAGE_PATH = "test-turtle.png";
+
   public static final int TURTLE_SIZE = 40;
   public static final int DEFAULT_SPEED = 4;
 
-  private final Node turtleNode;
   private ImageView turtleImage;
+  private Turtle currentTurtle;
   private Turtle initialTurtle;
-  private Turtle turtle;
-  private final double mySpeed;
+  private double myAnimationSpeed;
 
-  public TurtleView(double animationSpeed) {
-    turtleNode = makeActor();
-    mySpeed = animationSpeed;
+  public TurtleView(double animationSpeed, String turtleImagePath) {
+    createTurtleImage(turtleImagePath);
+    myAnimationSpeed = animationSpeed;
+
+//    set current and initial turtle
+//    currentTurtle = initTurtle;
+//    initialTurtle = initTurtle;
   }
 
   // create sequence of animations
@@ -39,47 +42,42 @@ public class TurtleView implements DisplayTurtle, DisplayCanvas {
     Path path = new Path();
     path.getElements()
         .addAll(
-            new MoveTo(turtle.getLocation().getX(), turtle.getLocation().getY()),
+            new MoveTo(currentTurtle.getLocation().getX(), currentTurtle.getLocation().getY()),
             new LineTo(nextTurtle.getLocation().getX(), nextTurtle.getLocation().getY()));
     // create an animation that follows the path
     PathTransition pt =
-        new PathTransition(Duration.seconds(DEFAULT_SPEED / mySpeed), path, turtleNode);
+        new PathTransition(Duration.seconds(DEFAULT_SPEED / myAnimationSpeed), path, turtleImage);
     // animation that rotates the turtle before ending
-    RotateTransition rt = new RotateTransition(Duration.seconds(DEFAULT_SPEED / mySpeed));
+    RotateTransition rt = new RotateTransition(Duration.seconds(DEFAULT_SPEED / myAnimationSpeed));
     //    rt.setByAngle(nextTurtle.getDirection());
     rt.setByAngle(90);
     // put them together in order
-    return new SequentialTransition(turtleNode, pt, rt);
-  }
-
-  // create something to animate
-  private Node makeActor() {
-    Image turtleImage = new Image(TURTLE_IMAGE_PATH);
-    ImageView myImageView = new ImageView(turtleImage);
-    myImageView.setFitWidth(TURTLE_SIZE);
-    myImageView.setFitHeight(TURTLE_SIZE);
-    myImageView.getStyleClass().add("turtle-image");
-    return myImageView;
-  }
-
-  public Node getTurtleNode() {
-    return turtleNode;
+    return new SequentialTransition(turtleImage, pt, rt);
   }
 
   /**
-   * creates turtle at coordinates specified by turtle object FIXME: Have not yet done the actual
-   * changing of coords in box
+   * creates turtle at coordinates specified by turtle object
    *
-   * @param initialTurtle
+   * @param newTurtle
    */
   @Override
-  public void createTurtle(Turtle initialTurtle) {
-    double x = initialTurtle.getLocation().getX();
-    double y = initialTurtle.getLocation().getY();
-    Direction direction = initialTurtle.getDirection();
-    turtleImage = (ImageView) makeActor();
-    turtle = initialTurtle;
-    this.initialTurtle = initialTurtle;
+  public void createTurtle(Turtle newTurtle){
+    currentTurtle = newTurtle;
+    initialTurtle = newTurtle;
+    resetDisplay();
+  }
+
+  // create something to animate
+  private void createTurtleImage(String turtleImagePath) {
+    Image image = new Image(turtleImagePath);
+    turtleImage = new ImageView(image);
+    turtleImage.setFitWidth(TURTLE_SIZE);
+    turtleImage.setFitHeight(TURTLE_SIZE);
+    turtleImage.getStyleClass().add("turtle-image");
+  }
+
+  public Node getTurtleNode() {
+    return turtleImage;
   }
 
   /**
@@ -89,9 +87,6 @@ public class TurtleView implements DisplayTurtle, DisplayCanvas {
    */
   @Override
   public void moveTurtle(Turtle nextTurtle) {
-    //    double x = nextTurtle.getLocation().getX();
-    //    double y = nextTurtle.getLocation().getY();
-    //    Direction direction = nextTurtle.getDirection();
     makeAnimation(nextTurtle).play();
   }
 
@@ -121,7 +116,8 @@ public class TurtleView implements DisplayTurtle, DisplayCanvas {
   /** clears screen and resets turtle to original position */
   @Override
   public void resetDisplay() {
-    createTurtle(initialTurtle);
+    turtleImage.setX(initialTurtle.getLocation().getX());
+    turtleImage.setX(initialTurtle.getLocation().getY());
   }
 
   /** changes background color */
