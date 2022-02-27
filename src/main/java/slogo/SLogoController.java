@@ -75,6 +75,7 @@ public class SLogoController {
     // resource file will have defaults
     // UI should allow user to change those attributes before starting up the model
     // TODO: Almost every backend class should be "owned" by one class to avoid arbitrary object creation
+
     // ModelState owns command language, turtle, tracks, history, and user variables/commands
     model = new ModelState();
 
@@ -111,7 +112,7 @@ public class SLogoController {
     try {
       Result commandResult = turtleController.postInstruction(command);
       Deque<Turtle> steps = commandResult.getTurtleSteps();
-      if(steps == null) {
+      if(steps == null || steps.isEmpty()) {
         //display numeric result on console window
       } else {
         // TODO: Make sure this is right
