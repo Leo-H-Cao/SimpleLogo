@@ -6,6 +6,7 @@ import java.util.ArrayDeque;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import slogo.Backend.State.TurtleHistory;
 import slogo.Backend.TurtleState.Turtle;
 
 class ConstantTest {
@@ -23,6 +24,6 @@ class ConstantTest {
 
   @Test
   void getRetVal() {
-    assertEquals(3, myConstant.getRetVal());
+    assertEquals(3, myConstant.getRetVal(new TurtleHistory()));
   }
 }

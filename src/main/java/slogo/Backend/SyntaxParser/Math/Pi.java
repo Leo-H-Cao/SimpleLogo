@@ -1,5 +1,7 @@
 package slogo.Backend.SyntaxParser.Math;
 
+import slogo.Backend.State.TurtleHistory;
+
 public class Pi extends ArithmeticOp {
 
   public Pi() {
@@ -7,7 +9,7 @@ public class Pi extends ArithmeticOp {
     myNumArgs = 0;
   }
 
-  public double getRetVal() {
+  public double getRetVal(TurtleHistory history) {
     return Math.PI;
   }
 }

@@ -2,9 +2,11 @@ package slogo.Backend.SyntaxParser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayDeque;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import slogo.Backend.State.TurtleHistory;
 import slogo.Backend.SyntaxParser.Math.Difference;
 import slogo.Backend.TurtleState.Turtle;
 
@@ -18,8 +20,9 @@ public class DifferenceTest {
   }
 
   @Test
-  void testGetRetVal() {
-    assertEquals(8.0, myDifference.getRetVal());
+  void testGetRetVal()
+      throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+    assertEquals(8.0, myDifference.getRetVal(new TurtleHistory()));
   }
 
   @Test

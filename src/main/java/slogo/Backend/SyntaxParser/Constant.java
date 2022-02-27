@@ -1,6 +1,7 @@
 package slogo.Backend.SyntaxParser;
 
 import java.util.ArrayList;
+import slogo.Backend.State.TurtleHistory;
 
 public class Constant extends Operator {
 
@@ -11,7 +12,7 @@ public class Constant extends Operator {
     arguments = new ArrayList<>();
   }
 
-  public double getRetVal() {
+  public double getRetVal(TurtleHistory history) {
     return retVal;
   }
 

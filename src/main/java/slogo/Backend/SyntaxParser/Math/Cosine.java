@@ -1,5 +1,7 @@
 package slogo.Backend.SyntaxParser.Math;
 
+import java.lang.reflect.InvocationTargetException;
+import slogo.Backend.State.TurtleHistory;
 import slogo.Backend.SyntaxParser.Operator;
 
 public class Cosine extends ArithmeticOp {
@@ -14,7 +16,8 @@ public class Cosine extends ArithmeticOp {
     myNumArgs = 1;
   }
 
-  public double getRetVal() {
-    return Math.cos(this.arguments.get(0).getRetVal());
+  public double getRetVal(TurtleHistory history)
+      throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+    return Math.cos(this.arguments.get(0).getRetVal(history));
   }
 }
