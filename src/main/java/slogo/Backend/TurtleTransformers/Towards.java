@@ -21,11 +21,11 @@ public class Towards implements TurtleTransformer {
     if(dy==0 && dx==0){
       newAngle = oldTurtle.getHeadingDirection();
     }
-    else if(dy==0 && dx>=0){
-      newAngle = 0;
-    }
-    else if (dy==0 && dx< 0){
+    else if(dx==0 && dy>0){
       newAngle = Math.PI / 2;
+    }
+    else if (dx==0 && dy< 0){
+      newAngle = (Math.PI * 3) / 2;
     }
     else {
       newAngle = Math.atan2(dy, dx);
