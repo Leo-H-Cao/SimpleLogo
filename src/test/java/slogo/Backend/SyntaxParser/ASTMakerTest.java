@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import slogo.Backend.LexicalAnalyzer.Token;
 import slogo.Backend.LexicalAnalyzer.TokenType;
+import slogo.Backend.State.TurtleHistory;
 import slogo.Backend.TurtleState.Turtle;
 
 public class ASTMakerTest {
@@ -27,7 +28,7 @@ public class ASTMakerTest {
     Token t1 = new Token(TokenType.CONSTANT, "-1");
     a.add(t1);
     myASTMaker = new ASTMaker(a);
-    assertEquals(-1, myASTMaker.parse().getRetVal());
+    assertEquals(-1, myASTMaker.parse().getRetVal(new TurtleHistory()));
   }
 
   @Test
@@ -41,6 +42,6 @@ public class ASTMakerTest {
     a.add(t2);
     a.add(t3);
     myASTMaker = new ASTMaker(a);
-    assertEquals(80, myASTMaker.parse().getRetVal());
+    assertEquals(80, myASTMaker.parse().getRetVal(new TurtleHistory()));
   }
 }

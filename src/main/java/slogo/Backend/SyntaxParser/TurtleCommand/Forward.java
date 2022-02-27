@@ -18,10 +18,10 @@ public class Forward extends Operator {
 
   public double getRetVal(TurtleHistory history)
       throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-    double retVal = arguments.get(0).getRetVal();
+    double retVal = arguments.get(0).getRetVal(history);
     ArrayList<Double> argList = new ArrayList();
     argList.add(retVal);
-    myHistory.addTurtleThroughTransformation("Forward", argList);
+    history.addTurtleThroughTransformation("Forward", argList);
     return retVal;
   }
 
