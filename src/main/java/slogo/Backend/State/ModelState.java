@@ -3,6 +3,8 @@ package slogo.Backend.State;
 import java.io.FileNotFoundException;
 import java.lang.reflect.InvocationTargetException;
 import java.nio.file.Path;
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.logging.Level;
@@ -64,6 +66,8 @@ public class ModelState implements Initialiazable, ModifiesModelState, StateMana
     LexResult lexedString = new LexResult(instructionText);
     ASTMaker astMaker = new ASTMaker(lexedString.getTokens());
     Operator root =  astMaker.parse();
+    ArrayDeque<Turtle> currentHistory = new ArrayDeque<>();
+    history.getTurtleHistory().addLast(currentHistory);
     Result res = new Result(root.getRetVal(history), history.getTurtleHistory().getLast());
     return res;
   }
