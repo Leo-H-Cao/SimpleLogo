@@ -41,6 +41,9 @@ public class Turtle {
 
   }
 
+  public double getHeadingDirection(){
+    return headingDirection;
+  }
 
   private Map<String, Double> getMapOfState() {
     return Map.ofEntries(
