@@ -18,7 +18,7 @@ public class InstructionRunner {
     Operator root = myMaker.parse();
     ArrayDeque<Turtle> turtleStack = new ArrayDeque<>();
 //    turtleStack.add(myTurtleHistory.getTurtleHistory().getLast().getLast());
-    root.getRetVal();
+    //root.getRetVal();
     return turtleStack.getLast();
   }
 
