@@ -30,6 +30,19 @@ public class ModelState implements Initialiazable, ModifiesModelState, StateMana
   private UserCommands userCommands;
 
   /**
+   * Class constructor.
+   */
+  public ModelState() {
+    // All this initialization could go into initializeBackend()
+    this.commandLanguage = CommandLanguage.ENGLISH;
+    this.turtle = new Turtle(new int[]{0, 0}, 0, true);
+    this.tracks = new Tracks();
+    this.history = new TurtleHistory();
+    this.userVariables = new UserVariables();
+    this.userCommands = new UserCommands();
+  }
+
+  /**
    * This methods sends an instruction entered by the user to the backend.
    * <p>
    * If the instruction is "successful" meaning it is syntactically and semantically valid, then
