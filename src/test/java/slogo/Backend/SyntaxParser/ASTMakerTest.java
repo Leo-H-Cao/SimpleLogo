@@ -28,7 +28,7 @@ public class ASTMakerTest {
     Token t1 = new Token(TokenType.CONSTANT, "-1");
     a.add(t1);
     myASTMaker = new ASTMaker(a);
-    assertEquals(-1, myASTMaker.parse().getRetVal(new TurtleHistory()));
+    assertEquals(-1, myASTMaker.parse().arguments.get(0).getRetVal(new TurtleHistory()));
   }
 
   @Test
@@ -42,7 +42,9 @@ public class ASTMakerTest {
     a.add(t2);
     a.add(t3);
     myASTMaker = new ASTMaker(a);
-    assertEquals(80, myASTMaker.parse().getRetVal(new TurtleHistory()));
+    LogoList root = myASTMaker.parse();
+    Operator o1 = root.arguments.get(0);
+    assertEquals(80, o1.getRetVal(new TurtleHistory()));
   }
 
   @Test
@@ -55,10 +57,10 @@ public class ASTMakerTest {
     a.add(t2);
     a.add(t3);
     myASTMaker = new ASTMaker(a);
-    Operator root = myASTMaker.parse();
-    assertEquals(0, root.mySeqNum);
-    assertEquals(1, root.arguments.get(0).mySeqNum);
-    assertEquals(2, root.arguments.get(1).mySeqNum);
+    LogoList root = myASTMaker.parse();
+    assertEquals(0, root.arguments.get(0).mySeqNum);
+    assertEquals(1, root.arguments.get(0).arguments.get(0).mySeqNum);
+    assertEquals(2, root.arguments.get(0).arguments.get(1).mySeqNum);
 
 
   }

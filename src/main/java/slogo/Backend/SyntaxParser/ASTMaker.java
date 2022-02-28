@@ -1,8 +1,10 @@
 package slogo.Backend.SyntaxParser;
 
+import java.lang.reflect.Array;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import slogo.Backend.LexicalAnalyzer.Token;
 
@@ -10,16 +12,24 @@ public class ASTMaker {
   private final ArrayDeque<Token> tokens;
   private final ArrayDeque<Operator> unevaluated = new ArrayDeque<>();
   private final ArrayDeque<Operator> evaluated = new ArrayDeque<>();
-  private Operator root;
+  private ArrayList<ArrayList<LogoList>> listsByLayer;
+  private int currentLayer;
+  private int currentLayerListNum;
+  private LogoList root;
 
   private final String rootdirectory = "slogo.Backend.SyntaxParser.";
 
 
   public ASTMaker(ArrayDeque<Token> tokens) {
     this.tokens = tokens;
+    listsByLayer = new ArrayList<ArrayList<LogoList>>();
+    LogoList initialList = new LogoList(0);
+    ArrayList<LogoList> initArrayList = new ArrayList<LogoList>();
+    initArrayList.add(initialList);
+    listsByLayer.add(initArrayList);
   }
 
-  public Operator parse() {
+  public LogoList parse() {
     createArgumentStacks();
     generateAST();
     return root;
@@ -74,20 +84,43 @@ public class ASTMaker {
 
   private void generateAST() {
     // TODO: use the stacks of operands to generate the AST;
+    currentLayer = 0;
+    currentLayerListNum = 0;
     while (!unevaluated.isEmpty()) {
-      Operator nextOperator = unevaluated.getFirst();
+      Operator nextOperator = unevaluated.getLast();
+
       handleOperator(nextOperator);
       unevaluated.removeFirst();
     }
-    root = evaluated.pop();
+    //root = evaluated.pop();
+    if(listsByLayer.get(0).get(0).arguments.size()==0){
+      listsByLayer.get(currentLayer).get(currentLayerListNum).addArgument(evaluated.pop());
+    }
+    root = listsByLayer.get(0).get(0);
   }
 
   private void handleOperator(Operator operator) {
+    if(operator.getClass().equals(ListStart.class)){
+      evaluated.addLast(listsByLayer.get(currentLayer).get(currentLayerListNum));
+    }
     int numOperands = operator.getMyNumArgs();
     while (numOperands > 0) {
       operator.addArgument(evaluated.pop());
       numOperands--;
     }
-    evaluated.addLast(operator);
+    if(unevaluated.size()==1){
+      evaluated.addLast(operator);
+      listsByLayer.get(currentLayer).get(currentLayerListNum).addArgument(operator);
+      return;
+    }
+    if(unevaluated.getLast().getMyNumArgs() + unevaluated.getLast().mySeqNum >= operator.mySeqNum){
+      //the next operator does not use the current operator as an operand. Insert this operator in the list
+
+      listsByLayer.get(currentLayer).get(listsByLayer.get(currentLayer).size()-1).addArgument(operator);
+    }
+    else{
+      evaluated.addLast(operator);
+    }
+
   }
 }

@@ -14,6 +14,7 @@ public abstract class Operator {
 
   public Operator(int seqNum){
     this.mySeqNum = seqNum;
+    this.arguments = new ArrayList<Operator>();
   }
 
   public abstract double getRetVal(TurtleHistory history)
