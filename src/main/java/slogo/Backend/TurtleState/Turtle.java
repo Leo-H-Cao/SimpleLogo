@@ -50,7 +50,7 @@ public class Turtle {
     return Map.ofEntries(
         Map.entry(Turtle.X, coordinate.getX()),
         Map.entry(Turtle.Y, coordinate.getY()),
-        Map.entry(Turtle.DIRECTION, direction.getDirectionInDegrees())
+        Map.entry(Turtle.DIRECTION, direction.getDirectionInRadians())
         );
   }
 
