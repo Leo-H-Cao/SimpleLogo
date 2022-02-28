@@ -13,6 +13,7 @@ public abstract class Operator {
   //protected static TurtleHistory myHistory = new TurtleHistory();
 
   public Operator(int seqNum){
+    this.arguments = new ArrayList<>();
     this.mySeqNum = seqNum;
   }
 

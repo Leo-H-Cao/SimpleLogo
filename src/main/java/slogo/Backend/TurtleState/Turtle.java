@@ -29,7 +29,7 @@ public class Turtle {
 */
   public Turtle(Turtle oldTurtle, TurtleTransformer turtleTransformer, List<Double> arguments) {
     Map<String,Double> oldFields = oldTurtle.getMapOfState();
-    Map<String, Double> overridingFields = turtleTransformer.transform(oldTurtle, arguments);
+    Map<String, Double> overridingFields = turtleTransformer.transform();
 
     //creates new turtle with same fields as old turtle, except updates them where applicable due to having different values for certain fields
     this.coordinate = new Coordinate(

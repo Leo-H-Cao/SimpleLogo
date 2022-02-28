@@ -9,7 +9,6 @@ public abstract class ArithmeticOp extends Operator {
 
   public ArithmeticOp(int seqNum) {
     super(seqNum);
-    this.arguments = new ArrayList<Operator>();
     //this.mySeqNum = seqNum;
   }
 
