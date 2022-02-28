@@ -9,7 +9,7 @@ import javafx.scene.paint.Color;
 import slogo.FrontendExternalAPIs.DisplayCanvas;
 
 public class TurtleBackground implements DisplayCanvas {
-  public static final Background DEFAULT_BACKGROUND= new Background(new BackgroundFill(Color.ALICEBLUE, CornerRadii.EMPTY, Insets.EMPTY));
+  private static final Background DEFAULT_BACKGROUND= new Background(new BackgroundFill(Color.ALICEBLUE, CornerRadii.EMPTY, Insets.EMPTY));
 
   private final StackPane turtleBackground;
 
@@ -35,4 +35,5 @@ public class TurtleBackground implements DisplayCanvas {
    * changes background color
    */
   public void setBackGroundColor(){}
+
 }

@@ -21,4 +21,5 @@ open module slogo_app {
   exports slogo.FrontendExternalAPIs;
   exports slogo.FrontendInternalAPIs;
   exports slogo.Frontend.MenuItems;
+  exports slogo.Frontend.ToolbarPopups;
 }

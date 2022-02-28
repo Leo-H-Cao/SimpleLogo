@@ -7,4 +7,5 @@ public interface DisplayCanvas {
 
   /** changes background color */
   void setBackGroundColor();
+
 }

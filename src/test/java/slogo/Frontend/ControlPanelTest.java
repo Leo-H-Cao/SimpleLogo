@@ -30,8 +30,4 @@ public class ControlPanelTest extends DukeApplicationTest {
     assertEquals(speedSlider.getValue(), 3.0);
   }
 
-
-
-
-
 }

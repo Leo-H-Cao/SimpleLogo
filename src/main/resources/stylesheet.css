@@ -33,3 +33,9 @@
 .command-history-popup-top{
   -fx-background-color: #99ccff;
 }
+
+.background-color-popup{
+  -fx-min-width: 200;
+  -fx-min-height: 50;
+  -fx-background-color: #cccccc;
+}

@@ -71,6 +71,7 @@ public class TurtleView implements DisplayTurtle, DisplayCanvas {
   private void createTurtleImage(String turtleImagePath) {
     Image image = new Image(turtleImagePath);
     turtleImage = new ImageView(image);
+    turtleImage.setId("turtleImage");
     turtleImage.setFitWidth(TURTLE_SIZE);
     turtleImage.setFitHeight(TURTLE_SIZE);
     turtleImage.getStyleClass().add("turtle-image");

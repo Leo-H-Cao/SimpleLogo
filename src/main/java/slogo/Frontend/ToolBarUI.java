@@ -3,6 +3,7 @@ package slogo.Frontend;
 import javafx.scene.control.ToolBar;
 import slogo.Frontend.ToolBarButtons.CommandHistoryToolbarButton;
 import slogo.Frontend.ToolBarButtons.LanguageSelect;
+import slogo.Frontend.ToolBarButtons.SelectBackgroundColorButton;
 import slogo.Frontend.ToolBarButtons.ToolBarButtonAbstract;
 
 public class ToolBarUI {
@@ -10,6 +11,7 @@ public class ToolBarUI {
   private ToolBar mytoolBar;
   private ToolBarButtonAbstract commandHistoryButton;
   private LanguageSelect languageSelect;
+  private SelectBackgroundColorButton colorButton;
 
   public ToolBarUI(){
     mytoolBar = new ToolBar();
@@ -30,7 +32,9 @@ public class ToolBarUI {
     commandHistoryButton.getButton().setId("CommandHistoryButton");
     languageSelect = new LanguageSelect("English");
     languageSelect.getChoiceBox().setId("SelectDisplayLanguage");
-    mytoolBar.getItems().addAll(commandHistoryButton.getButton(), languageSelect.getChoiceBox());
+    colorButton = new SelectBackgroundColorButton("Change Background");
+
+    mytoolBar.getItems().addAll(commandHistoryButton.getButton(), languageSelect.getChoiceBox(), colorButton.getButton());
   }
 
 }
