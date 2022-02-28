@@ -13,6 +13,6 @@ public class Helper implements Helps {
    */
   @Override
   public HelpInformation getHelp(Optional<String> token) {
-    return null;
+    return new HelpInformation("Help was requested");
   }
 }

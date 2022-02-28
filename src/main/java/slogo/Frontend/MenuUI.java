@@ -1,6 +1,7 @@
 package slogo.Frontend;
 
 import javafx.scene.control.Menu;
+import slogo.Frontend.MenuItems.MenuItemAbstract;
 
 public class MenuUI {
 
@@ -10,7 +11,7 @@ public class MenuUI {
     myMenu = new Menu(menuName);
   }
 
-  public void addMenuItem(MenuItemUI item) {
+  public void addMenuItem(MenuItemAbstract item) {
     myMenu.getItems().add(item.getMenuItem());
   }
 

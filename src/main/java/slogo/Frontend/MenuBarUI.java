@@ -1,6 +1,8 @@
 package slogo.Frontend;
 
 import javafx.scene.control.MenuBar;
+import slogo.Frontend.MenuItems.HelpMenuItem;
+import slogo.Frontend.MenuItems.MenuItemAbstract;
 
 public class MenuBarUI {
 
@@ -8,6 +10,7 @@ public class MenuBarUI {
 
   public MenuBarUI() {
     myMenuBar = new MenuBar();
+    myMenuBar.setId("MenuBar");
     createMenuBar();
   }
 
@@ -20,13 +23,9 @@ public class MenuBarUI {
   }
 
   public void createMenuBar() {
-    MenuUI help = new MenuUI("Helps");
-    MenuItemUI project = new MenuItemUI("Reference Page");
-    MenuUI commands = new MenuUI("Commands");
-    MenuItemUI commandHistory = new MenuItemUI("Command History");
-    commands.addMenuItem(commandHistory);
-    this.addToMenuBar(commands);
-    help.addMenuItem(project);
+    MenuUI help = new MenuUI("Help");
+    MenuItemAbstract helpItem = new HelpMenuItem("Reference Page");
+    help.addMenuItem(helpItem);
     this.addToMenuBar(help);
   }
 }
