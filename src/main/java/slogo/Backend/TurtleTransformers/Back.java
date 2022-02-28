@@ -17,7 +17,7 @@ public class Back implements TurtleTransformer {
 
   @Override
   public Map<String, Double> transform() {
-    double turtleAngle = myOldTurtle.getHeadingDirection();
+    double turtleAngle = myOldTurtle.getDirection().getDirectionInRadians();
     double oldX = myOldTurtle.getLocation().getX();
     double oldY = myOldTurtle.getLocation().getY();
     double newX = oldX - myParams.get(0) * Math.cos(turtleAngle);
