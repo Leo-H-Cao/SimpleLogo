@@ -36,7 +36,7 @@ public class SLogoController {
   // Backend objects
   private ModelState model;
   private Helper helper;
-  private TurtleController turtleController;
+  public static final Turtle INITIAL_TURTLE = new Turtle(new int[]{0,0}, 0, true);
 
   // Frontend objects
   private View mainView;
@@ -68,6 +68,7 @@ public class SLogoController {
     gui = mainView.getMainUI();
     commandInputter = gui.getCommandInput();
     turtleView = gui.getTurtleView();
+    turtleView.createTurtle(INITIAL_TURTLE);
     userDefinedAttributesUpdater =
         new ViewUserDefined(); // TODO: This should be owned by some class in the frontend
 
@@ -83,7 +84,6 @@ public class SLogoController {
     // Independent object that fetches help for user (just a string for now)
     helper = new Helper();
 
-    turtleController = new TurtleController();
 //    syntaxChecker = new Validator();
 //    InitializationState initializationState = new InitializationState();
 //    model.initalizeBackend(initializationState);
@@ -113,11 +113,12 @@ public class SLogoController {
     try {
       Result commandResult = model.postInstruction(command);
       Deque<Turtle> steps = commandResult.getTurtleSteps();
-      if(steps == null || steps.isEmpty()) {
+      if(steps == null || steps.size() <= 1) {
         //display numeric result on console window
       } else {
         // TODO: Make sure this is right
-        turtleView.moveTurtle(steps.poll());
+
+
       }
     }
     catch (InvalidTokenException | ClassNotFoundException | InvocationTargetException |

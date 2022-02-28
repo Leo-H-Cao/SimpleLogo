@@ -22,6 +22,7 @@ import slogo.BackendExternalAPIs.StateManager;
 import slogo.BackendExternalAPIs.Initialiazable;
 import slogo.BackendExternalAPIs.ModifiesModelState;
 import slogo.Backend.className;
+import slogo.SLogoController;
 
 public class ModelState implements Initialiazable, ModifiesModelState, StateManager {
   private CommandLanguage commandLanguage;
@@ -37,7 +38,7 @@ public class ModelState implements Initialiazable, ModifiesModelState, StateMana
   public ModelState() {
     // All this initialization could go into initializeBackend()
     this.commandLanguage = CommandLanguage.ENGLISH;
-    this.turtle = new Turtle(new int[]{0, 0}, 0, true);
+    this.turtle = SLogoController.INITIAL_TURTLE;
     this.tracks = new Tracks();
     this.history = new TurtleHistory();
     this.userVariables = new UserVariables();
@@ -62,7 +63,8 @@ public class ModelState implements Initialiazable, ModifiesModelState, StateMana
    */
   @Override
   public Result postInstruction(String instructionText)
-      throws InvalidTokenException, ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+      throws InvalidTokenException, ClassNotFoundException, InvocationTargetException,
+      NoSuchMethodException, InstantiationException, IllegalAccessException {
     LexResult lexedString = new LexResult(instructionText);
     ASTMaker astMaker = new ASTMaker(lexedString.getTokens());
     Operator root =  astMaker.parse();
