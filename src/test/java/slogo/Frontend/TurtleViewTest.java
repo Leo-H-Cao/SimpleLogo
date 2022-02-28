@@ -16,7 +16,7 @@ class TurtleViewTest extends DukeApplicationTest {
 
   private View view;
   private Node turtleImage;
-  private TextArea terminalTextBox;
+  private TextArea commandInputBox;
   private Pane turtleBackground;
 
   @Override
@@ -24,19 +24,19 @@ class TurtleViewTest extends DukeApplicationTest {
     SLogoController controller = new SLogoController();
     view = new View(stage, controller);
     turtleImage = lookup("#turtleImage").query();
+    commandInputBox = lookup("#CommandInputTextArea").query();
   }
   @Test
   void testMoveTurtle() {
     double Xinitial = turtleImage.getTranslateX();
     double Yinitial = turtleImage.getTranslateY();
-//    runCommand("fd 50");
+//    runCommand("Forward 50");
 //    assertEquals(-50, turtleImage.getTranslateY() - Xinitial);
 //    assertEquals(0, turtleImage.getTranslateX() - Yinitial);
   }
 
   private void runCommand(String command) {
-    terminalTextBox = lookup("#CommandInputTextArea").query();;
-    writeInputTo(terminalTextBox, command);
+    writeInputTo(commandInputBox, command);
     clickOn(lookup("#ExecuteButton").query());
   }
 
