@@ -16,7 +16,7 @@ public class DifferenceTest {
 
   @BeforeEach
   void setup() {
-    myDifference = new Difference(new Constant(10), new Constant(2));
+    myDifference = new Difference(new Constant(0,10), new Constant(0,2));
   }
 
   @Test

@@ -17,7 +17,7 @@ public class QuotientTest {
 
   @BeforeEach
   void setup() {
-    myQuotient = new Quotient(new Constant(10), new Constant(2));
+    myQuotient = new Quotient(new Constant(0,10), new Constant(0,2));
   }
 
   @Test

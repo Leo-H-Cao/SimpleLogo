@@ -16,7 +16,7 @@ public class ProductTest {
 
   @BeforeEach
   void setup() {
-    myProduct = new Product(new Constant(10), new Constant(2));
+    myProduct = new Product(new Constant(0,10), new Constant(0,2));
   }
 
   @Test
