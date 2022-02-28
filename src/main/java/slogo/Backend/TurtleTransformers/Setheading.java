@@ -7,10 +7,17 @@ import slogo.Backend.TurtleState.Turtle;
 import slogo.Backend.TurtleTransformers.TurtleTransformer;
 
 public class Setheading implements TurtleTransformer {
+  private Turtle myOldTurtle;
+  private List<Double> myParams;
+
+  public Setheading(Turtle oldTurtle, List<Double> params){
+    myOldTurtle = oldTurtle;
+    myParams = params;
+  }
 
   @Override
-  public Map<String, Double> transform(Turtle oldTurtle, List<Double> params) {
-    return Map.of(Turtle.DIRECTION, params.get(0));
+  public Map<String, Double> transform() {
+    return Map.of(Turtle.DIRECTION, myParams.get(0));
   }
 
 }

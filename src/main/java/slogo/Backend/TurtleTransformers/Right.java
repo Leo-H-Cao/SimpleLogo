@@ -7,11 +7,18 @@ import slogo.Backend.TurtleState.Turtle;
 import slogo.Backend.TurtleTransformers.TurtleTransformer;
 
 public class Right implements TurtleTransformer {
+  private Turtle myOldTurtle;
+  private List<Double> myParams;
+
+  public Right(Turtle oldTurtle, List<Double> params){
+    myOldTurtle = oldTurtle;
+    myParams = params;
+  }
 
   @Override
-  public Map<String, Double> transform(Turtle oldTurtle, List<Double> params) {
-    double turtleAngle = oldTurtle.getHeadingDirection();
-    double newTurtleAngle = turtleAngle - params.get(0);
+  public Map<String, Double> transform() {
+    double turtleAngle = myOldTurtle.getHeadingDirection();
+    double newTurtleAngle = turtleAngle - myParams.get(0);
     return Map.of(Turtle.DIRECTION, newTurtleAngle);
   }
 
