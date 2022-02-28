@@ -49,8 +49,8 @@ public class TurtleView implements DisplayTurtle, DisplayCanvas {
         new PathTransition(Duration.seconds(DEFAULT_SPEED / myAnimationSpeed), path, turtleImage);
     // animation that rotates the turtle before ending
     RotateTransition rt = new RotateTransition(Duration.seconds(DEFAULT_SPEED / myAnimationSpeed));
-    //    rt.setByAngle(nextTurtle.getDirection());
-    rt.setByAngle(90);
+    double angleToRotate = nextTurtle.getDirection().getDirectionInDegrees() - currentTurtle.getDirection().getDirectionInDegrees();
+    rt.setByAngle(angleToRotate);
     // put them together in order
     return new SequentialTransition(turtleImage, pt, rt);
   }
@@ -89,6 +89,7 @@ public class TurtleView implements DisplayTurtle, DisplayCanvas {
   @Override
   public void moveTurtle(Turtle nextTurtle) {
     makeAnimation(nextTurtle).play();
+    currentTurtle = nextTurtle;
   }
 
   /**
