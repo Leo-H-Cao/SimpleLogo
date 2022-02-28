@@ -26,7 +26,7 @@ public class Towards implements TurtleTransformer {
     double newAngle;
 
     if(dy==0 && dx==0){
-      newAngle = myOldTurtle.getHeadingDirection();
+      newAngle = myOldTurtle.getDirection().getDirectionInRadians();
     }
     else if(dx==0 && dy>0){
       newAngle = Math.PI / 2;
