@@ -90,7 +90,6 @@ public class ASTMaker {
       Operator nextOperator = unevaluated.getLast();
 
       handleOperator(nextOperator);
-      unevaluated.removeLast();
     }
     //root = evaluated.pop();
     if(listsByLayer.get(0).get(0).arguments.size()==0){
@@ -112,9 +111,12 @@ public class ASTMaker {
     if(unevaluated.size()==1){
       evaluated.addLast(operator);
       listsByLayer.get(currentLayer).get(currentLayerListNum).addArgument(operator);
+      unevaluated.removeLast();
       return;
     }
-    if(unevaluated.getLast().getMyNumArgs() + unevaluated.getLast().mySeqNum >= operator.mySeqNum){
+    unevaluated.removeLast();
+
+    if(unevaluated.getLast().getMyNumArgs() + unevaluated.getLast().mySeqNum < operator.mySeqNum){
       //the next operator does not use the current operator as an operand. Insert this operator in the list
 
       listsByLayer.get(currentLayer).get(currentLayerListNum).addArgument(operator);
