@@ -6,12 +6,13 @@ import slogo.Backend.SyntaxParser.Operator;
 
 public class Logarithm extends ArithmeticOp {
 
-  public Logarithm() {
+  public Logarithm(int seqNum) {
+    super(seqNum);
     myNumArgs = 1;
   }
 
   public Logarithm(Operator op1) {
-    super();
+    super(0);
     this.arguments.add(op1);
     myNumArgs = 1;
   }

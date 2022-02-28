@@ -6,12 +6,13 @@ import slogo.Backend.SyntaxParser.Operator;
 
 public class SquareRoot extends ArithmeticOp {
 
-  public SquareRoot() {
+  public SquareRoot(int seqNum) {
+    super(seqNum);
     myNumArgs = 1;
   }
 
   public SquareRoot(Operator op1) {
-    super();
+    super(0);
     this.arguments.add(op1);
     myNumArgs = 1;
   }

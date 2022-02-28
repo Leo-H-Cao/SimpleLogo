@@ -5,12 +5,13 @@ import slogo.Backend.State.TurtleHistory;
 import slogo.Backend.SyntaxParser.Operator;
 
 public class Random extends ArithmeticOp {
-  public Random() {
+  public Random(int seqNum) {
+    super(seqNum);
     myNumArgs = 1;
   }
 
   public Random(Operator op1) {
-    super();
+    super(0);
     this.arguments.add(op1);
     myNumArgs = 1;
   }

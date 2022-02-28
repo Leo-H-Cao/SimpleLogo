@@ -7,12 +7,13 @@ import slogo.Backend.SyntaxParser.Operator;
 
 public class Forward extends Operator {
 
-  public Forward(){
+  public Forward(int seqNum){
+    super(seqNum);
     myNumArgs = 1;
   }
 
   public Forward(Operator op1){
-    super();
+    super(0);
     arguments.add(op1);
   }
 

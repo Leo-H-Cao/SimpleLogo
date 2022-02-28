@@ -4,8 +4,8 @@ import slogo.Backend.State.TurtleHistory;
 
 public class Pi extends ArithmeticOp {
 
-  public Pi() {
-    super();
+  public Pi(int seqNum) {
+    super(seqNum);
     myNumArgs = 0;
   }
 
