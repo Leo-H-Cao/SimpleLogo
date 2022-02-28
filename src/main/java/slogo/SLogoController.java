@@ -36,7 +36,7 @@ public class SLogoController {
   // Backend objects
   private ModelState model;
   private Helper helper;
-  public static final Turtle INITIAL_TURTLE = new Turtle(new int[]{0,0}, 0, true);
+  public static final Turtle INITIAL_TURTLE = new Turtle(new int[]{0,0}, Math.PI / 2, true);
 
   // Frontend objects
   private View mainView;
@@ -69,6 +69,7 @@ public class SLogoController {
     commandInputter = gui.getCommandInput();
     turtleView = gui.getTurtleView();
     turtleView.createTurtle(INITIAL_TURTLE);
+    turtleView.resetDisplay();
     userDefinedAttributesUpdater =
         new ViewUserDefined(); // TODO: This should be owned by some class in the frontend
 
@@ -117,6 +118,7 @@ public class SLogoController {
         //display numeric result on console window
       } else {
         // TODO: Make sure this is right
+        turtleView.moveTurtle(steps.peekLast());
 
 
       }
