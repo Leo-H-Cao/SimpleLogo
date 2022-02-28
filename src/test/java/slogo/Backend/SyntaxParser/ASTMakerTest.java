@@ -71,6 +71,32 @@ public class ASTMakerTest {
     assertEquals(95, op2.getRetVal(new TurtleHistory()));
   }
 
+
+  @Test
+  void testParseNestedCommands()
+      throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+    TurtleHistory history = new TurtleHistory();
+    ArrayDeque<Turtle> currentHistory = new ArrayDeque<>();
+    currentHistory.addLast(new Turtle(new int[]{0, 0}, 0, true));
+    history.getTurtleHistory().addLast(currentHistory);
+
+    ArrayDeque<Token> a = new ArrayDeque<Token>();
+    Token t1 = new Token(TokenType.COMMAND, "Forward");
+    Token t2 = new Token(TokenType.COMMAND, "Sum");
+    Token t3 = new Token(TokenType.CONSTANT, "20");
+    Token t4 = new Token(TokenType.CONSTANT, "50");
+    a.add(t1);
+    a.add(t2);
+    a.add(t3);
+    a.add(t4);
+    myASTMaker = new ASTMaker(a);
+    LogoList root = myASTMaker.parse();
+    Operator op1 = root.arguments.get(0);
+    op1.getRetVal(history);
+    assertEquals(70, op1.getRetVal(history));
+  }
+
+
   @Test
   void testSequenceNumber(){
     ArrayDeque<Token> a = new ArrayDeque<Token>();

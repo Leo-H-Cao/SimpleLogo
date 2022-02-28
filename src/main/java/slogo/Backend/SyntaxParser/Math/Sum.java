@@ -7,7 +7,7 @@ import slogo.Backend.SyntaxParser.Operator;
 public class Sum extends ArithmeticOp {
 
   public Sum(int seqNum) {
-    super(0);
+    super(seqNum);
     myNumArgs = 2;
   }
 
