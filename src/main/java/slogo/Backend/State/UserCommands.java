@@ -15,7 +15,7 @@ public class UserCommands {
     commands = new HashMap<>();
     parsePreference = UserCommands.getDefaultParsePreference();
     //replace null with enum
-    if(parsePreference.equals(null)){
+    if(parsePreference == null){
       this.loadUserCommands();
     }
   }
