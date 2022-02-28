@@ -10,4 +10,8 @@ public class Direction {
   public double getDirectionInDegrees() {
     return (directionInRadians * 180)/Math.PI;
   }
+
+  public double getDirectionInRadians(){
+    return directionInRadians;
+  }
 }

@@ -11,12 +11,12 @@ public class Turtle {
 
   private Coordinate coordinate;
   private Direction direction;
-  private double headingDirection; //angle in radians
+  //private double headingDirection; //angle in radians
   private boolean penDown;
 
   public Turtle(int[] location, double headingDirection, boolean penDown){
     this.coordinate = new Coordinate(location[0], location[1]);
-    this.headingDirection = headingDirection;
+    this.direction = new Direction(headingDirection);
     this.penDown = penDown;
   }
 
@@ -41,10 +41,11 @@ public class Turtle {
 
   }
 
+  /*
   public double getHeadingDirection(){
     return headingDirection;
   }
-
+*/
   private Map<String, Double> getMapOfState() {
     return Map.ofEntries(
         Map.entry(Turtle.X, coordinate.getX()),
