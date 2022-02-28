@@ -48,6 +48,30 @@ public class ASTMakerTest {
   }
 
   @Test
+  void testParseTwoSeparateCommands()
+      throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+    ArrayDeque<Token> a = new ArrayDeque<Token>();
+    Token t1 = new Token(TokenType.COMMAND, "Difference");
+    Token t2 = new Token(TokenType.CONSTANT, "100");
+    Token t3 = new Token(TokenType.CONSTANT, "20");
+    Token t4 = new Token(TokenType.COMMAND, "Sum");
+    Token t5 = new Token(TokenType.CONSTANT, "90");
+    Token t6 = new Token(TokenType.CONSTANT, "5");
+    a.add(t1);
+    a.add(t2);
+    a.add(t3);
+    a.add(t4);
+    a.add(t5);
+    a.add(t6);
+    myASTMaker = new ASTMaker(a);
+    LogoList root = myASTMaker.parse();
+    Operator op1 = root.arguments.get(0);
+    Operator op2 = root.arguments.get(1);
+    //assertEquals(80, op1.getRetVal(new TurtleHistory()));
+    assertEquals(95, op2.getRetVal(new TurtleHistory()));
+  }
+
+  @Test
   void testSequenceNumber(){
     ArrayDeque<Token> a = new ArrayDeque<Token>();
     Token t1 = new Token(TokenType.COMMAND, "Difference");

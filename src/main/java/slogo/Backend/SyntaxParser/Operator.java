@@ -26,6 +26,6 @@ public abstract class Operator {
   }
 
   public void addArgument(Operator o) {
-    this.arguments.add(o);
+    this.arguments.add(0,o);
   }
 }
