@@ -4,6 +4,7 @@ import slogo.Backend.AST;
 import slogo.Backend.ASTNode;
 import slogo.BackendInternalAPIs.Updates;
 
+@Deprecated
 public class Updater implements Updates {
 
   /**
@@ -15,6 +16,7 @@ public class Updater implements Updates {
    * @param numInstructions the number of instructions to execute
    * @return the turtle in its final state
    */
+  @Deprecated
   @Override
   public Turtle step(Turtle initialState, AST tree, ASTNode current, int numInstructions) {
     return null;

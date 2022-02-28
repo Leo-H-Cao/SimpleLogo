@@ -1,17 +1,21 @@
 package slogo.Backend.SyntaxParser;
 
 import java.util.ArrayList;
+import slogo.Backend.State.TurtleHistory;
 
 public class Constant extends Operator {
 
-  public Constant() {}
+  public Constant(int seqNum) {
+    super(seqNum);
+  }
 
-  public Constant(double value) {
+  public Constant(int seqNum, double value) {
+    super(seqNum);
     retVal = value;
     arguments = new ArrayList<>();
   }
 
-  public double getRetVal() {
+  public double getRetVal(TurtleHistory history) {
     return retVal;
   }
 

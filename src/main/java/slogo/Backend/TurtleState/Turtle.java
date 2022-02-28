@@ -1,20 +1,62 @@
 package slogo.Backend.TurtleState;
 
-import java.lang.reflect.Method;
-import java.util.Collection;
-import javafx.scene.control.skin.TextInputControlSkin.Direction;
-// import javafx.scene.control.skin.TextInputControlSkin.Direction;
+import java.util.List;
+import java.util.Map;
+import slogo.Backend.TurtleTransformers.TurtleTransformer;
 
 public class Turtle {
+  public static final String X = "x";
+  public static final String Y = "y";
+  public static final String DIRECTION = "direction";
+
   private Coordinate coordinate;
   private Direction direction;
+  //private double headingDirection; //angle in radians
+  private boolean penDown;
 
-  private Turtle() {}
+  public Turtle(int[] location, double headingDirection, boolean penDown){
+    this.coordinate = new Coordinate(location[0], location[1]);
+    this.direction = new Direction(headingDirection);
+    this.penDown = penDown;
+  }
 
-  public Turtle(Turtle oldTurtle, Transformation transformation, Collection<?> arguments) {
-    // TODO: implement reflection here to get method
-    Method method = null;
-    // TODO: apply transformation to get new Turtle;
+  /*
+  private Turtle(int[] location, double headingDirection, boolean penDown) {
+    this.coordinate = new Coordinate(location[0], location[1]);
+    this.headingDirection = headingDirection;
+    this.penDown = penDown;
+  }
+*/
+  public Turtle(Turtle oldTurtle, TurtleTransformer turtleTransformer, List<Double> arguments) {
+    Map<String,Double> oldFields = oldTurtle.getMapOfState();
+    Map<String, Double> overridingFields = turtleTransformer.transform();
+
+    //creates new turtle with same fields as old turtle, except updates them where applicable due to having different values for certain fields
+    this.coordinate = new Coordinate(
+        overridingFields.getOrDefault(Turtle.X, oldFields.get(Turtle.X)),
+        overridingFields.getOrDefault(Turtle.Y, oldFields.get(Turtle.Y)));
+
+    this.direction = new Direction(
+        overridingFields.getOrDefault(Turtle.DIRECTION, oldFields.get(Turtle.DIRECTION)));
+
+  }
+
+  /*
+  public double getHeadingDirection(){
+    return headingDirection;
+  }
+*/
+  private Map<String, Double> getMapOfState() {
+    return Map.ofEntries(
+        Map.entry(Turtle.X, coordinate.getX()),
+        Map.entry(Turtle.Y, coordinate.getY()),
+        Map.entry(Turtle.DIRECTION, direction.getDirectionInDegrees())
+        );
+  }
+
+  private Turtle(double x, double y, double direction){
+    this.coordinate = new Coordinate(x, y);
+    this.direction = new Direction(direction);
   }
 
   public Turtle getInitialTurtle() {

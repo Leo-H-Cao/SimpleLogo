@@ -1,7 +1,8 @@
 package slogo.FrontendExternalAPIs;
 
+import slogo.Backend.State.CommandHistory;
 import slogo.Backend.State.CommandLanguage;
-import slogo.Backend.State.History;
+import slogo.Backend.State.TurtleHistory;
 
 public interface CommandWindow {
 
@@ -13,7 +14,7 @@ public interface CommandWindow {
   String getCommands();
 
   /** gets command history from backend */
-  void setCommandHistory(History history);
+  void setCommandHistory(CommandHistory history);
 
   void setCommandLanguage(CommandLanguage lang);
 }

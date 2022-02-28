@@ -2,13 +2,11 @@ package slogo;
 
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
-import slogo.Backend.Help.HelpInfo;
-import slogo.Backend.Help.Helper;
-import slogo.Backend.State.InitializationState;
+import javax.xml.validation.Validator;
+import slogo.Backend.HelpInformation;
+import slogo.Backend.Helper;
 import slogo.Backend.State.ModelState;
 import slogo.Backend.TurtleController;
-import slogo.Backend.Validator;
-import slogo.Backend.ValidityResult;
 import slogo.Frontend.CommandInput;
 import slogo.Frontend.CommandOutput;
 import slogo.Frontend.MainUI;
@@ -51,9 +49,9 @@ public class SLogoController {
     model = new ModelState();
     helper = new Helper();
     turtleController = new TurtleController();
-    syntaxChecker = new Validator();
-    InitializationState initializationState = new InitializationState();
-    model.initalizeBackend(initializationState);
+//    syntaxChecker = new Validator();
+//    InitializationState initializationState = new InitializationState();
+//    model.initalizeBackend(initializationState);
 
     // initialize turtle
   }
@@ -62,15 +60,17 @@ public class SLogoController {
 
   public void handleCommandSubmitted() {
     String command = commandInputter.getCommands();
-    ValidityResult isValidCommand = syntaxChecker.checkValidity(command);
 
     // If it's not valid, do something
+//    try{
+//      Result turtles = new ControlsTurtle().putInstruction(command);}
+//    catch (InvalidTokenException exception){
+//      //handle
+//    }
 
-    turtleController.putInstruction(command);
-    turtleView.moveTurtle(model.getCurrentTurtleState());
   }
 
   public void handleHelpRequested() {
-    HelpInfo help = helper.getHelp();
+    HelpInformation help = helper.getHelp(null);
   }
 }

@@ -20,7 +20,7 @@ public class MenuBarUI {
   }
 
   public void createMenuBar() {
-    MenuUI help = new MenuUI("Help");
+    MenuUI help = new MenuUI("Helps");
     MenuItemUI project = new MenuItemUI("Reference Page");
     MenuUI commands = new MenuUI("Commands");
     MenuItemUI commandHistory = new MenuItemUI("Command History");

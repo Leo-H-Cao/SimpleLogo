@@ -1,6 +1,7 @@
 package slogo.Backend.LexicalAnalyzer;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -17,7 +18,7 @@ public class TokenScanner {
       String regexString = syntaxResource.getString(typeOfToken);
       Pattern pattern = Pattern.compile(regexString);
       Matcher matcher = pattern.matcher("");
-      matchers.put(TokenType.valueOf(typeOfToken), matcher);
+      matchers.put(TokenType.valueOf(typeOfToken.toUpperCase(Locale.ROOT)), matcher);
     }
   }
 
@@ -26,7 +27,7 @@ public class TokenScanner {
   }
 
   private static String createInvalidTokenMessage(String badToken) {
-    return "The token " + badToken + "is not recognized as valid";
+    return "The token '" + badToken + "' is not recognized as valid";
   }
 
   public Token attemptMatch(String s) throws InvalidTokenException {
@@ -36,11 +37,10 @@ public class TokenScanner {
       boolean matchStatus = matcher.matches();
       if (matchStatus) {
         return new Token(tokenType, s);
-      } else {
-        String exceptionMessage = TokenScanner.createInvalidTokenMessage(s);
-        throw new InvalidTokenException(exceptionMessage);
       }
     }
-    return null; // temporarily added to compile
+    //If the program makes it here that implies that the String s was an invalid token
+    String exceptionMessage = TokenScanner.createInvalidTokenMessage(s);
+    throw new InvalidTokenException(exceptionMessage);
   }
 }

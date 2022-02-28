@@ -1,3 +1,5 @@
 package slogo.Backend;
 
-public class ErrorText {}
+public class ErrorText {
+
+}

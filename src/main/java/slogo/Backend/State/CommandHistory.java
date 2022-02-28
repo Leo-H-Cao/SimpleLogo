@@ -3,32 +3,18 @@ package slogo.Backend.State;
 import java.util.ArrayList;
 
 public class CommandHistory {
-  private static CommandHistory commandHistory;
-  private final ArrayList<String> commandHist;
+  private ArrayList<String> commandHistory;
 
-  private CommandHistory() {
-    this.commandHist = new ArrayList<>();
+  public CommandHistory() {
+    this.commandHistory = new ArrayList<>();
   }
 
-  private CommandHistory(ArrayList<String> commandHistory) {
-    this.commandHist = commandHistory;
+  public CommandHistory(ArrayList<String> commandHistory) {
+    this.commandHistory = commandHistory;
   }
 
-  public static CommandHistory getCommandHistory() {
-    return CommandHistory.commandHistory;
-  }
-
-  public static CommandHistory initializeCommandHistory(ArrayList<String> commandHist) {
-    CommandHistory.commandHistory = new CommandHistory(commandHist);
-    return CommandHistory.getCommandHistory();
-  }
-
-  public static CommandHistory initializeCommandHistory() {
-    CommandHistory.commandHistory = new CommandHistory();
-    return CommandHistory.getCommandHistory();
-  }
-
-  public ArrayList<String> getCommandHist() {
-    return this.commandHist;
+  public ArrayList<String> getCommandHistoryList(){
+    return this.commandHistory;
   }
 }
+

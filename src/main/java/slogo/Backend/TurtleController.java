@@ -1,27 +1,20 @@
 package slogo.Backend;
 
-import slogo.Backend.TurtleState.Turtle;
+import java.lang.reflect.InvocationTargetException;
+import slogo.Backend.LexicalAnalyzer.InvalidTokenException;
+import slogo.Backend.LexicalAnalyzer.LexResult;
+import slogo.Backend.State.TurtleHistory;
+import slogo.Backend.SyntaxParser.ASTMaker;
+import slogo.Backend.SyntaxParser.Operator;
 import slogo.BackendExternalAPIs.ControlsTurtle;
 
+@Deprecated
 public class TurtleController implements ControlsTurtle {
+  TurtleHistory myHistory;
 
-  public TurtleController() {}
-
-  /**
-   * This methods sends an instruction entered by the user to the backend
-   *
-   * @param instructionText a String with the instruction text entered by the user
-   * @return Boolean which represents if the instruction was processed by the backend without issue,
-   *     True indicates success, False indicates something went wrong.
-   */
-  @Override
-  public Boolean putInstruction(String instructionText) {
-    return null;
+  public TurtleController() {
+    myHistory = new TurtleHistory();
   }
 
-  /** @return the next turtle state */
-  @Override
-  public Turtle getNextTurtleState() {
-    return null;
-  }
+
 }

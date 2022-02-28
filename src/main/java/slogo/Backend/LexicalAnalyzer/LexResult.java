@@ -5,7 +5,7 @@ import java.util.ArrayDeque;
 public class LexResult {
 
   private static final String WHITESPACEREGEX =
-      "\\s+"; // source: https://www.baeldung.com/java-regex-s-splus
+      "[\\s]+"; // source: https://www.baeldung.com/java-regex-s-splus
   private static final TokenScanner scanner = TokenScanner.getTokenScanner();
   private final String instruction;
   private final ArrayDeque<String> splitByWhiteSpace;
@@ -18,12 +18,12 @@ public class LexResult {
   }
 
   /**
-   * Fix to be all white space
+   *
    *
    * @return Collection of Strings
    */
   protected ArrayDeque<String> splitInstruction() {
-    String[] splitArray = this.instruction.split(LexResult.WHITESPACEREGEX);
+    String[] splitArray = this.instruction.trim().split(LexResult.WHITESPACEREGEX);
     ArrayDeque<String> deque = new ArrayDeque<>();
     for (String s : splitArray) {
       deque.addLast(s);
@@ -34,7 +34,7 @@ public class LexResult {
   protected ArrayDeque<Token> tokenize() throws InvalidTokenException {
     ArrayDeque<Token> tokens = new ArrayDeque<>();
     for (String s : this.splitByWhiteSpace) {
-      Token token = Tokenizer.getToken(s);
+      Token token = TokenFactory.getToken(s);
       if (token != null) {
         tokens.addLast(token);
       } else {

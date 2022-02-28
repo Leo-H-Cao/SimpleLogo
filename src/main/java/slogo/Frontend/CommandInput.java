@@ -6,7 +6,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import slogo.Backend.State.CommandLanguage;
-import slogo.Backend.State.History;
+import slogo.Backend.State.CommandHistory;
 import slogo.FrontendExternalAPIs.CommandWindow;
 import slogo.SLogoController;
 
@@ -57,7 +57,9 @@ public class CommandInput implements CommandWindow {
 
   /** gets command history from backend */
   @Override
-  public void setCommandHistory(History history) {}
+  public void setCommandHistory(CommandHistory history) {
+
+  }
 
   @Override
   public void setCommandLanguage(CommandLanguage lang) {}

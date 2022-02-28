@@ -3,6 +3,7 @@ package slogo.Backend;
 import java.util.Queue;
 import slogo.Backend.LexicalAnalyzer.InvalidTokenException;
 import slogo.Backend.LexicalAnalyzer.LexResult;
+import slogo.Backend.State.ModelState;
 import slogo.Backend.SyntaxParser.ASTMaker;
 import slogo.Backend.SyntaxParser.Operator;
 import slogo.Backend.TurtleState.Turtle;
@@ -10,13 +11,16 @@ import slogo.BackendInternalAPIs.Parses;
 import slogo.BackendInternalAPIs.Runs;
 
 public class Runner implements Runs, Parses {
+  private ModelState modelState;
 
-  public double run(String instruction) throws InvalidTokenException {
+  public Result run(String instruction) throws InvalidTokenException {
     LexResult lexResult = new LexResult(instruction);
     ASTMaker ast = new ASTMaker(lexResult.getTokens());
     Operator operator = ast.parse();
-    double retValue = operator.getRetVal();
-    return retValue;
+    double doubleRet = 0.0; //TODO: get real result from AST
+    Result result = new Result(
+        doubleRet, modelState.getTurtleHistory().getTurtleHistory().getLast());
+    return result;
   }
 
   /**
@@ -37,6 +41,7 @@ public class Runner implements Runs, Parses {
    *
    * @return True if success, False if failure
    */
+  @Deprecated
   public boolean addTurtleQueueToHistory(Queue<Turtle> turtleQueue) {
     return false;
   }
@@ -49,6 +54,7 @@ public class Runner implements Runs, Parses {
    *     command
    */
   @Override
+  @Deprecated
   public AST parseCommand(LexResult command) {
     return null;
   }

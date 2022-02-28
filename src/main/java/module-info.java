@@ -6,6 +6,7 @@ open module slogo_app {
   requires javafx.media;
   requires javafx.web;
   requires java.logging;
+  requires org.jooq.jool;
 
   // allow other classes to access listed packages in your project
   exports slogo;
@@ -15,9 +16,10 @@ open module slogo_app {
   exports slogo.Backend.SyntaxParser;
   exports slogo.Backend.LexicalAnalyzer;
   exports slogo.Backend.State;
-  exports slogo.Backend.Help;
   exports slogo.Backend.TurtleState;
   exports slogo.Frontend;
   exports slogo.FrontendExternalAPIs;
   exports slogo.FrontendInternalAPIs;
+  exports slogo.Backend.TurtleTransformers;
+  exports slogo.Backend.SyntaxParser.Math;
 }
