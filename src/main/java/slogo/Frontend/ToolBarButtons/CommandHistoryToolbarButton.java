@@ -2,7 +2,7 @@ package slogo.Frontend.ToolBarButtons;
 
 import static slogo.Frontend.View.stage;
 
-import slogo.Frontend.CommandHistoryPopup;
+import slogo.Frontend.ToolbarPopups.CommandHistoryPopup;
 
 public class CommandHistoryToolbarButton extends ToolBarButtonAbstract{
 
