@@ -39,3 +39,7 @@
   -fx-min-height: 50;
   -fx-background-color: #cccccc;
 }
+
+.turtle-background{
+  -fx-background-color: ALICEBLUE;
+}
