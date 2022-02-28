@@ -8,8 +8,13 @@ public abstract class Operator {
   protected int myNumArgs;
   protected ArrayList<Operator> arguments;
   protected double retVal;
+  protected int mySeqNum;
 
   //protected static TurtleHistory myHistory = new TurtleHistory();
+
+  public Operator(int seqNum){
+    this.mySeqNum = seqNum;
+  }
 
   public abstract double getRetVal(TurtleHistory history)
       throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException;

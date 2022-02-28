@@ -6,12 +6,13 @@ import slogo.Backend.SyntaxParser.Operator;
 
 public class Power extends ArithmeticOp {
 
-  public Power() {
+  public Power(int seqNum) {
+    super(seqNum);
     myNumArgs = 2;
   }
 
   public Power(Operator op1, Operator op2) {
-    super();
+    super(0);
     this.arguments.add(op1);
     this.arguments.add(op2);
     myNumArgs = 2;

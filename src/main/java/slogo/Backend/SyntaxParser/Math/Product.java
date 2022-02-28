@@ -6,12 +6,13 @@ import slogo.Backend.SyntaxParser.Operator;
 
 public class Product extends ArithmeticOp {
 
-  public Product() {
+  public Product(int seqNum) {
+    super(seqNum);
     myNumArgs = 2;
   }
 
   public Product(Operator op1, Operator op2) {
-    super();
+    super(0);
     this.arguments.add(op1);
     this.arguments.add(op2);
     myNumArgs = 2;

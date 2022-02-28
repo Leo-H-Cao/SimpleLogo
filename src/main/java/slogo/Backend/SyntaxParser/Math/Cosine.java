@@ -6,12 +6,13 @@ import slogo.Backend.SyntaxParser.Operator;
 
 public class Cosine extends ArithmeticOp {
 
-  public Cosine() {
+  public Cosine(int seqNum) {
+    super(seqNum);
     myNumArgs = 1;
   }
 
   public Cosine(Operator op1) {
-    super();
+    super(0);
     this.arguments.add(op1);
     myNumArgs = 1;
   }

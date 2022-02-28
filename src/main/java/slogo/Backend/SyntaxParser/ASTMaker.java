@@ -27,6 +27,8 @@ public class ASTMaker {
 
   private void createArgumentStacks() {
     // TODO: create operands for all tokens and place them in the correct initial stack
+    int seqNum = 0;
+
     while (!tokens.isEmpty()) {
       Token t = tokens.getFirst();
       String tokenType = t.getTyoe().toString();
@@ -40,12 +42,12 @@ public class ASTMaker {
           // operatorType = Class.forName("slogo.Backend.SyntaxParser." + "Command");
           operatorType = Class.forName(rootdirectory + resources.getString(t.getValue()) + "."  + t.getValue());
           // operatorType = Class.forName("Command");
-          Constructor<?> constructor = operatorType.getConstructor();
-          nextOperator = (Operator) constructor.newInstance();
+          Constructor<?> constructor = operatorType.getConstructor(int.class);
+          nextOperator = (Operator) constructor.newInstance(seqNum);
         } else {
           operatorType = Class.forName(rootdirectory + "Constant");
-          Constructor<?> constructor = operatorType.getConstructor(double.class);
-          nextOperator = (Operator) constructor.newInstance(Double.parseDouble(t.getValue()));
+          Constructor<?> constructor = operatorType.getConstructor(int.class, double.class);
+          nextOperator = (Operator) constructor.newInstance(seqNum, Double.parseDouble(t.getValue()));
         }
 
         if (tokenType == "CONSTANT") {
@@ -66,6 +68,7 @@ public class ASTMaker {
         e.printStackTrace();
       }
       tokens.removeFirst();
+      seqNum++;
     }
   }
 

@@ -7,8 +7,10 @@ import slogo.Backend.SyntaxParser.Operator;
 
 public abstract class ArithmeticOp extends Operator {
 
-  public ArithmeticOp() {
+  public ArithmeticOp(int seqNum) {
+    super(seqNum);
     this.arguments = new ArrayList<Operator>();
+    //this.mySeqNum = seqNum;
   }
 
   public abstract double getRetVal(TurtleHistory history)

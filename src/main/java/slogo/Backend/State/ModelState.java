@@ -67,6 +67,7 @@ public class ModelState implements Initialiazable, ModifiesModelState, StateMana
     ASTMaker astMaker = new ASTMaker(lexedString.getTokens());
     Operator root =  astMaker.parse();
     ArrayDeque<Turtle> currentHistory = new ArrayDeque<>();
+    currentHistory.addLast(turtle);
     history.getTurtleHistory().addLast(currentHistory);
     Result res = new Result(root.getRetVal(history), history.getTurtleHistory().getLast());
     return res;
