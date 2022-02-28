@@ -6,6 +6,6 @@ import java.util.Map;
 import slogo.Backend.TurtleState.Turtle;
 
 public interface TurtleTransformer {
-  Map<String, Double> transform(Turtle oldTurtle, List<Double> params);
+  Map<String, Double> transform();
 
 }
