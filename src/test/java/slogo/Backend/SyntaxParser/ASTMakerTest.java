@@ -81,8 +81,6 @@ public class ASTMakerTest {
   @Test
   void testParseNestedCommands()
       throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-
-
     ArrayDeque<Token> a = new ArrayDeque<Token>();
     Token t1 = new Token(TokenType.COMMAND, "Forward");
     Token t2 = new Token(TokenType.COMMAND, "Sum");
@@ -104,20 +102,24 @@ public class ASTMakerTest {
       throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
     ArrayDeque<Token> a = new ArrayDeque<Token>();
     Token t1 = new Token(TokenType.COMMAND, "Repeat");
-    Token t2 = new Token(TokenType.CONSTANT, "2");
+    Token t2 = new Token(TokenType.CONSTANT, "4");
     Token t3 = new Token(TokenType.LISTSTART, "[");
     Token t4 = new Token(TokenType.COMMAND, "Forward");
-    Token t5 = new Token(TokenType.CONSTANT, "10");
+    Token t5 = new Token(TokenType.CONSTANT, "50");
+    Token ta = new Token(TokenType.COMMAND, "Right");
+    Token tb = new Token(TokenType.CONSTANT, "90");
     Token t6 = new Token(TokenType.LISTEND, "]");
     a.add(t1);
     a.add(t2);
     a.add(t3);
     a.add(t4);
     a.add(t5);
+    a.add(ta);
+    a.add(tb);
     a.add(t6);
     myASTMaker = new ASTMaker(a);
     LogoList root = myASTMaker.parse();
-    assertEquals(2,root.arguments.get(0).arguments.get(0).getRetVal(new TurtleHistory()));
+    assertEquals(4,root.arguments.get(0).arguments.get(0).getRetVal(new TurtleHistory()));
 
   }
 

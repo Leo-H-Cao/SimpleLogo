@@ -113,7 +113,9 @@ public class ASTMaker {
     if(operator.getClass().equals(ListEnd.class)){
       unevaluated.removeLast();
       currentLayer++;
+      LogoList newLogoList = new LogoList(0);
       ArrayList<LogoList> newLayer = new ArrayList<LogoList>();
+      newLayer.add(newLogoList);
       listsByLayer.add(newLayer);
       return;
     }
@@ -154,8 +156,11 @@ public class ASTMaker {
 
       listsByLayer.get(currentLayer).get(currentLayerListNum).addArgument(operator);
     }
-    else{
+    else if (currentLayer==0){
       evaluated.addLast(operator);
+    }
+    else{
+      listsByLayer.get(currentLayer).get(currentLayerListNum).addArgument(operator);
     }
 
   }
