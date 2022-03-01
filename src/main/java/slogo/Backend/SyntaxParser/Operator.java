@@ -28,4 +28,8 @@ public abstract class Operator {
   public void addArgument(Operator o) {
     this.arguments.add(0,o);
   }
+
+  public ArrayList<Operator> getArguments(){
+    return arguments;
+  }
 }
