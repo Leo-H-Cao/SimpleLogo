@@ -99,8 +99,30 @@ public class ASTMaker {
   }
 
   private void handleOperator(Operator operator) {
+    if(operator.getClass().equals(ListEnd.class)){
+      unevaluated.removeLast();
+      currentLayer++;
+      ArrayList<LogoList> newLayer = new ArrayList<LogoList>();
+      listsByLayer.add(newLayer);
+      return;
+    }
     if(operator.getClass().equals(ListStart.class)){
-      evaluated.addLast(listsByLayer.get(currentLayer).get(currentLayerListNum));
+      unevaluated.removeLast();
+
+      if(unevaluated.getLast().equals(ListEnd.class)){
+        //there are more lists to parse
+        listsByLayer.get(currentLayer).add(0, new LogoList(0));
+        currentLayerListNum++;
+      }
+      else{
+        //no more lists in this layer
+        evaluated.addAll(listsByLayer.get(currentLayer));
+        listsByLayer.remove(currentLayer);
+        currentLayer--;
+
+      }
+
+      return;
     }
     int numOperands = operator.getMyNumArgs();
     while (numOperands > 0) {
