@@ -16,10 +16,15 @@ public class ASTMakerTest {
 
   private ASTMaker myASTMaker;
   private ArrayDeque<Turtle> myTurtleStack;
+  private TurtleHistory myTurtleHistory;
 
   @BeforeEach
   void setup() {
     myTurtleStack = new ArrayDeque<Turtle>();
+    myTurtleHistory = new TurtleHistory();
+    ArrayDeque<Turtle> currentHistory = new ArrayDeque<>();
+    currentHistory.addLast(new Turtle(new int[]{0, 0}, 0, true));
+    myTurtleHistory.getTurtleHistory().addLast(currentHistory);
   }
 
   @Test
@@ -76,10 +81,7 @@ public class ASTMakerTest {
   @Test
   void testParseNestedCommands()
       throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-    TurtleHistory history = new TurtleHistory();
-    ArrayDeque<Turtle> currentHistory = new ArrayDeque<>();
-    currentHistory.addLast(new Turtle(new int[]{0, 0}, 0, true));
-    history.getTurtleHistory().addLast(currentHistory);
+
 
     ArrayDeque<Token> a = new ArrayDeque<Token>();
     Token t1 = new Token(TokenType.COMMAND, "Forward");
@@ -93,12 +95,13 @@ public class ASTMakerTest {
     myASTMaker = new ASTMaker(a);
     LogoList root = myASTMaker.parse();
     Operator op1 = root.arguments.get(0);
-    op1.getRetVal(history);
-    assertEquals(70, op1.getRetVal(history));
+    op1.getRetVal(myTurtleHistory);
+    assertEquals(70, op1.getRetVal(myTurtleHistory));
   }
 
   @Test
-  void testParseRepeatCommand(){
+  void testParseRepeatCommand()
+      throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
     ArrayDeque<Token> a = new ArrayDeque<Token>();
     Token t1 = new Token(TokenType.COMMAND, "Repeat");
     Token t2 = new Token(TokenType.CONSTANT, "2");
@@ -114,6 +117,7 @@ public class ASTMakerTest {
     a.add(t6);
     myASTMaker = new ASTMaker(a);
     LogoList root = myASTMaker.parse();
+    assertEquals(2,root.arguments.get(0).arguments.get(0).getRetVal(new TurtleHistory()));
 
   }
 

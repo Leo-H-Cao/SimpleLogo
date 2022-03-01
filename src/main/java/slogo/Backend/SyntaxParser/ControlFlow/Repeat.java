@@ -7,6 +7,7 @@ import slogo.Backend.SyntaxParser.Operator;
 public class Repeat extends Operator {
   public Repeat(int seqNum){
     super(seqNum);
+    myNumArgs = 2;
   }
   public double getRetVal(TurtleHistory history)
       throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {

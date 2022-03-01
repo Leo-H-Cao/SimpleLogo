@@ -149,7 +149,7 @@ public class ASTMaker {
     }
     unevaluated.removeLast();
 
-    if(unevaluated.getLast().getMyNumArgs() + unevaluated.getLast().mySeqNum < operator.mySeqNum){
+    if((unevaluated.getLast().getMyNumArgs() + unevaluated.getLast().mySeqNum < operator.mySeqNum) && !unevaluated.getLast().getClass().equals(ListStart.class)){
       //the next operator does not use the current operator as an operand. Insert this operator in the list
 
       listsByLayer.get(currentLayer).get(currentLayerListNum).addArgument(operator);
