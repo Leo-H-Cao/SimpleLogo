@@ -6,6 +6,6 @@ public interface DisplayCanvas {
   void resetDisplay();
 
   /** changes background color */
-  void setBackGroundColor();
+  void  setBackGroundColor();
 
 }

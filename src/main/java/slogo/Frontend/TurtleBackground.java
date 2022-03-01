@@ -12,8 +12,10 @@ import slogo.FrontendExternalAPIs.DisplayCanvas;
 public class TurtleBackground implements DisplayCanvas {
 
   private final Pane turtleBackground;
+  private TurtleView currentTurtleView;
 
-  public TurtleBackground() {
+  public TurtleBackground(TurtleView turtleView) {
+    currentTurtleView = turtleView;
     turtleBackground = new StackPane();
     turtleBackground.getStyleClass().add("turtle-background");
   }
@@ -29,11 +31,16 @@ public class TurtleBackground implements DisplayCanvas {
   /**
    * clears screen and resets turtle to original position
    */
-  public void resetDisplay(){}
+  @Override
+  public void resetDisplay(){
+    currentTurtleView.resetTurtle();
+
+  }
 
   /**
    * changes background color
    */
+  @Override
   public void setBackGroundColor(){}
 
 }

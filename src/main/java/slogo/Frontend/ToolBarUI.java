@@ -18,7 +18,7 @@ public class ToolBarUI {
   private Pane buttonBarContainer;
   private TurtleImageChooserButton turtleImageButton;
 
-  public ToolBarUI(){
+  public ToolBarUI(TurtleView turtleView){
     buttonBarContainer = new HBox();
     buttonBarContainer.getStyleClass().add("tool-bar-container");
     mytoolBar = new ToolBar();

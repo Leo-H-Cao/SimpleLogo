@@ -2,6 +2,8 @@ package slogo.Frontend.ToolBarButtons;
 
 import static slogo.Frontend.View.stage;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import slogo.Frontend.ToolbarPopups.EditBackgroundColorPopup;
 
 public class SelectBackgroundColorButton extends ToolBarButtonAbstract{
