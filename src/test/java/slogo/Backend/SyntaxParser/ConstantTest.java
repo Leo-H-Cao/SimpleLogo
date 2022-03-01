@@ -16,7 +16,7 @@ class ConstantTest {
 
   @BeforeEach
   void setUp() {
-    myConstant = new Constant(3);
+    myConstant = new Constant(0,3);
   }
 
   @AfterEach
