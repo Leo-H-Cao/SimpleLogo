@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import slogo.Backend.LexicalAnalyzer.Token;
 import slogo.Backend.LexicalAnalyzer.TokenType;
 import slogo.Backend.State.TurtleHistory;
+import slogo.Backend.SyntaxParser.ListStructure.LogoList;
 import slogo.Backend.TurtleState.Turtle;
 
 public class ASTMakerTest {
@@ -94,6 +95,26 @@ public class ASTMakerTest {
     Operator op1 = root.arguments.get(0);
     op1.getRetVal(history);
     assertEquals(70, op1.getRetVal(history));
+  }
+
+  @Test
+  void testParseRepeatCommand(){
+    ArrayDeque<Token> a = new ArrayDeque<Token>();
+    Token t1 = new Token(TokenType.COMMAND, "Repeat");
+    Token t2 = new Token(TokenType.CONSTANT, "2");
+    Token t3 = new Token(TokenType.LISTSTART, "[");
+    Token t4 = new Token(TokenType.COMMAND, "Forward");
+    Token t5 = new Token(TokenType.CONSTANT, "10");
+    Token t6 = new Token(TokenType.LISTEND, "]");
+    a.add(t1);
+    a.add(t2);
+    a.add(t3);
+    a.add(t4);
+    a.add(t5);
+    a.add(t6);
+    myASTMaker = new ASTMaker(a);
+    LogoList root = myASTMaker.parse();
+
   }
 
 

@@ -2,7 +2,6 @@ package slogo.Backend.SyntaxParser.ControlFlow;
 
 import java.lang.reflect.InvocationTargetException;
 import slogo.Backend.State.TurtleHistory;
-import slogo.Backend.SyntaxParser.LogoList;
 import slogo.Backend.SyntaxParser.Operator;
 
 public class Repeat extends Operator {

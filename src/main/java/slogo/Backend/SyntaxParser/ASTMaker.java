@@ -1,12 +1,16 @@
 package slogo.Backend.SyntaxParser;
 
-import java.lang.reflect.Array;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 import slogo.Backend.LexicalAnalyzer.Token;
+import slogo.Backend.SyntaxParser.ListStructure.ListEnd;
+import slogo.Backend.SyntaxParser.ListStructure.ListStart;
+import slogo.Backend.SyntaxParser.ListStructure.LogoList;
 
 public class ASTMaker {
   private final ArrayDeque<Token> tokens;
@@ -17,6 +21,7 @@ public class ASTMaker {
   private int currentLayerListNum;
   private LogoList root;
 
+  private final Map<String, String> specialCharToClass = Map.of("[", "ListStart", "]", "ListEnd");
   private final String rootdirectory = "slogo.Backend.SyntaxParser.";
 
 
@@ -48,9 +53,15 @@ public class ASTMaker {
         // System.out.println(tokenType);
         Class<?> operatorType;
         Operator nextOperator;
-        if (tokenType.equals("COMMAND")) {
+        if (!tokenType.equals("CONSTANT")) {
           // operatorType = Class.forName("slogo.Backend.SyntaxParser." + "Command");
-          operatorType = Class.forName(rootdirectory + resources.getString(t.getValue()) + "."  + t.getValue());
+          if(specialCharToClass.containsKey(t.getValue())){
+            operatorType = Class.forName(rootdirectory + resources.getString(t.getValue()) + "."  + specialCharToClass.get(t.getValue()));
+          }
+          else{
+            operatorType = Class.forName(rootdirectory + resources.getString(t.getValue()) + "."  + t.getValue());
+          }
+
           // operatorType = Class.forName("Command");
           Constructor<?> constructor = operatorType.getConstructor(int.class);
           nextOperator = (Operator) constructor.newInstance(seqNum);

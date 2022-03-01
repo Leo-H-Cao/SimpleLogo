@@ -24,4 +24,5 @@ open module slogo_app {
   exports slogo.Frontend.MenuItems;
   exports slogo.Frontend.ToolbarPopups;
   exports slogo.Backend.SyntaxParser.Math;
+  exports slogo.Backend.SyntaxParser.ListStructure;
 }
