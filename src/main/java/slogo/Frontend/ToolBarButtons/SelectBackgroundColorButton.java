@@ -11,6 +11,7 @@ public class SelectBackgroundColorButton extends ToolBarButtonAbstract{
   public SelectBackgroundColorButton(String buttonName){
     super(buttonName);
     myButton.setId("BackgroundColorButton");
+    myButton.getStyleClass().add("select-background-button");
     setUpPopup();
   }
 

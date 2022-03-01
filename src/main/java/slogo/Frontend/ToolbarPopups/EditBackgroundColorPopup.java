@@ -54,6 +54,7 @@ public class EditBackgroundColorPopup extends ToolbarPopupsAbstract {
       }
       else {
         enteredColor = colorField.getText();
+        //TODO: handle changing background to new color
         myPopup.hide();
       }
     });

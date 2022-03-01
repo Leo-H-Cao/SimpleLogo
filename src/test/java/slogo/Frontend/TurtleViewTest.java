@@ -6,8 +6,6 @@ import javafx.scene.Node;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import javax.swing.text.html.ImageView;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import slogo.DukeApplicationTest;
 import slogo.SLogoController;
