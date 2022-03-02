@@ -17,7 +17,6 @@ import slogo.FrontendExternalAPIs.DisplayTurtle;
 
 public class TurtleView implements DisplayTurtle {
 
-
   public static final int TURTLE_SIZE = 40;
   public static final int DEFAULT_SPEED = 4;
 
@@ -38,15 +37,18 @@ public class TurtleView implements DisplayTurtle {
   /**
    * move turtle to coordinates as specified by turtle object
    *
-   * @param turtles
+   * @param turtles Deque of Turtles that the TurtleView must move to
    */
   @Override
   public void moveTurtle(Deque<Turtle> turtles) {
-//    currentTurtle = turtles.pollFirst();
+    // First turtle in the Deque is always equal to the current turtle, so we do not want to move
+    // it to itself
     turtles.pollFirst();
+
     makeTransitions(turtles).play();
   }
 
+  // Creates a singular SequentialTransition that one animation per turtle update in the instruction chain
   private SequentialTransition makeTransitions(Deque<Turtle> turtles) {
     System.out.println(myAnimationSpeed);
     SequentialTransition transition = new SequentialTransition();
@@ -59,36 +61,42 @@ public class TurtleView implements DisplayTurtle {
     return transition;
   }
 
-  // create sequence of animations
+  // Creates an animation from one turtle to the next
   private Animation makeAnimation(Turtle nextTurtle) {
     SequentialTransition transition = new SequentialTransition(turtleImage);
 
+    // If location didn't change, make a rotate transition, else make a path transition
     if(nextTurtle.getLocation().getX() == currentTurtle.getLocation().getX()
         && nextTurtle.getLocation().getY() == currentTurtle.getLocation().getY()) {
-      RotateTransition rt = new RotateTransition(Duration.seconds(DEFAULT_SPEED / myAnimationSpeed));
-      double angleToRotate = -1 * (nextTurtle.getDirection().getDirectionInDegrees() - currentTurtle.getDirection().getDirectionInDegrees());
-      rt.setByAngle(angleToRotate);
-      transition.getChildren().add(rt);
-      return transition;
+      transition.getChildren().add(makeRotateTransition(currentTurtle, nextTurtle));
+    } else {
+      transition.getChildren().add(makePathTransition(currentTurtle, nextTurtle));
     }
+    return transition;
+  }
 
-    // create a path for the animation to follow
+  // Make a path transition from one turtle's location to another
+  private PathTransition makePathTransition(Turtle current, Turtle next) {
     Path path = new Path();
     //offsetPathForAbsoluteCoords(path, turtleImage);
 
     path.getElements()
         .addAll(
-//            new MoveTo(100, 100),
-            new MoveTo(currentTurtle.getLocation().getX(), -1 * currentTurtle.getLocation().getY()),
-//            new MoveTo(turtleImage.getLayoutX(), turtleImage.getLayoutY()),
-            new LineTo(nextTurtle.getLocation().getX(), -1 * nextTurtle.getLocation().getY()));
+            new MoveTo(current.getLocation().getX(), -1 * current.getLocation().getY()),
+            new LineTo(next.getLocation().getX(), -1 * next.getLocation().getY()));
 
-    // create an animation that follows the path
     PathTransition pt =
         new PathTransition(Duration.seconds(DEFAULT_SPEED / myAnimationSpeed), path, turtleImage);
-    // put them together in order
-    transition.getChildren().add(pt);
-    return transition;
+
+    return pt;
+  }
+
+  // Make a rotate transition from one turtle's direction to another
+  private RotateTransition makeRotateTransition(Turtle current, Turtle next) {
+    RotateTransition rt = new RotateTransition(Duration.seconds(DEFAULT_SPEED / myAnimationSpeed));
+    double angleToRotate = -1 * (next.getDirection().getDirectionInDegrees() - current.getDirection().getDirectionInDegrees());
+    rt.setByAngle(angleToRotate);
+    return rt;
   }
 
   private void offsetPathForAbsoluteCoords(Path path, ImageView image) {
