@@ -17,7 +17,7 @@ public class Right implements TurtleTransformer {
 
   @Override
   public Map<String, Double> transform() {
-    double turtleAngle = myOldTurtle.getDirection().getDirectionInDegrees();
+    double turtleAngle = myOldTurtle.getDirection().getDirectionInRadians();
     double newTurtleAngle = turtleAngle - Math.toRadians(myParams.get(0));
     return Map.of(Turtle.DIRECTION, newTurtleAngle);
   }
