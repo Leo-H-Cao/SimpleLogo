@@ -66,7 +66,7 @@ public class TurtleView implements DisplayTurtle {
     if(nextTurtle.getLocation().getX() == currentTurtle.getLocation().getX()
         && nextTurtle.getLocation().getY() == currentTurtle.getLocation().getY()) {
       RotateTransition rt = new RotateTransition(Duration.seconds(DEFAULT_SPEED / myAnimationSpeed));
-      double angleToRotate = -1 * (nextTurtle.getDirection().getDirectionInRadians() - currentTurtle.getDirection().getDirectionInRadians());
+      double angleToRotate = -1 * (nextTurtle.getDirection().getDirectionInDegrees() - currentTurtle.getDirection().getDirectionInDegrees());
       rt.setByAngle(angleToRotate);
       transition.getChildren().add(rt);
       return transition;
