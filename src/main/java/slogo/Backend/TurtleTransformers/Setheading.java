@@ -16,7 +16,7 @@ public class Setheading implements TurtleTransformer {
 
   @Override
   public Map<String, FieldValue> transform() {
-    return Map.of(Turtle.DIRECTION, new FieldValue<Double>(myParams.get(0)));
+    return Map.of(Turtle.DIRECTION, new FieldValue<Double>(Math.toRadians(myParams.get(0))));
   }
 
 }
