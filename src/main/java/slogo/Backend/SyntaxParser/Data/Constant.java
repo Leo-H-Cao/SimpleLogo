@@ -1,7 +1,8 @@
-package slogo.Backend.SyntaxParser;
+package slogo.Backend.SyntaxParser.Data;
 
 import java.util.ArrayList;
 import slogo.Backend.State.TurtleHistory;
+import slogo.Backend.SyntaxParser.Operator;
 
 public class Constant extends Operator {
 
