@@ -7,8 +7,7 @@ import java.util.ArrayDeque;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import slogo.Backend.State.TurtleHistory;
-import slogo.Backend.SyntaxParser.Constant;
-import slogo.Backend.SyntaxParser.Math.Quotient;
+import slogo.Backend.SyntaxParser.Data.Constant;
 import slogo.Backend.TurtleState.Turtle;
 
 public class QuotientTest {

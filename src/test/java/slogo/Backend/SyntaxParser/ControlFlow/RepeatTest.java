@@ -7,9 +7,8 @@ import java.util.ArrayDeque;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import slogo.Backend.State.TurtleHistory;
-import slogo.Backend.SyntaxParser.Constant;
+import slogo.Backend.SyntaxParser.Data.Constant;
 import slogo.Backend.SyntaxParser.ListStructure.LogoList;
-import slogo.Backend.SyntaxParser.Math.Product;
 import slogo.Backend.SyntaxParser.TurtleCommand.Forward;
 import slogo.Backend.TurtleState.Turtle;
 

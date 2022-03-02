@@ -66,7 +66,7 @@ public class ASTMaker {
           Constructor<?> constructor = operatorType.getConstructor(int.class);
           nextOperator = (Operator) constructor.newInstance(seqNum);
         } else {
-          operatorType = Class.forName(rootdirectory + "Constant");
+          operatorType = Class.forName(rootdirectory + "Data.Constant");
           Constructor<?> constructor = operatorType.getConstructor(int.class, double.class);
           nextOperator = (Operator) constructor.newInstance(seqNum, Double.parseDouble(t.getValue()));
         }
