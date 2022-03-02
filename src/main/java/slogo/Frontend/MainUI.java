@@ -76,7 +76,8 @@ public class MainUI {
   }
 
   private void addingTurtle() {
-    testTurtleView = new TurtleView(myControlPanel.getSpeedSlider().getValue(), DEFAULT_TURTLE_IMAGE_PATH);
+    testTurtleView = new TurtleView(4.0, DEFAULT_TURTLE_IMAGE_PATH);
+//    testTurtleView = new TurtleView(myControlPanel.getSpeedSlider().getValue(), DEFAULT_TURTLE_IMAGE_PATH);
     myTurtleBackground.addTurtle(testTurtleView);
   }
 

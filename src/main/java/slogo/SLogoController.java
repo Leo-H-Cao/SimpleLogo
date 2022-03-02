@@ -2,17 +2,14 @@ package slogo;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayDeque;
-import java.util.Deque;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
-import javax.xml.validation.Validator;
 import slogo.Backend.ErrorText;
 import slogo.Backend.HelpInformation;
 import slogo.Backend.Helper;
 import slogo.Backend.LexicalAnalyzer.InvalidTokenException;
 import slogo.Backend.Result;
 import slogo.Backend.State.ModelState;
-import slogo.Backend.TurtleController;
 import slogo.Backend.TurtleState.Turtle;
 import slogo.Frontend.CommandInput;
 import slogo.Frontend.CommandOutput;
@@ -119,7 +116,7 @@ public class SLogoController {
         //display numeric result on console window
       } else {
         // TODO: Make sure this is right
-        moveTurtleView(steps.clone());
+        turtleView.moveTurtle(steps.clone());
       }
     }
     catch (InvalidTokenException | ClassNotFoundException | InvocationTargetException |
@@ -131,14 +128,14 @@ public class SLogoController {
 
   }
 
-  private void moveTurtleView(ArrayDeque<Turtle> steps) {
-    int size = steps.size();
-    //steps.pollFirst();
-
-    for (int i = 0; i < size; i++) {
-      turtleView.moveTurtle(steps.pollFirst());
-    }
-  }
+//  private void moveTurtleView(ArrayDeque<Turtle> steps) {
+//    int size = steps.size();
+//    //steps.pollFirst();
+//
+//    for (int i = 0; i < size; i++) {
+//      turtleView.moveTurtle(steps.pollFirst());
+//    }
+//  }
 
   /**
    * Queries backend helper object to return either specified or generic program help information,
