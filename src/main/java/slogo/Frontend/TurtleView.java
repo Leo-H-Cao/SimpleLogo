@@ -61,6 +61,17 @@ public class TurtleView implements DisplayTurtle {
 
   // create sequence of animations
   private Animation makeAnimation(Turtle nextTurtle) {
+    SequentialTransition transition = new SequentialTransition(turtleImage);
+
+    if(nextTurtle.getLocation().getX() == currentTurtle.getLocation().getX()
+        && nextTurtle.getLocation().getY() == currentTurtle.getLocation().getY()) {
+      RotateTransition rt = new RotateTransition(Duration.seconds(DEFAULT_SPEED / myAnimationSpeed));
+      double angleToRotate = -1 * (nextTurtle.getDirection().getDirectionInRadians() - currentTurtle.getDirection().getDirectionInRadians());
+      rt.setByAngle(angleToRotate);
+      transition.getChildren().add(rt);
+      return transition;
+    }
+
     // create a path for the animation to follow
     Path path = new Path();
     //offsetPathForAbsoluteCoords(path, turtleImage);
@@ -75,12 +86,9 @@ public class TurtleView implements DisplayTurtle {
     // create an animation that follows the path
     PathTransition pt =
         new PathTransition(Duration.seconds(DEFAULT_SPEED / myAnimationSpeed), path, turtleImage);
-    // animation that rotates the turtle before ending
-    RotateTransition rt = new RotateTransition(Duration.seconds(DEFAULT_SPEED / myAnimationSpeed));
-    double angleToRotate = nextTurtle.getDirection().getDirectionInRadians() - currentTurtle.getDirection().getDirectionInRadians();
-    rt.setByAngle(angleToRotate);
     // put them together in order
-    return new SequentialTransition(turtleImage, pt, rt);
+    transition.getChildren().add(pt);
+    return transition;
   }
 
   private void offsetPathForAbsoluteCoords(Path path, ImageView image) {
