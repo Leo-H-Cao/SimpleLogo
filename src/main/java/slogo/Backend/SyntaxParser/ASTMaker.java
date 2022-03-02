@@ -1,12 +1,16 @@
 package slogo.Backend.SyntaxParser;
 
-import java.lang.reflect.Array;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 import slogo.Backend.LexicalAnalyzer.Token;
+import slogo.Backend.SyntaxParser.ListStructure.ListEnd;
+import slogo.Backend.SyntaxParser.ListStructure.ListStart;
+import slogo.Backend.SyntaxParser.ListStructure.LogoList;
 
 public class ASTMaker {
   private final ArrayDeque<Token> tokens;
@@ -17,6 +21,7 @@ public class ASTMaker {
   private int currentLayerListNum;
   private LogoList root;
 
+  private final Map<String, String> specialCharToClass = Map.of("[", "ListStart", "]", "ListEnd");
   private final String rootdirectory = "slogo.Backend.SyntaxParser.";
 
 
@@ -48,14 +53,20 @@ public class ASTMaker {
         // System.out.println(tokenType);
         Class<?> operatorType;
         Operator nextOperator;
-        if (tokenType.equals("COMMAND")) {
+        if (!tokenType.equals("CONSTANT")) {
           // operatorType = Class.forName("slogo.Backend.SyntaxParser." + "Command");
-          operatorType = Class.forName(rootdirectory + resources.getString(t.getValue()) + "."  + t.getValue());
+          if(specialCharToClass.containsKey(t.getValue())){
+            operatorType = Class.forName(rootdirectory + resources.getString(t.getValue()) + "."  + specialCharToClass.get(t.getValue()));
+          }
+          else{
+            operatorType = Class.forName(rootdirectory + resources.getString(t.getValue()) + "."  + t.getValue());
+          }
+
           // operatorType = Class.forName("Command");
           Constructor<?> constructor = operatorType.getConstructor(int.class);
           nextOperator = (Operator) constructor.newInstance(seqNum);
         } else {
-          operatorType = Class.forName(rootdirectory + "Constant");
+          operatorType = Class.forName(rootdirectory + "Data.Constant");
           Constructor<?> constructor = operatorType.getConstructor(int.class, double.class);
           nextOperator = (Operator) constructor.newInstance(seqNum, Double.parseDouble(t.getValue()));
         }
@@ -99,8 +110,32 @@ public class ASTMaker {
   }
 
   private void handleOperator(Operator operator) {
+    if(operator.getClass().equals(ListEnd.class)){
+      unevaluated.removeLast();
+      currentLayer++;
+      LogoList newLogoList = new LogoList(0);
+      ArrayList<LogoList> newLayer = new ArrayList<LogoList>();
+      newLayer.add(newLogoList);
+      listsByLayer.add(newLayer);
+      return;
+    }
     if(operator.getClass().equals(ListStart.class)){
-      evaluated.addLast(listsByLayer.get(currentLayer).get(currentLayerListNum));
+      unevaluated.removeLast();
+
+      if(unevaluated.getLast().equals(ListEnd.class)){
+        //there are more lists to parse
+        listsByLayer.get(currentLayer).add(0, new LogoList(0));
+        currentLayerListNum++;
+      }
+      else{
+        //no more lists in this layer
+        evaluated.addAll(listsByLayer.get(currentLayer));
+        listsByLayer.remove(currentLayer);
+        currentLayer--;
+
+      }
+
+      return;
     }
     int numOperands = operator.getMyNumArgs();
     while (numOperands > 0) {
@@ -116,13 +151,16 @@ public class ASTMaker {
     }
     unevaluated.removeLast();
 
-    if(unevaluated.getLast().getMyNumArgs() + unevaluated.getLast().mySeqNum < operator.mySeqNum){
+    if((unevaluated.getLast().getMyNumArgs() + unevaluated.getLast().mySeqNum < operator.mySeqNum) && !unevaluated.getLast().getClass().equals(ListStart.class)){
       //the next operator does not use the current operator as an operand. Insert this operator in the list
 
       listsByLayer.get(currentLayer).get(currentLayerListNum).addArgument(operator);
     }
-    else{
+    else if (currentLayer==0){
       evaluated.addLast(operator);
+    }
+    else{
+      listsByLayer.get(currentLayer).get(currentLayerListNum).addArgument(operator);
     }
 
   }

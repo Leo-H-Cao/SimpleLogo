@@ -1,10 +1,11 @@
-package slogo.Backend.SyntaxParser;
+package slogo.Backend.SyntaxParser.ListStructure;
 
 import java.util.ArrayList;
 import slogo.Backend.State.TurtleHistory;
+import slogo.Backend.SyntaxParser.Operator;
 
-public class ListEnd extends Operator{
-  public ListEnd(int seqNum){
+public class ListStart extends Operator {
+  public ListStart(int seqNum){
     super(seqNum);
     this.arguments = new ArrayList<>();
   }

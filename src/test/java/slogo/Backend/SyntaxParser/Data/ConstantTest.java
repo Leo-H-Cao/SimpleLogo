@@ -1,4 +1,4 @@
-package slogo.Backend.SyntaxParser;
+package slogo.Backend.SyntaxParser.Data;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -7,6 +7,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import slogo.Backend.State.TurtleHistory;
+import slogo.Backend.SyntaxParser.Data.Constant;
 import slogo.Backend.TurtleState.Turtle;
 
 class ConstantTest {
@@ -16,7 +17,7 @@ class ConstantTest {
 
   @BeforeEach
   void setUp() {
-    myConstant = new Constant(3);
+    myConstant = new Constant(0,3);
   }
 
   @AfterEach
