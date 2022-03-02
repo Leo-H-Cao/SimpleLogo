@@ -1,6 +1,7 @@
 package slogo;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayDeque;
 import java.util.Deque;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
@@ -113,14 +114,12 @@ public class SLogoController {
     // If it's not valid, do something
     try {
       Result commandResult = model.postInstruction(command);
-      Deque<Turtle> steps = commandResult.getTurtleSteps();
+      ArrayDeque<Turtle> steps = commandResult.getTurtleSteps();
       if(steps == null || steps.size() <= 1) {
         //display numeric result on console window
       } else {
         // TODO: Make sure this is right
-        turtleView.moveTurtle(steps.peekLast());
-
-
+        moveTurtleView(steps.clone());
       }
     }
     catch (InvalidTokenException | ClassNotFoundException | InvocationTargetException |
@@ -130,6 +129,15 @@ public class SLogoController {
       commandOutputter.displayError(new ErrorText(exception.toString()));
     }
 
+  }
+
+  private void moveTurtleView(ArrayDeque<Turtle> steps) {
+    int size = steps.size();
+    //steps.pollFirst();
+
+    for (int i = 0; i < size; i++) {
+      turtleView.moveTurtle(steps.pollFirst());
+    }
   }
 
   /**
