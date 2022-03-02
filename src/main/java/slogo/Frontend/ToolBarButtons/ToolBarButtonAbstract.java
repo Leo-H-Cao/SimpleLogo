@@ -8,6 +8,7 @@ public class ToolBarButtonAbstract {
 
   public ToolBarButtonAbstract(String buttonName){
     myButton = new Button(buttonName);
+    myButton.getStyleClass().add("tool-bar-button");
   }
 
   public Button getButton() {

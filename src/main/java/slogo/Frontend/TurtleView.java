@@ -11,12 +11,10 @@ import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 import javafx.util.Duration;
-import slogo.Backend.TurtleState.Direction;
 import slogo.Backend.TurtleState.Turtle;
-import slogo.FrontendExternalAPIs.DisplayCanvas;
 import slogo.FrontendExternalAPIs.DisplayTurtle;
 
-public class TurtleView implements DisplayTurtle, DisplayCanvas {
+public class TurtleView implements DisplayTurtle {
 
 
   public static final int TURTLE_SIZE = 40;
@@ -64,7 +62,7 @@ public class TurtleView implements DisplayTurtle, DisplayCanvas {
   public void createTurtle(Turtle newTurtle){
     currentTurtle = newTurtle;
     initialTurtle = newTurtle;
-    resetDisplay();
+    resetTurtle();
   }
 
   // create something to animate
@@ -116,13 +114,9 @@ public class TurtleView implements DisplayTurtle, DisplayCanvas {
   }
 
   /** clears screen and resets turtle to original position */
-  @Override
-  public void resetDisplay() {
+  public void resetTurtle() {
     turtleImage.setX(initialTurtle.getLocation().getX());
     turtleImage.setX(initialTurtle.getLocation().getY());
   }
 
-  /** changes background color */
-  @Override
-  public void setBackGroundColor() {}
 }

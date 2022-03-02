@@ -17,7 +17,7 @@ public class SumTest {
 
   @BeforeEach
   void setup() {
-    mySum = new Sum(new Constant(10), new Constant(2));
+    mySum = new Sum(new Constant(0,10), new Constant(0,2));
   }
 
   @Test

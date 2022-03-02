@@ -69,7 +69,7 @@ public class SLogoController {
     commandInputter = gui.getCommandInput();
     turtleView = gui.getTurtleView();
     turtleView.createTurtle(INITIAL_TURTLE);
-    turtleView.resetDisplay();
+    turtleView.resetTurtle();
     userDefinedAttributesUpdater =
         new ViewUserDefined(); // TODO: This should be owned by some class in the frontend
 
