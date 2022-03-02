@@ -41,7 +41,7 @@ public class Turtle {
     Double y = yValue.getValue();
     FieldValue<Double> angleValue = overridingFields.getOrDefault(Turtle.DIRECTION, oldFields.get(Turtle.DIRECTION));
     Double angle = angleValue.getValue();
-    FieldValue<Boolean> penDownValue = overridingFields.getOrDefault(Turtle.X, oldFields.get(Turtle.X));
+    FieldValue<Boolean> penDownValue = overridingFields.getOrDefault(Turtle.PENDOWN, oldFields.get(Turtle.PENDOWN));
     Boolean pendown = penDownValue.getValue();
 
     this.coordinate = new Coordinate(x,y);

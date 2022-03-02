@@ -21,6 +21,8 @@ public class ASTMaker {
   private int currentLayerListNum;
   private LogoList root;
 
+  private HashMap<String, Double> variableMap = new HashMap<>();
+
   private final Map<String, String> specialCharToClass = Map.of("[", "ListStart", "]", "ListEnd");
   private final String rootdirectory = "slogo.Backend.SyntaxParser.";
 
@@ -71,7 +73,7 @@ public class ASTMaker {
           nextOperator = (Operator) constructor.newInstance(seqNum, Double.parseDouble(t.getValue()));
         }
 
-        if (tokenType == "CONSTANT") {
+        if (tokenType == "CONSTANT" || tokenType.equals("Variable")) {
           evaluated.addLast(nextOperator);
         } else {
           unevaluated.addLast(nextOperator);
