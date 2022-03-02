@@ -1,11 +1,9 @@
 package slogo.Backend.TurtleTransformers;
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import slogo.Backend.TurtleState.Turtle;
+import slogo.Backend.TurtleState.FieldValue;
 
 public interface TurtleTransformer {
-  Map<String, Double> transform();
+  Map<String, FieldValue> transform();
 
 }

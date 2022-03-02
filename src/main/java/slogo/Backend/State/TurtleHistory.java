@@ -5,6 +5,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.List;
+import slogo.Backend.TurtleState.FieldValue;
 import slogo.Backend.TurtleState.Turtle;
 import slogo.Backend.TurtleTransformers.TurtleTransformer;
 
@@ -19,7 +20,7 @@ public class TurtleHistory {
     return turtleHistory;
   }
 
-  public void addTurtleThroughTransformation(String turtleTransformation, List<Double> params)
+  public void addTurtleThroughTransformation(String turtleTransformation, List<?> params)
       throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
     Turtle oldTurtle = turtleHistory.getLast().getLast();
     String className = "slogo.Backend.TurtleTransformers." + turtleTransformation;
