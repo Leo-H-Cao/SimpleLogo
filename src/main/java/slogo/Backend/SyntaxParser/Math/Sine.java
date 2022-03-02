@@ -19,6 +19,6 @@ public class Sine extends ArithmeticOp {
 
   public double getRetVal(TurtleHistory history)
       throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-    return Math.sin(this.arguments.get(0).getRetVal(history));
+    return Math.sin(Math.toRadians(this.arguments.get(0).getRetVal(history)));
   }
 }

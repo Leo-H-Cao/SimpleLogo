@@ -19,6 +19,6 @@ public class ArcTangent extends ArithmeticOp {
 
   public double getRetVal(TurtleHistory history)
       throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-    return Math.atan(this.arguments.get(0).getRetVal(history));
+    return Math.toDegrees(Math.atan(this.arguments.get(0).getRetVal(history)));
   }
 }

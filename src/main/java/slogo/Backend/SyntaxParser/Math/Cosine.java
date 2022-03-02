@@ -19,6 +19,6 @@ public class Cosine extends ArithmeticOp {
 
   public double getRetVal(TurtleHistory history)
       throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-    return Math.cos(this.arguments.get(0).getRetVal(history));
+    return Math.cos(Math.toRadians(this.arguments.get(0).getRetVal(history)));
   }
 }
