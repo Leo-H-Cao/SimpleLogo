@@ -7,7 +7,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import slogo.Backend.State.TurtleHistory;
 import slogo.Backend.SyntaxParser.Data.Constant;
-import util.TestUtils;
 
 class RandomTest {
   Random myRandom;
@@ -20,7 +19,7 @@ class RandomTest {
   @Test
   void testGetRetVal()
       throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-    double retVal = myRandom.getRetVal(new TurtleHistory());
+    double retVal = myRandom.getRetVal(null);
     assertTrue(retVal <= 0 && retVal >= -90);
   }
 

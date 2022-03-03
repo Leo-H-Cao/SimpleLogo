@@ -23,7 +23,7 @@ public class SumTest {
   @Test
   void testGetRetVal()
       throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-    assertEquals(12.0, mySum.getRetVal(new TurtleHistory()));
+    assertEquals(12.0, mySum.getRetVal(null));
   }
 
   @Test

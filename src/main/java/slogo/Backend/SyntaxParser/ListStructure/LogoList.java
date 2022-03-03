@@ -2,7 +2,7 @@ package slogo.Backend.SyntaxParser.ListStructure;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import slogo.Backend.State.TurtleHistory;
+import slogo.Backend.SyntaxParser.LogoRuntimeState;
 import slogo.Backend.SyntaxParser.Operator;
 
 public class LogoList extends Operator {
@@ -11,10 +11,10 @@ public class LogoList extends Operator {
     this.arguments = new ArrayList<>();
   }
 
-  public double getRetVal(TurtleHistory history)
+  public double getRetVal(LogoRuntimeState runtimeState)
       throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
     for(Operator o : this.arguments){
-      o.getRetVal(history);
+      o.getRetVal(runtimeState);
     }
     return 0;
   }

@@ -20,7 +20,7 @@ class CosineTest {
   @Test
   void testGetRetVal()
       throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-    assertTrue(TestUtils.testEqualsWithTolerance(myCosine.getRetVal(new TurtleHistory()), 0.0, 0.0001));
+    assertTrue(TestUtils.testEqualsWithTolerance(myCosine.getRetVal(null), 0.0, 0.0001));
   }
 
   @Test

@@ -19,14 +19,14 @@ class MinusTest {
   @Test
   void testGetRetVal()
       throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-    assertEquals(-100.0, myMinus.getRetVal(new TurtleHistory()));
+    assertEquals(-100.0, myMinus.getRetVal(null));
   }
 
   @Test
   void testNegativeInput()
       throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
     myMinus = new Minus(new Constant(0, -100));
-    assertEquals(100.0, myMinus.getRetVal(new TurtleHistory()));
+    assertEquals(100.0, myMinus.getRetVal(null));
   }
 
   @Test

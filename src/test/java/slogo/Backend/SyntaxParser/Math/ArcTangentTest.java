@@ -19,7 +19,7 @@ class ArcTangentTest {
   @Test
   void testGetRetVal()
       throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-    assertEquals(45.0, myArcTangent.getRetVal(new TurtleHistory()));
+    assertEquals(45.0, myArcTangent.getRetVal(null));
   }
 
   @Test

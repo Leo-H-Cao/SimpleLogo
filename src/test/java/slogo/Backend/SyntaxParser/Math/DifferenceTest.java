@@ -22,7 +22,7 @@ public class DifferenceTest {
   @Test
   void testGetRetVal()
       throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-    assertEquals(8.0, myDifference.getRetVal(new TurtleHistory()));
+    assertEquals(8.0, myDifference.getRetVal(null));
   }
 
   @Test

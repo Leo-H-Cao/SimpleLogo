@@ -19,7 +19,7 @@ class RandomRangeTest {
   @Test
   void testGetRetVal()
       throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-    double retVal = myRandomRange.getRetVal(new TurtleHistory());
+    double retVal = myRandomRange.getRetVal(null);
     assertTrue(retVal <= 50 && retVal >= -10);
   }
 

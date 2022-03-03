@@ -22,7 +22,7 @@ public class ProductTest {
   @Test
   void testGetRetVal()
       throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-    assertEquals(20.0, myProduct.getRetVal(new TurtleHistory()));
+    assertEquals(20.0, myProduct.getRetVal(null));
   }
 
   @Test

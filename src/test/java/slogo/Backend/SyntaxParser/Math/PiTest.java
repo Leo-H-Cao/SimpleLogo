@@ -6,7 +6,6 @@ import java.lang.reflect.InvocationTargetException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import slogo.Backend.State.TurtleHistory;
-import slogo.Backend.SyntaxParser.Data.Constant;
 import util.TestUtils;
 
 class PiTest {
@@ -21,7 +20,7 @@ class PiTest {
   void testGetRetVal()
       throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
     assertTrue(
-        TestUtils.testEqualsWithTolerance(myPi.getRetVal(new TurtleHistory()), Math.PI, 0.0001));
+        TestUtils.testEqualsWithTolerance(myPi.getRetVal(null), Math.PI, 0.0001));
   }
 
   @Test

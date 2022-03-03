@@ -1,7 +1,7 @@
 package slogo.Backend.SyntaxParser.Data;
 
 import java.lang.reflect.InvocationTargetException;
-import slogo.Backend.State.TurtleHistory;
+import slogo.Backend.SyntaxParser.LogoRuntimeState;
 import slogo.Backend.SyntaxParser.Operator;
 
 public class Make extends Operator {
@@ -10,9 +10,9 @@ public class Make extends Operator {
     super(seqNum);
   }
 
-  public double getRetVal(TurtleHistory history)
+  public double getRetVal(LogoRuntimeState runtimeState)
       throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-    return arguments.get(1).getRetVal(history);
+    return arguments.get(1).getRetVal(runtimeState);
   }
 
 }

@@ -21,7 +21,7 @@ class LogarithmTest {
   void testGetRetVal()
       throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
     assertTrue(
-        TestUtils.testEqualsWithTolerance(myLogarithm.getRetVal(new TurtleHistory()), 1, 0.0001));
+        TestUtils.testEqualsWithTolerance(myLogarithm.getRetVal(null), 1, 0.0001));
   }
 
   @Test

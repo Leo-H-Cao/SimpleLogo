@@ -2,7 +2,6 @@ package slogo.Backend.SyntaxParser;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import slogo.Backend.State.TurtleHistory;
 
 public abstract class Operator {
   protected int myNumArgs;
@@ -18,7 +17,7 @@ public abstract class Operator {
     this.arguments = new ArrayList<Operator>();
   }
 
-  public abstract double getRetVal(TurtleHistory history)
+  public abstract double getRetVal(LogoRuntimeState runtimeState)
       throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException;
 
   public int getMyNumArgs() {

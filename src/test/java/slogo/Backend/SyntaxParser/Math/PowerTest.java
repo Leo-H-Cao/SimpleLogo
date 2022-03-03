@@ -17,13 +17,13 @@ class PowerTest {
 
   @Test
   void testGetRetVal() throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-    Assertions.assertEquals(64.0, this.myPower.getRetVal(new TurtleHistory()));
+    Assertions.assertEquals(64.0, this.myPower.getRetVal(null));
   }
 
   @Test
   void testNegativeExponent() throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
     myPower = new Power(new Constant(0, 2.0), new Constant(0, -1.0));
-    Assertions.assertEquals(0.5, this.myPower.getRetVal(new TurtleHistory()));
+    Assertions.assertEquals(0.5, this.myPower.getRetVal(null));
   }
 
   @Test

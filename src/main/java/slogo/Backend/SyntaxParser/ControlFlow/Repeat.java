@@ -1,7 +1,7 @@
 package slogo.Backend.SyntaxParser.ControlFlow;
 
 import java.lang.reflect.InvocationTargetException;
-import slogo.Backend.State.TurtleHistory;
+import slogo.Backend.SyntaxParser.LogoRuntimeState;
 import slogo.Backend.SyntaxParser.Operator;
 
 public class Repeat extends Operator {
@@ -9,11 +9,11 @@ public class Repeat extends Operator {
     super(seqNum);
     myNumArgs = 2;
   }
-  public double getRetVal(TurtleHistory history)
+  public double getRetVal(LogoRuntimeState runtimeState)
       throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-    int numRepetitions = (int) arguments.get(0).getRetVal(history);
+    int numRepetitions = (int) arguments.get(0).getRetVal(runtimeState);
     for(int i=0; i<numRepetitions; i++){
-      double retVal = arguments.get(1).getRetVal(history);
+      double retVal = arguments.get(1).getRetVal(runtimeState);
     }
     return retVal;
   }

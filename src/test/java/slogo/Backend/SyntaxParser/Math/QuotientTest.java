@@ -23,7 +23,7 @@ public class QuotientTest {
   @Test
   void testGetRetVal()
       throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-    assertEquals(5.0, myQuotient.getRetVal(new TurtleHistory()));
+    assertEquals(5.0, myQuotient.getRetVal(null));
   }
 
   @Test

@@ -1,7 +1,7 @@
 package slogo.Backend.SyntaxParser.ListStructure;
 
 import java.util.ArrayList;
-import slogo.Backend.State.TurtleHistory;
+import slogo.Backend.SyntaxParser.LogoRuntimeState;
 import slogo.Backend.SyntaxParser.Operator;
 
 public class ListStart extends Operator {
@@ -10,7 +10,7 @@ public class ListStart extends Operator {
     this.arguments = new ArrayList<>();
   }
 
-  public double getRetVal(TurtleHistory history){
+  public double getRetVal(LogoRuntimeState runtimeState){
     return 0;
   }
 

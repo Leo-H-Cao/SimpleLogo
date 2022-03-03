@@ -9,21 +9,22 @@ import org.junit.jupiter.api.Test;
 import slogo.Backend.State.TurtleHistory;
 import slogo.Backend.SyntaxParser.Data.Constant;
 import slogo.Backend.SyntaxParser.ListStructure.LogoList;
+import slogo.Backend.SyntaxParser.LogoRuntimeState;
 import slogo.Backend.SyntaxParser.TurtleCommand.Forward;
 import slogo.Backend.TurtleState.Turtle;
 
 public class RepeatTest {
   Repeat myRepeat;
-  private TurtleHistory myTurtleHistory;
+  private LogoRuntimeState myRuntimeState;
 
   @BeforeEach
   void setup() {
     myRepeat = new Repeat(0);
 
-    myTurtleHistory = new TurtleHistory();
+    myRuntimeState = new LogoRuntimeState();
     ArrayDeque<Turtle> currentHistory = new ArrayDeque<>();
     currentHistory.addLast(new Turtle(new int[]{0, 0}, 0, true));
-    myTurtleHistory.getTurtleHistory().addLast(currentHistory);
+    myRuntimeState.getHistory().getTurtleHistory().addLast(currentHistory);
   }
 
   @Test
@@ -39,8 +40,8 @@ public class RepeatTest {
     l.addArgument(forward);
     myRepeat.addArgument(l);
     myRepeat.addArgument(iterations);
-    myRepeat.getRetVal(myTurtleHistory);
-    assertEquals(200,myTurtleHistory.getTurtleHistory().getLast().getLast().getLocation().getX());
+    myRepeat.getRetVal(myRuntimeState);
+    assertEquals(200, myRuntimeState.getHistory().getTurtleHistory().getLast().getLast().getLocation().getX());
   }
 
   @Test

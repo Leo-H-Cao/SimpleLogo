@@ -20,7 +20,7 @@ class RemainderTest {
   @Test
   void testGetRetVal()
       throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-    Assertions.assertEquals(1.0, this.myRemainder.getRetVal(new TurtleHistory()));
+    Assertions.assertEquals(1.0, this.myRemainder.getRetVal(null));
   }
 
   @Test

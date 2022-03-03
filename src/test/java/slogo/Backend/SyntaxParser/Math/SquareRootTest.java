@@ -21,7 +21,7 @@ class SquareRootTest {
   void testGetRetVal()
       throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
     assertTrue(
-        TestUtils.testEqualsWithTolerance(mySquareRoot.getRetVal(new TurtleHistory()), 8.0, 0.0001));
+        TestUtils.testEqualsWithTolerance(mySquareRoot.getRetVal(null), 8.0, 0.0001));
   }
 
   @Test

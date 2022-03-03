@@ -1,7 +1,7 @@
 package slogo.Backend.SyntaxParser.Math;
 
 import java.lang.reflect.InvocationTargetException;
-import slogo.Backend.State.TurtleHistory;
+import slogo.Backend.SyntaxParser.LogoRuntimeState;
 import slogo.Backend.SyntaxParser.Operator;
 
 public class Random extends ArithmeticOp {
@@ -16,8 +16,8 @@ public class Random extends ArithmeticOp {
     myNumArgs = 1;
   }
 
-  public double getRetVal(TurtleHistory history)
+  public double getRetVal(LogoRuntimeState runtimeState)
       throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-    return Math.random() * this.arguments.get(0).getRetVal(history);
+    return Math.random() * this.arguments.get(0).getRetVal(runtimeState);
   }
 }

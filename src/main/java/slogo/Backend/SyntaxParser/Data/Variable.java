@@ -1,6 +1,6 @@
 package slogo.Backend.SyntaxParser.Data;
 
-import slogo.Backend.State.TurtleHistory;
+import slogo.Backend.SyntaxParser.LogoRuntimeState;
 import slogo.Backend.SyntaxParser.Operator;
 
 public class Variable extends Operator {
@@ -14,7 +14,7 @@ public class Variable extends Operator {
     this.myValue = value;
   }
 
-  public double getRetVal(TurtleHistory history){
+  public double getRetVal(LogoRuntimeState runtimeState){
     return myValue;
   }
 }

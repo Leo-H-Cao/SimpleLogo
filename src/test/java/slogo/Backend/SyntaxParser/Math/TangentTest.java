@@ -21,7 +21,7 @@ class TangentTest {
   void testGetRetVal()
       throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
     assertTrue(
-        TestUtils.testEqualsWithTolerance(myTangent.getRetVal(new TurtleHistory()), 1.0, 0.0001));
+        TestUtils.testEqualsWithTolerance(myTangent.getRetVal(null), 1.0, 0.0001));
   }
 
   @Test

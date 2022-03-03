@@ -16,15 +16,15 @@ public class ASTMakerTest {
 
   private ASTMaker myASTMaker;
   private ArrayDeque<Turtle> myTurtleStack;
-  private TurtleHistory myTurtleHistory;
+  private LogoRuntimeState myRuntimeState;
 
   @BeforeEach
   void setup() {
     myTurtleStack = new ArrayDeque<Turtle>();
-    myTurtleHistory = new TurtleHistory();
+    myRuntimeState = new LogoRuntimeState();
     ArrayDeque<Turtle> currentHistory = new ArrayDeque<>();
     currentHistory.addLast(new Turtle(new int[]{0, 0}, 0, true));
-    myTurtleHistory.getTurtleHistory().addLast(currentHistory);
+    myRuntimeState.getHistory().getTurtleHistory().addLast(currentHistory);
   }
 
   @Test
@@ -34,7 +34,7 @@ public class ASTMakerTest {
     Token t1 = new Token(TokenType.CONSTANT, "-1");
     a.add(t1);
     myASTMaker = new ASTMaker(a);
-    assertEquals(-1, myASTMaker.parse().arguments.get(0).getRetVal(new TurtleHistory()));
+    assertEquals(-1, myASTMaker.parse().arguments.get(0).getRetVal(new LogoRuntimeState()));
   }
 
   @Test
@@ -50,7 +50,7 @@ public class ASTMakerTest {
     myASTMaker = new ASTMaker(a);
     LogoList root = myASTMaker.parse();
     Operator o1 = root.arguments.get(0);
-    assertEquals(80, o1.getRetVal(new TurtleHistory()));
+    assertEquals(80, o1.getRetVal(new LogoRuntimeState()));
   }
 
   @Test
@@ -74,7 +74,7 @@ public class ASTMakerTest {
     Operator op1 = root.arguments.get(0);
     Operator op2 = root.arguments.get(1);
     //assertEquals(80, op1.getRetVal(new TurtleHistory()));
-    assertEquals(95, op2.getRetVal(new TurtleHistory()));
+    assertEquals(95, op2.getRetVal(null));
   }
 
 
@@ -93,8 +93,8 @@ public class ASTMakerTest {
     myASTMaker = new ASTMaker(a);
     LogoList root = myASTMaker.parse();
     Operator op1 = root.arguments.get(0);
-    op1.getRetVal(myTurtleHistory);
-    assertEquals(70, op1.getRetVal(myTurtleHistory));
+    op1.getRetVal(myRuntimeState);
+    assertEquals(70, op1.getRetVal(myRuntimeState));
   }
 
   @Test
@@ -119,7 +119,7 @@ public class ASTMakerTest {
     a.add(t6);
     myASTMaker = new ASTMaker(a);
     LogoList root = myASTMaker.parse();
-    assertEquals(4,root.arguments.get(0).arguments.get(0).getRetVal(new TurtleHistory()));
+    assertEquals(4,root.arguments.get(0).arguments.get(0).getRetVal(new LogoRuntimeState()));
 
   }
 
