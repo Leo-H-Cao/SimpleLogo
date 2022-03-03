@@ -5,6 +5,7 @@ import slogo.Backend.SyntaxParser.Operator;
 
 public class Variable extends Operator {
   private double myValue;
+  private String myName;
 
   public Variable(int seqNum){
     super(seqNum);
@@ -17,4 +18,12 @@ public class Variable extends Operator {
   public double getRetVal(LogoRuntimeState runtimeState){
     return myValue;
   }
+
+  public void setName(String name){
+    myName = name;
+  }
+  public String getName(){
+    return myName;
+  }
+
 }

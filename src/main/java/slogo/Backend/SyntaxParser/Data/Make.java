@@ -12,7 +12,11 @@ public class Make extends Operator {
 
   public double getRetVal(LogoRuntimeState runtimeState)
       throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-    return arguments.get(1).getRetVal(runtimeState);
+
+    Variable variable = (Variable) arguments.get(0);
+    double value = arguments.get(1).getRetVal(runtimeState);
+    runtimeState.setVariableValue(variable.getName(),value);
+    return value;
   }
 
 }

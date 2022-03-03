@@ -125,6 +125,11 @@ public class ASTMakerTest {
 
 
   @Test
+  void testParseVariableDeclaration(){
+
+  }
+
+  @Test
   void testSequenceNumber(){
     ArrayDeque<Token> a = new ArrayDeque<Token>();
     Token t1 = new Token(TokenType.COMMAND, "Difference");

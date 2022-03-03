@@ -28,6 +28,13 @@ public class LogoRuntimeState {
     return history;
   }
 
+  public void setVariableValue(String variable, double value){
+    variableTable.put(variable, value);
+  }
+
+  public double evaluateVariable(String variable){
+    return variableTable.get(variable);
+  }
 
 
 }
