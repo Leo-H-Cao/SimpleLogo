@@ -34,7 +34,7 @@ public class Towards implements TurtleTransformer {
       newAngle = (Math.PI * 3) / 2;
     }
     else {
-      newAngle = Math.atan2(dy, dx);
+      newAngle = Math.atan(dy/dx);
     }
 
     return Map.of(Turtle.DIRECTION, new FieldValue<Double>(newAngle));

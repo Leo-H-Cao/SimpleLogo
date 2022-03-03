@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
+import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 import slogo.Backend.LexicalAnalyzer.Token;
 import slogo.Backend.SyntaxParser.ListStructure.ListEnd;
@@ -79,17 +80,11 @@ public class ASTMaker {
         } else {
           unevaluated.addLast(nextOperator);
         }
-      } catch (ClassNotFoundException e) {
+      } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException | InstantiationException | IllegalAccessException e) {
         // TODO: REPLACE THIS LATER
         e.printStackTrace();
-      } catch (NoSuchMethodException e) {
-        e.printStackTrace();
-      } catch (InvocationTargetException e) {
-        e.printStackTrace();
-      } catch (InstantiationException e) {
-        e.printStackTrace();
-      } catch (IllegalAccessException e) {
-        e.printStackTrace();
+      } catch (MissingResourceException e) {
+        System.out.println("Missing resource");
       }
       tokens.removeFirst();
       seqNum++;
