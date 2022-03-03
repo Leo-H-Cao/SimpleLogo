@@ -31,4 +31,8 @@ public abstract class Operator {
   public ArrayList<Operator> getArguments(){
     return arguments;
   }
+
+  public void setSequenceNumber(int sequenceNumber){
+    this.mySeqNum = sequenceNumber;
+  }
 }

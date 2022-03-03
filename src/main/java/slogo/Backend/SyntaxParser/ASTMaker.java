@@ -5,6 +5,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
 import java.util.ResourceBundle;
 import slogo.Backend.LexicalAnalyzer.Token;
@@ -14,8 +15,8 @@ import slogo.Backend.SyntaxParser.ListStructure.LogoList;
 
 public class ASTMaker {
   private final ArrayDeque<Token> tokens;
-  private final ArrayDeque<Operator> unevaluated = new ArrayDeque<>();
-  private final ArrayDeque<Operator> evaluated = new ArrayDeque<>();
+  private final LinkedList<Operator> unevaluated = new LinkedList<>();
+  private final LinkedList<Operator> evaluated = new LinkedList<>();
   private ArrayList<ArrayList<LogoList>> listsByLayer;
   private int currentLayer;
   private int currentLayerListNum;
@@ -131,7 +132,11 @@ public class ASTMaker {
       }
       else{
         //no more lists in this layer
-        evaluated.addAll(listsByLayer.get(currentLayer));
+        listsByLayer.get(currentLayer).get(0).setSequenceNumber(operator.mySeqNum);
+        for(int i=listsByLayer.get(currentLayer).size()-1; i>=0; i--){
+          evaluated.add(listsByLayer.get(currentLayer).get(i));
+        }
+        //evaluated.addAll(listsByLayer.get(currentLayer));
         listsByLayer.remove(currentLayer);
         currentLayer--;
 
@@ -147,8 +152,16 @@ public class ASTMaker {
         numOperands--;
         continue;
       }
-      operator.addArgument(evaluated.getLast());
-      evaluated.removeLast();
+      int i = evaluated.size()-1;
+      while(!evaluated.isEmpty()){
+        if(evaluated.get(i).mySeqNum <= operator.mySeqNum + operator.getMyNumArgs()){
+          operator.addArgument(evaluated.get(i));
+          evaluated.remove(i);
+          break;
+        }
+        i--;
+      }
+
       numOperands--;
     }
     if(unevaluated.size()==1){
@@ -168,9 +181,15 @@ public class ASTMaker {
       listsByLayer.get(currentLayer).get(currentLayerListNum).addArgument(operator);
     }
     else if (currentLayer==0){
-      evaluated.addLast(operator);
+      if(!evaluated.isEmpty()){
+        evaluated.getLast().setSequenceNumber(operator.mySeqNum + 1);
+      }
+      evaluated.addFirst(operator);
     }
     else{
+      if(!listsByLayer.get(currentLayer).get(currentLayerListNum).arguments.isEmpty()){
+        listsByLayer.get(currentLayer).get(currentLayerListNum).arguments.get(0).setSequenceNumber(operator.mySeqNum + 1);
+      }
       listsByLayer.get(currentLayer).get(currentLayerListNum).addArgument(operator);
     }
 
