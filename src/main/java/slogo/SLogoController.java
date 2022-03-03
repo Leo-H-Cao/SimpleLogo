@@ -69,6 +69,7 @@ public class SLogoController {
     mainView = new View(myStage, this);
     gui = mainView.getMainUI();
     commandInputter = gui.getCommandInput();
+    commandOutputter = gui.getCommandOutput();
     turtleView = gui.getTurtleView();
     turtleView.createTurtle(INITIAL_TURTLE);
     turtleView.resetTurtle();
@@ -112,13 +113,11 @@ public class SLogoController {
   public void handleCommandSubmitted() {
     String command = commandInputter.getCommands();
 
-    // If it's not valid, do something
     try {
       Result commandResult = model.postInstruction(command);
       ArrayDeque<Turtle> steps = commandResult.getTurtleSteps();
       if (steps == null || steps.size() <= 1) {
-        //display numeric result on console window
-        System.out.println(commandResult.getIntReturned());
+        commandOutputter.displayResult(commandResult);
       } else {
         turtleView.moveTurtle(steps.clone());
       }
