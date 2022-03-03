@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import slogo.Backend.State.TurtleHistory;
 import slogo.Backend.SyntaxParser.Data.Constant;
+import slogo.Backend.SyntaxParser.LogoRuntimeState;
 import util.TestUtils;
 
 class SquareRootTest {
@@ -22,6 +23,13 @@ class SquareRootTest {
       throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
     assertTrue(
         TestUtils.testEqualsWithTolerance(mySquareRoot.getRetVal(null), 8.0, 0.0001));
+  }
+
+  @Test
+  void testIllegalInput()
+      throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+    mySquareRoot = new SquareRoot(new Constant(0, -1));
+    assertThrows(IllegalArgumentException.class, () -> mySquareRoot.getRetVal(new LogoRuntimeState()));
   }
 
   @Test
