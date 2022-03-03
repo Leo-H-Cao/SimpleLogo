@@ -119,6 +119,7 @@ public class ASTMakerTest {
     a.add(t6);
     myASTMaker = new ASTMaker(a);
     LogoList root = myASTMaker.parse();
+    double d = root.arguments.get(0).arguments.get(0).getRetVal(new LogoRuntimeState());
     assertEquals(4,root.arguments.get(0).arguments.get(0).getRetVal(new LogoRuntimeState()));
 
   }

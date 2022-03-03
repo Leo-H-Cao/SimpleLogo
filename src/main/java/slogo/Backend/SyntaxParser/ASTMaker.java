@@ -141,15 +141,24 @@ public class ASTMaker {
     }
     int numOperands = operator.getMyNumArgs();
     while (numOperands > 0) {
+      if(currentLayer != 0 && !listsByLayer.get(currentLayer).get(currentLayerListNum).getArguments().isEmpty() && operator.mySeqNum + operator.getMyNumArgs() >= listsByLayer.get(currentLayer).get(currentLayerListNum).getArguments().get(0).mySeqNum){
+        operator.addArgument(listsByLayer.get(currentLayer).get(currentLayerListNum).getArguments().get(0));
+        listsByLayer.get(currentLayer).get(currentLayerListNum).getArguments().remove(0);
+        numOperands--;
+        continue;
+      }
       operator.addArgument(evaluated.getLast());
       evaluated.removeLast();
       numOperands--;
     }
     if(unevaluated.size()==1){
-      evaluated.addLast(operator);
-      listsByLayer.get(currentLayer).get(currentLayerListNum).addArgument(operator);
-      unevaluated.removeLast();
-      return;
+      if(currentLayer == 0){
+        evaluated.addLast(operator);
+        listsByLayer.get(currentLayer).get(currentLayerListNum).addArgument(operator);
+        unevaluated.removeLast();
+        return;
+      }
+
     }
     unevaluated.removeLast();
 
