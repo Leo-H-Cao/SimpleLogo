@@ -18,7 +18,7 @@ import slogo.FrontendExternalAPIs.DisplayTurtle;
 public class TurtleView implements DisplayTurtle {
 
   public static final int TURTLE_SIZE = 40;
-  public static final int DEFAULT_SPEED = 4;
+  public static final int DEFAULT_SPEED = 1;
 
   private ImageView turtleImage;
   private Turtle currentTurtle;

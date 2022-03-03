@@ -64,15 +64,19 @@ public class SLogoController {
    * @param stage Stage object responsible for displaying the program
    */
   public void setupNewSLogo(Stage stage) {
-    // Set up and show stage
+    // Initialize UI components
     myStage = stage;
     mainView = new View(myStage, this);
+
     gui = mainView.getMainUI();
+
     commandInputter = gui.getCommandInput();
     commandOutputter = gui.getCommandOutput();
+
     turtleView = gui.getTurtleView();
     turtleView.createTurtle(INITIAL_TURTLE);
     turtleView.resetTurtle();
+
     userDefinedAttributesUpdater =
         new ViewUserDefined(); // TODO: This should be owned by some class in the frontend
 
@@ -86,10 +90,6 @@ public class SLogoController {
 
     // Independent object that fetches help for user (just a string for now)
     helper = new Helper();
-
-//    syntaxChecker = new Validator();
-//    InitializationState initializationState = new InitializationState();
-//    model.initalizeBackend(initializationState);
 
     // initialize turtle
   }
@@ -127,7 +127,6 @@ public class SLogoController {
       System.out.println(exception);
       commandOutputter.displayError(new ErrorText(exception.toString()));
     }
-
   }
 
   /**
@@ -143,19 +142,5 @@ public class SLogoController {
       // display the help to the frontend
     }
   }
-
-//  /**
-//   * Instantiates a new SLogoController along with a new Stage to show it on, effectively creating
-//   * a new instance of the SLogo program with its own turtles, preferences, etc.
-//   *
-//   * This method should only be called whenever a user performs an action that indicates they are
-//   * trying to create a new SLogo instance.
-//   */
-//  public void handleCreateNewSLogo() {
-//    SLogoController newController = new SLogoController();
-//    Stage stage = new Stage();
-//    newController.setupNewSLogo(stage);
-//  }
-
 
 }
