@@ -1,5 +1,6 @@
 package slogo.FrontendExternalAPIs;
 
+import java.util.Deque;
 import javafx.scene.image.Image;
 import slogo.Backend.TurtleState.Turtle;
 
@@ -15,9 +16,9 @@ public interface DisplayTurtle {
   /**
    * move turtle to coordinates as specified by turtle object
    *
-   * @param nextTurtle
+   * @param turtles
    */
-  void moveTurtle(Turtle nextTurtle);
+  void moveTurtle(Deque<Turtle> turtles);
 
   /**
    * Change image for turtle (instead of CSS style's default)

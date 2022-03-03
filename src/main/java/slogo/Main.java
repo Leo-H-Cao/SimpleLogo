@@ -61,6 +61,10 @@ public class Main extends Application {
   public void start(Stage primaryStage) {
     controller = new SLogoController();
     controller.setupNewSLogo(primaryStage);
+
+    Stage stage = new Stage();
+    SLogoController secondController = new SLogoController();
+    secondController.setupNewSLogo(stage);
   }
 
   /** Start of the program. */

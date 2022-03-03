@@ -1,17 +1,15 @@
 package slogo;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.Deque;
+import java.util.ArrayDeque;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
-import javax.xml.validation.Validator;
 import slogo.Backend.ErrorText;
 import slogo.Backend.HelpInformation;
 import slogo.Backend.Helper;
 import slogo.Backend.LexicalAnalyzer.InvalidTokenException;
 import slogo.Backend.Result;
 import slogo.Backend.State.ModelState;
-import slogo.Backend.TurtleController;
 import slogo.Backend.TurtleState.Turtle;
 import slogo.Frontend.CommandInput;
 import slogo.Frontend.CommandOutput;
@@ -25,7 +23,7 @@ import slogo.Frontend.ViewUserDefined;
  * of an instance of SLogo. This class is the birthplace of a SLogo instance, and is responsible for
  * instantiation and initialization of all objects tied to a particular SLogo instance, and will
  * persist these objects for its entire lifespan.
- *
+ * <p>
  * This class contains functionality to handle user interactions that require mutation of both
  * frontend and backend components, for example, inputting and executing a command.
  *
@@ -36,7 +34,7 @@ public class SLogoController {
   // Backend objects
   private ModelState model;
   private Helper helper;
-  public static final Turtle INITIAL_TURTLE = new Turtle(new int[]{0,0}, Math.PI / 2, true);
+  public static final Turtle INITIAL_TURTLE = new Turtle(new int[]{0, 0}, Math.PI / 2, true);
 
   // Frontend objects
   private View mainView;
@@ -50,13 +48,14 @@ public class SLogoController {
   /**
    * Class constructor.
    */
-  public SLogoController() {}
+  public SLogoController() {
+  }
 
   /**
    * Sets up a new instance of SLogo. Instantiates all necessary frontend and backend objects
    * necessary to run SLogo, and ties them to this particular controller instance to prevent
    * arbitrary creation of such objects later on in execution.
-   *
+   * <p>
    * This method should be the first method called after instantiation of a new SLogoController.
    *
    * @param stage Stage object responsible for displaying the program
@@ -77,7 +76,6 @@ public class SLogoController {
     // frontend stuff to get language + other initial parameters that the backend needs to know
     // resource file will have defaults
     // UI should allow user to change those attributes before starting up the model
-    // TODO: Almost every backend class should be "owned" by one class to avoid arbitrary object creation
 
     // ModelState owns command language, turtle, tracks, history, and user variables/commands
     model = new ModelState();
@@ -97,13 +95,14 @@ public class SLogoController {
    *
    * @param code KeyCode of key that was pressed.
    */
-  public void handleKeyInput(KeyCode code) {}
+  public void handleKeyInput(KeyCode code) {
+  }
 
   /**
-   * Sends user-inputted command from frontend to backend, and if successfully executed, will
-   * return the result of that command (a numeric return value or a new turtle state) back to the
-   * frontend to update the GUI.
-   *
+   * Sends user-inputted command from frontend to backend, and if successfully executed, will return
+   * the result of that command (a numeric return value or a new turtle state) back to the frontend
+   * to update the GUI.
+   * <p>
    * This method should only be called whenever a user performs an action that indicates they are
    * trying to execute a command.
    */
@@ -113,18 +112,14 @@ public class SLogoController {
     // If it's not valid, do something
     try {
       Result commandResult = model.postInstruction(command);
-      Deque<Turtle> steps = commandResult.getTurtleSteps();
-      if(steps == null || steps.size() <= 1) {
+      ArrayDeque<Turtle> steps = commandResult.getTurtleSteps();
+      if (steps == null || steps.size() <= 1) {
         //display numeric result on console window
       } else {
-        // TODO: Make sure this is right
-        turtleView.moveTurtle(steps.peekLast());
-
-
+        turtleView.moveTurtle(steps.clone());
       }
-    }
-    catch (InvalidTokenException | ClassNotFoundException | InvocationTargetException |
-        NoSuchMethodException | InstantiationException | IllegalAccessException exception){
+    } catch (InvalidTokenException | ClassNotFoundException | InvocationTargetException |
+        NoSuchMethodException | InstantiationException | IllegalAccessException exception) {
       //handle
       System.out.println(exception);
       commandOutputter.displayError(new ErrorText(exception.toString()));
@@ -135,13 +130,13 @@ public class SLogoController {
   /**
    * Queries backend helper object to return either specified or generic program help information,
    * and returns it back to the frontend to display to the user.
-   *
+   * <p>
    * This method should only be called whenever a user performs an action that indicates they are
    * requesting help.
    */
   public void handleHelpRequested() {
     HelpInformation help = helper.getHelp(null);
-    if(help != null) {
+    if (help != null) {
       // display the help to the frontend
     }
   }

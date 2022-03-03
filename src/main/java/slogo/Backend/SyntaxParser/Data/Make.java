@@ -1,21 +1,18 @@
-package slogo.Backend.SyntaxParser.ControlFlow;
+package slogo.Backend.SyntaxParser.Data;
 
 import java.lang.reflect.InvocationTargetException;
 import slogo.Backend.State.TurtleHistory;
 import slogo.Backend.SyntaxParser.Operator;
 
-public class Repeat extends Operator {
-  public Repeat(int seqNum){
+public class Make extends Operator {
+
+  public Make(int seqNum){
     super(seqNum);
-    myNumArgs = 2;
   }
+
   public double getRetVal(TurtleHistory history)
       throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-    int numRepetitions = (int) arguments.get(0).getRetVal(history);
-    for(int i=0; i<numRepetitions; i++){
-      double retVal = arguments.get(1).getRetVal(history);
-    }
-    return retVal;
+    return arguments.get(1).getRetVal(history);
   }
 
 }

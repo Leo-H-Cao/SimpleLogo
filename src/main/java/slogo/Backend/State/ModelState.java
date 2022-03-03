@@ -72,6 +72,7 @@ public class ModelState implements Initialiazable, ModifiesModelState, StateMana
     currentHistory.addLast(turtle);
     history.getTurtleHistory().addLast(currentHistory);
     Result res = new Result(root.getRetVal(history), history.getTurtleHistory().getLast());
+    turtle = history.getTurtleHistory().getLast().getLast();
     return res;
   }
 
