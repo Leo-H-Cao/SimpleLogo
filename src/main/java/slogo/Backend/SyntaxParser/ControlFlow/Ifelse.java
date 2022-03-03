@@ -6,8 +6,8 @@ import slogo.Backend.SyntaxParser.Operator;
 
 public class Ifelse extends Operator {
 
-  public Ifelse(){
-    super(0);
+  public Ifelse(int sequenceNumber){
+    super(sequenceNumber);
   }
 
   public double getRetVal(LogoRuntimeState s)

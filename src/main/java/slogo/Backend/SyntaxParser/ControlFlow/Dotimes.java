@@ -6,8 +6,8 @@ import slogo.Backend.SyntaxParser.Operator;
 
 public class Dotimes extends Operator {
 
-  public Dotimes(){
-    super(0);
+  public Dotimes(int sequenceNumber){
+    super(sequenceNumber);
   }
 
   public double getRetVal(LogoRuntimeState s)

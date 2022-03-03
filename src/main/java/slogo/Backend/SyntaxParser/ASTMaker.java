@@ -56,7 +56,7 @@ public class ASTMaker {
         // System.out.println(tokenType);
         Class<?> operatorType;
         Operator nextOperator;
-        if (!tokenType.equals("CONSTANT")) {
+        if (!tokenType.equals("CONSTANT") && !tokenType.equals("VARIABLE")) {
           // operatorType = Class.forName("slogo.Backend.SyntaxParser." + "Command");
           if(specialCharToClass.containsKey(t.getValue())){
             operatorType = Class.forName(rootdirectory + resources.getString(t.getValue()) + "."  + specialCharToClass.get(t.getValue()));

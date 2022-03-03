@@ -6,8 +6,8 @@ import slogo.Backend.SyntaxParser.Operator;
 
 public class For extends Operator {
 
-  public For(){
-    super(0);
+  public For(int sequenceNumber){
+    super(sequenceNumber);
   }
 
   public double getRetVal(LogoRuntimeState s)
