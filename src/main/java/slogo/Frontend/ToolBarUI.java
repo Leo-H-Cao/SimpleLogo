@@ -1,21 +1,31 @@
 package slogo.Frontend;
 
 import javafx.scene.control.ToolBar;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import slogo.Frontend.ToolBarButtons.CommandHistoryToolbarButton;
 import slogo.Frontend.ToolBarButtons.LanguageSelect;
+import slogo.Frontend.ToolBarButtons.NewSlogoButton;
 import slogo.Frontend.ToolBarButtons.SelectBackgroundColorButton;
 import slogo.Frontend.ToolBarButtons.ToolBarButtonAbstract;
+import slogo.Frontend.ToolBarButtons.TurtleImageChooserButton;
 
 public class ToolBarUI {
 
   private ToolBar mytoolBar;
   private ToolBarButtonAbstract commandHistoryButton;
   private LanguageSelect languageSelect;
-  private SelectBackgroundColorButton colorButton;
+  private ToolBarButtonAbstract colorButton;
+  private Pane buttonBarContainer;
+  private ToolBarButtonAbstract turtleImageButton;
+  private ToolBarButtonAbstract newSlogoButton;
 
-  public ToolBarUI(){
+  public ToolBarUI(TurtleView turtleView){
+    buttonBarContainer = new HBox();
+    buttonBarContainer.getStyleClass().add("tool-bar-container");
     mytoolBar = new ToolBar();
     mytoolBar.setId("ToolBar");
+    mytoolBar.getStyleClass().add("tool-bar-ui");
     createToolBar();
   }
 
@@ -33,8 +43,12 @@ public class ToolBarUI {
     languageSelect = new LanguageSelect("English");
     languageSelect.getChoiceBox().setId("SelectDisplayLanguage");
     colorButton = new SelectBackgroundColorButton("Change Background");
+    turtleImageButton = new TurtleImageChooserButton("Choose Turtle Image");
+    newSlogoButton = new NewSlogoButton("New Slogo");
 
-    mytoolBar.getItems().addAll(commandHistoryButton.getButton(), languageSelect.getChoiceBox(), colorButton.getButton());
+    buttonBarContainer.getChildren().addAll(commandHistoryButton.getButton(), languageSelect.getChoiceBox(),
+        colorButton.getButton(), turtleImageButton.getButton(), newSlogoButton.getButton());
+    mytoolBar.getItems().addAll(buttonBarContainer);
   }
 
 }

@@ -69,14 +69,15 @@ public class MainUI {
     myMenuBar = new MenuBarUI();
     myControlPanel = new ControlPanel();
     myCommandInput = new CommandInput(myController);
-    myTurtleBackground = new TurtleBackground();
+    myTurtleBackground = new TurtleBackground(testTurtleView);
     myUserVariablesContainer = new UserVariablesContainer();
-    myToolBar = new ToolBarUI();
+    myToolBar = new ToolBarUI(testTurtleView);
     layOutChildren();
   }
 
   private void addingTurtle() {
-    testTurtleView = new TurtleView(myControlPanel.getSpeedSlider().getValue(), DEFAULT_TURTLE_IMAGE_PATH);
+    testTurtleView = new TurtleView(4.0, DEFAULT_TURTLE_IMAGE_PATH);
+//    testTurtleView = new TurtleView(myControlPanel.getSpeedSlider().getValue(), DEFAULT_TURTLE_IMAGE_PATH);
     myTurtleBackground.addTurtle(testTurtleView);
   }
 

@@ -10,6 +10,7 @@ public class CommandHistoryToolbarButton extends ToolBarButtonAbstract{
 
   public CommandHistoryToolbarButton(String buttonName){
     super(buttonName);
+    myButton.getStyleClass().add("command-history-button");
     setupPopup();
   }
 
