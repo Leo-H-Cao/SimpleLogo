@@ -163,7 +163,7 @@ public class ASTMaker {
     }
     int numOperands = operator.getMyNumArgs();
     while (numOperands > 0) {
-      if (currentLayer != 0 && !listsByLayer.get(currentLayer).get(currentLayerListNum)
+      if (true && !listsByLayer.get(currentLayer).get(currentLayerListNum)
           .getArguments().isEmpty()
           && operator.mySeqNum + operator.getMyNumArgs() >= listsByLayer.get(currentLayer)
           .get(currentLayerListNum).getArguments().get(0).mySeqNum) {
@@ -202,16 +202,32 @@ public class ASTMaker {
 
       listsByLayer.get(currentLayer).get(currentLayerListNum).addArgument(operator);
     } else if (currentLayer == 0) {
-      if (!evaluated.isEmpty()) {
+      if (!evaluated.isEmpty() && evaluated.getLast().mySeqNum > operator.mySeqNum) {
         evaluated.getLast().setSequenceNumber(operator.mySeqNum + 1);
       }
-      evaluated.addFirst(operator);
+      //evaluated.addLast(operator);//change to insert in order
+      insertInOrder(operator, evaluated);
     } else {
       if (!listsByLayer.get(currentLayer).get(currentLayerListNum).arguments.isEmpty()) {
         listsByLayer.get(currentLayer).get(currentLayerListNum).arguments.get(0)
             .setSequenceNumber(operator.mySeqNum + 1);
       }
       listsByLayer.get(currentLayer).get(currentLayerListNum).addArgument(operator);
+    }
+
+  }
+
+  private void insertInOrder(Operator o, LinkedList<Operator> list){
+    boolean added = false;
+    for(int i=0; i<list.size(); i++){
+      if(o.mySeqNum < list.get(i).mySeqNum){
+        list.add(i,o);
+        added = true;
+        break;
+      }
+    }
+    if(!added){
+      list.addLast(o);
     }
 
   }
