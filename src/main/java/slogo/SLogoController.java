@@ -141,5 +141,18 @@ public class SLogoController {
     }
   }
 
+//  /**
+//   * Instantiates a new SLogoController along with a new Stage to show it on, effectively creating
+//   * a new instance of the SLogo program with its own turtles, preferences, etc.
+//   *
+//   * This method should only be called whenever a user performs an action that indicates they are
+//   * trying to create a new SLogo instance.
+//   */
+//  public void handleCreateNewSLogo() {
+//    SLogoController newController = new SLogoController();
+//    Stage stage = new Stage();
+//    newController.setupNewSLogo(stage);
+//  }
+
 
 }
