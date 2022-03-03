@@ -3,7 +3,6 @@ package slogo.Frontend;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import slogo.Backend.ErrorText;
 import slogo.Backend.Result;
 import slogo.FrontendExternalAPIs.UpdateCommandResult;

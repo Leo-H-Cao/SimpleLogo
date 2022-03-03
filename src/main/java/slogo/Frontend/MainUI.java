@@ -20,7 +20,6 @@ public class MainUI {
   private TurtleView testTurtleView;
   private LeftBorderContainer myLeftBorderContainer;
   private ToolBarUI myToolBar;
-  private CommandOutput myCommandOutput;
 
   // Might add a reflection thing to talk to a .properties file
   public MainUI(Stage myStage, SLogoController controller) {
@@ -65,6 +64,8 @@ public class MainUI {
 
   public ToolBarUI getToolBar(){ return myToolBar; }
 
+  public CommandOutput getCommandOutput() { return myLeftBorderContainer.getCommandOutput();}
+
   private void createUINodes() {
     myMenuBar = new MenuBarUI();
     myControlPanel = new ControlPanel();
@@ -89,7 +90,7 @@ public class MainUI {
     layout.setBottom(myCommandInput.getInputBox());
     layout.setRight(myControlPanel.getControlPanelContainer());
     layout.setCenter(myTurtleBackground.getTurtleBackground());
-    layout.setLeft(myLeftBorderContainer.getUserVariablesContainer());
+    layout.setLeft(myLeftBorderContainer.getLeftBorderContainer());
   }
 
   private void addStyleClassesToBorderPane(){
