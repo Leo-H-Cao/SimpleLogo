@@ -82,13 +82,23 @@ public class TurtleView implements DisplayTurtle {
 
     path.getElements()
         .addAll(
-            new MoveTo(current.getLocation().getX(), -1 * current.getLocation().getY()),
-            new LineTo(next.getLocation().getX(), -1 * next.getLocation().getY()));
+            new MoveTo(adjustX(current.getLocation().getX()), adjustY(-1 * current.getLocation().getY())),
+            new LineTo(adjustX(next.getLocation().getX()), adjustY(-1 * next.getLocation().getY())));
 
     PathTransition pt =
         new PathTransition(Duration.seconds(DEFAULT_SPEED / myAnimationSpeed), path, turtleImage);
 
     return pt;
+  }
+
+  // Adjusts x coordinate to refer to the center of the image instead of the top left corner
+  private double adjustX(double actualX) {
+    return actualX + turtleImage.getLayoutBounds().getWidth() / 2;
+  }
+
+  // Adjusts y coordinate to refer to the center of the image instead of the top left corner
+  private double adjustY(double actualY) {
+    return actualY + turtleImage.getLayoutBounds().getHeight() / 2;
   }
 
   // Make a rotate transition from one turtle's direction to another
@@ -97,14 +107,6 @@ public class TurtleView implements DisplayTurtle {
     double angleToRotate = -1 * (next.getDirection().getDirectionInDegrees() - current.getDirection().getDirectionInDegrees());
     rt.setByAngle(angleToRotate);
     return rt;
-  }
-
-  private void offsetPathForAbsoluteCoords(Path path, ImageView image) {
-    double width = image.getFitWidth();
-    double height = image.getFitHeight();
-
-    path.setLayoutX(path.getLayoutX() - width / 2);
-    path.setLayoutY(path.getLayoutY() - height / 2);
   }
 
   /**
