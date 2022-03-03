@@ -13,10 +13,11 @@ public class LogoList extends Operator {
 
   public double getRetVal(LogoRuntimeState runtimeState)
       throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+    double retVal = 0;
     for(Operator o : this.arguments){
-      o.getRetVal(runtimeState);
+      retVal = o.getRetVal(runtimeState);
     }
-    return 0;
+    return retVal;
   }
 
 
