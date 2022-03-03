@@ -63,6 +63,12 @@ public class Main extends Application {
     controller.setupNewSLogo(primaryStage);
   }
 
+  /**
+   * Creates a new, independent instance of SLogo and displays it.
+   *
+   * This method should only be called when a user performs an action that indicates they are trying
+   * to create a new SLogo instance.
+   */
   public static void createNewSLogo() {
     SLogoController newController = new SLogoController();
     Stage stage = new Stage();
