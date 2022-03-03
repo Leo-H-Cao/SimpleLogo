@@ -18,10 +18,11 @@ public class RandomRange extends ArithmeticOp {
   }
 
   public double getRetVal(LogoRuntimeState runtimeState)
-      throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+      throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException, IllegalArgumentException {
     // TODO: Check to make sure max >= min
     double min = this.arguments.get(0).getRetVal(runtimeState);
     double max = this.arguments.get(1).getRetVal(runtimeState);
+    if(max < min) throw new IllegalArgumentException("RandomRange max must be greater than or equal to min");
     return (Math.random() * (max - min)) + min;
   }
 }
