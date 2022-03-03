@@ -25,8 +25,6 @@ public class CommandInput implements CommandWindow {
   private String commandText;
 
   public CommandInput(SLogoController controller) {
-    // TODO: add buffer so class always keeps track of what is in text box?
-    // Not sure I'm understanding why we need this
 
     myController = controller;
     inputBox = new VBox();

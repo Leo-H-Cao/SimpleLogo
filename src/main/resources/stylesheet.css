@@ -46,6 +46,21 @@
   -fx-background-color: ALICEBLUE;
 }
 
+.command-output-text{
+  -fx-max-height: 150;
+  -fx-max-width: 150;
+}
+
+.output-padding-region{
+  -fx-pref-height: 325;
+  -fx-pref-width: 150;
+}
+
+.text-input{
+  -fx-border-width: 1;
+  -fx-border-color: #a9a9a9;
+}
+
 /*attempted to style toolbar
 /*.tool-bar-ui {*/
 /*  -light-black: rgb(74, 75, 78);*/

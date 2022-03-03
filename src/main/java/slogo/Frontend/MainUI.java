@@ -5,7 +5,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import slogo.Backend.TurtleState.Turtle;
 import slogo.SLogoController;
 
 public class MainUI {
@@ -19,7 +18,7 @@ public class MainUI {
   private CommandInput myCommandInput;
   private TurtleBackground myTurtleBackground;
   private TurtleView testTurtleView;
-  private UserVariablesContainer myUserVariablesContainer;
+  private LeftBorderContainer myLeftBorderContainer;
   private ToolBarUI myToolBar;
 
   // Might add a reflection thing to talk to a .properties file
@@ -59,18 +58,20 @@ public class MainUI {
     return myControlPanel;
   }
 
-  public UserVariablesContainer getUserVariablesContainer(){
-    return myUserVariablesContainer;
+  public LeftBorderContainer getUserVariablesContainer(){
+    return myLeftBorderContainer;
   }
 
   public ToolBarUI getToolBar(){ return myToolBar; }
+
+  public CommandOutput getCommandOutput() { return myLeftBorderContainer.getCommandOutput();}
 
   private void createUINodes() {
     myMenuBar = new MenuBarUI();
     myControlPanel = new ControlPanel();
     myCommandInput = new CommandInput(myController);
     myTurtleBackground = new TurtleBackground(testTurtleView);
-    myUserVariablesContainer = new UserVariablesContainer();
+    myLeftBorderContainer = new LeftBorderContainer();
     myToolBar = new ToolBarUI(testTurtleView);
     layOutChildren();
   }
@@ -89,7 +90,7 @@ public class MainUI {
     layout.setBottom(myCommandInput.getInputBox());
     layout.setRight(myControlPanel.getControlPanelContainer());
     layout.setCenter(myTurtleBackground.getTurtleBackground());
-    layout.setLeft(myUserVariablesContainer.getUserVariablesContainer());
+    layout.setLeft(myLeftBorderContainer.getLeftBorderContainer());
   }
 
   private void addStyleClassesToBorderPane(){
