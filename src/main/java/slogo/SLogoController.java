@@ -34,7 +34,10 @@ public class SLogoController {
   // Backend objects
   private ModelState model;
   private Helper helper;
-  public static final Turtle INITIAL_TURTLE = new Turtle(new int[]{0, 0}, Math.PI / 2, true);
+  private static final int[] INITIAL_POSITION = new int[]{0, 0};
+  private static final double INITIAL_DIRECTION = Math.PI / 2;
+  private static final boolean INITIAL_PENDOWN = true;
+  public static final Turtle INITIAL_TURTLE = new Turtle(INITIAL_POSITION, INITIAL_DIRECTION, INITIAL_PENDOWN);
 
   // Frontend objects
   private View mainView;
@@ -115,6 +118,7 @@ public class SLogoController {
       ArrayDeque<Turtle> steps = commandResult.getTurtleSteps();
       if (steps == null || steps.size() <= 1) {
         //display numeric result on console window
+        System.out.println(commandResult.getIntReturned());
       } else {
         turtleView.moveTurtle(steps.clone());
       }
