@@ -8,6 +8,7 @@ public class Make extends Operator {
 
   public Make(int seqNum){
     super(seqNum);
+    myNumArgs = 2;
   }
 
   public double getRetVal(LogoRuntimeState runtimeState)

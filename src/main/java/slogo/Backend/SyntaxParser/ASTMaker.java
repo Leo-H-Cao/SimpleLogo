@@ -9,11 +9,13 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.ResourceBundle;
 import slogo.Backend.LexicalAnalyzer.Token;
+import slogo.Backend.SyntaxParser.Data.Variable;
 import slogo.Backend.SyntaxParser.ListStructure.ListEnd;
 import slogo.Backend.SyntaxParser.ListStructure.ListStart;
 import slogo.Backend.SyntaxParser.ListStructure.LogoList;
 
 public class ASTMaker {
+
   private final ArrayDeque<Token> tokens;
   private final LinkedList<Operator> unevaluated = new LinkedList<>();
   private final LinkedList<Operator> evaluated = new LinkedList<>();
@@ -50,7 +52,8 @@ public class ASTMaker {
     while (!tokens.isEmpty()) {
       Token t = tokens.getFirst();
       String tokenType = t.getTyoe().toString();
-      ResourceBundle resources = ResourceBundle.getBundle(rootdirectory + "CommandToClassDirectory");
+      ResourceBundle resources = ResourceBundle.getBundle(
+          rootdirectory + "CommandToClassDirectory");
 
       try {
         // System.out.println(tokenType);
@@ -58,20 +61,35 @@ public class ASTMaker {
         Operator nextOperator;
         if (!tokenType.equals("CONSTANT") && !tokenType.equals("VARIABLE")) {
           // operatorType = Class.forName("slogo.Backend.SyntaxParser." + "Command");
-          if(specialCharToClass.containsKey(t.getValue())){
-            operatorType = Class.forName(rootdirectory + resources.getString(t.getValue()) + "."  + specialCharToClass.get(t.getValue()));
-          }
-          else{
-            operatorType = Class.forName(rootdirectory + resources.getString(t.getValue()) + "."  + t.getValue());
+          if (specialCharToClass.containsKey(t.getValue())) {
+            operatorType = Class.forName(
+                rootdirectory + resources.getString(t.getValue()) + "." + specialCharToClass.get(
+                    t.getValue()));
+          } else {
+            operatorType = Class.forName(
+                rootdirectory + resources.getString(t.getValue()) + "." + t.getValue());
           }
 
           // operatorType = Class.forName("Command");
           Constructor<?> constructor = operatorType.getConstructor(int.class);
           nextOperator = (Operator) constructor.newInstance(seqNum);
         } else {
-          operatorType = Class.forName(rootdirectory + "Data.Constant");
-          Constructor<?> constructor = operatorType.getConstructor(int.class, double.class);
-          nextOperator = (Operator) constructor.newInstance(seqNum, Double.parseDouble(t.getValue()));
+          Constructor<?> constructor;
+          if(tokenType.equals("CONSTANT")){
+            operatorType = Class.forName(rootdirectory + "Data.Constant");
+            constructor = operatorType.getConstructor(int.class, double.class);
+            nextOperator = (Operator) constructor.newInstance(seqNum,
+                Double.parseDouble(t.getValue()));
+          }
+          else{
+            operatorType = Class.forName(rootdirectory + "Data.Variable");
+            constructor = operatorType.getConstructor(int.class);
+            nextOperator = (Operator) constructor.newInstance(seqNum);
+            ((Variable) nextOperator).setName(t.getValue());
+          }
+
+
+
         }
 
         if (tokenType == "CONSTANT" || tokenType.equals("Variable")) {
@@ -106,14 +124,14 @@ public class ASTMaker {
       handleOperator(nextOperator);
     }
     //root = evaluated.pop();
-    if(listsByLayer.get(0).get(0).arguments.size()==0){
+    if (listsByLayer.get(0).get(0).arguments.size() == 0) {
       listsByLayer.get(currentLayer).get(currentLayerListNum).addArgument(evaluated.pop());
     }
     root = listsByLayer.get(0).get(0);
   }
 
   private void handleOperator(Operator operator) {
-    if(operator.getClass().equals(ListEnd.class)){
+    if (operator.getClass().equals(ListEnd.class)) {
       unevaluated.removeLast();
       currentLayer++;
       LogoList newLogoList = new LogoList(0);
@@ -122,18 +140,17 @@ public class ASTMaker {
       listsByLayer.add(newLayer);
       return;
     }
-    if(operator.getClass().equals(ListStart.class)){
+    if (operator.getClass().equals(ListStart.class)) {
       unevaluated.removeLast();
 
-      if(unevaluated.getLast().equals(ListEnd.class)){
+      if (unevaluated.getLast().equals(ListEnd.class)) {
         //there are more lists to parse
         listsByLayer.get(currentLayer).add(0, new LogoList(0));
         currentLayerListNum++;
-      }
-      else{
+      } else {
         //no more lists in this layer
         listsByLayer.get(currentLayer).get(0).setSequenceNumber(operator.mySeqNum);
-        for(int i=listsByLayer.get(currentLayer).size()-1; i>=0; i--){
+        for (int i = listsByLayer.get(currentLayer).size() - 1; i >= 0; i--) {
           evaluated.add(listsByLayer.get(currentLayer).get(i));
         }
         //evaluated.addAll(listsByLayer.get(currentLayer));
@@ -146,15 +163,19 @@ public class ASTMaker {
     }
     int numOperands = operator.getMyNumArgs();
     while (numOperands > 0) {
-      if(currentLayer != 0 && !listsByLayer.get(currentLayer).get(currentLayerListNum).getArguments().isEmpty() && operator.mySeqNum + operator.getMyNumArgs() >= listsByLayer.get(currentLayer).get(currentLayerListNum).getArguments().get(0).mySeqNum){
-        operator.addArgument(listsByLayer.get(currentLayer).get(currentLayerListNum).getArguments().get(0));
+      if (currentLayer != 0 && !listsByLayer.get(currentLayer).get(currentLayerListNum)
+          .getArguments().isEmpty()
+          && operator.mySeqNum + operator.getMyNumArgs() >= listsByLayer.get(currentLayer)
+          .get(currentLayerListNum).getArguments().get(0).mySeqNum) {
+        operator.addArgument(
+            listsByLayer.get(currentLayer).get(currentLayerListNum).getArguments().get(0));
         listsByLayer.get(currentLayer).get(currentLayerListNum).getArguments().remove(0);
         numOperands--;
         continue;
       }
-      int i = evaluated.size()-1;
-      while(!evaluated.isEmpty()){
-        if(evaluated.get(i).mySeqNum <= operator.mySeqNum + operator.getMyNumArgs()){
+      int i = evaluated.size() - 1;
+      while (!evaluated.isEmpty()) {
+        if (evaluated.get(i).mySeqNum <= operator.mySeqNum + operator.getMyNumArgs()) {
           operator.addArgument(evaluated.get(i));
           evaluated.remove(i);
           break;
@@ -164,8 +185,8 @@ public class ASTMaker {
 
       numOperands--;
     }
-    if(unevaluated.size()==1){
-      if(currentLayer == 0){
+    if (unevaluated.size() == 1) {
+      if (currentLayer == 0) {
         evaluated.addLast(operator);
         listsByLayer.get(currentLayer).get(currentLayerListNum).addArgument(operator);
         unevaluated.removeLast();
@@ -175,20 +196,20 @@ public class ASTMaker {
     }
     unevaluated.removeLast();
 
-    if((unevaluated.getLast().getMyNumArgs() + unevaluated.getLast().mySeqNum < operator.mySeqNum) && !unevaluated.getLast().getClass().equals(ListStart.class)){
+    if ((unevaluated.getLast().getMyNumArgs() + unevaluated.getLast().mySeqNum < operator.mySeqNum)
+        && !unevaluated.getLast().getClass().equals(ListStart.class)) {
       //the next operator does not use the current operator as an operand. Insert this operator in the list
 
       listsByLayer.get(currentLayer).get(currentLayerListNum).addArgument(operator);
-    }
-    else if (currentLayer==0){
-      if(!evaluated.isEmpty()){
+    } else if (currentLayer == 0) {
+      if (!evaluated.isEmpty()) {
         evaluated.getLast().setSequenceNumber(operator.mySeqNum + 1);
       }
       evaluated.addFirst(operator);
-    }
-    else{
-      if(!listsByLayer.get(currentLayer).get(currentLayerListNum).arguments.isEmpty()){
-        listsByLayer.get(currentLayer).get(currentLayerListNum).arguments.get(0).setSequenceNumber(operator.mySeqNum + 1);
+    } else {
+      if (!listsByLayer.get(currentLayer).get(currentLayerListNum).arguments.isEmpty()) {
+        listsByLayer.get(currentLayer).get(currentLayerListNum).arguments.get(0)
+            .setSequenceNumber(operator.mySeqNum + 1);
       }
       listsByLayer.get(currentLayer).get(currentLayerListNum).addArgument(operator);
     }
