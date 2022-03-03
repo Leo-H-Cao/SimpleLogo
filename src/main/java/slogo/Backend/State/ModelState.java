@@ -28,7 +28,7 @@ public class ModelState implements Initialiazable, ModifiesModelState, StateMana
   private CommandLanguage commandLanguage;
   private Turtle turtle;
   private Tracks tracks;
-  private TurtleHistory history;
+  private LogoRuntimeState runtimeState;
   private UserVariables userVariables;
   private UserCommands userCommands;
 
@@ -40,7 +40,7 @@ public class ModelState implements Initialiazable, ModifiesModelState, StateMana
     this.commandLanguage = CommandLanguage.ENGLISH;
     this.turtle = SLogoController.INITIAL_TURTLE;
     this.tracks = new Tracks();
-    this.history = new TurtleHistory();
+    this.runtimeState = new LogoRuntimeState();
     this.userVariables = new UserVariables();
     this.userCommands = new UserCommands();
   }
@@ -72,8 +72,8 @@ public class ModelState implements Initialiazable, ModifiesModelState, StateMana
     ArrayDeque<Turtle> currentHistory = new ArrayDeque<>();
     currentHistory.addLast(turtle);
     runtimeState.getHistory().getTurtleHistory().addLast(currentHistory);
-    Result res = new Result(root.getRetVal(runtimeState), history.getTurtleHistory().getLast());
-    turtle = history.getTurtleHistory().getLast().getLast();
+    Result res = new Result(root.getRetVal(runtimeState), runtimeState.getHistory().getTurtleHistory().getLast());
+    turtle = runtimeState.getHistory().getTurtleHistory().getLast().getLast();
     return res;
   }
 
@@ -97,7 +97,7 @@ public class ModelState implements Initialiazable, ModifiesModelState, StateMana
    */
   @Override
   public TurtleHistory getTurtleHistory() {
-    return this.history;
+    return this.runtimeState.getHistory();
   }
 
   /**
