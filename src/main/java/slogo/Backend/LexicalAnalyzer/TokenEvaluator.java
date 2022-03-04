@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.ResourceBundle;
 import slogo.Backend.State.CommandLanguage;
 import slogo.Backend.Utilities;
+import generex;
 
 public class TokenEvaluator {
   private HashMap<String, String> evaluator;

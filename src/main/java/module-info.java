@@ -7,7 +7,7 @@ open module slogo_app {
   requires javafx.web;
   requires java.logging;
   requires org.jooq.jool;
-  requires com.github.mifmif.generex;
+  requires com.github.generex;
 
   // allow other classes to access listed packages in your project
   exports slogo;

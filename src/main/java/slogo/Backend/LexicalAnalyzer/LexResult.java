@@ -39,7 +39,7 @@ public class LexResult {
     return rawTokens;
   }
 
-  public ArrayDeque<Token> getEvaluatedTokens() {
+  public Deque<Token> getEvaluatedTokens() {
     return evaluatedTokens;
   }
 }
