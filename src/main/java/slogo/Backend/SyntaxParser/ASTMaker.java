@@ -118,6 +118,7 @@ public class ASTMaker {
     // TODO: use the stacks of operands to generate the AST;
     currentLayer = 0;
     currentLayerListNum = 0;
+    /*
     while (!unevaluated.isEmpty()) {
       Operator nextOperator = unevaluated.getLast();
 
@@ -127,109 +128,60 @@ public class ASTMaker {
     if (listsByLayer.get(0).get(0).arguments.size() == 0) {
       listsByLayer.get(currentLayer).get(currentLayerListNum).addArgument(evaluated.pop());
     }
-    root = listsByLayer.get(0).get(0);
+    //root = listsByLayer.get(0).get(0);
+
+     */
+    root = getList();
   }
 
-  private void handleOperator(Operator operator) {
-    if (operator.getClass().equals(ListEnd.class)) {
-      unevaluated.removeLast();
-      currentLayer++;
-      LogoList newLogoList = new LogoList(0);
-      ArrayList<LogoList> newLayer = new ArrayList<LogoList>();
-      newLayer.add(newLogoList);
-      listsByLayer.add(newLayer);
-      return;
-    }
-    if (operator.getClass().equals(ListStart.class)) {
+  private LogoList getList(){
+    LogoList result = new LogoList(0);
+    LinkedList<Operator> locallyEvaluated = new LinkedList<>();
+
+    while(!unevaluated.isEmpty()){
+      Operator nextOperator = unevaluated.getLast();
       unevaluated.removeLast();
 
-      if (unevaluated.getLast().equals(ListEnd.class)) {
-        //there are more lists to parse
-        listsByLayer.get(currentLayer).add(0, new LogoList(0));
-        currentLayerListNum++;
-      } else {
-        //no more lists in this layer
-        listsByLayer.get(currentLayer).get(0).setSequenceNumber(operator.mySeqNum);
-        for (int i = listsByLayer.get(currentLayer).size() - 1; i >= 0; i--) {
-          evaluated.add(listsByLayer.get(currentLayer).get(i));
-        }
-        //evaluated.addAll(listsByLayer.get(currentLayer));
-        listsByLayer.remove(currentLayer);
-        currentLayerListNum = 0;
-        currentLayer--;
-
-      }
-
-      return;
-    }
-    int numOperands = operator.getMyNumArgs();
-    while (numOperands > 0) {
-      if (true && !listsByLayer.get(currentLayer).get(currentLayerListNum)
-          .getArguments().isEmpty()
-          && operator.mySeqNum + operator.getMyNumArgs() >= listsByLayer.get(currentLayer)
-          .get(currentLayerListNum).getArguments().get(0).mySeqNum) {
-        operator.insertArgumentInOrder(
-            listsByLayer.get(currentLayer).get(currentLayerListNum).getArguments().get(0));
-        listsByLayer.get(currentLayer).get(currentLayerListNum).getArguments().remove(0);
-        numOperands--;
+      if(nextOperator.getClass().equals(ListEnd.class)){
+        locallyEvaluated.add(0,getList());
         continue;
       }
-      int i = evaluated.size() - 1;
-      while (!evaluated.isEmpty()) {
-        if (evaluated.get(i).mySeqNum <= operator.mySeqNum + operator.getMyNumArgs()) {
-          operator.insertArgumentInOrder(evaluated.get(i));
-          evaluated.remove(i);
-          break;
+      if(nextOperator.getClass().equals(ListStart.class)){
+        result.setSequenceNumber(nextOperator.mySeqNum);
+        return result;
+      }
+
+      //handleIntermediateOperator();
+      int numArgumentsNeeded = nextOperator.getMyNumArgs();
+      while(numArgumentsNeeded > 0){
+        if(!locallyEvaluated.isEmpty() && locallyEvaluated.getFirst().mySeqNum <= nextOperator.mySeqNum + nextOperator.getMyNumArgs()){
+          nextOperator.addArgument(locallyEvaluated.removeLast());
         }
-        i--;
+        else{
+          nextOperator.addArgument(evaluated.removeLast());
+        }
+        numArgumentsNeeded--;
       }
 
-      numOperands--;
-    }
-    if (unevaluated.size() == 1) {
-      if (currentLayer == 0) {
-        evaluated.addLast(operator);
-        listsByLayer.get(currentLayer).get(currentLayerListNum).addArgument(operator);
-        unevaluated.removeLast();
-        return;
+      //check if previous operator has this one as an argument
+      if(!unevaluated.isEmpty() && unevaluated.getLast().mySeqNum + unevaluated.getLast().getMyNumArgs() >= nextOperator.mySeqNum){
+        if(!locallyEvaluated.isEmpty()){
+          locallyEvaluated.getFirst().mySeqNum = nextOperator.mySeqNum + 1;
+        }
+
+        locallyEvaluated.addFirst(nextOperator);
+      }
+      else{
+        result.addArgument(nextOperator);
       }
 
     }
-    unevaluated.removeLast();
 
-    if ((unevaluated.getLast().getMyNumArgs() + unevaluated.getLast().mySeqNum < operator.mySeqNum)
-        && !unevaluated.getLast().getClass().equals(ListStart.class)) {
-      //the next operator does not use the current operator as an operand. Insert this operator in the list
-
-      listsByLayer.get(currentLayer).get(currentLayerListNum).addArgument(operator);
-    } else if (currentLayer == 0) {
-      if (!evaluated.isEmpty() && evaluated.getLast().mySeqNum > operator.mySeqNum) {
-        evaluated.getLast().setSequenceNumber(operator.mySeqNum + 1);
-      }
-      //evaluated.addLast(operator);//change to insert in order
-      insertInOrder(operator, evaluated);
-    } else {
-      if (!listsByLayer.get(currentLayer).get(currentLayerListNum).arguments.isEmpty()) {
-        listsByLayer.get(currentLayer).get(currentLayerListNum).arguments.get(0)
-            .setSequenceNumber(operator.mySeqNum + 1);
-      }
-      listsByLayer.get(currentLayer).get(currentLayerListNum).addArgument(operator);
+    if(result.arguments.isEmpty()){
+      result.addArgument(evaluated.get(0));
     }
-
-  }
-
-  private void insertInOrder(Operator o, LinkedList<Operator> list){
-    boolean added = false;
-    for(int i=0; i<list.size(); i++){
-      if(o.mySeqNum < list.get(i).mySeqNum){
-        list.add(i,o);
-        added = true;
-        break;
-      }
-    }
-    if(!added){
-      list.addLast(o);
-    }
-
+    return result;
   }
 }
+
+
