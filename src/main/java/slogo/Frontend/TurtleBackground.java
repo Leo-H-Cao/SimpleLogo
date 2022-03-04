@@ -11,17 +11,16 @@ import slogo.FrontendExternalAPIs.DisplayCanvas;
 
 public class TurtleBackground implements DisplayCanvas {
 
-  private final Pane turtleBackground;
+  private final Pane turtleBackground = new StackPane();
   private TurtleView currentTurtleView;
 
-  public TurtleBackground(TurtleView turtleView) {
-    currentTurtleView = turtleView;
-    turtleBackground = new StackPane();
+  public TurtleBackground() {
     turtleBackground.getStyleClass().add("turtle-background");
   }
 
   public void addTurtle(TurtleView turtle) {
-    turtleBackground.getChildren().add(turtle.getTurtleNode());
+    currentTurtleView  = turtle;
+    turtleBackground.getChildren().addAll(turtle.getCanvas(), turtle.getTurtleNode());
   }
 
   public Pane getTurtleBackground() {
@@ -34,7 +33,6 @@ public class TurtleBackground implements DisplayCanvas {
   @Override
   public void resetDisplay(){
     currentTurtleView.resetTurtle();
-
   }
 
   /**
