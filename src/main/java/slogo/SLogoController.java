@@ -9,6 +9,7 @@ import slogo.Backend.HelpInformation;
 import slogo.Backend.Helper;
 import slogo.Backend.LexicalAnalyzer.InvalidTokenException;
 import slogo.Backend.Result;
+import slogo.Backend.State.CommandLanguage;
 import slogo.Backend.State.ModelState;
 import slogo.Backend.TurtleState.Turtle;
 import slogo.Frontend.CommandInput;
@@ -85,13 +86,15 @@ public class SLogoController {
     // resource file will have defaults
     // UI should allow user to change those attributes before starting up the model
 
+    // initialize turtle
+  }
+
+  public void initializeBackend(CommandLanguage language) {
     // ModelState owns command language, turtle, tracks, history, and user variables/commands
     model = new ModelState();
 
     // Independent object that fetches help for user (just a string for now)
     helper = new Helper();
-
-    // initialize turtle
   }
 
   /**
