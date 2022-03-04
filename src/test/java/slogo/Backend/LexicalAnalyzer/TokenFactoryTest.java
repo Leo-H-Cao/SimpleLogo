@@ -62,7 +62,7 @@ class TokenFactoryTest {
       Seq<Tuple2<String, Token>> rawTokens =
           Seq.of(stringTokensArry).zip(testPairs.get(stringTokensArry));
       for (Tuple2<String, Token> tokenPair : rawTokens) {
-        RawToken match = TokenFactory.getToken(tokenPair.v1);
+        RawToken match = TokenFactory.getRawToken(tokenPair.v1);
         Assertions.assertNotNull(match);
         Assertions.assertInstanceOf(Token.class, match);
         Assertions.assertEquals(match, tokenPair.v2);

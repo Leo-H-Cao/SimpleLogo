@@ -8,7 +8,6 @@ public class LexResult {
   private ArrayDeque<RawToken> unevaluatedRawTokens;
   private ArrayDeque<RawToken> evaluatedTokens;
 
-  //TODO: Dependency Injection/Inversion
 
   public LexResult(String instruction) throws InvalidTokenException {
     this.splitByWhiteSpace = InstructionSplitter.splitInstruction(instruction);
@@ -23,7 +22,7 @@ public class LexResult {
   private ArrayDeque<RawToken> tokenize() throws InvalidTokenException {
     ArrayDeque<RawToken> rawTokens = new ArrayDeque<>();
     for (String s : this.splitByWhiteSpace) {
-      RawToken rawToken = TokenFactory.getToken(s);
+      RawToken rawToken = TokenFactory.getRawToken(s);
       if (rawToken != null) {
         rawTokens.addLast(rawToken);
       } else {
