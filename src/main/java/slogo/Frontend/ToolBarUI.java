@@ -45,7 +45,7 @@ public class ToolBarUI {
   public void setTurtleView(TurtleView curTurtleView){
     myTurtleView = curTurtleView;
     penColorButton = new PenColorButton(myTurtleView.getTurtlePen());
-    buttonBarContainer.getChildren().add(penColorButton.getColorPicker());
+    buttonBarContainer.getChildren().add(penColorButton.getColorPickerContainer());
   }
 
   private void createToolBar(){
