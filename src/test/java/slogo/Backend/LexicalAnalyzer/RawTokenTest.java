@@ -1,7 +1,5 @@
 package slogo.Backend.LexicalAnalyzer;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -12,9 +10,9 @@ class RawTokenTest {
     Token t1 = new Token(TokenType.COMMAND, "fd");
     Token t2 = new Token(TokenType.LISTEND, "]");
     Token t3 = new Token(TokenType.LISTSTART, "[");
-    Assertions.assertEquals(t1.getTyoe(), TokenType.valueOf("COMMAND"));
-    Assertions.assertEquals(t2.getTyoe(), TokenType.valueOf("LISTEND"));
-    Assertions.assertEquals(t3.getTyoe(), TokenType.valueOf("LISTSTART"));
+    Assertions.assertEquals(t1.getType(), TokenType.valueOf("COMMAND"));
+    Assertions.assertEquals(t2.getType(), TokenType.valueOf("LISTEND"));
+    Assertions.assertEquals(t3.getType(), TokenType.valueOf("LISTSTART"));
   }
 
   @Test

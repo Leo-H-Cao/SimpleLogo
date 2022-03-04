@@ -51,7 +51,7 @@ public class ASTMaker {
 
     while (!tokens.isEmpty()) {
       Token t = tokens.getFirst();
-      String tokenType = t.getTyoe().toString();
+      String tokenType = t.getType().toString();
       ResourceBundle resources = ResourceBundle.getBundle(
           rootdirectory + "CommandToClassDirectory");
 

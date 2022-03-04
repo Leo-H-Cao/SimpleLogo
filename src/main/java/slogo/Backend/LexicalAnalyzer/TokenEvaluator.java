@@ -1,7 +1,6 @@
 package slogo.Backend.LexicalAnalyzer;
 
 import java.util.Collection;
-import java.util.Deque;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 import slogo.Backend.State.CommandLanguage;
@@ -48,6 +47,6 @@ public class TokenEvaluator {
   public Token evaluateToken(RawToken rawToken) {
     String unevaluated = rawToken.getValue();
     String value = evaluator.getOrDefault(unevaluated.toLowerCase(), unevaluated);
-    return new Token(rawToken.getTyoe(), value);
+    return new Token(rawToken.getType(), value);
   }
 }

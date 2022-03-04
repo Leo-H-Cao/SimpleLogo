@@ -12,7 +12,7 @@ public abstract class AbstractToken {
     this.value = value;
   }
 
-  public TokenType getTyoe() {
+  public TokenType getType() {
     return type;
   }
 
