@@ -143,7 +143,14 @@ public class ASTMaker {
       unevaluated.removeLast();
 
       if(nextOperator.getClass().equals(ListEnd.class)){
-        locallyEvaluated.add(0,getList());
+        if(unevaluated.getLast().getClass().equals(ListStart.class)){
+          //this is a logical list
+          locallyEvaluated.add(0, makeLogicalList(unevaluated.getLast().mySeqNum));
+        }
+        else{
+          locallyEvaluated.add(0,getList());
+        }
+
         continue;
       }
       if(nextOperator.getClass().equals(ListStart.class)){
@@ -181,6 +188,17 @@ public class ASTMaker {
       result.addArgument(evaluated.get(0));
     }
     return result;
+  }
+
+  private LogoList makeLogicalList(int sequenceNumber){
+    LogoList logicalList = new LogoList(sequenceNumber);
+    int currentSequenceNumber = evaluated.getLast().mySeqNum;
+    while(currentSequenceNumber > sequenceNumber){
+      logicalList.addArgument(evaluated.removeLast());
+      currentSequenceNumber--;
+    }
+    unevaluated.removeLast();
+    return logicalList;
   }
 }
 
