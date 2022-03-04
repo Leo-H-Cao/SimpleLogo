@@ -1,6 +1,7 @@
 package slogo.FrontendExternalAPIs;
 
 import slogo.Backend.ErrorText;
+import slogo.Backend.Result;
 
 public interface UpdateCommandResult {
 
@@ -10,4 +11,6 @@ public interface UpdateCommandResult {
    * @param error
    */
   void displayError(ErrorText error);
+
+  void displayResult(Result result);
 }

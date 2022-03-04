@@ -16,11 +16,6 @@ public class SpeedSlider extends Sslider {
     this.getSlider().setId("speedSlider");
   }
 
-  public void setLabel(Pane speedBox) {
-    Label speedLabel = new Label(SPEED_LABEL);
-    speedBox.getChildren().add(speedLabel);
-  }
-
   public double getValue() {
     return getSlider().getValue();
   }

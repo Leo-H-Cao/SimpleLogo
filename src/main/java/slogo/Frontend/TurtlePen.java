@@ -2,74 +2,70 @@ package slogo.Frontend;
 
 import static slogo.Frontend.ResourceUtil.getResourceColor;
 
+import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
 import slogo.FrontendInternalAPIs.DisplayPen;
 
 public class TurtlePen implements DisplayPen {
-  public static final double TRANSPARENT = 0;
-  public static final double VISIBLE = 1;
-  public static final String PEN_IMAGE_PATH = "frontend/pen.png";
-  public static final int DEFAULT_SIZE = 30;
-  public static final String CONFIGURATION_RESOURCE_PATH =
-      TurtlePen.class.getPackage().getClass().getPackageName()
-          + "."
-          + TurtlePen.class.getPackageName()
-          + ".";
-
-  private final ImageView penView;
-  private int mySize;
+  private static final String CONFIGURATION_RESOURCE_PATH = "slogo/Frontend/pen";
+  private Pane penPane;
   private ResourceBundle myResources;
+  private static Color INITIAL_COLOR = Color.BLACK;
+  private static double INITIAL_LINE_WIDTH = 5;
+  private static boolean INITIAL_PEN_DOWN = true;
+  private double strokeWidth;
+  private Color penColor;
+  private boolean penDown;
+
 
   public TurtlePen() {
-    setResources(CONFIGURATION_RESOURCE_PATH + "pen");
-    penView = new ImageView(PEN_IMAGE_PATH);
-    setPenSize(DEFAULT_SIZE);
+    setResources();
+    penPane = new Pane();
+    penColor = Color.valueOf(myResources.getString("defaultPenColor"));
+    penDown = Boolean.parseBoolean(myResources.getString("defaultPenDown"));
+    strokeWidth = Double.parseDouble(myResources.getString("defaultPenWidth"));
   }
 
-  /**
-   * @author Robert Duvall
-   * @author Marcus Ortiz
-   * @param filename
-   */
-  public void setResources(String filename) {
+  public void setResources() {
     try {
-      myResources = ResourceBundle.getBundle(filename);
+      myResources = ResourceBundle.getBundle(CONFIGURATION_RESOURCE_PATH, Locale.ENGLISH);
     } catch (NullPointerException | MissingResourceException e) {
-      throw new IllegalArgumentException(String.format("Invalid resource file: %s", filename));
+      throw new IllegalArgumentException(String.format("Invalid resource file: %s", "pen"));
     }
   }
 
   // Going to have to find different pen color images (or make them) unless javafx can support
   // vector images
   @Override
-  public void setPenColor(String penColor) {
-    // This probably won't work
-    Color newColor = (Color) getResourceColor(myResources, penColor);
-    ColorAdjust colorAdjust = new ColorAdjust();
-    colorAdjust.setHue(newColor.getHue());
-    colorAdjust.setBrightness(newColor.getBrightness());
-    colorAdjust.setSaturation(newColor.getSaturation());
-    penView.setEffect(colorAdjust);
+  public void setPenColor(Color color) {
+    penColor = color;
   }
 
   @Override
   public void setPenSize(int size) {
-    mySize = size;
-    penView.setFitWidth(size);
-    penView.setFitHeight(size);
+    strokeWidth = size;
   }
 
   @Override
-  public void setPenVisible() {
-    penView.setOpacity(VISIBLE);
+  public void setPenVisible(boolean down) {
+    penDown = down;
+
   }
 
   @Override
-  public void setPenInvisible() {
-    penView.setOpacity(TRANSPARENT);
+  public void setGCOptions(GraphicsContext gc) {
+    if(!penDown){
+      gc.setLineWidth(0);
+      return;
+    }
+    gc.setStroke(penColor);
+    gc.setLineWidth(strokeWidth);
   }
 }
