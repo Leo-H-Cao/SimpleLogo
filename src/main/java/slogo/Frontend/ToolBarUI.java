@@ -48,7 +48,8 @@ public class ToolBarUI {
   public void setTurtleView(TurtleView curTurtleView){
     myTurtleView = curTurtleView;
     penColorPicker = new PenColorPicker(myTurtleView.getTurtlePen());
-    buttonBarContainer.getChildren().add(penColorPicker.getColorPickerContainer());
+    turtleImageButton =  new TurtleImageChooserButton("Choose Turtle Image", myTurtleView);
+    buttonBarContainer.getChildren().addAll(penColorPicker.getColorPickerContainer(), turtleImageButton.getButton());
   }
 
   private void createToolBar(){
@@ -56,13 +57,11 @@ public class ToolBarUI {
     commandHistoryButton.getButton().setId("CommandHistoryButton");
     languageSelect = new LanguageSelect("English");
     languageSelect.getChoiceBox().setId("SelectDisplayLanguage");
-    turtleImageButton = new TurtleImageChooserButton("Choose Turtle Image");
-    newSlogoButton = new NewSlogoButton("New Slogo");
     backgroundColorPicker = new BackgroundColorPicker(myTurtleBackground);
 
 
-    buttonBarContainer.getChildren().addAll(commandHistoryButton.getButton(), languageSelect.getChoiceBox(), turtleImageButton.getButton(), backgroundColorPicker.getColorPickerContainer());
-    mytoolBar.getItems().addAll(buttonBarContainer);
+    buttonBarContainer.getChildren().addAll(commandHistoryButton.getButton(), languageSelect.getChoiceBox(),
+        backgroundColorPicker.getColorPickerContainer()); mytoolBar.getItems().addAll(buttonBarContainer);
   }
 
 }
