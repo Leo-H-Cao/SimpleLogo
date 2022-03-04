@@ -145,6 +145,7 @@ public class ASTMaker {
       if(nextOperator.getClass().equals(ListEnd.class)){
         if(unevaluated.getLast().getClass().equals(ListStart.class)){
           //this is a logical list
+          locallyEvaluated.getFirst().mySeqNum = unevaluated.getLast().mySeqNum + 1;
           locallyEvaluated.add(0, makeLogicalList(unevaluated.getLast().mySeqNum));
         }
         else{
@@ -162,7 +163,7 @@ public class ASTMaker {
       int numArgumentsNeeded = nextOperator.getMyNumArgs();
       while(numArgumentsNeeded > 0){
         if(!locallyEvaluated.isEmpty() && locallyEvaluated.getFirst().mySeqNum <= nextOperator.mySeqNum + nextOperator.getMyNumArgs()){
-          nextOperator.addArgument(locallyEvaluated.removeLast());
+          nextOperator.insertArgumentInOrder(locallyEvaluated.removeFirst());
         }
         else{
           nextOperator.addArgument(evaluated.removeLast());
