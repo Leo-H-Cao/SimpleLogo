@@ -2,9 +2,6 @@
   -fx-control-inner-background: #89c4f4;
   -fx-major-tick-unit: 0.5;
   -fx-minor-tick-count: 5;
-  -fx-snap-to-ticks: true;
-  -fx-show-tick-labels: true;
-  -fx-show-tick-marks: true;
   -fx-max-width: 75;
 }
 
@@ -52,7 +49,7 @@
 }
 
 .output-padding-region{
-  -fx-pref-height: 325;
+  -fx-pref-height: 350;
   -fx-pref-width: 150;
 }
 
@@ -74,12 +71,14 @@
   -fx-background-color: null;
   -fx-border-width: 0.25;
   -fx-border-color: black;
+  -fx-border-radius: 5;
 }
 
 .tool-bar-button{
   -fx-background-color: null;
   -fx-border-width: 0.25;
   -fx-border-color: black;
+  -fx-border-radius: 5;
 }
 
 .tool-bar-button:hover{
@@ -97,6 +96,8 @@ language-select:hover{
 .combo-box-base:hover  {
   -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 8, 0.0 , 0 , 0 );
 }
+
+
 
 /*attempted to style toolbar
 /*.tool-bar-ui {*/
