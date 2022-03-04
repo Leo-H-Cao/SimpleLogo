@@ -18,7 +18,7 @@ public class View {
     stage = primaryStage;
     myController = controller;
     mainUI = new MainUI(primaryStage, controller);
-    startScreenLayout = new VBox();
+    startScreenLayout = new VBox(50);
     displayStartScreen();
   }
 

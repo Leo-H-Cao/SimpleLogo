@@ -61,6 +61,10 @@
   -fx-border-color: #a9a9a9;
 }
 
+.start-screen-title{
+  -fx-font-size: 40;
+}
+
 
 
 /*attempted to style toolbar
