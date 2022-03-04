@@ -12,6 +12,7 @@ public class BackgroundColorPicker extends ColorPickerAbstract {
     colorPicker.setOnAction(ActionEvent -> {
       turtleBackground.setBackGroundColor(colorPicker.getValue());
     });
+    colorPicker.setId("BackgroundColorPicker");
   }
 }
 

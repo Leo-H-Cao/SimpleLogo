@@ -6,9 +6,7 @@ import javafx.scene.layout.Pane;
 import slogo.Frontend.ToolBarButtons.BackgroundColorPicker;
 import slogo.Frontend.ToolBarButtons.CommandHistoryToolbarButton;
 import slogo.Frontend.ToolBarButtons.LanguageSelect;
-import slogo.Frontend.ToolBarButtons.NewSlogoButton;
 import slogo.Frontend.ToolBarButtons.PenColorPicker;
-import slogo.Frontend.ToolBarButtons.SelectBackgroundColorButton;
 import slogo.Frontend.ToolBarButtons.ToolBarButtonAbstract;
 import slogo.Frontend.ToolBarButtons.TurtleImageChooserButton;
 
@@ -27,10 +25,15 @@ public class ToolBarUI {
   private TurtleBackground myTurtleBackground;
 
 
+  /**
+   * Toolbar at top of page to support a number of features
+   * @author Leo Cao
+   */
   public ToolBarUI(TurtleBackground turtleBackground){
     myTurtleBackground = turtleBackground;
     buttonBarContainer = new HBox(5);
     buttonBarContainer.getStyleClass().add("tool-bar-container");
+    buttonBarContainer.setId("ToolBarContainer");
     mytoolBar = new ToolBar();
     mytoolBar.setId("ToolBar");
     mytoolBar.getStyleClass().add("tool-bar-ui");
@@ -39,10 +42,6 @@ public class ToolBarUI {
 
   public ToolBar getToolBar(){
     return mytoolBar;
-  }
-
-  public String getDisplayLanguage(){
-    return languageSelect.getChoiceBox().getSelectionModel().getSelectedItem().toString();
   }
 
   public void setTurtleView(TurtleView curTurtleView){

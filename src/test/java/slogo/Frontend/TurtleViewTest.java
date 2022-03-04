@@ -3,6 +3,7 @@ package slogo.Frontend;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -13,27 +14,29 @@ import slogo.SLogoController;
 class TurtleViewTest extends DukeApplicationTest {
 
   private View view;
-  private Node turtleImage;
   private TextArea commandInputBox;
   private Pane turtleBackground;
 
   @Override
   public void start(Stage stage) {
     SLogoController controller = new SLogoController();
+    controller.setupNewSLogo(stage);
     view = new View(stage, controller);
-    turtleImage = lookup("#turtleImage").query();
-    commandInputBox = lookup("#CommandInputTextArea").query();
+    clickOn(lookup("#StartButton").query());
   }
+
   @Test
   void testMoveTurtle() {
+    Node turtleImage = lookup("#turtleImage").query();
     double Xinitial = turtleImage.getTranslateX();
     double Yinitial = turtleImage.getTranslateY();
-//    runCommand("Forward 50");
-//    assertEquals(-50, turtleImage.getTranslateY() - Xinitial);
-//    assertEquals(0, turtleImage.getTranslateX() - Yinitial);
+    runCommand("Forward 50");
+    assertEquals(-50, turtleImage.getTranslateY() - Xinitial);
+    assertEquals(0, turtleImage.getTranslateX() - Yinitial);
   }
 
   private void runCommand(String command) {
+    TextArea commandInputBox = lookup("#CommandInputTextArea").query();
     writeInputTo(commandInputBox, command);
     clickOn(lookup("#ExecuteButton").query());
   }

@@ -9,6 +9,10 @@ public class MenuBarUI {
 
   private final MenuBar myMenuBar;
 
+  /**
+   * MenuBar at top of application
+   * @author Leo Cao
+   */
   public MenuBarUI() {
     myMenuBar = new MenuBar();
     myMenuBar.setId("MenuBar");

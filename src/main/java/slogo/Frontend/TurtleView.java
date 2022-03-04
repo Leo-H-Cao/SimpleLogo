@@ -3,7 +3,6 @@ package slogo.Frontend;
 import java.util.Deque;
 import javafx.animation.Animation;
 import javafx.animation.PathTransition;
-import javafx.animation.PathTransition.OrientationType;
 import javafx.animation.RotateTransition;
 import javafx.animation.SequentialTransition;
 import javafx.beans.value.ChangeListener;
@@ -13,14 +12,11 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 import javafx.util.Duration;
 
-import javax.xml.stream.Location;
 import slogo.Backend.TurtleState.Turtle;
 import slogo.FrontendExternalAPIs.DisplayTurtle;
 
@@ -34,14 +30,12 @@ public class TurtleView implements DisplayTurtle {
   private Turtle currentTurtle;
   private Turtle initialTurtle;
   private double myAnimationSpeed;
-  private TurtlePen myPen;
   private Canvas canvas;
   private TurtlePen myTurtlePen;
 
   public TurtleView(double animationSpeed, String turtleImagePath) {
     createTurtleImage(turtleImagePath);
     myAnimationSpeed = animationSpeed;
-    myPen = new TurtlePen();
     canvas = new Canvas(CANVAS_SIZE,CANVAS_SIZE);
     myTurtlePen = new TurtlePen();
   }
