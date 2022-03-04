@@ -76,7 +76,7 @@ class LexResultTest {
 
   @Test
   void tokenize() throws InvalidTokenException {
-    TokenScanner tokenScanner = TokenScanner.getTokenScanner();
+    RawTokenScanner rawTokenScanner = RawTokenScanner.getTokenScanner();
     HashMap<String[], ArrayList<Token>> testPairs = new HashMap<>();
     testPairs.put(
         new String[]{"fd", "50"},
@@ -137,7 +137,7 @@ class LexResultTest {
     for(String[] stringTokensArry: testPairs.keySet()){
       Seq<Tuple2<String, Token>> rawTokens = Seq.of(stringTokensArry).zip(testPairs.get(stringTokensArry));
       for(Tuple2<String, Token> tokenPair: rawTokens){
-        RawToken match = tokenScanner.attemptMatch(tokenPair.v1);
+        RawToken match = rawTokenScanner.attemptMatch(tokenPair.v1);
         Assertions.assertNotNull(match);
         Assertions.assertInstanceOf(Token.class, match);
         Assertions.assertEquals(match, tokenPair.v2);
