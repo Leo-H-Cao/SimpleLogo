@@ -1,4 +1,4 @@
-package slogo.Backend.SyntaxParser;
+package slogo.Backend.SyntaxParser.Math;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -7,7 +7,7 @@ import java.util.ArrayDeque;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import slogo.Backend.State.TurtleHistory;
-import slogo.Backend.SyntaxParser.Math.Product;
+import slogo.Backend.SyntaxParser.Data.Constant;
 import slogo.Backend.TurtleState.Turtle;
 
 public class ProductTest {
@@ -22,7 +22,7 @@ public class ProductTest {
   @Test
   void testGetRetVal()
       throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-    assertEquals(20.0, myProduct.getRetVal(new TurtleHistory()));
+    assertEquals(20.0, myProduct.getRetVal(null));
   }
 
   @Test

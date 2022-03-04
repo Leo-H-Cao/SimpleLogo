@@ -1,22 +1,32 @@
 package slogo.Backend.SyntaxParser;
 
-import java.lang.reflect.Array;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
 import java.util.ResourceBundle;
 import slogo.Backend.LexicalAnalyzer.Token;
+import slogo.Backend.SyntaxParser.Data.Variable;
+import slogo.Backend.SyntaxParser.ListStructure.ListEnd;
+import slogo.Backend.SyntaxParser.ListStructure.ListStart;
+import slogo.Backend.SyntaxParser.ListStructure.LogoList;
 
 public class ASTMaker {
+
   private final ArrayDeque<Token> tokens;
-  private final ArrayDeque<Operator> unevaluated = new ArrayDeque<>();
-  private final ArrayDeque<Operator> evaluated = new ArrayDeque<>();
+  private final LinkedList<Operator> unevaluated = new LinkedList<>();
+  private final LinkedList<Operator> evaluated = new LinkedList<>();
   private ArrayList<ArrayList<LogoList>> listsByLayer;
   private int currentLayer;
   private int currentLayerListNum;
   private LogoList root;
 
+  private HashMap<String, Double> variableMap = new HashMap<>();
+
+  private final Map<String, String> specialCharToClass = Map.of("[", "ListStart", "]", "ListEnd");
   private final String rootdirectory = "slogo.Backend.SyntaxParser.";
 
 
@@ -42,25 +52,47 @@ public class ASTMaker {
     while (!tokens.isEmpty()) {
       Token t = tokens.getFirst();
       String tokenType = t.getTyoe().toString();
-      ResourceBundle resources = ResourceBundle.getBundle(rootdirectory + "CommandToClassDirectory");
+      ResourceBundle resources = ResourceBundle.getBundle(
+          rootdirectory + "CommandToClassDirectory");
 
       try {
         // System.out.println(tokenType);
         Class<?> operatorType;
         Operator nextOperator;
-        if (tokenType.equals("COMMAND")) {
+        if (!tokenType.equals("CONSTANT") && !tokenType.equals("VARIABLE")) {
           // operatorType = Class.forName("slogo.Backend.SyntaxParser." + "Command");
-          operatorType = Class.forName(rootdirectory + resources.getString(t.getValue()) + "."  + t.getValue());
+          if (specialCharToClass.containsKey(t.getValue())) {
+            operatorType = Class.forName(
+                rootdirectory + resources.getString(t.getValue()) + "." + specialCharToClass.get(
+                    t.getValue()));
+          } else {
+            operatorType = Class.forName(
+                rootdirectory + resources.getString(t.getValue()) + "." + t.getValue());
+          }
+
           // operatorType = Class.forName("Command");
           Constructor<?> constructor = operatorType.getConstructor(int.class);
           nextOperator = (Operator) constructor.newInstance(seqNum);
         } else {
-          operatorType = Class.forName(rootdirectory + "Constant");
-          Constructor<?> constructor = operatorType.getConstructor(int.class, double.class);
-          nextOperator = (Operator) constructor.newInstance(seqNum, Double.parseDouble(t.getValue()));
+          Constructor<?> constructor;
+          if(tokenType.equals("CONSTANT")){
+            operatorType = Class.forName(rootdirectory + "Data.Constant");
+            constructor = operatorType.getConstructor(int.class, double.class);
+            nextOperator = (Operator) constructor.newInstance(seqNum,
+                Double.parseDouble(t.getValue()));
+          }
+          else{
+            operatorType = Class.forName(rootdirectory + "Data.Variable");
+            constructor = operatorType.getConstructor(int.class);
+            nextOperator = (Operator) constructor.newInstance(seqNum);
+            ((Variable) nextOperator).setName(t.getValue());
+          }
+
+
+
         }
 
-        if (tokenType == "CONSTANT") {
+        if (tokenType == "CONSTANT" || tokenType.equals("VARIABLE")) {
           evaluated.addLast(nextOperator);
         } else {
           unevaluated.addLast(nextOperator);
@@ -86,44 +118,89 @@ public class ASTMaker {
     // TODO: use the stacks of operands to generate the AST;
     currentLayer = 0;
     currentLayerListNum = 0;
+    /*
     while (!unevaluated.isEmpty()) {
       Operator nextOperator = unevaluated.getLast();
 
       handleOperator(nextOperator);
     }
     //root = evaluated.pop();
-    if(listsByLayer.get(0).get(0).arguments.size()==0){
+    if (listsByLayer.get(0).get(0).arguments.size() == 0) {
       listsByLayer.get(currentLayer).get(currentLayerListNum).addArgument(evaluated.pop());
     }
-    root = listsByLayer.get(0).get(0);
+    //root = listsByLayer.get(0).get(0);
+
+     */
+    root = getList();
   }
 
-  private void handleOperator(Operator operator) {
-    if(operator.getClass().equals(ListStart.class)){
-      evaluated.addLast(listsByLayer.get(currentLayer).get(currentLayerListNum));
-    }
-    int numOperands = operator.getMyNumArgs();
-    while (numOperands > 0) {
-      operator.addArgument(evaluated.getLast());
-      evaluated.removeLast();
-      numOperands--;
-    }
-    if(unevaluated.size()==1){
-      evaluated.addLast(operator);
-      listsByLayer.get(currentLayer).get(currentLayerListNum).addArgument(operator);
+  private LogoList getList(){
+    LogoList result = new LogoList(0);
+    LinkedList<Operator> locallyEvaluated = new LinkedList<>();
+
+    while(!unevaluated.isEmpty()){
+      Operator nextOperator = unevaluated.getLast();
       unevaluated.removeLast();
-      return;
+
+      if(nextOperator.getClass().equals(ListEnd.class)){
+        if(unevaluated.getLast().getClass().equals(ListStart.class)){
+          //this is a logical list
+          locallyEvaluated.getFirst().mySeqNum = unevaluated.getLast().mySeqNum + 1;
+          locallyEvaluated.add(0, makeLogicalList(unevaluated.getLast().mySeqNum));
+        }
+        else{
+          locallyEvaluated.add(0,getList());
+        }
+
+        continue;
+      }
+      if(nextOperator.getClass().equals(ListStart.class)){
+        result.setSequenceNumber(nextOperator.mySeqNum);
+        return result;
+      }
+
+      //handleIntermediateOperator();
+      int numArgumentsNeeded = nextOperator.getMyNumArgs();
+      while(numArgumentsNeeded > 0){
+        if(!locallyEvaluated.isEmpty() && locallyEvaluated.getFirst().mySeqNum <= nextOperator.mySeqNum + nextOperator.getMyNumArgs()){
+          nextOperator.insertArgumentInOrder(locallyEvaluated.removeFirst());
+        }
+        else{
+          nextOperator.addArgument(evaluated.removeLast());
+        }
+        numArgumentsNeeded--;
+      }
+
+      //check if previous operator has this one as an argument
+      if(!unevaluated.isEmpty() && unevaluated.getLast().mySeqNum + unevaluated.getLast().getMyNumArgs() >= nextOperator.mySeqNum){
+        if(!locallyEvaluated.isEmpty()){
+          locallyEvaluated.getFirst().mySeqNum = nextOperator.mySeqNum + 1;
+        }
+
+        locallyEvaluated.addFirst(nextOperator);
+      }
+      else{
+        result.addArgument(nextOperator);
+      }
+
+    }
+
+    if(result.arguments.isEmpty()){
+      result.addArgument(evaluated.get(0));
+    }
+    return result;
+  }
+
+  private LogoList makeLogicalList(int sequenceNumber){
+    LogoList logicalList = new LogoList(sequenceNumber);
+    int currentSequenceNumber = evaluated.getLast().mySeqNum;
+    while(currentSequenceNumber > sequenceNumber){
+      logicalList.addArgument(evaluated.removeLast());
+      currentSequenceNumber--;
     }
     unevaluated.removeLast();
-
-    if(unevaluated.getLast().getMyNumArgs() + unevaluated.getLast().mySeqNum < operator.mySeqNum){
-      //the next operator does not use the current operator as an operand. Insert this operator in the list
-
-      listsByLayer.get(currentLayer).get(currentLayerListNum).addArgument(operator);
-    }
-    else{
-      evaluated.addLast(operator);
-    }
-
+    return logicalList;
   }
 }
+
+

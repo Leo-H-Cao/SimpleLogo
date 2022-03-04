@@ -2,9 +2,8 @@ package slogo.Backend.TurtleTransformers;
 
 import java.util.List;
 import java.util.Map;
-import slogo.Backend.TurtleState.Direction;
+import slogo.Backend.TurtleState.FieldValue;
 import slogo.Backend.TurtleState.Turtle;
-import slogo.Backend.TurtleTransformers.TurtleTransformer;
 
 public class Left implements TurtleTransformer {
   private Turtle myOldTurtle;
@@ -16,10 +15,10 @@ public class Left implements TurtleTransformer {
   }
 
   @Override
-  public Map<String, Double> transform() {
+  public Map<String, FieldValue> transform() {
     double turtleAngle = myOldTurtle.getDirection().getDirectionInRadians();
-    double newTurtleAngle = turtleAngle + myParams.get(0);
-    return Map.of(Turtle.DIRECTION, newTurtleAngle);
+    double newTurtleAngle = turtleAngle + Math.toRadians(myParams.get(0));
+    return Map.of(Turtle.DIRECTION, new FieldValue<Double>(newTurtleAngle));
   }
 
 }

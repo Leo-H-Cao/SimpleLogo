@@ -2,7 +2,6 @@ package slogo.Backend.SyntaxParser;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import slogo.Backend.State.TurtleHistory;
 
 public abstract class Operator {
   protected int myNumArgs;
@@ -18,7 +17,7 @@ public abstract class Operator {
     this.arguments = new ArrayList<Operator>();
   }
 
-  public abstract double getRetVal(TurtleHistory history)
+  public abstract double getRetVal(LogoRuntimeState runtimeState)
       throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException;
 
   public int getMyNumArgs() {
@@ -27,5 +26,31 @@ public abstract class Operator {
 
   public void addArgument(Operator o) {
     this.arguments.add(0,o);
+  }
+
+  public void appendArgument(Operator o) {
+    this.arguments.add(o);
+  }
+
+  public void insertArgumentInOrder(Operator o){
+    boolean added = false;
+    for(int i=0; i<this.arguments.size(); i++){
+      if(o.mySeqNum < this.arguments.get(i).mySeqNum){
+        this.arguments.add(i,o);
+        added = true;
+        break;
+      }
+    }
+    if(!added){
+      this.arguments.add(o);
+    }
+  }
+
+  public ArrayList<Operator> getArguments(){
+    return arguments;
+  }
+
+  public void setSequenceNumber(int sequenceNumber){
+    this.mySeqNum = sequenceNumber;
   }
 }

@@ -8,8 +8,11 @@ public class LanguageSelect {
 
   public LanguageSelect(String label) {
     languageChoiceBox = new ChoiceBox();
+    languageChoiceBox.getStyleClass().add("tool-bar-button");
+    languageChoiceBox.getStyleClass().add("language-select");
     languageChoiceBox.setValue(label);
     languageChoiceBox.getItems().addAll("English", "Language 2", "Language 3");
+
   }
 
   public ChoiceBox getChoiceBox() {

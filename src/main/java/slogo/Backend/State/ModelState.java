@@ -4,7 +4,6 @@ import java.io.FileNotFoundException;
 import java.lang.reflect.InvocationTargetException;
 import java.nio.file.Path;
 import java.util.ArrayDeque;
-import java.util.Deque;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.logging.Level;
@@ -16,6 +15,7 @@ import slogo.Backend.LexicalAnalyzer.LexResult;
 import slogo.Backend.Preferences;
 import slogo.Backend.Result;
 import slogo.Backend.SyntaxParser.ASTMaker;
+import slogo.Backend.SyntaxParser.LogoRuntimeState;
 import slogo.Backend.SyntaxParser.Operator;
 import slogo.Backend.TurtleState.Turtle;
 import slogo.BackendExternalAPIs.StateManager;
@@ -28,7 +28,7 @@ public class ModelState implements Initialiazable, ModifiesModelState, StateMana
   private CommandLanguage commandLanguage;
   private Turtle turtle;
   private Tracks tracks;
-  private TurtleHistory history;
+  private LogoRuntimeState runtimeState;
   private UserVariables userVariables;
   private UserCommands userCommands;
 
@@ -40,7 +40,7 @@ public class ModelState implements Initialiazable, ModifiesModelState, StateMana
     this.commandLanguage = CommandLanguage.ENGLISH;
     this.turtle = SLogoController.INITIAL_TURTLE;
     this.tracks = new Tracks();
-    this.history = new TurtleHistory();
+    this.runtimeState = new LogoRuntimeState();
     this.userVariables = new UserVariables();
     this.userCommands = new UserCommands();
   }
@@ -68,10 +68,13 @@ public class ModelState implements Initialiazable, ModifiesModelState, StateMana
     LexResult lexedString = new LexResult(instructionText);
     ASTMaker astMaker = new ASTMaker(lexedString.getTokens());
     Operator root =  astMaker.parse();
+    LogoRuntimeState runtimeState = new LogoRuntimeState();
     ArrayDeque<Turtle> currentHistory = new ArrayDeque<>();
     currentHistory.addLast(turtle);
-    history.getTurtleHistory().addLast(currentHistory);
-    Result res = new Result(root.getRetVal(history), history.getTurtleHistory().getLast());
+    runtimeState.getHistory().getTurtleHistory().addLast(currentHistory);
+    //root.getRetVal(runtimeState);//for testing only; comment this out!
+    Result res = new Result(root.getRetVal(runtimeState), runtimeState.getHistory().getTurtleHistory().getLast());
+    turtle = runtimeState.getHistory().getTurtleHistory().getLast().getLast();
     return res;
   }
 
@@ -95,7 +98,7 @@ public class ModelState implements Initialiazable, ModifiesModelState, StateMana
    */
   @Override
   public TurtleHistory getTurtleHistory() {
-    return this.history;
+    return this.runtimeState.getHistory();
   }
 
   /**
