@@ -61,6 +61,10 @@ public class TurtlePen implements DisplayPen {
 
   @Override
   public void setGCOptions(GraphicsContext gc) {
+    if(!penDown){
+      gc.setLineWidth(0);
+      return;
+    }
     gc.setStroke(penColor);
     gc.setLineWidth(strokeWidth);
   }
