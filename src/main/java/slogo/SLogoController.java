@@ -8,6 +8,7 @@ import slogo.Backend.ErrorText;
 import slogo.Backend.HelpInformation;
 import slogo.Backend.Helper;
 import slogo.Backend.LexicalAnalyzer.InvalidTokenException;
+import slogo.Backend.Preferences;
 import slogo.Backend.Result;
 import slogo.Backend.State.CommandLanguage;
 import slogo.Backend.State.ModelState;
@@ -91,7 +92,7 @@ public class SLogoController {
 
   public void initializeBackend(CommandLanguage language) {
     // ModelState owns command language, turtle, tracks, history, and user variables/commands
-    model = new ModelState();
+    model = new ModelState(new Preferences(language));
 
     // Independent object that fetches help for user (just a string for now)
     helper = new Helper();

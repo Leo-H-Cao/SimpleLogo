@@ -7,6 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.Test;
+import slogo.Backend.Preferences;
+import slogo.Backend.State.CommandLanguage;
 import slogo.Backend.State.ModelState;
 
 public class SLogoControllerTest extends DukeApplicationTest {
@@ -82,7 +84,7 @@ public class SLogoControllerTest extends DukeApplicationTest {
 
   @Test
   void testInvalidBackendInitialization() {
-    ModelState model = new ModelState();
+    ModelState model = new ModelState(new Preferences(CommandLanguage.ENGLISH));
 //    InitializationState initializationState = new InitializationState();
 //    assertNull(model.initalizeBackend(initializationState));
     assertNull(model.getUserVariables());
