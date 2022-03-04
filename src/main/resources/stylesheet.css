@@ -69,9 +69,6 @@
 
 .combo-box-base  {
   -fx-background-color: null;
-  -fx-border-width: 0.25;
-  -fx-border-color: black;
-  -fx-border-radius: 5;
 }
 
 .tool-bar-button{
@@ -95,6 +92,12 @@ language-select:hover{
 
 .combo-box-base:hover  {
   -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 8, 0.0 , 0 , 0 );
+}
+
+.color-picker-container{
+  -fx-border-width: 0.25;
+  -fx-border-color: black;
+  -fx-border-radius: 5;
 }
 
 

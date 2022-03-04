@@ -28,6 +28,24 @@ public abstract class Operator {
     this.arguments.add(0,o);
   }
 
+  public void appendArgument(Operator o) {
+    this.arguments.add(o);
+  }
+
+  public void insertArgumentInOrder(Operator o){
+    boolean added = false;
+    for(int i=0; i<this.arguments.size(); i++){
+      if(o.mySeqNum < this.arguments.get(i).mySeqNum){
+        this.arguments.add(i,o);
+        added = true;
+        break;
+      }
+    }
+    if(!added){
+      this.arguments.add(o);
+    }
+  }
+
   public ArrayList<Operator> getArguments(){
     return arguments;
   }

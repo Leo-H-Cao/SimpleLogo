@@ -13,9 +13,11 @@ public class Variable extends Operator {
   }
   public void setValue(int value){
     this.myValue = value;
+    myNumArgs = 0;
   }
 
   public double getRetVal(LogoRuntimeState runtimeState){
+    myValue = runtimeState.evaluateVariable(this.myName);
     return myValue;
   }
 
