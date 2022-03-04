@@ -8,7 +8,7 @@ import org.jooq.lambda.tuple.Tuple2;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-class TokenScannerTest {
+class RawTokenScannerTest {
 
   @Test
   void getTokenScanner() {
@@ -71,10 +71,10 @@ class TokenScannerTest {
                 new Token(TokenType.COMMAND, "RIGHT"),
                 new Token(TokenType.CONSTANT, "90"))));
     for (String[] stringTokensArry : testPairs.keySet()) {
-      Seq<Tuple2<String, Token>> tokens =
+      Seq<Tuple2<String, Token>> rawTokens =
           Seq.of(stringTokensArry).zip(testPairs.get(stringTokensArry));
-      for (Tuple2<String, Token> tokenPair : tokens) {
-        Token match = tokenScanner.attemptMatch(tokenPair.v1);
+      for (Tuple2<String, Token> tokenPair : rawTokens) {
+        RawToken match = tokenScanner.attemptMatch(tokenPair.v1);
         Assertions.assertNotNull(match);
         Assertions.assertInstanceOf(Token.class, match);
         Assertions.assertEquals(match, tokenPair.v2);

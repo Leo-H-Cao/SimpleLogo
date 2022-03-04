@@ -4,48 +4,37 @@ import java.util.ArrayDeque;
 
 public class LexResult {
 
-  private static final String WHITESPACEREGEX =
-      "[\\s]+"; // source: https://www.baeldung.com/java-regex-s-splus
-  private static final TokenScanner scanner = TokenScanner.getTokenScanner();
-  private final String instruction;
   private final ArrayDeque<String> splitByWhiteSpace;
-  private final ArrayDeque<Token> tokens;
+  private ArrayDeque<RawToken> unevaluatedRawTokens;
+  private ArrayDeque<RawToken> evaluatedTokens;
+
+  //TODO: Dependency Injection/Inversion
 
   public LexResult(String instruction) throws InvalidTokenException {
-    this.instruction = instruction;
-    this.splitByWhiteSpace = this.splitInstruction();
-    this.tokens = this.tokenize();
+    this.splitByWhiteSpace = InstructionSplitter.splitInstruction(instruction);
+    this.unevaluatedRawTokens = this.tokenize();
+    this.evaluatedTokens = this.evaluateTokens();
   }
 
-  /**
-   *
-   *
-   * @return Collection of Strings
-   */
-  protected ArrayDeque<String> splitInstruction() {
-    String[] splitArray = this.instruction.trim().split(LexResult.WHITESPACEREGEX);
-    ArrayDeque<String> deque = new ArrayDeque<>();
-    for (String s : splitArray) {
-      deque.addLast(s);
-    }
-    return deque;
+  private ArrayDeque<RawToken> evaluateTokens() {
+
   }
 
-  protected ArrayDeque<Token> tokenize() throws InvalidTokenException {
-    ArrayDeque<Token> tokens = new ArrayDeque<>();
+  private ArrayDeque<RawToken> tokenize() throws InvalidTokenException {
+    ArrayDeque<RawToken> rawTokens = new ArrayDeque<>();
     for (String s : this.splitByWhiteSpace) {
-      Token token = TokenFactory.getToken(s);
-      if (token != null) {
-        tokens.addLast(token);
+      RawToken rawToken = TokenFactory.getToken(s);
+      if (rawToken != null) {
+        rawTokens.addLast(rawToken);
       } else {
-        throw new InvalidTokenException(s + "is a bad Token");
+        throw new InvalidTokenException(s + "is a bad RawToken");
         // TODO: implement error text and better error message
       }
     }
-    return tokens;
+    return rawTokens;
   }
 
-  public ArrayDeque<Token> getTokens() {
-    return tokens;
+  public ArrayDeque<RawToken> getEvaluatedTokens() {
+    return evaluatedTokens;
   }
 }

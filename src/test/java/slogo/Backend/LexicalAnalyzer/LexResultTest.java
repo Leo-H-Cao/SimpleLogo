@@ -12,10 +12,10 @@ import org.junit.jupiter.api.Test;
 
 class LexResultTest {
 
-  private static ArrayList<Token> dequeToList(ArrayDeque<Token> tokens) {
+  private static ArrayList<Token> dequeToList(ArrayDeque<Token> rawTokens) {
     ArrayList<Token> ret = new ArrayList<>();
-    while(!tokens.isEmpty()){
-      ret.add(tokens.pop());
+    while(!rawTokens.isEmpty()){
+      ret.add(rawTokens.pop());
     }
     return ret;
   }
@@ -61,7 +61,7 @@ class LexResultTest {
     );
     for(String input: testPairs.keySet()){
       LexResult lexResult = new LexResult(input);
-      Deque<String> splitInstruction = lexResult.splitInstruction();
+      Deque<String> splitInstruction = InstructionSplitter.splitInstruction();
       Assertions.assertNotNull(splitInstruction);
       Assertions.assertInstanceOf(ArrayDeque.class, splitInstruction);
       ArrayList<String> splitInstructionArrayList = new ArrayList<String>();
@@ -135,9 +135,9 @@ class LexResultTest {
                 new Token(TokenType.COMMAND, "RIGHT"),
                 new Token(TokenType.CONSTANT, "90"))));
     for(String[] stringTokensArry: testPairs.keySet()){
-      Seq<Tuple2<String, Token>> tokens = Seq.of(stringTokensArry).zip(testPairs.get(stringTokensArry));
-      for(Tuple2<String, Token> tokenPair: tokens){
-        Token match = tokenScanner.attemptMatch(tokenPair.v1);
+      Seq<Tuple2<String, Token>> rawTokens = Seq.of(stringTokensArry).zip(testPairs.get(stringTokensArry));
+      for(Tuple2<String, Token> tokenPair: rawTokens){
+        RawToken match = tokenScanner.attemptMatch(tokenPair.v1);
         Assertions.assertNotNull(match);
         Assertions.assertInstanceOf(Token.class, match);
         Assertions.assertEquals(match, tokenPair.v2);
@@ -206,9 +206,9 @@ class LexResultTest {
                 new Token(TokenType.CONSTANT, "90"))));
     for(String instruction: testPairs.keySet()){
       LexResult lexResult = new LexResult(instruction);
-      ArrayList<Token> tokensList = LexResultTest.dequeToList(lexResult.getTokens());
-      Assertions.assertNotNull(lexResult.getTokens());
-      Assertions.assertInstanceOf(ArrayDeque.class, lexResult.getTokens());
+      ArrayList<Token> tokensList = LexResultTest.dequeToList(lexResult.getEvaluatedTokens());
+      Assertions.assertNotNull(lexResult.getEvaluatedTokens());
+      Assertions.assertInstanceOf(ArrayDeque.class, lexResult.getEvaluatedTokens());
       Assertions.assertEquals(tokensList, testPairs.get(instruction));
     }
   }

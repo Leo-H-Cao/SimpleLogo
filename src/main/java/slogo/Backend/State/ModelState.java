@@ -66,7 +66,7 @@ public class ModelState implements Initialiazable, ModifiesModelState, StateMana
       throws InvalidTokenException, ClassNotFoundException, InvocationTargetException,
       NoSuchMethodException, InstantiationException, IllegalAccessException {
     LexResult lexedString = new LexResult(instructionText);
-    ASTMaker astMaker = new ASTMaker(lexedString.getTokens());
+    ASTMaker astMaker = new ASTMaker(lexedString.getEvaluatedTokens());
     Operator root =  astMaker.parse();
     LogoRuntimeState runtimeState = new LogoRuntimeState();
     ArrayDeque<Turtle> currentHistory = new ArrayDeque<>();
