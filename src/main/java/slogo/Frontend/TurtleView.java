@@ -36,7 +36,6 @@ public class TurtleView implements DisplayTurtle {
   private double myAnimationSpeed;
   private TurtlePen myPen;
   private Canvas canvas;
-  private Path path;
   private TurtlePen myTurtlePen;
 
   public TurtleView(double animationSpeed, String turtleImagePath) {
@@ -45,7 +44,6 @@ public class TurtleView implements DisplayTurtle {
     myPen = new TurtlePen();
     canvas = new Canvas(CANVAS_SIZE,CANVAS_SIZE);
     myTurtlePen = new TurtlePen();
-    path = new Path();
   }
 
   /**
@@ -100,7 +98,7 @@ public class TurtleView implements DisplayTurtle {
 
   // Make a path transition from one turtle's location to another
   private PathTransition makePathTransition(Turtle current, Turtle next) {
-    path.getElements().clear();
+    Path path = new Path();
     path.getElements()
         .addAll(
             new MoveTo(adjustX(current.getLocation().getX()), adjustY(-1 * current.getLocation().getY())),
@@ -172,10 +170,6 @@ public class TurtleView implements DisplayTurtle {
 
   public Canvas getCanvas(){
     return canvas;
-  }
-
-  public Path getPath(){
-    return path;
   }
 
   /**

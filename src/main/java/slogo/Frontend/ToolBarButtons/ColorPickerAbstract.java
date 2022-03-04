@@ -7,30 +7,29 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import slogo.Frontend.TurtlePen;
 
-public class PenColorButton{
-  private static final String PEN_COLOR_LABEL = "  Pen Color:";
+public abstract class ColorPickerAbstract {
 
-  private ColorPicker colorPicker;
-  private HBox colorPickerContainer;
+  ColorPicker colorPicker;
+  HBox colorPickerContainer;
+  String myButtonLabel;
 
-  public PenColorButton(TurtlePen turtlePen){
+  public ColorPickerAbstract(String buttonLabel){
     colorPickerContainer = new HBox();
+    myButtonLabel = buttonLabel;
     colorPickerContainer.getStyleClass().add("color-picker-container");
     colorPicker = new ColorPicker(Color.BLACK);
-    colorPicker.setOnAction(ActionEvent -> {
-      turtlePen.setPenColor(colorPicker.getValue());
-    });
     layoutColorPicker();
   }
 
   private void layoutColorPicker(){
     colorPickerContainer.setAlignment(Pos.CENTER);
-    Label label = new Label(PEN_COLOR_LABEL);
+    Label label = new Label(myButtonLabel);
     colorPickerContainer.getChildren().addAll(label, colorPicker);
   }
 
   public HBox getColorPickerContainer(){
     return colorPickerContainer;
   }
+
 
 }
