@@ -8,7 +8,7 @@ import javafx.scene.paint.Color;
 import slogo.Frontend.TurtlePen;
 
 public class PenColorPicker extends ColorPickerAbstract {
-  private static final String PEN_COLOR_LABEL = "  Pen Color:";
+  private static final String PEN_COLOR_LABEL = "  Pen:";
 
   public PenColorPicker(TurtlePen turtlePen){
     super(PEN_COLOR_LABEL);

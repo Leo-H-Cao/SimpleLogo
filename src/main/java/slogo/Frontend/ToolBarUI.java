@@ -61,8 +61,7 @@ public class ToolBarUI {
     backgroundColorPicker = new BackgroundColorPicker(myTurtleBackground);
 
 
-    buttonBarContainer.getChildren().addAll(commandHistoryButton.getButton(), languageSelect.getChoiceBox(), turtleImageButton.getButton(),
-        newSlogoButton.getButton(), backgroundColorPicker.getColorPickerContainer());
+    buttonBarContainer.getChildren().addAll(commandHistoryButton.getButton(), languageSelect.getChoiceBox(), turtleImageButton.getButton(), backgroundColorPicker.getColorPickerContainer());
     mytoolBar.getItems().addAll(buttonBarContainer);
   }
 
