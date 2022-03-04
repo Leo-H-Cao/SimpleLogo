@@ -92,7 +92,7 @@ public class ASTMaker {
 
         }
 
-        if (tokenType == "CONSTANT" || tokenType.equals("Variable")) {
+        if (tokenType == "CONSTANT" || tokenType.equals("VARIABLE")) {
           evaluated.addLast(nextOperator);
         } else {
           unevaluated.addLast(nextOperator);
@@ -155,6 +155,7 @@ public class ASTMaker {
         }
         //evaluated.addAll(listsByLayer.get(currentLayer));
         listsByLayer.remove(currentLayer);
+        currentLayerListNum = 0;
         currentLayer--;
 
       }
@@ -167,7 +168,7 @@ public class ASTMaker {
           .getArguments().isEmpty()
           && operator.mySeqNum + operator.getMyNumArgs() >= listsByLayer.get(currentLayer)
           .get(currentLayerListNum).getArguments().get(0).mySeqNum) {
-        operator.addArgument(
+        operator.insertArgumentInOrder(
             listsByLayer.get(currentLayer).get(currentLayerListNum).getArguments().get(0));
         listsByLayer.get(currentLayer).get(currentLayerListNum).getArguments().remove(0);
         numOperands--;
@@ -176,7 +177,7 @@ public class ASTMaker {
       int i = evaluated.size() - 1;
       while (!evaluated.isEmpty()) {
         if (evaluated.get(i).mySeqNum <= operator.mySeqNum + operator.getMyNumArgs()) {
-          operator.addArgument(evaluated.get(i));
+          operator.insertArgumentInOrder(evaluated.get(i));
           evaluated.remove(i);
           break;
         }
