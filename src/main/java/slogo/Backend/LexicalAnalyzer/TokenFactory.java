@@ -12,9 +12,13 @@ public class TokenFactory {
   }
 
   public static Token getToken(RawToken rawToken, CommandLanguage commandLanguage) {
+    TokenFactory.createEvaluatorIfAbsent(commandLanguage);
+    return tokenEvaluators.get(commandLanguage).evaluateToken(rawToken);
+  }
+
+  private static void createEvaluatorIfAbsent(CommandLanguage commandLanguage) {
     if(!tokenEvaluators.containsKey(commandLanguage)) {
       tokenEvaluators.put(commandLanguage, new TokenEvaluator(commandLanguage));
     }
-    return tokenEvaluators.get(commandLanguage).evaluateToken(rawToken);
   }
 }
