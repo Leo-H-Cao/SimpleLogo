@@ -30,13 +30,13 @@ public class TokenScanner {
     return "The token '" + badToken + "' is not recognized as valid";
   }
 
-  public Token attemptMatch(String s) throws InvalidTokenException {
+  public RawToken attemptMatch(String s) throws InvalidTokenException {
     for (TokenType tokenType : matchers.keySet()) {
       Matcher matcher = matchers.get(tokenType);
       matcher.reset(s);
       boolean matchStatus = matcher.matches();
       if (matchStatus) {
-        return new Token(tokenType, s);
+        return new RawToken(tokenType, s);
       }
     }
     //If the program makes it here that implies that the String s was an invalid token

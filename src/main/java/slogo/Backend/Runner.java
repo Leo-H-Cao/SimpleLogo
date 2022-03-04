@@ -15,7 +15,7 @@ public class Runner implements Runs, Parses {
 
   public Result run(String instruction) throws InvalidTokenException {
     LexResult lexResult = new LexResult(instruction);
-    ASTMaker ast = new ASTMaker(lexResult.getTokens());
+    ASTMaker ast = new ASTMaker(lexResult.getEvaluatedTokens());
     Operator operator = ast.parse();
     double doubleRet = 0.0; //TODO: get real result from AST
     Result result = new Result(

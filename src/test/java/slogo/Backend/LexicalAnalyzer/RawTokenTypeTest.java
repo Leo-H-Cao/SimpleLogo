@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-class TokenTypeTest {
+class RawTokenTypeTest {
 
     @ParameterizedTest
     @CsvSource(value = {"COMMENT","CONSTANT","VARIABLE","COMMAND","LISTSTART","LISTEND"})

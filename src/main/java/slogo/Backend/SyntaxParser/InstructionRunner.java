@@ -12,9 +12,9 @@ public class InstructionRunner {
 //    myTurtleHistory = new History();
   }
 
-  public Turtle runInstruction(ArrayDeque<Token> tokens)
+  public Turtle runInstruction(ArrayDeque<Token> rawTokens)
       throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-    ASTMaker myMaker = new ASTMaker(tokens);
+    ASTMaker myMaker = new ASTMaker(rawTokens);
     Operator root = myMaker.parse();
     ArrayDeque<Turtle> turtleStack = new ArrayDeque<>();
 //    turtleStack.add(myTurtleHistory.getTurtleHistory().getLast().getLast());
