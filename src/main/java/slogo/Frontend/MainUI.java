@@ -72,7 +72,7 @@ public class MainUI {
     myCommandInput = new CommandInput(myController);
     myTurtleBackground = new TurtleBackground();
     myLeftBorderContainer = new LeftBorderContainer();
-    myToolBar = new ToolBarUI(myTurtleView);
+    myToolBar = new ToolBarUI(myTurtleBackground);
     layOutChildren();
   }
 
@@ -80,6 +80,7 @@ public class MainUI {
     myTurtleView = new TurtleView(4.0, DEFAULT_TURTLE_IMAGE_PATH);
 //    testTurtleView = new TurtleView(myControlPanel.getSpeedSlider().getValue(), DEFAULT_TURTLE_IMAGE_PATH);
     myTurtleBackground.addTurtle(myTurtleView);
+    myToolBar.setTurtleView(myTurtleView);
   }
 
   private void layOutChildren() {

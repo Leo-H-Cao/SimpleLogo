@@ -39,6 +39,16 @@ public class TurtleBackground implements DisplayCanvas {
    * changes background color
    */
   @Override
-  public void setBackGroundColor(){}
+  public void setBackGroundColor(Color color){
+    turtleBackground.setStyle("-fx-background-color: " + toRGBCode(color));
+  }
+
+  private String toRGBCode( Color color )
+  {
+    return String.format( "#%02X%02X%02X",
+        (int)( color.getRed() * 255 ),
+        (int)( color.getGreen() * 255 ),
+        (int)( color.getBlue() * 255 ) );
+  }
 
 }

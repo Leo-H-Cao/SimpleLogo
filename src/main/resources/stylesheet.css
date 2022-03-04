@@ -1,5 +1,5 @@
 .speed-slider {
-  -fx-control-inner-background: #1354cb;
+  -fx-control-inner-background: #89c4f4;
   -fx-major-tick-unit: 0.5;
   -fx-minor-tick-count: 5;
   -fx-snap-to-ticks: true;
@@ -9,7 +9,7 @@
 }
 
 .speed-slider .thumb {
-  -fx-background-color: #1354cb;
+  -fx-background-color: #89c4f4;
 }
 
 .border-pane-right{
@@ -66,6 +66,37 @@
 }
 
 
+.tool-bar:horizontal {
+  -fx-background-color: #89c4f4;
+}
+
+.combo-box-base  {
+  -fx-background-color: null;
+  -fx-border-width: 0.25;
+  -fx-border-color: black;
+}
+
+.tool-bar-button{
+  -fx-background-color: null;
+  -fx-border-width: 0.25;
+  -fx-border-color: black;
+}
+
+.tool-bar-button:hover{
+  -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 8, 0.0 , 0 , 0 );
+}
+
+language-select{
+  -fx-background-color: null;
+}
+
+language-select:hover{
+  -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 8, 0.0 , 0 , 0 );
+}
+
+.combo-box-base:hover  {
+  -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 8, 0.0 , 0 , 0 );
+}
 
 /*attempted to style toolbar
 /*.tool-bar-ui {*/

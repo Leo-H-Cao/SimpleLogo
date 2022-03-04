@@ -204,6 +204,10 @@ public class TurtleView implements DisplayTurtle {
     return turtleImage;
   }
 
+  public TurtlePen getTurtlePen(){
+    return myTurtlePen;
+  }
+
   /**
    * Change image for turtle (instead of CSS style's default)
    *
