@@ -3,15 +3,24 @@ package slogo.Frontend;
 import java.util.Deque;
 import javafx.animation.Animation;
 import javafx.animation.PathTransition;
+import javafx.animation.PathTransition.OrientationType;
 import javafx.animation.RotateTransition;
 import javafx.animation.SequentialTransition;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.Node;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 import javafx.util.Duration;
+
+import javax.xml.stream.Location;
 import slogo.Backend.TurtleState.Turtle;
 import slogo.FrontendExternalAPIs.DisplayTurtle;
 
@@ -19,19 +28,24 @@ public class TurtleView implements DisplayTurtle {
 
   public static final int TURTLE_SIZE = 40;
   public static final int DEFAULT_SPEED = 1;
+  public static final int CANVAS_SIZE = 500;
 
   private ImageView turtleImage;
   private Turtle currentTurtle;
   private Turtle initialTurtle;
   private double myAnimationSpeed;
+  private TurtlePen myPen;
+  private Canvas canvas;
+  private Path path;
+  private TurtlePen myTurtlePen;
 
   public TurtleView(double animationSpeed, String turtleImagePath) {
     createTurtleImage(turtleImagePath);
     myAnimationSpeed = animationSpeed;
-
-//    set current and initial turtle
-//    currentTurtle = initTurtle;
-//    initialTurtle = initTurtle;
+    myPen = new TurtlePen();
+    canvas = new Canvas(CANVAS_SIZE,CANVAS_SIZE);
+    myTurtlePen = new TurtlePen();
+    path = new Path();
   }
 
   /**
@@ -48,9 +62,9 @@ public class TurtleView implements DisplayTurtle {
     makeTransitions(turtles).play();
   }
 
+
   // Creates a singular SequentialTransition that one animation per turtle update in the instruction chain
   private SequentialTransition makeTransitions(Deque<Turtle> turtles) {
-    System.out.println(myAnimationSpeed);
     SequentialTransition transition = new SequentialTransition();
     int size = turtles.size();
     for (int i = 0; i < size; i++) {
@@ -61,6 +75,15 @@ public class TurtleView implements DisplayTurtle {
     return transition;
   }
 
+//  private void makeLine(Turtle nextTurtle){
+//    double startX = adjustX(currentTurtle.getLocation().getX());
+//    double startY = adjustY(currentTurtle.getLocation().getY());
+//    double endX = adjustX(nextTurtle.getLocation().getX());
+//    double endY = adjustY(nextTurtle.getLocation().getY());
+//    Line newLine = myPen.drawLine(startX,endX,startY,endY);
+//    penPane.getChildren().add(newLine);
+//  }
+
   // Creates an animation from one turtle to the next
   private Animation makeAnimation(Turtle nextTurtle) {
     SequentialTransition transition = new SequentialTransition(turtleImage);
@@ -70,16 +93,14 @@ public class TurtleView implements DisplayTurtle {
         && nextTurtle.getLocation().getY() == currentTurtle.getLocation().getY()) {
       transition.getChildren().add(makeRotateTransition(currentTurtle, nextTurtle));
     } else {
-      transition.getChildren().add(makePathTransition(currentTurtle, nextTurtle));
+        transition.getChildren().add(makePathTransition(currentTurtle, nextTurtle));
     }
     return transition;
   }
 
   // Make a path transition from one turtle's location to another
   private PathTransition makePathTransition(Turtle current, Turtle next) {
-    Path path = new Path();
-    //offsetPathForAbsoluteCoords(path, turtleImage);
-
+    path.getElements().clear();
     path.getElements()
         .addAll(
             new MoveTo(adjustX(current.getLocation().getX()), adjustY(-1 * current.getLocation().getY())),
@@ -87,8 +108,48 @@ public class TurtleView implements DisplayTurtle {
 
     PathTransition pt =
         new PathTransition(Duration.seconds(DEFAULT_SPEED / myAnimationSpeed), path, turtleImage);
+    drawLine(pt);
 
     return pt;
+  }
+
+  private void drawLine(PathTransition pt){
+    GraphicsContext gc = canvas.getGraphicsContext2D();
+    pt.currentTimeProperty().addListener(new ChangeListener<Duration>() {
+      Location oldLocation = null;
+      /**
+       * Draw a line from the old location to the new location
+       */
+      @Override
+      public void changed(ObservableValue<? extends Duration> observable, Duration oldValue,
+          Duration newValue) {
+
+        // skip starting at 0/0
+        if (oldValue == Duration.ZERO) {
+          return;
+        }
+
+        // get current location
+        double x = turtleImage.getTranslateX();
+        double y = turtleImage.getTranslateY();
+
+        // initialize the location
+        if (oldLocation == null) {
+          oldLocation = new Location();
+          oldLocation.x = x;
+          oldLocation.y = y;
+          return;
+        }
+        // draw line
+        myTurtlePen.setGCOptions(gc);
+        gc.strokeLine(oldLocation.x + 250, oldLocation.y + 250, x+250, y+250);
+
+        // update old location with current one
+        oldLocation.x = x;
+        oldLocation.y = y;
+      }
+    });
+
   }
 
   // Adjusts x coordinate to refer to the center of the image instead of the top left corner
@@ -107,6 +168,14 @@ public class TurtleView implements DisplayTurtle {
     double angleToRotate = -1 * (next.getDirection().getDirectionInDegrees() - current.getDirection().getDirectionInDegrees());
     rt.setByAngle(angleToRotate);
     return rt;
+  }
+
+  public Canvas getCanvas(){
+    return canvas;
+  }
+
+  public Path getPath(){
+    return path;
   }
 
   /**
@@ -133,6 +202,10 @@ public class TurtleView implements DisplayTurtle {
 
   public Node getTurtleNode() {
     return turtleImage;
+  }
+
+  public TurtlePen getTurtlePen(){
+    return myTurtlePen;
   }
 
   /**
@@ -163,6 +236,11 @@ public class TurtleView implements DisplayTurtle {
     //makeAnimation(initialTurtle).play();
     turtleImage.setX(initialTurtle.getLocation().getX());
     turtleImage.setX(initialTurtle.getLocation().getY());
+  }
+
+  public static class Location {
+    double x;
+    double y;
   }
 
 }

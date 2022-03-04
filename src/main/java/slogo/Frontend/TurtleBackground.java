@@ -11,17 +11,16 @@ import slogo.FrontendExternalAPIs.DisplayCanvas;
 
 public class TurtleBackground implements DisplayCanvas {
 
-  private final Pane turtleBackground;
+  private final Pane turtleBackground = new StackPane();
   private TurtleView currentTurtleView;
 
-  public TurtleBackground(TurtleView turtleView) {
-    currentTurtleView = turtleView;
-    turtleBackground = new StackPane();
+  public TurtleBackground() {
     turtleBackground.getStyleClass().add("turtle-background");
   }
 
   public void addTurtle(TurtleView turtle) {
-    turtleBackground.getChildren().add(turtle.getTurtleNode());
+    currentTurtleView  = turtle;
+    turtleBackground.getChildren().addAll(turtle.getCanvas(), turtle.getTurtleNode());
   }
 
   public Pane getTurtleBackground() {
@@ -34,13 +33,22 @@ public class TurtleBackground implements DisplayCanvas {
   @Override
   public void resetDisplay(){
     currentTurtleView.resetTurtle();
-
   }
 
   /**
    * changes background color
    */
   @Override
-  public void setBackGroundColor(){}
+  public void setBackGroundColor(Color color){
+    turtleBackground.setStyle("-fx-background-color: " + toRGBCode(color));
+  }
+
+  private String toRGBCode( Color color )
+  {
+    return String.format( "#%02X%02X%02X",
+        (int)( color.getRed() * 255 ),
+        (int)( color.getGreen() * 255 ),
+        (int)( color.getBlue() * 255 ) );
+  }
 
 }

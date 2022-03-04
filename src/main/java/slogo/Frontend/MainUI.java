@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 import slogo.SLogoController;
 
 public class MainUI {
-  public static final String DEFAULT_TURTLE_IMAGE_PATH = "test-turtle.png";
+  public static final String DEFAULT_TURTLE_IMAGE_PATH = "slogo/Frontend/turtle.png";
 
   private final SLogoController myController;
   private final BorderPane layout;
@@ -17,7 +17,7 @@ public class MainUI {
   private ControlPanel myControlPanel;
   private CommandInput myCommandInput;
   private TurtleBackground myTurtleBackground;
-  private TurtleView testTurtleView;
+  private TurtleView myTurtleView;
   private LeftBorderContainer myLeftBorderContainer;
   private ToolBarUI myToolBar;
 
@@ -43,7 +43,7 @@ public class MainUI {
   }
 
   public TurtleView getTurtleView() {
-    return testTurtleView;
+    return myTurtleView;
   }
 
   public TurtleBackground getTurtleBackground(){
@@ -70,16 +70,17 @@ public class MainUI {
     myMenuBar = new MenuBarUI();
     myControlPanel = new ControlPanel();
     myCommandInput = new CommandInput(myController);
-    myTurtleBackground = new TurtleBackground(testTurtleView);
+    myTurtleBackground = new TurtleBackground();
     myLeftBorderContainer = new LeftBorderContainer();
-    myToolBar = new ToolBarUI(testTurtleView);
+    myToolBar = new ToolBarUI(myTurtleBackground);
     layOutChildren();
   }
 
   private void addingTurtle() {
-    testTurtleView = new TurtleView(4.0, DEFAULT_TURTLE_IMAGE_PATH);
+    myTurtleView = new TurtleView(4.0, DEFAULT_TURTLE_IMAGE_PATH);
 //    testTurtleView = new TurtleView(myControlPanel.getSpeedSlider().getValue(), DEFAULT_TURTLE_IMAGE_PATH);
-    myTurtleBackground.addTurtle(testTurtleView);
+    myTurtleBackground.addTurtle(myTurtleView);
+    myToolBar.setTurtleView(myTurtleView);
   }
 
   private void layOutChildren() {
