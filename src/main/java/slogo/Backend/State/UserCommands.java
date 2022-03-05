@@ -30,8 +30,4 @@ public class UserCommands {
     return;
   }
 
-  private static ParsePreference getDefaultParsePreference() {
-    // TODO: load Parse Preference from persistent settings file
-    return null;
-  }
 }

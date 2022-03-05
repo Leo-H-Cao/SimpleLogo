@@ -11,7 +11,6 @@ import java.util.logging.Logger;
 import slogo.Backend.FileReadingException;
 import slogo.Backend.LexicalAnalyzer.InvalidTokenException;
 import slogo.Backend.LexicalAnalyzer.LexResult;
-import slogo.Backend.Preferences;
 import slogo.Backend.Result;
 import slogo.Backend.SyntaxParser.ASTMaker;
 import slogo.Backend.SyntaxParser.LogoRuntimeState;
@@ -23,10 +22,13 @@ import slogo.BackendExternalAPIs.ModifiesModelState;
 import slogo.Backend.className;
 import slogo.SLogoController;
 
+/**
+ * This class ____
+ * @author Alex & Edison
+ */
 public class ModelState implements Initialiazable, ModifiesModelState, StateManager {
   private CommandLanguage commandLanguage;
   private Turtle turtle;
-  private Tracks tracks;
   private LogoRuntimeState runtimeState;
   private UserVariables userVariables;
   private UserCommands userCommands;
@@ -38,7 +40,6 @@ public class ModelState implements Initialiazable, ModifiesModelState, StateMana
     // All this initialization could go into initializeBackend()
     this.commandLanguage = CommandLanguage.ENGLISH;
     this.turtle = SLogoController.INITIAL_TURTLE;
-    this.tracks = new Tracks();
     this.runtimeState = new LogoRuntimeState();
     this.userVariables = new UserVariables();
     this.userCommands = new UserCommands();

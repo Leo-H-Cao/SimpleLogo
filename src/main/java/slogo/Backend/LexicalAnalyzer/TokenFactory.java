@@ -3,7 +3,10 @@ package slogo.Backend.LexicalAnalyzer;
 import java.util.HashMap;
 import java.util.Map;
 import slogo.Backend.State.CommandLanguage;
-
+/**
+ * This class ____
+ * @author Alex
+ */
 public class TokenFactory {
   private static final RawTokenScanner RAW_TOKEN_SCANNER = RawTokenScanner.getTokenScanner();
   private static Map<CommandLanguage, TokenEvaluator> tokenEvaluators = new HashMap<>();

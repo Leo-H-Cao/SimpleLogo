@@ -5,7 +5,10 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
+/**
+ * This class ____
+ * @author Alex
+ */
 public class RawTokenScanner {
   private static final RawTokenScanner RAW_TOKEN_SCANNER = new RawTokenScanner();
   private final HashMap<TokenType, Matcher> matchers;

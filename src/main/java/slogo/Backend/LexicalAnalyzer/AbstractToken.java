@@ -2,6 +2,10 @@ package slogo.Backend.LexicalAnalyzer;
 
 import java.util.Objects;
 
+/**
+ * This class ____
+ * @author Alex
+ */
 public abstract class AbstractToken {
 
   protected final TokenType type;
