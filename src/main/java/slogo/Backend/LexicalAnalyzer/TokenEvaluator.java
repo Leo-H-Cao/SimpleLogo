@@ -37,7 +37,6 @@ public class TokenEvaluator {
 
   private Collection<String> getMatchingStrings(String regex) {
 
-    System.out.println(regex);
     RegExp regExpCompiled = new RegExp(regex, RegExp.NONE);
     Automaton automaton = regExpCompiled.toAutomaton();
     return SpecialOperations.getFiniteStrings(automaton);

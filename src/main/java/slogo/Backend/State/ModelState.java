@@ -9,7 +9,6 @@ import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import slogo.Backend.FileReadingException;
-import slogo.Backend.InstructionHistory;
 import slogo.Backend.LexicalAnalyzer.InvalidTokenException;
 import slogo.Backend.LexicalAnalyzer.LexResult;
 import slogo.Backend.Preferences;
