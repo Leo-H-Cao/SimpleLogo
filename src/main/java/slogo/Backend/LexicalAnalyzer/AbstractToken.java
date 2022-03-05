@@ -3,7 +3,9 @@ package slogo.Backend.LexicalAnalyzer;
 import java.util.Objects;
 
 /**
- * This class ____
+ * This class is the abstract parent class for all types of Token-like objects.
+ * For now it is RawToken, which is the Token before it's String is changed ("evaluated"),
+ * and also Token, which is the completed "evaluated" token
  * @author Alex
  */
 public abstract class AbstractToken {

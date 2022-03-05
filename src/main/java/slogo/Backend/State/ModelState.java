@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 import slogo.Backend.FileReadingException;
 import slogo.Backend.LexicalAnalyzer.InvalidTokenException;
 import slogo.Backend.LexicalAnalyzer.LexResult;
+import slogo.Backend.Preferences;
 import slogo.Backend.Result;
 import slogo.Backend.SyntaxParser.ASTMaker;
 import slogo.Backend.SyntaxParser.LogoRuntimeState;
@@ -42,7 +43,7 @@ public class ModelState implements Initialiazable, ModifiesModelState, StateMana
     this.turtle = SLogoController.INITIAL_TURTLE;
     this.runtimeState = new LogoRuntimeState();
     this.userVariables = new UserVariables();
-    this.userCommands = new UserCommands();
+    this.userCommands = null; //FIX
   }
 
   /**
@@ -79,17 +80,7 @@ public class ModelState implements Initialiazable, ModifiesModelState, StateMana
   }
 
 
-  /**
-   * A method which calls on the backend to get all the tracks created by the Turtle from the
-   * perspective of the backend. The returned object can be thought of as a state machine that has
-   * all the information on the tracks that the backend knows about.
-   *
-   * @return Tracks object which has the backend's understanding of the current tracks
-   */
-  @Override
-  public Tracks getTracks() {
-    return this.tracks;
-  }
+
 
   /**
    * Gets history.

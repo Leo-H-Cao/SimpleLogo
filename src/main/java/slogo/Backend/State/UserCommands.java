@@ -7,22 +7,17 @@ import java.util.Set;
 public class UserCommands {
   private Set<String> userCommandNames;
 //  private HashMap<CommandName, AST> commands;
-  private ParsePreference parsePreference;
 
-  public UserCommands() {
-    userCommandNames = new HashSet<>();
-//    commands = new HashMap<>();
-    parsePreference = UserCommands.getDefaultParsePreference();
-    //replace null with enum
-    if(parsePreference == null){
-      this.loadUserCommands();
-    }
-  }
+//  public UserCommands() {
+//    userCommandNames = new HashSet<>();
+////    commands = new HashMap<>();
+//    //replace null with enum
+//    }
+//  }
 
   private UserCommands(String parsePreference) {
     userCommandNames = new HashSet<>();
 //    commands = new HashMap<>();
-    this.parsePreference = ParsePreference.valueOf(parsePreference);
   }
 
   public void loadUserCommands(){

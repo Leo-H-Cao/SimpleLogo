@@ -5,7 +5,6 @@ import slogo.Backend.LexicalAnalyzer.InvalidTokenException;
 import slogo.Backend.Result;
 import slogo.Backend.State.CommandLanguage;
 import slogo.Backend.State.InstructionHistory;
-import slogo.Backend.State.Tracks;
 import slogo.Backend.State.TurtleHistory;
 import slogo.Backend.State.UserCommands;
 import slogo.Backend.State.UserVariables;
@@ -16,14 +15,6 @@ import slogo.Backend.State.UserVariables;
  */
 public interface StateManager {
 
-  /**
-   * A method which calls on the backend to get all the tracks created by the Turtle from the
-   * perspective of the backend. The returned object can be thought of as a state machine that has
-   * all the information on the tracks that the backend knows about.
-   *
-   * @return Tracks object which has the backend's understanding of the current tracks
-   */
-  Tracks getTracks();
 
   /**
    * Gets the full history of the Turtle objects from this running of the model.
