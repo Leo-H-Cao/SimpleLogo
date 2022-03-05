@@ -84,6 +84,10 @@ public class ASTMaker {
               operatorType = Class.forName(
                   rootdirectory + resources.getString(t.getValue()) + "." + t.getValue());
             }
+            else if(t.getValue().equals("MakeVariable")){
+              operatorType = Class.forName(
+                  rootdirectory + "Data" + "." + "Make");
+            }
             else{
               operatorType = Class.forName(rootdirectory + "Data.UserCommand");
             }
@@ -91,6 +95,7 @@ public class ASTMaker {
           }
 
           // operatorType = Class.forName("Command");
+
           Constructor<?> constructor = operatorType.getConstructor(int.class);
           nextOperator = (Operator) constructor.newInstance(seqNum);
           if(nextOperator.getClass().equals(UserCommand.class)){
@@ -158,7 +163,8 @@ public class ASTMaker {
         if(unevaluated.getLast().getClass().equals(ListStart.class)){
           //this is a logical list
           locallyEvaluated.getFirst().mySeqNum = unevaluated.getLast().mySeqNum + 1;
-          locallyEvaluated.add(0, makeLogicalList(unevaluated.getLast().mySeqNum));
+          LogoList l = makeLogicalList(unevaluated.getLast().mySeqNum);
+          locallyEvaluated.add(0, l);
         }
         else{
           locallyEvaluated.add(0,getList());
@@ -206,6 +212,9 @@ public class ASTMaker {
   private LogoList makeLogicalList(int sequenceNumber){
     LogoList logicalList = new LogoList(sequenceNumber);
     int currentSequenceNumber = 0;
+    if(!evaluated.isEmpty()){
+      currentSequenceNumber = evaluated.getLast().mySeqNum;
+    }
     if(currentSequenceNumber > sequenceNumber){
       currentSequenceNumber = evaluated.getLast().mySeqNum;
     }

@@ -34,6 +34,9 @@ public class LogoRuntimeState {
   }
 
   public double evaluateVariable(String variable){
+    if(!variableTable.containsKey(variable)){
+      setVariableValue(variable, 0.0);
+    }
     return variableTable.get(variable);
   }
 

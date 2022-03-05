@@ -8,6 +8,7 @@ public class Ifelse extends Operator {
 
   public Ifelse(int sequenceNumber){
     super(sequenceNumber);
+    myNumArgs = 3;
   }
 
   public double getRetVal(LogoRuntimeState s)

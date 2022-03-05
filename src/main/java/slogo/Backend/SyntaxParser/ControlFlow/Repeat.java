@@ -13,6 +13,7 @@ public class Repeat extends Operator {
       throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
     int numRepetitions = (int) arguments.get(0).getRetVal(runtimeState);
     for(int i=0; i<numRepetitions; i++){
+      runtimeState.setVariableValue(":repcount", i+1);
       double retVal = arguments.get(1).getRetVal(runtimeState);
     }
     return retVal;
