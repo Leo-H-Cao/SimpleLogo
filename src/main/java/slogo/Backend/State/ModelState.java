@@ -72,7 +72,7 @@ public class ModelState implements Initialiazable, ModifiesModelState, StateMana
     ArrayDeque<Turtle> currentHistory = new ArrayDeque<>();
     currentHistory.addLast(turtle);
     runtimeState.getHistory().getTurtleHistory().addLast(currentHistory);
-    root.getRetVal(runtimeState);//for testing only; comment this out!
+    //root.getRetVal(runtimeState);//for testing only; comment this out!
     Result res = new Result(root.getRetVal(runtimeState), runtimeState.getHistory().getTurtleHistory().getLast());
     turtle = runtimeState.getHistory().getTurtleHistory().getLast().getLast();
     return res;
