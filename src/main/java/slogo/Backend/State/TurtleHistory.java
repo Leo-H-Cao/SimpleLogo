@@ -13,7 +13,7 @@ public class TurtleHistory {
   private ArrayDeque<ArrayDeque<Turtle>> turtleHistory;
 
   public TurtleHistory(){
-    turtleHistory = new ArrayDeque<ArrayDeque<Turtle>>();
+    turtleHistory = new ArrayDeque<>();
   }
 
   public ArrayDeque<ArrayDeque<Turtle>> getTurtleHistory() {

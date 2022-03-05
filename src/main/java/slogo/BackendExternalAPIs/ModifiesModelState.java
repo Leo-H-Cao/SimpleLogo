@@ -2,6 +2,10 @@ package slogo.BackendExternalAPIs;
 
 import slogo.Backend.InvalidCommandLanguageException;
 
+/**
+ * This class ____
+ * @author Alex
+ */
 public interface ModifiesModelState {
   /**
    * Sets command language to commandLanguage

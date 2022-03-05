@@ -4,7 +4,10 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import slogo.Backend.TurtleState.Turtle;
 
-/** The type Result. */
+/**
+ * This class tests the Lexical Analyzer
+ * @author Alex
+ * */
 public class Result {
   private final double doubleReturned;
   private final ArrayDeque<Turtle> turtleSteps;

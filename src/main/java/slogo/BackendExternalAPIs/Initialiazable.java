@@ -9,6 +9,10 @@ import slogo.Backend.Preferences;
 import slogo.Backend.State.ModelState;
 import slogo.Backend.className;
 
+/**
+ * This class ____
+ * @author Alex
+ */
 public interface Initialiazable {
 
   /**

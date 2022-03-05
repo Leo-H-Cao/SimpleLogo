@@ -23,10 +23,13 @@ import slogo.BackendExternalAPIs.ModifiesModelState;
 import slogo.Backend.className;
 import slogo.SLogoController;
 
+/**
+ * This class ____
+ * @author Alex & Edison
+ */
 public class ModelState implements Initialiazable, ModifiesModelState, StateManager {
   private CommandLanguage commandLanguage;
   private Turtle turtle;
-  private Tracks tracks;
   private LogoRuntimeState runtimeState;
   private UserVariables userVariables;
   private UserCommands userCommands;
@@ -38,10 +41,9 @@ public class ModelState implements Initialiazable, ModifiesModelState, StateMana
     // All this initialization could go into initializeBackend()
     this.commandLanguage = CommandLanguage.ENGLISH;
     this.turtle = SLogoController.INITIAL_TURTLE;
-    this.tracks = new Tracks();
     this.runtimeState = new LogoRuntimeState();
     this.userVariables = new UserVariables();
-    this.userCommands = new UserCommands();
+    this.userCommands = null; //FIX
   }
 
   /**
@@ -78,17 +80,7 @@ public class ModelState implements Initialiazable, ModifiesModelState, StateMana
   }
 
 
-  /**
-   * A method which calls on the backend to get all the tracks created by the Turtle from the
-   * perspective of the backend. The returned object can be thought of as a state machine that has
-   * all the information on the tracks that the backend knows about.
-   *
-   * @return Tracks object which has the backend's understanding of the current tracks
-   */
-  @Override
-  public Tracks getTracks() {
-    return this.tracks;
-  }
+
 
   /**
    * Gets history.

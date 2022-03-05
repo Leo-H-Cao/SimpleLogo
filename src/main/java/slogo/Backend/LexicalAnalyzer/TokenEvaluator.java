@@ -9,7 +9,10 @@ import slogo.Backend.State.CommandLanguage;
 import slogo.Backend.Utilities;
 import dk.brics.automaton.Automaton;
 import dk.brics.automaton.SpecialOperations;
-
+/**
+ * This class ____
+ * @author Alex
+ */
 public class TokenEvaluator {
   private Map<String, String> evaluator;
 

@@ -3,7 +3,10 @@ package slogo.Backend.LexicalAnalyzer;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import slogo.Backend.State.CommandLanguage;
-
+/**
+ * This class ____
+ * @author Alex
+ */
 public class LexResult {
 
   private final Deque<String> splitByWhiteSpace;

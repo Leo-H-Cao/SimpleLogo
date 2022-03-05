@@ -2,7 +2,10 @@ package slogo.Backend.State;
 
 import java.util.HashMap;
 import java.util.Set;
-
+/**
+ * This class ____
+ * @author Alex
+ */
 public class UserVariables {
   private HashMap<VariableName, Double> variables;
 
