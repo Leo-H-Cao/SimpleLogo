@@ -3,6 +3,11 @@ package slogo.Backend.SyntaxParser;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
+/***
+ * The fundamental subunit of an instruction, including commands, constants, variables, and lists
+ * @author Jed Yang
+ */
+
 public abstract class Operator {
   protected int myNumArgs;
   protected ArrayList<Operator> arguments;
