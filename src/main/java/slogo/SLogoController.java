@@ -81,15 +81,13 @@ public class SLogoController {
 
     userDefinedAttributesUpdater =
         new ViewUserDefined(); // TODO: This should be owned by some class in the frontend
-
-    // initialize window to set parameters
-    // frontend stuff to get language + other initial parameters that the backend needs to know
-    // resource file will have defaults
-    // UI should allow user to change those attributes before starting up the model
-
-    // initialize turtle
   }
 
+  /**
+   * Initializes backend components. Should be called after the user selects their preferences at
+   * program launch.
+   * @param language CommandLanguage in which commands will be parsed with
+   */
   public void initializeBackend(CommandLanguage language) {
     // ModelState owns command language, turtle, tracks, history, and user variables/commands
     model = new ModelState(new Preferences(language));
@@ -127,8 +125,6 @@ public class SLogoController {
       }
     } catch (InvalidTokenException | ClassNotFoundException | InvocationTargetException |
         NoSuchMethodException | InstantiationException | IllegalAccessException exception) {
-      //handle
-      System.out.println(exception);
       commandOutputter.displayError(new ErrorText(exception.toString()));
     }
   }
