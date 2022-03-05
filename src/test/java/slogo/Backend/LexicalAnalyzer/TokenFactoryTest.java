@@ -92,6 +92,38 @@ class TokenFactoryTest {
     Assertions.assertEquals(TokenFactory.getToken(rawToken, CommandLanguage.SPANISH), token);
   }
 
+  @ParameterizedTest
+  @MethodSource("getTokenPortugueseArgumentProvider")
+  void getTokenPortugeuse(RawToken rawToken, Token token) {
+    Assertions.assertEquals(TokenFactory.getToken(rawToken, CommandLanguage.PORTUGUESE), token);
+  }
+  @ParameterizedTest
+  @MethodSource("getTokenUrduArgumentProvider")
+  void getTokenUrdu(RawToken rawToken, Token token) {
+    Assertions.assertEquals(TokenFactory.getToken(rawToken, CommandLanguage.URDU), token);
+  }
+
+  static Stream<Arguments> getTokenUrduArgumentProvider() {
+    String[][] arguments = {{"rakhorang", "SetBackground"}, {"rakhoshakal", "SetShape"}, {"laoshakal", "GetShape"}};
+    return getArgumentsStream(arguments);
+  }
+
+  static Stream<Arguments> getTokenPortugueseArgumentProvider() {
+    String[][] arguments = {{"ID", "ID"}, {"mandar", "Tell"}, {"pedir", "Ask"}};
+    return getArgumentsStream(arguments);
+  }
+
+  @ParameterizedTest
+  @MethodSource("getTokenChineseArgumentProvider")
+  void getTokenChinese(RawToken rawToken, Token token) {
+    Assertions.assertEquals(TokenFactory.getToken(rawToken, CommandLanguage.CHINESE), token);
+  }
+
+  static Stream<Arguments> getTokenChineseArgumentProvider() {
+    String[][] arguments = {{"qianjin", "Forward"}, {"ziranduishu", "NaturalLog"}, {"mingling", "Ask"}};
+    return getArgumentsStream(arguments);
+  }
+
   static Stream<Arguments> getTokenSpanishArgumentProvider() {
     String[][] arguments = {
         {"PlUmASuBiDA","PenUp"},
