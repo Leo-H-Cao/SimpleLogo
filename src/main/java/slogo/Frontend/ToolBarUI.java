@@ -6,9 +6,7 @@ import javafx.scene.layout.Pane;
 import slogo.Frontend.ToolBarButtons.BackgroundColorPicker;
 import slogo.Frontend.ToolBarButtons.CommandHistoryToolbarButton;
 import slogo.Frontend.ToolBarButtons.LanguageSelect;
-import slogo.Frontend.ToolBarButtons.NewSlogoButton;
 import slogo.Frontend.ToolBarButtons.PenColorPicker;
-import slogo.Frontend.ToolBarButtons.SelectBackgroundColorButton;
 import slogo.Frontend.ToolBarButtons.ToolBarButtonAbstract;
 import slogo.Frontend.ToolBarButtons.TurtleImageChooserButton;
 
@@ -27,10 +25,15 @@ public class ToolBarUI {
   private TurtleBackground myTurtleBackground;
 
 
+  /**
+   * Toolbar at top of page to support a number of features
+   * @author Leo Cao
+   */
   public ToolBarUI(TurtleBackground turtleBackground){
     myTurtleBackground = turtleBackground;
     buttonBarContainer = new HBox(5);
     buttonBarContainer.getStyleClass().add("tool-bar-container");
+    buttonBarContainer.setId("ToolBarContainer");
     mytoolBar = new ToolBar();
     mytoolBar.setId("ToolBar");
     mytoolBar.getStyleClass().add("tool-bar-ui");
@@ -41,14 +44,11 @@ public class ToolBarUI {
     return mytoolBar;
   }
 
-  public String getDisplayLanguage(){
-    return languageSelect.getChoiceBox().getSelectionModel().getSelectedItem().toString();
-  }
-
   public void setTurtleView(TurtleView curTurtleView){
     myTurtleView = curTurtleView;
     penColorPicker = new PenColorPicker(myTurtleView.getTurtlePen());
-    buttonBarContainer.getChildren().add(penColorPicker.getColorPickerContainer());
+    turtleImageButton =  new TurtleImageChooserButton("Choose Turtle Image", myTurtleView);
+    buttonBarContainer.getChildren().addAll(penColorPicker.getColorPickerContainer(), turtleImageButton.getButton());
   }
 
   private void createToolBar(){
@@ -56,14 +56,11 @@ public class ToolBarUI {
     commandHistoryButton.getButton().setId("CommandHistoryButton");
     languageSelect = new LanguageSelect("English");
     languageSelect.getChoiceBox().setId("SelectDisplayLanguage");
-    turtleImageButton = new TurtleImageChooserButton("Choose Turtle Image");
-    newSlogoButton = new NewSlogoButton("New Slogo");
     backgroundColorPicker = new BackgroundColorPicker(myTurtleBackground);
 
 
-    buttonBarContainer.getChildren().addAll(commandHistoryButton.getButton(), languageSelect.getChoiceBox(), turtleImageButton.getButton(),
-        newSlogoButton.getButton(), backgroundColorPicker.getColorPickerContainer());
-    mytoolBar.getItems().addAll(buttonBarContainer);
+    buttonBarContainer.getChildren().addAll(commandHistoryButton.getButton(), languageSelect.getChoiceBox(),
+        backgroundColorPicker.getColorPickerContainer()); mytoolBar.getItems().addAll(buttonBarContainer);
   }
 
 }

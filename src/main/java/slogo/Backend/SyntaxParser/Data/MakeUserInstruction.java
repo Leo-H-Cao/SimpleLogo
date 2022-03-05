@@ -4,20 +4,21 @@ import java.lang.reflect.InvocationTargetException;
 import slogo.Backend.SyntaxParser.LogoRuntimeState;
 import slogo.Backend.SyntaxParser.Operator;
 
-public class Make extends Operator {
+public class MakeUserInstruction extends Operator {
 
-  public Make(int seqNum){
+  public MakeUserInstruction(int seqNum){
     super(seqNum);
-    myNumArgs = 2;
+    myNumArgs = 3;
   }
 
   public double getRetVal(LogoRuntimeState runtimeState)
       throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
 
-    Variable variable = (Variable) arguments.get(0);
-    double value = arguments.get(1).getRetVal(runtimeState);
-    runtimeState.setVariableValue(variable.getName(),value);
-    return value;
+    UserCommand command = (UserCommand) arguments.get(0);
+    command.addArgument(arguments.get(2));
+    command.addArgument(arguments.get(1));
+    runtimeState.addFunction(command.getName(),command);
+    return 0;
   }
 
 }

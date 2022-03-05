@@ -9,7 +9,6 @@ import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import slogo.Backend.FileReadingException;
-import slogo.Backend.InstructionHistory;
 import slogo.Backend.LexicalAnalyzer.InvalidTokenException;
 import slogo.Backend.LexicalAnalyzer.LexResult;
 import slogo.Backend.Preferences;
@@ -24,10 +23,13 @@ import slogo.BackendExternalAPIs.ModifiesModelState;
 import slogo.Backend.className;
 import slogo.SLogoController;
 
+/**
+ * This class ____
+ * @author Alex & Edison
+ */
 public class ModelState implements Initialiazable, ModifiesModelState, StateManager {
   private CommandLanguage commandLanguage;
   private Turtle turtle;
-  //private Tracks tracks;
   private LogoRuntimeState runtimeState;
   private UserVariables userVariables;
   private UserCommands userCommands;
@@ -42,7 +44,7 @@ public class ModelState implements Initialiazable, ModifiesModelState, StateMana
     //this.tracks = new Tracks();
     this.runtimeState = new LogoRuntimeState();
     this.userVariables = new UserVariables();
-    this.userCommands = new UserCommands();
+    this.userCommands = null; //FIX
   }
 
   /**
@@ -65,8 +67,8 @@ public class ModelState implements Initialiazable, ModifiesModelState, StateMana
   public Result postInstruction(String instructionText)
       throws InvalidTokenException, ClassNotFoundException, InvocationTargetException,
       NoSuchMethodException, InstantiationException, IllegalAccessException {
-    LexResult lexedString = new LexResult(instructionText);
-    ASTMaker astMaker = new ASTMaker(lexedString.getTokens());
+    LexResult lexedString = new LexResult(instructionText, this.commandLanguage);
+    ASTMaker astMaker = new ASTMaker(lexedString.getEvaluatedTokens());
     Operator root =  astMaker.parse();
     LogoRuntimeState runtimeState = new LogoRuntimeState();
     ArrayDeque<Turtle> currentHistory = new ArrayDeque<>();
@@ -77,6 +79,9 @@ public class ModelState implements Initialiazable, ModifiesModelState, StateMana
     turtle = runtimeState.getHistory().getTurtleHistory().getLast().getLast();
     return res;
   }
+
+
+
 
   /**
    * Gets history.
@@ -106,16 +111,6 @@ public class ModelState implements Initialiazable, ModifiesModelState, StateMana
   @Override
   public UserCommands getUserCommands() {
     return userCommands;
-  }
-
-  /**
-   * Gets instruction history
-   *
-   * @return the instruction history in the form of an InstructionHistory object
-   */
-  @Override
-  public InstructionHistory getInstructionHistory() {
-    return null;
   }
 
   /**

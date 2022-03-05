@@ -8,6 +8,7 @@ public class If extends Operator {
 
   public If(int sequenceNumber){
     super(sequenceNumber);
+    myNumArgs = 2;
   }
 
   public double getRetVal(LogoRuntimeState s)

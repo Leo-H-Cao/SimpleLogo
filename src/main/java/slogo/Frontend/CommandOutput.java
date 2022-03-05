@@ -7,6 +7,10 @@ import slogo.Backend.ErrorText;
 import slogo.Backend.Result;
 import slogo.FrontendExternalAPIs.UpdateCommandResult;
 
+/**
+ * Command output box to see any returned values from given commands
+ * @author Leo Cao
+ */
 public class CommandOutput implements UpdateCommandResult {
   private Alert errorAlert;
   private TextArea output;

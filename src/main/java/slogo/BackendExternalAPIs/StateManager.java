@@ -1,17 +1,19 @@
 package slogo.BackendExternalAPIs;
 
 import java.lang.reflect.InvocationTargetException;
-import slogo.Backend.InstructionHistory;
 import slogo.Backend.LexicalAnalyzer.InvalidTokenException;
 import slogo.Backend.Result;
 import slogo.Backend.State.CommandLanguage;
-import slogo.Backend.State.Tracks;
 import slogo.Backend.State.TurtleHistory;
 import slogo.Backend.State.UserCommands;
 import slogo.Backend.State.UserVariables;
 
-/** The interface Accesses state. */
+/**
+ * This class ____
+ * @author Alex
+ */
 public interface StateManager {
+
 
   /**
    * Gets the full history of the Turtle objects from this running of the model.
@@ -34,13 +36,6 @@ public interface StateManager {
    * @return the user commands
    */
   UserCommands getUserCommands();
-
-  /**
-   * Gets instruction history
-   *
-   * @return the instruction history in the form of an InstructionHistory object
-   */
-  InstructionHistory getInstructionHistory();
 
   /**
    * Gets command language.

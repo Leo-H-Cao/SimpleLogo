@@ -25,6 +25,10 @@ public class StartScreen extends Scene {
   private VBox layout;
 
 
+  /**
+   * Starting splash screen for user to choose command language
+   * @author Leo Cao
+   */
   public StartScreen(Pane startScreenLayout){
     super(startScreenLayout, SCREEN_SIZE, SCREEN_SIZE);
     layout = (VBox) startScreenLayout;
@@ -33,6 +37,7 @@ public class StartScreen extends Scene {
     titleText = new Text(TITLE);
     selectCommandLanguage = new ChoiceBox<>();
     startButton = new Button(START_BUTTON_TEXT);
+    startButton.setId("StartButton");
     displayNodes();
   }
 

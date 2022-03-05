@@ -1,5 +1,8 @@
 package slogo.Backend.State;
-
+/**
+ * This class ____
+ * @author Alex
+ */
 public enum CommandLanguage {
   CHINESE,
   ENGLISH,
@@ -8,5 +11,6 @@ public enum CommandLanguage {
   ITALIAN,
   RUSSIAN,
   SPANISH,
-  URDU
+  URDU,
+  PORTUGUESE
 }
