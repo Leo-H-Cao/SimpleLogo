@@ -11,6 +11,7 @@ import org.jooq.lambda.tuple.Tuple2;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import slogo.Backend.State.CommandLanguage;
+import slogo.Utilities;
 
 class LexResultTest {
 
@@ -148,7 +149,7 @@ class LexResultTest {
                 new Token(TokenType.CONSTANT, "90"))));
     for(String instruction: testPairs.keySet()){
       LexResult lexResult = new LexResult(instruction, CommandLanguage.ENGLISH);
-      List<Token> tokensList = LexResultTest.dequeToList(lexResult.getEvaluatedTokens());
+      List<Token> tokensList = Utilities.dequeToList(lexResult.getEvaluatedTokens());
       Assertions.assertNotNull(lexResult.getEvaluatedTokens());
       Assertions.assertInstanceOf(ArrayDeque.class, lexResult.getEvaluatedTokens());
       Assertions.assertEquals(tokensList, testPairs.get(instruction));
