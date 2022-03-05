@@ -21,7 +21,7 @@ public class Penup extends Operator {
       throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
     ArrayList<Double> argList = new ArrayList<>();
     argList.add(retVal);
-    runtimeState.getHistory().addTurtleThroughTransformation("Pendown", argList);
+    runtimeState.getHistory().addTurtleThroughTransformation("Penup", argList);
     return retVal;
   }
 

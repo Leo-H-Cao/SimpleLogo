@@ -7,6 +7,6 @@ public enum TokenType {
   COMMAND,
   LISTSTART,
   LISTEND,
-  GROUPSTART,
-  GROUPEND
+  GROUPEND,
+  GROUPSTART
 }

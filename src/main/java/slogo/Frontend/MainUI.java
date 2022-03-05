@@ -5,11 +5,10 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import slogo.Backend.TurtleState.Turtle;
 import slogo.SLogoController;
 
 public class MainUI {
-  public static final String DEFAULT_TURTLE_IMAGE_PATH = "test-turtle.png";
+  public static final String DEFAULT_TURTLE_IMAGE_PATH = "slogo/Frontend/turtle.png";
 
   private final SLogoController myController;
   private final BorderPane layout;
@@ -18,8 +17,8 @@ public class MainUI {
   private ControlPanel myControlPanel;
   private CommandInput myCommandInput;
   private TurtleBackground myTurtleBackground;
-  private TurtleView testTurtleView;
-  private UserVariablesContainer myUserVariablesContainer;
+  private TurtleView myTurtleView;
+  private LeftBorderContainer myLeftBorderContainer;
   private ToolBarUI myToolBar;
 
   // Might add a reflection thing to talk to a .properties file
@@ -44,7 +43,7 @@ public class MainUI {
   }
 
   public TurtleView getTurtleView() {
-    return testTurtleView;
+    return myTurtleView;
   }
 
   public TurtleBackground getTurtleBackground(){
@@ -59,26 +58,29 @@ public class MainUI {
     return myControlPanel;
   }
 
-  public UserVariablesContainer getUserVariablesContainer(){
-    return myUserVariablesContainer;
+  public LeftBorderContainer getUserVariablesContainer(){
+    return myLeftBorderContainer;
   }
 
   public ToolBarUI getToolBar(){ return myToolBar; }
+
+  public CommandOutput getCommandOutput() { return myLeftBorderContainer.getCommandOutput();}
 
   private void createUINodes() {
     myMenuBar = new MenuBarUI();
     myControlPanel = new ControlPanel();
     myCommandInput = new CommandInput(myController);
-    myTurtleBackground = new TurtleBackground(testTurtleView);
-    myUserVariablesContainer = new UserVariablesContainer();
-    myToolBar = new ToolBarUI(testTurtleView);
+    myTurtleBackground = new TurtleBackground();
+    myLeftBorderContainer = new LeftBorderContainer();
+    myToolBar = new ToolBarUI(myTurtleBackground);
     layOutChildren();
   }
 
   private void addingTurtle() {
-    testTurtleView = new TurtleView(4.0, DEFAULT_TURTLE_IMAGE_PATH);
+    myTurtleView = new TurtleView(4.0, DEFAULT_TURTLE_IMAGE_PATH);
 //    testTurtleView = new TurtleView(myControlPanel.getSpeedSlider().getValue(), DEFAULT_TURTLE_IMAGE_PATH);
-    myTurtleBackground.addTurtle(testTurtleView);
+    myTurtleBackground.addTurtle(myTurtleView);
+    myToolBar.setTurtleView(myTurtleView);
   }
 
   private void layOutChildren() {
@@ -89,7 +91,7 @@ public class MainUI {
     layout.setBottom(myCommandInput.getInputBox());
     layout.setRight(myControlPanel.getControlPanelContainer());
     layout.setCenter(myTurtleBackground.getTurtleBackground());
-    layout.setLeft(myUserVariablesContainer.getUserVariablesContainer());
+    layout.setLeft(myLeftBorderContainer.getLeftBorderContainer());
   }
 
   private void addStyleClassesToBorderPane(){
