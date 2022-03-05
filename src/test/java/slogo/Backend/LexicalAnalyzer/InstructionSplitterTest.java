@@ -9,6 +9,11 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import slogo.Utilities;
 
+/**
+ * This class Tests the Instruction Splitter - taking instructions from Strings of text entered by
+ * the user and converting them into whitespace delimited Strings
+ * @author Alex
+ */
 class InstructionSplitterTest {
 
   @Test

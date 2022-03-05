@@ -16,6 +16,11 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import slogo.Backend.State.CommandLanguage;
 
+
+/**
+ * This class tests the TokenFactory
+ * @author Alex
+ * */
 class TokenFactoryTest {
 
   @Test
@@ -85,6 +90,92 @@ class TokenFactoryTest {
   void getTokenEnglish(RawToken rawToken, Token token) {
     Assertions.assertEquals(TokenFactory.getToken(rawToken, CommandLanguage.ENGLISH), token);
   }
+
+  @ParameterizedTest
+  @MethodSource("getTokenSpanishArgumentProvider")
+  void getTokenSpanish(RawToken rawToken, Token token) {
+    Assertions.assertEquals(TokenFactory.getToken(rawToken, CommandLanguage.SPANISH), token);
+  }
+
+  @ParameterizedTest
+  @MethodSource("getTokenPortugueseArgumentProvider")
+  void getTokenPortugeuse(RawToken rawToken, Token token) {
+    Assertions.assertEquals(TokenFactory.getToken(rawToken, CommandLanguage.PORTUGUESE), token);
+  }
+  @ParameterizedTest
+  @MethodSource("getTokenUrduArgumentProvider")
+  void getTokenUrdu(RawToken rawToken, Token token) {
+    Assertions.assertEquals(TokenFactory.getToken(rawToken, CommandLanguage.URDU), token);
+  }
+
+  static Stream<Arguments> getTokenUrduArgumentProvider() {
+    String[][] arguments = {{"rakhorang", "SetBackground"}, {"rakhoshakal", "SetShape"}, {"laoshakal", "GetShape"}};
+    return getArgumentsStream(arguments);
+  }
+
+  static Stream<Arguments> getTokenPortugueseArgumentProvider() {
+    String[][] arguments = {{"ID", "ID"}, {"mandar", "Tell"}, {"pedir", "Ask"}};
+    return getArgumentsStream(arguments);
+  }
+
+  @ParameterizedTest
+  @MethodSource("getTokenChineseArgumentProvider")
+  void getTokenChinese(RawToken rawToken, Token token) {
+    Assertions.assertEquals(TokenFactory.getToken(rawToken, CommandLanguage.CHINESE), token);
+  }
+
+  static Stream<Arguments> getTokenChineseArgumentProvider() {
+    String[][] arguments = {{"qianjin", "Forward"}, {"ziranduishu", "NaturalLog"}, {"mingling", "Ask"}};
+    return getArgumentsStream(arguments);
+  }
+
+  static Stream<Arguments> getTokenSpanishArgumentProvider() {
+    String[][] arguments = {
+        {"PlUmASuBiDA","PenUp"},
+        {"plUmASUbIdA","PenUp"},
+        {"PLUmasuBiDa","PenUp"},
+        {"PlUmASUBIDA","PenUp"},
+        {"pLumasuBida","PenUp"},
+        {"PLUmAsUBida","PenUp"},
+        {"PLumASUBIDA","PenUp"},
+        {"pLumAsUbIdA","PenUp"},
+        {"DescUbrirTOrTuGa","ShowTurtle"},
+        {"DeScUbrirtOrTUgA","ShowTurtle"},
+        {"DEsCUBrIrTortUga","ShowTurtle"},
+        {"DesCubrIrtortUga","ShowTurtle"},
+        {"dEscubriRtOrtuGA","ShowTurtle"},
+        {"desCUbRiRtORtuga","ShowTurtle"},
+        {"deSCubrIRTORTUGA","ShowTurtle"},
+        {"DescuBrIrtORtUga","ShowTurtle"},
+        {"EnCUbRIrTOrtUGA","HideTurtle"},
+        {"eNcubRirToRtugA","HideTurtle"},
+        {"eNcUbRiRtOrTUGa","HideTurtle"},
+        {"eNcUbRiRTOrtUGa","HideTurtle"},
+        {"ENcUBriRtortugA","HideTurtle"},
+        {"eNCUbrirtoRtuGA","HideTurtle"},
+        {"ENCUBrIrtoRTUgA","HideTurtle"},
+        {"encuBrIRTortUGA","HideTurtle"},
+        {"CaSA","Home"},
+        {"Casa","Home"},
+        {"CaSA","Home"},
+        {"casA","Home"},
+        {"casA","Home"},
+        {"CaSA","Home"},
+        {"caSa","Home"},
+        {"CAsA","Home"},
+        {"LiMpiARpantAllA","ClearScreen"},
+        {"limPiaRPaNtAlla","ClearScreen"},
+        {"lIMPIArPaNtALLa","ClearScreen"},
+        {"limPIaRPANtALLa","ClearScreen"},
+        {"lImPiarpaNtaLLA","ClearScreen"},
+        {"liMPIARpanTALLA","ClearScreen"},
+        {"liMPiaRpANTAlLa","ClearScreen"},
+        {"LiMpiaRpANTAllA","ClearScreen"}
+    };
+
+    return getArgumentsStream(arguments);
+  }
+
 
   static Token getTokenFrom(String tokenValue){
     return new Token(TokenType.COMMAND, tokenValue);
@@ -209,13 +300,17 @@ class TokenFactoryTest {
         {"HoMe","Home"},
         {"HOme","Home"},
     };
+    return getArgumentsStream(arguments);
+
+  }
+
+  private static Stream<Arguments> getArgumentsStream(String[][] arguments) {
     Builder<Arguments> builder = Stream.builder();
 
     for (String[] strings : arguments) {
       builder.add(arguments(getRawTokenFrom(strings[0]), getTokenFrom(strings[1])));
     }
     return builder.build();
-
-    }
+  }
 
 }

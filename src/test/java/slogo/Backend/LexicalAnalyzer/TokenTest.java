@@ -3,6 +3,10 @@ package slogo.Backend.LexicalAnalyzer;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+/**
+ * This class tests the Token Class
+ * @author Alex
+ * */
 public class TokenTest {
 
     @Test

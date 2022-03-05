@@ -8,5 +8,6 @@ public enum CommandLanguage {
   ITALIAN,
   RUSSIAN,
   SPANISH,
-  URDU
+  URDU,
+  PORTUGUESE
 }

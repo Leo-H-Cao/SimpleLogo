@@ -32,7 +32,7 @@ public class LexResult {
       if (rawToken != null) {
         rawTokens.addLast(rawToken);
       } else {
-        throw new InvalidTokenException(s + "is a bad RawToken");
+        throw new InvalidTokenException(s + "is an invalid Token");
         // TODO: implement error text and better error message
       }
     }

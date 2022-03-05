@@ -3,6 +3,10 @@ package slogo.Backend.LexicalAnalyzer;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+/**
+ * This class tests the Raw Token Class
+ * @author Alex
+ * */
 class RawTokenTest {
 
   @Test
