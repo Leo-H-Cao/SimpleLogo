@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.jooq.lambda.Seq;
 import org.jooq.lambda.tuple.Tuple2;
 import org.junit.jupiter.api.Assertions;
@@ -13,66 +14,7 @@ import slogo.Backend.State.CommandLanguage;
 
 class LexResultTest {
 
-  private static ArrayList<Token> dequeToList(Deque<Token> rawTokens) {
-    ArrayList<Token> ret = new ArrayList<>();
-    while(!rawTokens.isEmpty()){
-      ret.add(rawTokens.pop());
-    }
-    return ret;
-  }
 
-  @Test
-  void splitInstruction() throws InvalidTokenException {
-    HashMap<String, String[]> testPairs = new HashMap<>();
-    testPairs.put(
-        "fd 50",
-        new String[]{"fd", "50"}
-    );
-    testPairs.put(
-        "FD 50",
-        new String[]{"FD", "50"}
-    );
-    testPairs.put(
-        "FORWARD               50",
-        new String[]{"FORWARD", "50"}
-    );
-    testPairs.put(
-        "BACKWARD 90",
-        new String[]{"BACKWARD", "90"}
-    );
-    testPairs.put(
-        "fd 50 fd 60 fd 70 fd 80 fd 90",
-        new String[]{"fd", "50", "fd", "60", "fd", "70", "fd", "80", "fd", "90"}
-    );
-    testPairs.put(
-        "fd       50\n\n\n fd \t\t\t\t 60 fd       70 \n\n\tfd     \n80 fd 90\n\n",
-        new String[]{"fd", "50", "fd", "60", "fd", "70", "fd", "80", "fd", "90"}
-    );
-    testPairs.put(
-        "\t\tfd 50 fd 60 fd 70 fd 80 fd 90\t\t",
-        new String[]{"fd", "50", "fd", "60", "fd", "70", "fd", "80", "fd", "90"}
-    );
-    testPairs.put(
-        "\n\n\n\nfd 50 fd\t\t60\sfd 70 fd 80 fd 90\n\n\n\n",
-        new String[]{"fd", "50", "fd", "60", "fd", "70", "fd", "80", "fd", "90"}
-    );
-    testPairs.put(
-        "fd 50 fd\n\n60 fd\s\s70 fd\t80 fd\n90",
-        new String[]{"fd", "50", "fd", "60", "fd", "70", "fd", "80", "fd", "90"}
-    );
-    for(String input: testPairs.keySet()){
-      Deque<String> splitInstruction = InstructionSplitter.splitInstruction(input);
-      Assertions.assertNotNull(splitInstruction);
-      Assertions.assertInstanceOf(ArrayDeque.class, splitInstruction);
-      ArrayList<String> splitInstructionArrayList = new ArrayList<String>();
-      for(String s: splitInstruction){
-        splitInstructionArrayList.add(splitInstruction.pop());
-
-      }
-      Assertions.assertEquals(splitInstructionArrayList, new ArrayList<String>(List.of(testPairs.get(input))));
-    }
-
-  }
 
   @Test
   void tokenize() throws InvalidTokenException {
