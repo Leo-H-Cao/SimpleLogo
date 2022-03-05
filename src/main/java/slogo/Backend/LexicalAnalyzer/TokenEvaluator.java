@@ -11,29 +11,34 @@ import dk.brics.automaton.Automaton;
 import dk.brics.automaton.SpecialOperations;
 
 public class TokenEvaluator {
-  private HashMap<String, String> evaluator;
+  private Map<String, String> evaluator;
 
   public TokenEvaluator(CommandLanguage commandLanguage) {
     Map<String, String> pairs = TokenEvaluator.getPairsFromCommandLanguage(commandLanguage); //rename pairs
-    computeMap(pairs);
+    this.evaluator = computeMap(pairs);
   }
 
-  private void computeMap(Map<String, String> pairs) {
+  private Map<String, String> computeMap(Map<String, String> pairs) {
+    Map<String, String> map = new HashMap<>();
     for(String canonicalName: pairs.keySet()) {
       String regex = pairs.get(canonicalName);
-      addStringsForCommand(pairs, canonicalName, regex);
+      getStringsForCommand(canonicalName, regex, map);
     }
+    return map;
   }
 
-  private void addStringsForCommand(Map<String, String> pairs, String canonicalName, String regex) {
+  private void getStringsForCommand(String canonicalName, String regex, Map<String, String> map) {
     Collection<String> allMatching = getMatchingStrings(regex);
+    allMatching.add(canonicalName.toLowerCase());
     for(String matching: allMatching) {
-      pairs.put(matching, canonicalName);
+      map.put(matching, canonicalName);
     }
   }
 
   private Collection<String> getMatchingStrings(String regex) {
-    RegExp regExpCompiled = new RegExp(regex);
+
+    System.out.println(regex);
+    RegExp regExpCompiled = new RegExp(regex, RegExp.NONE);
     Automaton automaton = regExpCompiled.toAutomaton();
     return SpecialOperations.getFiniteStrings(automaton);
   }

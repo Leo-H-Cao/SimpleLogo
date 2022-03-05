@@ -28,12 +28,17 @@ public abstract class AbstractToken {
     if (getClass() != o.getClass()) {
       return false;
     }
-    RawToken rawToken = (RawToken) o;
-    return type == rawToken.type && value.equals(rawToken.value);
+    AbstractToken token = (AbstractToken) o;
+    return type == token.type && value.equals(token.value);
   }
 
   @Override
   public int hashCode() {
     return Objects.hash(type, value);
+  }
+
+  @Override
+  public String toString(){
+    return "Type: " + this.type + "\n" + "Value: " + this.value;
   }
 }
