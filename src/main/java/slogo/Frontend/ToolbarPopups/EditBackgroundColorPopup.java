@@ -21,6 +21,9 @@ public class EditBackgroundColorPopup extends ToolbarPopupsAbstract {
   private Label errorLabel;
   private String enteredColor;
 
+  /**
+   * Input field that allows user to input hex code to specify backgroun color
+   */
   public EditBackgroundColorPopup(){
     super();
     colorField = new TextField(DEFAULT_COLOR_HEX);

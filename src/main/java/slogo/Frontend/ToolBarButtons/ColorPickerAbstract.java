@@ -13,6 +13,10 @@ public abstract class ColorPickerAbstract {
   HBox colorPickerContainer;
   String myButtonLabel;
 
+  /**
+   * abstract class for color pickers in toolbar
+   * @param buttonLabel
+   */
   public ColorPickerAbstract(String buttonLabel){
     colorPickerContainer = new HBox();
     myButtonLabel = buttonLabel;
@@ -27,6 +31,10 @@ public abstract class ColorPickerAbstract {
     colorPickerContainer.getChildren().addAll(label, colorPicker);
   }
 
+  /**
+   * returns container of color picker with corresponding label
+   * @return
+   */
   public HBox getColorPickerContainer(){
     return colorPickerContainer;
   }

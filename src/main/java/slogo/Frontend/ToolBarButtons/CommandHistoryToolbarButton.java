@@ -8,6 +8,10 @@ public class CommandHistoryToolbarButton extends ToolBarButtonAbstract{
 
   private CommandHistoryPopup commandHistoryPopup;
 
+  /**
+   * Button to open command history
+   * @param buttonName
+   */
   public CommandHistoryToolbarButton(String buttonName){
     super(buttonName);
     myButton.getStyleClass().add("command-history-button");

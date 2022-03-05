@@ -10,6 +10,10 @@ import slogo.Frontend.TurtlePen;
 public class PenColorPicker extends ColorPickerAbstract {
   private static final String PEN_COLOR_LABEL = "  Pen:";
 
+  /**
+   * color picker for pen color for drawing turtle tracks
+   * @param turtlePen
+   */
   public PenColorPicker(TurtlePen turtlePen){
     super(PEN_COLOR_LABEL);
     colorPicker.setOnAction(ActionEvent -> {
