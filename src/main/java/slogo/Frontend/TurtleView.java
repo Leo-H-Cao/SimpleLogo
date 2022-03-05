@@ -33,6 +33,11 @@ public class TurtleView implements DisplayTurtle {
   private Canvas canvas;
   private TurtlePen myTurtlePen;
 
+  /**
+   * graphical display for turtle and its tracks
+   * @param animationSpeed
+   * @param turtleImagePath
+   */
   public TurtleView(double animationSpeed, String turtleImagePath) {
     createTurtleImage(turtleImagePath);
     myAnimationSpeed = animationSpeed;

@@ -36,18 +36,28 @@ public class TurtlePen implements DisplayPen {
     }
   }
 
-  // Going to have to find different pen color images (or make them) unless javafx can support
-  // vector images
+  /**
+   * Sets new pen color, black is default
+   * @param color
+   */
   @Override
   public void setPenColor(Color color) {
     penColor = color;
   }
 
+  /**
+   * sets new stroke width, 5 is default
+   * @param size
+   */
   @Override
   public void setPenSize(int size) {
     strokeWidth = size;
   }
 
+  /**
+   * sets pen down
+   * @param down
+   */
   @Override
   public void setPenVisible(boolean down) {
     if(!down){
@@ -58,6 +68,10 @@ public class TurtlePen implements DisplayPen {
     }
   }
 
+  /**
+   * Configures graphics context to current pen settings
+   * @param gc
+   */
   @Override
   public void setGCOptions(GraphicsContext gc) {
     gc.setStroke(penColor);

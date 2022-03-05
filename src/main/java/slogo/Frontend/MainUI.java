@@ -21,7 +21,12 @@ public class MainUI {
   private LeftBorderContainer myLeftBorderContainer;
   private ToolBarUI myToolBar;
 
-  // Might add a reflection thing to talk to a .properties file
+  /**
+   * Main UI class that "owns" the UI components that need to be accessed by controller
+   * @param myStage
+   * @param controller
+   * @author Leo Cao
+   */
   public MainUI(Stage myStage, SLogoController controller) {
     myController = controller;
     layout = new BorderPane();

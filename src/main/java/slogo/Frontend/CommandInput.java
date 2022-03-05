@@ -11,8 +11,8 @@ import slogo.FrontendExternalAPIs.CommandWindow;
 import slogo.SLogoController;
 
 /**
- * Test Ideas: Check if the prompt goes away when clicking Check if the text goes away when pressing
- * enter Check if the text goes away when pressing execute
+ * Terminal input box for user to input commands
+ * @author Leo Cao
  */
 public class CommandInput implements CommandWindow {
   public static final int TEXT_BOX_SIZE = 800;
@@ -80,6 +80,9 @@ public class CommandInput implements CommandWindow {
         });
   }
 
+  /**
+   * Controller handles submitted command
+   */
   private void submitCommand() {
     commandText = textArea.getText().trim();
     if (commandText.length() == 0) return;

@@ -111,6 +111,7 @@ public class SLogoController {
 
     // If it's not valid, do something
     try {
+      System.out.println();
       Result commandResult = model.postInstruction(command);
       ArrayDeque<Turtle> steps = commandResult.getTurtleSteps();
       if (steps == null || steps.size() <= 1) {

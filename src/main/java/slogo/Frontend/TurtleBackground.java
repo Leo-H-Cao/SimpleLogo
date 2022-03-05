@@ -14,6 +14,10 @@ public class TurtleBackground implements DisplayCanvas {
   private final Pane turtleBackground = new StackPane();
   private TurtleView currentTurtleView;
 
+  /**
+   * Turtle background for turtle graphic display
+   * @author Leo Cao
+   */
   public TurtleBackground() {
     turtleBackground.getStyleClass().add("turtle-background");
   }

@@ -12,6 +12,10 @@ public class ControlPanel {
   private final SpeedSlider mySpeedSlider;
   private ControlPanelButtonAbstract resetAnimationButton;
 
+  /**
+   * Control panel to support setting speed of animation, play, pause, reset
+   * @author: Leo Cao
+   */
   public ControlPanel() {
     controlPanelContainer = new VBox(20);
     controlPanelContainer.setAlignment(Pos.TOP_CENTER);
