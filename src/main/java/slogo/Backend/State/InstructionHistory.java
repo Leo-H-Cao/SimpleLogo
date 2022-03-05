@@ -1,6 +1,5 @@
-package slogo.Backend;
+package slogo.Backend.State;
 
-@Deprecated
 public class InstructionHistory {
 
 }
