@@ -4,9 +4,9 @@ import java.lang.reflect.InvocationTargetException;
 import slogo.Backend.SyntaxParser.LogoRuntimeState;
 import slogo.Backend.SyntaxParser.Operator;
 
-public class To extends Operator {
+public class MakeUserInstruction extends Operator {
 
-  public To(int seqNum){
+  public MakeUserInstruction(int seqNum){
     super(seqNum);
     myNumArgs = 3;
   }

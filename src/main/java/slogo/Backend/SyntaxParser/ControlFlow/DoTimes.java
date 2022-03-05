@@ -4,10 +4,11 @@ import java.lang.reflect.InvocationTargetException;
 import slogo.Backend.SyntaxParser.LogoRuntimeState;
 import slogo.Backend.SyntaxParser.Operator;
 
-public class Dotimes extends Operator {
+public class DoTimes extends Operator {
 
-  public Dotimes(int sequenceNumber){
+  public DoTimes(int sequenceNumber){
     super(sequenceNumber);
+    myNumArgs = 2;
   }
 
   public double getRetVal(LogoRuntimeState s)
