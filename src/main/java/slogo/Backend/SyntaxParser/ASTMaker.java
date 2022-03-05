@@ -84,8 +84,10 @@ public class ASTMaker {
                     t.getValue()));
           } else {
             if(resources.containsKey(t.getValue())){
+              String s =SlogoToJava.convertSlogoNameToJavaName(resources.getString(t.getValue()));
+              String r = SlogoToJava.convertSlogoNameToJavaName(t.getValue());
               operatorType = Class.forName(
-                  rootdirectory + resources.getString(t.getValue()) + "." + t.getValue());
+                  rootdirectory + SlogoToJava.convertSlogoNameToJavaName(resources.getString(t.getValue())) + "." + SlogoToJava.convertSlogoNameToJavaName(t.getValue()));
             }
             else if(t.getValue().equals("MakeVariable")){
               operatorType = Class.forName(
