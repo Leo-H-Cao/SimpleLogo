@@ -8,6 +8,10 @@ import org.jooq.lambda.tuple.Tuple2;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+/**
+ * This class tests the RawTokenScanner
+ * @author Alex
+ * */
 class RawTokenScannerTest {
 
   @Test

@@ -14,6 +14,10 @@ import org.junit.jupiter.api.Test;
 import slogo.Backend.State.CommandLanguage;
 import slogo.Utilities;
 
+/**
+ * This class tests the Lexical Analyzer
+ * @author Alex
+ * */
 class LexResultTest {
 
   @Test

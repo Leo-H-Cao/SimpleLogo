@@ -16,6 +16,11 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import slogo.Backend.State.CommandLanguage;
 
+
+/**
+ * This class tests the TokenFactory
+ * @author Alex
+ * */
 class TokenFactoryTest {
 
   @Test
