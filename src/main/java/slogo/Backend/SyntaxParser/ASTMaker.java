@@ -10,6 +10,7 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.ResourceBundle;
 import slogo.Backend.LexicalAnalyzer.Token;
+import slogo.Backend.SyntaxParser.Data.UserCommand;
 import slogo.Backend.SyntaxParser.Data.Variable;
 import slogo.Backend.SyntaxParser.ListStructure.ListEnd;
 import slogo.Backend.SyntaxParser.ListStructure.ListStart;
@@ -41,12 +42,25 @@ public class ASTMaker {
   }
 
   public LogoList parse() {
-    createArgumentStacks();
+    try {
+      createArgumentStacks();
+    } catch (ClassNotFoundException e) {
+      e.printStackTrace();
+    } catch (NoSuchMethodException e) {
+      e.printStackTrace();
+    } catch (InvocationTargetException e) {
+      e.printStackTrace();
+    } catch (InstantiationException e) {
+      e.printStackTrace();
+    } catch (IllegalAccessException e) {
+      e.printStackTrace();
+    }
     generateAST();
     return root;
   }
 
-  private void createArgumentStacks() {
+  private void createArgumentStacks()
+      throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
     // TODO: create operands for all tokens and place them in the correct initial stack
     int seqNum = 0;
 
@@ -55,11 +69,10 @@ public class ASTMaker {
       String tokenType = t.getType().toString();
       ResourceBundle resources = ResourceBundle.getBundle(
           rootdirectory + "CommandToClassDirectory");
-
-      try {
+      Class<?> operatorType;
+      Operator nextOperator;
         // System.out.println(tokenType);
-        Class<?> operatorType;
-        Operator nextOperator;
+
         if (!tokenType.equals("CONSTANT") && !tokenType.equals("VARIABLE")) {
           // operatorType = Class.forName("slogo.Backend.SyntaxParser." + "Command");
           if (specialCharToClass.containsKey(t.getValue())) {
@@ -67,13 +80,22 @@ public class ASTMaker {
                 rootdirectory + resources.getString(t.getValue()) + "." + specialCharToClass.get(
                     t.getValue()));
           } else {
-            operatorType = Class.forName(
-                rootdirectory + resources.getString(t.getValue()) + "." + t.getValue());
+            if(resources.containsKey(t.getValue())){
+              operatorType = Class.forName(
+                  rootdirectory + resources.getString(t.getValue()) + "." + t.getValue());
+            }
+            else{
+              operatorType = Class.forName(rootdirectory + "Data.UserCommand");
+            }
+
           }
 
           // operatorType = Class.forName("Command");
           Constructor<?> constructor = operatorType.getConstructor(int.class);
           nextOperator = (Operator) constructor.newInstance(seqNum);
+          if(nextOperator.getClass().equals(UserCommand.class)){
+            ((UserCommand) nextOperator).setName(t.getValue());
+          }
         } else {
           Constructor<?> constructor;
           if(tokenType.equals("CONSTANT")){
@@ -98,18 +120,7 @@ public class ASTMaker {
         } else {
           unevaluated.addLast(nextOperator);
         }
-      } catch (ClassNotFoundException e) {
-        // TODO: REPLACE THIS LATER
-        e.printStackTrace();
-      } catch (NoSuchMethodException e) {
-        e.printStackTrace();
-      } catch (InvocationTargetException e) {
-        e.printStackTrace();
-      } catch (InstantiationException e) {
-        e.printStackTrace();
-      } catch (IllegalAccessException e) {
-        e.printStackTrace();
-      }
+
       tokens.removeFirst();
       seqNum++;
     }
@@ -194,7 +205,14 @@ public class ASTMaker {
 
   private LogoList makeLogicalList(int sequenceNumber){
     LogoList logicalList = new LogoList(sequenceNumber);
-    int currentSequenceNumber = evaluated.getLast().mySeqNum;
+    int currentSequenceNumber = 0;
+    if(currentSequenceNumber > sequenceNumber){
+      currentSequenceNumber = evaluated.getLast().mySeqNum;
+    }
+    else{
+      unevaluated.removeLast();
+      return logicalList;
+    }
     while(currentSequenceNumber > sequenceNumber){
       logicalList.addArgument(evaluated.removeLast());
       currentSequenceNumber--;
