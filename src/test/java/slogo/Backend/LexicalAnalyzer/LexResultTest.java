@@ -9,13 +9,14 @@ import org.jooq.lambda.Seq;
 import org.jooq.lambda.tuple.Tuple2;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import slogo.Backend.State.CommandLanguage;
 
 class LexResultTest {
 
-  private static ArrayList<Token> dequeToList(ArrayDeque<Token> tokens) {
+  private static ArrayList<Token> dequeToList(Deque<Token> rawTokens) {
     ArrayList<Token> ret = new ArrayList<>();
-    while(!tokens.isEmpty()){
-      ret.add(tokens.pop());
+    while(!rawTokens.isEmpty()){
+      ret.add(rawTokens.pop());
     }
     return ret;
   }
@@ -60,8 +61,7 @@ class LexResultTest {
         new String[]{"fd", "50", "fd", "60", "fd", "70", "fd", "80", "fd", "90"}
     );
     for(String input: testPairs.keySet()){
-      LexResult lexResult = new LexResult(input);
-      Deque<String> splitInstruction = lexResult.splitInstruction();
+      Deque<String> splitInstruction = InstructionSplitter.splitInstruction(input);
       Assertions.assertNotNull(splitInstruction);
       Assertions.assertInstanceOf(ArrayDeque.class, splitInstruction);
       ArrayList<String> splitInstructionArrayList = new ArrayList<String>();
@@ -76,7 +76,7 @@ class LexResultTest {
 
   @Test
   void tokenize() throws InvalidTokenException {
-    TokenScanner tokenScanner = TokenScanner.getTokenScanner();
+    RawTokenScanner rawTokenScanner = RawTokenScanner.getTokenScanner();
     HashMap<String[], ArrayList<Token>> testPairs = new HashMap<>();
     testPairs.put(
         new String[]{"fd", "50"},
@@ -135,9 +135,9 @@ class LexResultTest {
                 new Token(TokenType.COMMAND, "RIGHT"),
                 new Token(TokenType.CONSTANT, "90"))));
     for(String[] stringTokensArry: testPairs.keySet()){
-      Seq<Tuple2<String, Token>> tokens = Seq.of(stringTokensArry).zip(testPairs.get(stringTokensArry));
-      for(Tuple2<String, Token> tokenPair: tokens){
-        Token match = tokenScanner.attemptMatch(tokenPair.v1);
+      Seq<Tuple2<String, Token>> rawTokens = Seq.of(stringTokensArry).zip(testPairs.get(stringTokensArry));
+      for(Tuple2<String, Token> tokenPair: rawTokens){
+        RawToken match = rawTokenScanner.attemptMatch(tokenPair.v1);
         Assertions.assertNotNull(match);
         Assertions.assertInstanceOf(Token.class, match);
         Assertions.assertEquals(match, tokenPair.v2);
@@ -205,10 +205,10 @@ class LexResultTest {
                 new Token(TokenType.COMMAND, "RIGHT"),
                 new Token(TokenType.CONSTANT, "90"))));
     for(String instruction: testPairs.keySet()){
-      LexResult lexResult = new LexResult(instruction);
-      ArrayList<Token> tokensList = LexResultTest.dequeToList(lexResult.getTokens());
-      Assertions.assertNotNull(lexResult.getTokens());
-      Assertions.assertInstanceOf(ArrayDeque.class, lexResult.getTokens());
+      LexResult lexResult = new LexResult(instruction, CommandLanguage.ENGLISH);
+      List<Token> tokensList = LexResultTest.dequeToList(lexResult.getEvaluatedTokens());
+      Assertions.assertNotNull(lexResult.getEvaluatedTokens());
+      Assertions.assertInstanceOf(ArrayDeque.class, lexResult.getEvaluatedTokens());
       Assertions.assertEquals(tokensList, testPairs.get(instruction));
     }
   }

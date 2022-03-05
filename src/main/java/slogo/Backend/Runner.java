@@ -3,6 +3,7 @@ package slogo.Backend;
 import java.util.Queue;
 import slogo.Backend.LexicalAnalyzer.InvalidTokenException;
 import slogo.Backend.LexicalAnalyzer.LexResult;
+import slogo.Backend.State.CommandLanguage;
 import slogo.Backend.State.ModelState;
 import slogo.Backend.SyntaxParser.ASTMaker;
 import slogo.Backend.SyntaxParser.Operator;
@@ -13,9 +14,10 @@ import slogo.BackendInternalAPIs.Runs;
 public class Runner implements Runs, Parses {
   private ModelState modelState;
 
+  @Deprecated
   public Result run(String instruction) throws InvalidTokenException {
-    LexResult lexResult = new LexResult(instruction);
-    ASTMaker ast = new ASTMaker(lexResult.getTokens());
+    LexResult lexResult = new LexResult(instruction, CommandLanguage.ENGLISH);
+    ASTMaker ast = new ASTMaker(lexResult.getEvaluatedTokens());
     Operator operator = ast.parse();
     double doubleRet = 0.0; //TODO: get real result from AST
     Result result = new Result(
@@ -33,7 +35,7 @@ public class Runner implements Runs, Parses {
    */
   @Override
   public LexResult runLexicalAnalyzer(String instruction) throws InvalidTokenException {
-    return new LexResult(instruction);
+    return new LexResult(instruction, CommandLanguage.ENGLISH);
   }
 
   /**

@@ -6,12 +6,12 @@ import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class TokenScanner {
-  private static final TokenScanner tokenScanner = new TokenScanner();
+public class RawTokenScanner {
+  private static final RawTokenScanner RAW_TOKEN_SCANNER = new RawTokenScanner();
   private final HashMap<TokenType, Matcher> matchers;
 
   /** reference: https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html */
-  private TokenScanner() {
+  private RawTokenScanner() {
     this.matchers = new HashMap<>();
     ResourceBundle syntaxResource = ResourceBundle.getBundle("slogo/languages/Syntax");
     for (String typeOfToken : syntaxResource.keySet()) {
@@ -22,25 +22,25 @@ public class TokenScanner {
     }
   }
 
-  public static TokenScanner getTokenScanner() {
-    return tokenScanner;
+  public static RawTokenScanner getTokenScanner() {
+    return RAW_TOKEN_SCANNER;
   }
 
   private static String createInvalidTokenMessage(String badToken) {
     return "The token '" + badToken + "' is not recognized as valid";
   }
 
-  public Token attemptMatch(String s) throws InvalidTokenException {
+  public RawToken attemptMatch(String s) throws InvalidTokenException {
     for (TokenType tokenType : matchers.keySet()) {
       Matcher matcher = matchers.get(tokenType);
       matcher.reset(s);
       boolean matchStatus = matcher.matches();
       if (matchStatus) {
-        return new Token(tokenType, s);
+        return new RawToken(tokenType, s);
       }
     }
     //If the program makes it here that implies that the String s was an invalid token
-    String exceptionMessage = TokenScanner.createInvalidTokenMessage(s);
+    String exceptionMessage = RawTokenScanner.createInvalidTokenMessage(s);
     throw new InvalidTokenException(exceptionMessage);
   }
 }
