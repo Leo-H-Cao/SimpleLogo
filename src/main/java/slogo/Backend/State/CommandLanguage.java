@@ -1,6 +1,6 @@
 package slogo.Backend.State;
 /**
- * This class ____
+ * This class has all the possible Command Languages, as defined in the properties files
  * @author Alex
  */
 public enum CommandLanguage {

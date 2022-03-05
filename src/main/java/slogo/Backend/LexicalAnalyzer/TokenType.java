@@ -1,6 +1,7 @@
 package slogo.Backend.LexicalAnalyzer;
 /**
- * This class ____
+ * This class has the various types of Tokens in the Slogo language defined
+ * according to the syntax in the Slogo properties files
  * @author Alex
  */
 public enum TokenType {

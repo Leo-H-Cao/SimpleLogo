@@ -9,7 +9,7 @@ import slogo.Backend.State.UserCommands;
 import slogo.Backend.State.UserVariables;
 
 /**
- * This class ____
+ * This interface indicates that the implementing class can be used to access data in the model's state
  * @author Alex
  */
 public interface StateManager {

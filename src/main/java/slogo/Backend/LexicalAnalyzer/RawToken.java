@@ -1,6 +1,7 @@
 package slogo.Backend.LexicalAnalyzer;
 /**
- * This class ____
+ * This class is for "raw" Tokens, as in Tokens which
+ * have not yet been evaluated
  * @author Alex
  */
 public class RawToken extends AbstractToken {

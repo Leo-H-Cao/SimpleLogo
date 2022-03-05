@@ -4,7 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 import slogo.Backend.State.CommandLanguage;
 /**
- * This class ____
+ * This class is a "factory" for token - meaning it takes in a String input
+ * and handles the necessary logic to return the needed Token type, RawToken (unevaluated) or Token
+ * (evaluated)
  * @author Alex
  */
 public class TokenFactory {

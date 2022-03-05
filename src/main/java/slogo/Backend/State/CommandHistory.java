@@ -2,7 +2,7 @@ package slogo.Backend.State;
 
 import java.util.ArrayList;
 /**
- * This class ____
+ * This class keeps track of user command history
  * @author Alex
  */
 public class CommandHistory {

@@ -1,8 +1,9 @@
 package slogo.Backend.TurtleState;
 
 /**
- * This class tests the Lexical Analyzer
- * @author Alex
+ * This class has the Direction where the Turtle is facing - it is
+ * able to return a direction in radians or degrees as needed
+ * @author Jed & Alex
  * */
 public class Direction {
   private final double directionInRadians;
