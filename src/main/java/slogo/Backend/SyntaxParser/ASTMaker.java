@@ -4,6 +4,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
@@ -16,7 +17,7 @@ import slogo.Backend.SyntaxParser.ListStructure.LogoList;
 
 public class ASTMaker {
 
-  private final ArrayDeque<Token> tokens;
+  private final Deque<Token> tokens;
   private final LinkedList<Operator> unevaluated = new LinkedList<>();
   private final LinkedList<Operator> evaluated = new LinkedList<>();
   private ArrayList<ArrayList<LogoList>> listsByLayer;
@@ -30,7 +31,7 @@ public class ASTMaker {
   private final String rootdirectory = "slogo.Backend.SyntaxParser.";
 
 
-  public ASTMaker(ArrayDeque<Token> tokens) {
+  public ASTMaker(Deque<Token> tokens) {
     this.tokens = tokens;
     listsByLayer = new ArrayList<ArrayList<LogoList>>();
     LogoList initialList = new LogoList(0);
@@ -51,7 +52,7 @@ public class ASTMaker {
 
     while (!tokens.isEmpty()) {
       Token t = tokens.getFirst();
-      String tokenType = t.getTyoe().toString();
+      String tokenType = t.getType().toString();
       ResourceBundle resources = ResourceBundle.getBundle(
           rootdirectory + "CommandToClassDirectory");
 

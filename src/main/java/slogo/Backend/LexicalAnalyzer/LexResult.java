@@ -1,22 +1,28 @@
 package slogo.Backend.LexicalAnalyzer;
 
 import java.util.ArrayDeque;
+import java.util.Deque;
+import slogo.Backend.State.CommandLanguage;
 
 public class LexResult {
 
-  private final ArrayDeque<String> splitByWhiteSpace;
-  private ArrayDeque<RawToken> unevaluatedRawTokens;
-  private ArrayDeque<RawToken> evaluatedTokens;
+  private final Deque<String> splitByWhiteSpace;
+  private Deque<RawToken> unevaluatedRawTokens;
+  private Deque<Token> evaluatedTokens;
 
 
-  public LexResult(String instruction) throws InvalidTokenException {
+  public LexResult(String instruction, CommandLanguage commandLanguage) throws InvalidTokenException {
     this.splitByWhiteSpace = InstructionSplitter.splitInstruction(instruction);
     this.unevaluatedRawTokens = this.tokenize();
-    this.evaluatedTokens = this.evaluateTokens();
+    this.evaluatedTokens = this.evaluateTokens(commandLanguage);
   }
 
-  private ArrayDeque<RawToken> evaluateTokens() {
-
+  private Deque<Token> evaluateTokens(CommandLanguage commandLanguage) {
+    Deque<Token> ret = new ArrayDeque<>();
+    for(RawToken rawToken: this.unevaluatedRawTokens) {
+      ret.addLast(TokenFactory.getToken(rawToken, commandLanguage));
+    }
+    return ret;
   }
 
   private ArrayDeque<RawToken> tokenize() throws InvalidTokenException {
@@ -33,7 +39,7 @@ public class LexResult {
     return rawTokens;
   }
 
-  public ArrayDeque<RawToken> getEvaluatedTokens() {
+  public Deque<Token> getEvaluatedTokens() {
     return evaluatedTokens;
   }
 }

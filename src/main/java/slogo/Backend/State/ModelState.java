@@ -65,7 +65,7 @@ public class ModelState implements Initialiazable, ModifiesModelState, StateMana
   public Result postInstruction(String instructionText)
       throws InvalidTokenException, ClassNotFoundException, InvocationTargetException,
       NoSuchMethodException, InstantiationException, IllegalAccessException {
-    LexResult lexedString = new LexResult(instructionText);
+    LexResult lexedString = new LexResult(instructionText, this.commandLanguage);
     ASTMaker astMaker = new ASTMaker(lexedString.getEvaluatedTokens());
     Operator root =  astMaker.parse();
     LogoRuntimeState runtimeState = new LogoRuntimeState();
