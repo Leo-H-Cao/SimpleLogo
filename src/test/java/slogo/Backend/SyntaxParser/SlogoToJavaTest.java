@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 public class SlogoToJavaTest {
 
   @Test
-  public void testSlogoToJava(String input, String output){
+  public void testSlogoToJava(){
     Assertions.assertEquals(SlogoToJava.convertSlogoNameToJavaName("Backward"),"Back");
     Assertions.assertEquals(SlogoToJava.convertSlogoNameToJavaName("IfElse"),"Ifelse");
     Assertions.assertEquals(SlogoToJava.convertSlogoNameToJavaName("SetHeading"),"Setheading");
