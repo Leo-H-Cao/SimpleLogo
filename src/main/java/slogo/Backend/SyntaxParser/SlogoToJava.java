@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 public class SlogoToJava {
-  private static Map<String,String> conversionMap = SlogoToJava.loadConversionMap();
+  private static final Map<String,String> conversionMap = SlogoToJava.loadConversionMap();
 
   private static Map<String, String> loadConversionMap() {
     ResourceBundle resourceBundle = ResourceBundle.getBundle("slogo/SlogoToJava");
