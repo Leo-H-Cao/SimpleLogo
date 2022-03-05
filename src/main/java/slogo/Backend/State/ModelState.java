@@ -9,7 +9,6 @@ import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import slogo.Backend.FileReadingException;
-import slogo.Backend.InstructionHistory;
 import slogo.Backend.LexicalAnalyzer.InvalidTokenException;
 import slogo.Backend.LexicalAnalyzer.LexResult;
 import slogo.Backend.Preferences;
@@ -24,10 +23,13 @@ import slogo.BackendExternalAPIs.ModifiesModelState;
 import slogo.Backend.className;
 import slogo.SLogoController;
 
+/**
+ * This class ____
+ * @author Alex & Edison
+ */
 public class ModelState implements Initialiazable, ModifiesModelState, StateManager {
   private CommandLanguage commandLanguage;
   private Turtle turtle;
-  private Tracks tracks;
   private LogoRuntimeState runtimeState;
   private UserVariables userVariables;
   private UserCommands userCommands;
@@ -39,10 +41,9 @@ public class ModelState implements Initialiazable, ModifiesModelState, StateMana
     // All this initialization could go into initializeBackend()
     this.commandLanguage = CommandLanguage.ENGLISH;
     this.turtle = SLogoController.INITIAL_TURTLE;
-    this.tracks = new Tracks();
     this.runtimeState = new LogoRuntimeState();
     this.userVariables = new UserVariables();
-    this.userCommands = new UserCommands();
+    this.userCommands = null; //FIX
   }
 
   /**
@@ -65,31 +66,21 @@ public class ModelState implements Initialiazable, ModifiesModelState, StateMana
   public Result postInstruction(String instructionText)
       throws InvalidTokenException, ClassNotFoundException, InvocationTargetException,
       NoSuchMethodException, InstantiationException, IllegalAccessException {
-    LexResult lexedString = new LexResult(instructionText);
-    ASTMaker astMaker = new ASTMaker(lexedString.getTokens());
+    LexResult lexedString = new LexResult(instructionText, this.commandLanguage);
+    ASTMaker astMaker = new ASTMaker(lexedString.getEvaluatedTokens());
     Operator root =  astMaker.parse();
     LogoRuntimeState runtimeState = new LogoRuntimeState();
     ArrayDeque<Turtle> currentHistory = new ArrayDeque<>();
     currentHistory.addLast(turtle);
     runtimeState.getHistory().getTurtleHistory().addLast(currentHistory);
-    //root.getRetVal(runtimeState);//for testing only; comment this out!
+    root.getRetVal(runtimeState);//for testing only; comment this out!
     Result res = new Result(root.getRetVal(runtimeState), runtimeState.getHistory().getTurtleHistory().getLast());
     turtle = runtimeState.getHistory().getTurtleHistory().getLast().getLast();
     return res;
   }
 
 
-  /**
-   * A method which calls on the backend to get all the tracks created by the Turtle from the
-   * perspective of the backend. The returned object can be thought of as a state machine that has
-   * all the information on the tracks that the backend knows about.
-   *
-   * @return Tracks object which has the backend's understanding of the current tracks
-   */
-  @Override
-  public Tracks getTracks() {
-    return this.tracks;
-  }
+
 
   /**
    * Gets history.

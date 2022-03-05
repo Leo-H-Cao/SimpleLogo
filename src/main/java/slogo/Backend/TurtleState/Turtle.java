@@ -5,6 +5,10 @@ import java.util.Map;
 import java.util.function.ToDoubleBiFunction;
 import slogo.Backend.TurtleTransformers.TurtleTransformer;
 
+/**
+ * This class tests the Lexical Analyzer
+ * @author Alex
+ * */
 public class Turtle {
   public static final String X = "x";
   public static final String Y = "y";

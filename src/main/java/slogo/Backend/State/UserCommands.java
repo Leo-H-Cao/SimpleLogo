@@ -3,27 +3,21 @@ package slogo.Backend.State;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
-import slogo.Backend.AST;
 
 public class UserCommands {
   private Set<String> userCommandNames;
-  private HashMap<CommandName, AST> commands;
-  private ParsePreference parsePreference;
+//  private HashMap<CommandName, AST> commands;
 
-  public UserCommands() {
-    userCommandNames = new HashSet<>();
-    commands = new HashMap<>();
-    parsePreference = UserCommands.getDefaultParsePreference();
-    //replace null with enum
-    if(parsePreference == null){
-      this.loadUserCommands();
-    }
-  }
+//  public UserCommands() {
+//    userCommandNames = new HashSet<>();
+////    commands = new HashMap<>();
+//    //replace null with enum
+//    }
+//  }
 
   private UserCommands(String parsePreference) {
     userCommandNames = new HashSet<>();
-    commands = new HashMap<>();
-    this.parsePreference = ParsePreference.valueOf(parsePreference);
+//    commands = new HashMap<>();
   }
 
   public void loadUserCommands(){
@@ -31,8 +25,4 @@ public class UserCommands {
     return;
   }
 
-  private static ParsePreference getDefaultParsePreference() {
-    // TODO: load Parse Preference from persistent settings file
-    return null;
-  }
 }

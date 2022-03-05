@@ -1,5 +1,9 @@
 package slogo.Backend.TurtleState;
 
+/**
+ * This class tests the Lexical Analyzer
+ * @author Alex
+ * */
 public class Coordinate {
 
   private final double x;

@@ -20,7 +20,7 @@ public class For extends Operator {
 
     double retVal = 0;
     for(double i=start; i<finish; i+=increment){
-      s.setVariableValue(((Variable)(arguments.get(0).getArguments().get(0))).getName(), arguments.get(0).getArguments().get(1).getRetVal(s));
+      s.setVariableValue(((Variable)(arguments.get(0).getArguments().get(0))).getName(), i);
       retVal = arguments.get(1).getRetVal(s);
     }
 

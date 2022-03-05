@@ -1,12 +1,12 @@
 package slogo.Backend.LexicalAnalyzer;
-
 /**
  * This class ____
  * @author Alex
  */
-public class Token extends AbstractToken {
+public class RawToken extends AbstractToken {
 
-  public Token(TokenType type, String value) {
+  public RawToken(TokenType type, String value) {
     super(type, value);
   }
+
 }
