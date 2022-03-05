@@ -37,10 +37,11 @@ public class ModelState implements Initialiazable, ModifiesModelState, StateMana
   /**
    * Class constructor.
    */
-  public ModelState() {
+  public ModelState(Preferences prefs) {
     // All this initialization could go into initializeBackend()
-    this.commandLanguage = CommandLanguage.ENGLISH;
     this.turtle = SLogoController.INITIAL_TURTLE;
+    this.commandLanguage = prefs.getLanguage();
+    //this.tracks = new Tracks();
     this.runtimeState = new LogoRuntimeState();
     this.userVariables = new UserVariables();
     this.userCommands = null; //FIX
@@ -110,16 +111,6 @@ public class ModelState implements Initialiazable, ModifiesModelState, StateMana
   @Override
   public UserCommands getUserCommands() {
     return userCommands;
-  }
-
-  /**
-   * Gets instruction history
-   *
-   * @return the instruction history in the form of an InstructionHistory object
-   */
-  @Override
-  public InstructionHistory getInstructionHistory() {
-    return null;
   }
 
   /**

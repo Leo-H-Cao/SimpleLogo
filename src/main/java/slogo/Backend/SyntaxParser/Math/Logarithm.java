@@ -18,10 +18,10 @@ public class Logarithm extends ArithmeticOp {
   }
 
   public double getRetVal(LogoRuntimeState runtimeState)
-      throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+      throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException, IllegalArgumentException {
     double arg1 = this.arguments.get(0).getRetVal(runtimeState);
     if(arg1 < 0) {
-      //TODO: Throw an error if input is negative or zero
+      throw new IllegalArgumentException("Argument for logarithm must be greater than 0");
     }
     return Math.log(arg1);
   }

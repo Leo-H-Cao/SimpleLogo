@@ -5,6 +5,12 @@ import java.util.Map;
 import slogo.Backend.TurtleState.FieldValue;
 import slogo.Backend.TurtleState.Turtle;
 
+/**
+ * This class contains the implementation of the Towards command, which rotates a turtle so that it
+ * faces towards a certain point.
+ *
+ * @author Jed Yang
+ */
 public class Towards implements TurtleTransformer {
   private Turtle myOldTurtle;
   private List<Double> myParams;
@@ -34,7 +40,7 @@ public class Towards implements TurtleTransformer {
       newAngle = (Math.PI * 3) / 2;
     }
     else {
-      newAngle = Math.atan2(dy, dx);
+      newAngle = Math.atan(dy/dx);
     }
 
     return Map.of(Turtle.DIRECTION, new FieldValue<Double>(newAngle));

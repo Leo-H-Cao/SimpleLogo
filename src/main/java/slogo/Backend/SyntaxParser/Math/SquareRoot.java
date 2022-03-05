@@ -18,10 +18,10 @@ public class SquareRoot extends ArithmeticOp {
   }
 
   public double getRetVal(LogoRuntimeState runtimeState)
-      throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+      throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException, IllegalArgumentException {
     double arg1 = this.arguments.get(0).getRetVal(runtimeState);
     if(arg1 < 0) {
-      //TODO: Throw an error if input is negative
+      throw new IllegalArgumentException("Argument for square root must be greater or equal to 0");
     }
     return Math.sqrt(arg1);
   }

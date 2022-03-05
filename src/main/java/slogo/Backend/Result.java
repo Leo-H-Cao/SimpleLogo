@@ -18,10 +18,17 @@ public class Result {
     this.turtleSteps = turtleSteps;
   }
 
+  /**
+   * @return numeric return value of the entire set of commands submitted
+   */
   public double getIntReturned() {
     return doubleReturned;
   }
 
+  /**
+   * @return ArrayDeque of new turtles resulting from executing this set of commands, with the first
+   * turtle in the deque being the original turtle before execution
+   */
   public ArrayDeque<Turtle> getTurtleSteps(){
     return turtleSteps;
   }

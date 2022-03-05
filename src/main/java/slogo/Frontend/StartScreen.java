@@ -12,6 +12,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import slogo.Backend.State.CommandLanguage;
 
 public class StartScreen extends Scene {
 
@@ -44,8 +45,8 @@ public class StartScreen extends Scene {
     return startButton;
   }
 
-  public Object getCommandLanguage(){
-    return selectCommandLanguage.getSelectionModel().getSelectedItem();
+  public CommandLanguage getCommandLanguage(){
+    return (CommandLanguage) selectCommandLanguage.getSelectionModel().getSelectedItem();
   }
 
   private void displayNodes(){
@@ -62,8 +63,8 @@ public class StartScreen extends Scene {
   }
 
   private void displayOptions(){
-    selectCommandLanguage.getItems().addAll("English", "Language 2", "Language 3");
-    selectCommandLanguage.setValue("English");
+    selectCommandLanguage.getItems().addAll(CommandLanguage.values());
+    selectCommandLanguage.setValue(CommandLanguage.ENGLISH);
     Label languageLabel = new Label("Select Command Language:");
     languageLabel.setFont(Font.font("verdana", FontWeight.NORMAL, FontPosture.REGULAR, 15));
     HBox languageSelectContainer = new HBox(5);

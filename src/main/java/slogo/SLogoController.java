@@ -8,7 +8,9 @@ import slogo.Backend.ErrorText;
 import slogo.Backend.HelpInformation;
 import slogo.Backend.Helper;
 import slogo.Backend.LexicalAnalyzer.InvalidTokenException;
+import slogo.Backend.Preferences;
 import slogo.Backend.Result;
+import slogo.Backend.State.CommandLanguage;
 import slogo.Backend.State.ModelState;
 import slogo.Backend.TurtleState.Turtle;
 import slogo.Frontend.CommandInput;
@@ -34,7 +36,10 @@ public class SLogoController {
   // Backend objects
   private ModelState model;
   private Helper helper;
-  public static final Turtle INITIAL_TURTLE = new Turtle(new int[]{0, 0}, Math.PI / 2, true);
+  private static final int[] INITIAL_POSITION = new int[]{0, 0};
+  private static final double INITIAL_DIRECTION = Math.PI / 2;
+  private static final boolean INITIAL_PENDOWN = true;
+  public static final Turtle INITIAL_TURTLE = new Turtle(INITIAL_POSITION, INITIAL_DIRECTION, INITIAL_PENDOWN);
 
   // Frontend objects
   private View mainView;
@@ -61,33 +66,34 @@ public class SLogoController {
    * @param stage Stage object responsible for displaying the program
    */
   public void setupNewSLogo(Stage stage) {
-    // Set up and show stage
+    // Initialize UI components
     myStage = stage;
     mainView = new View(myStage, this);
+
     gui = mainView.getMainUI();
+
     commandInputter = gui.getCommandInput();
+    commandOutputter = gui.getCommandOutput();
+
     turtleView = gui.getTurtleView();
     turtleView.createTurtle(INITIAL_TURTLE);
     turtleView.resetTurtle();
+
     userDefinedAttributesUpdater =
         new ViewUserDefined(); // TODO: This should be owned by some class in the frontend
+  }
 
-    // initialize window to set parameters
-    // frontend stuff to get language + other initial parameters that the backend needs to know
-    // resource file will have defaults
-    // UI should allow user to change those attributes before starting up the model
-
+  /**
+   * Initializes backend components. Should be called after the user selects their preferences at
+   * program launch.
+   * @param language CommandLanguage in which commands will be parsed with
+   */
+  public void initializeBackend(CommandLanguage language) {
     // ModelState owns command language, turtle, tracks, history, and user variables/commands
-    model = new ModelState();
+    model = new ModelState(new Preferences(language));
 
     // Independent object that fetches help for user (just a string for now)
     helper = new Helper();
-
-//    syntaxChecker = new Validator();
-//    InitializationState initializationState = new InitializationState();
-//    model.initalizeBackend(initializationState);
-
-    // initialize turtle
   }
 
   /**
@@ -109,23 +115,19 @@ public class SLogoController {
   public void handleCommandSubmitted() {
     String command = commandInputter.getCommands();
 
-    // If it's not valid, do something
     try {
       System.out.println();
       Result commandResult = model.postInstruction(command);
       ArrayDeque<Turtle> steps = commandResult.getTurtleSteps();
       if (steps == null || steps.size() <= 1) {
-        //display numeric result on console window
+        commandOutputter.displayResult(commandResult);
       } else {
         turtleView.moveTurtle(steps.clone());
       }
     } catch (InvalidTokenException | ClassNotFoundException | InvocationTargetException |
         NoSuchMethodException | InstantiationException | IllegalAccessException exception) {
-      //handle
-      System.out.println(exception);
       commandOutputter.displayError(new ErrorText(exception.toString()));
     }
-
   }
 
   /**
@@ -141,19 +143,5 @@ public class SLogoController {
       // display the help to the frontend
     }
   }
-
-//  /**
-//   * Instantiates a new SLogoController along with a new Stage to show it on, effectively creating
-//   * a new instance of the SLogo program with its own turtles, preferences, etc.
-//   *
-//   * This method should only be called whenever a user performs an action that indicates they are
-//   * trying to create a new SLogo instance.
-//   */
-//  public void handleCreateNewSLogo() {
-//    SLogoController newController = new SLogoController();
-//    Stage stage = new Stage();
-//    newController.setupNewSLogo(stage);
-//  }
-
 
 }

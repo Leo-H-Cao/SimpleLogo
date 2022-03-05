@@ -3,6 +3,7 @@ package slogo.Frontend;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import slogo.Backend.State.CommandLanguage;
 import slogo.SLogoController;
 
 public class View {
@@ -25,17 +26,18 @@ public class View {
   private void displayStartScreen(){
     StartScreen startScreen = new StartScreen(startScreenLayout);
     startScreen.getStartButton().setOnAction(e -> {
-        handleStartClick();
+        handleStartClick(startScreen.getCommandLanguage());
     });
     stage.setScene(startScreen);
     stage.show();
   }
 
-  private void handleStartClick(){
+  private void handleStartClick(CommandLanguage language){
     mainUI.getScene().setOnKeyPressed(e -> myController.handleKeyInput(e.getCode()));
     stage.setScene(mainUI.getScene());
     stage.setTitle(TITLE);
     stage.show();
+    myController.initializeBackend(language);
   }
 
   public MainUI getMainUI() {

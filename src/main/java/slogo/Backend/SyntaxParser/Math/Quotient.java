@@ -19,8 +19,10 @@ public class Quotient extends ArithmeticOp {
   }
 
   public double getRetVal(LogoRuntimeState runtimeState)
-      throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-    return this.arguments.get(0).getRetVal(runtimeState) / this.arguments.get(1).getRetVal(
-        runtimeState);
+      throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException, IllegalArgumentException {
+    double arg0 = this.arguments.get(0).getRetVal(runtimeState);
+    double arg1 = this.arguments.get(1).getRetVal(runtimeState);
+    if(arg1 == 0) throw new IllegalArgumentException("Cannot divide by 0");
+    return arg0 / arg1;
   }
 }
