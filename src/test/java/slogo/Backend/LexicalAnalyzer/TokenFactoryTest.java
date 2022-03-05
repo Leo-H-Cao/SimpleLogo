@@ -18,66 +18,68 @@ import slogo.Backend.State.CommandLanguage;
 
 class TokenFactoryTest {
 
-//  @Test
-//  void getRawToken() throws InvalidTokenException {
-//    HashMap<String[], ArrayList<RawToken>> testPairs = new HashMap<>();
-//    testPairs.put(
-//        new String[] {"fd", "50"},
-//        new ArrayList<RawToken>(
-//            List.of(new RawToken(TokenType.COMMAND, "fd"), new RawToken(TokenType.CONSTANT, "50"))));
-//    testPairs.put(
-//        new String[] {"FD", "50"},
-//        new ArrayList<RawToken>(
-//            List.of(new RawToken(TokenType.COMMAND, "FD"), new RawToken(TokenType.CONSTANT, "50"))));
-//    testPairs.put(
-//        new String[] {"FORWARD", "50"},
-//        new ArrayList<RawToken>(
-//            List.of(new RawToken(TokenType.COMMAND, "FORWARD"), new RawToken(TokenType.CONSTANT, "50"))));
-//    testPairs.put(
-//        new String[] {"BACKWARD", "90"},
-//        new ArrayList<RawToken>(
-//            List.of(
-//                new RawToken(TokenType.COMMAND, "BACKWARD"), new RawToken(TokenType.CONSTANT, "90"))));
-//    testPairs.put(
-//        new String[] {"fd", "50", "fd", "60", "fd", "70", "fd", "80", "fd", "90"},
-//        new ArrayList<RawToken>(
-//            List.of(
-//                new RawToken(TokenType.COMMAND, "fd"),
-//                new RawToken(TokenType.CONSTANT, "50"),
-//                new RawToken(TokenType.COMMAND, "fd"),
-//                new RawToken(TokenType.CONSTANT, "60"),
-//                new RawToken(TokenType.COMMAND, "fd"),
-//                new RawToken(TokenType.CONSTANT, "70"),
-//                new RawToken(TokenType.COMMAND, "fd"),
-//                new RawToken(TokenType.CONSTANT, "80"),
-//                new RawToken(TokenType.COMMAND, "fd"),
-//                new RawToken(TokenType.CONSTANT, "90"))));
-//    testPairs.put(
-//        new String[] {"FORWARD", "50", "BACKWARD", "60", "fd", "70", "LEFT", "80", "RIGHT", "90"},
-//        new ArrayList<RawToken>(
-//            List.of(
-//                new RawToken(TokenType.COMMAND, "FORWARD"),
-//                new RawToken(TokenType.CONSTANT, "50"),
-//                new RawToken(TokenType.COMMAND, "BACKWARD"),
-//                new RawToken(TokenType.CONSTANT, "60"),
-//                new RawToken(TokenType.COMMAND, "fd"),
-//                new RawToken(TokenType.CONSTANT, "70"),
-//                new RawToken(TokenType.COMMAND, "LEFT"),
-//                new RawToken(TokenType.CONSTANT, "80"),
-//                new RawToken(TokenType.COMMAND, "RIGHT"),
-//                new RawToken(TokenType.CONSTANT, "90"))));
-//    for (String[] stringTokensArry : testPairs.keySet()) {
-//      Seq<Tuple2<String, RawToken>> rawTokens =
-//          Seq.of(stringTokensArry).zip(testPairs.get(stringTokensArry));
-//      for (Tuple2<String, RawToken> tokenPair : rawTokens) {
-//        RawToken match = TokenFactory.getRawToken(tokenPair.v1);
-//        Assertions.assertNotNull(match);
-//        Assertions.assertInstanceOf(Token.class, match);
-//        Assertions.assertEquals(match, tokenPair.v2);
-//      }
-//    }
-//  }
-//
+  @Test
+  void getRawToken() throws InvalidTokenException {
+    HashMap<String[], ArrayList<RawToken>> testPairs = new HashMap<>();
+    testPairs.put(
+        new String[] {"fd", "50"},
+        new ArrayList<RawToken>(
+            List.of(new RawToken(TokenType.COMMAND, "fd"), new RawToken(TokenType.CONSTANT, "50"))));
+    testPairs.put(
+        new String[] {"FD", "50"},
+        new ArrayList<RawToken>(
+            List.of(new RawToken(TokenType.COMMAND, "FD"), new RawToken(TokenType.CONSTANT, "50"))));
+    testPairs.put(
+        new String[] {"FORWARD", "50"},
+        new ArrayList<RawToken>(
+            List.of(new RawToken(TokenType.COMMAND, "FORWARD"), new RawToken(TokenType.CONSTANT, "50"))));
+    testPairs.put(
+        new String[] {"BACKWARD", "90"},
+        new ArrayList<RawToken>(
+            List.of(
+                new RawToken(TokenType.COMMAND, "BACKWARD"), new RawToken(TokenType.CONSTANT, "90"))));
+    testPairs.put(
+        new String[] {"fd", "50", "fd", "60", "fd", "70", "fd", "80", "fd", "90"},
+        new ArrayList<RawToken>(
+            List.of(
+                new RawToken(TokenType.COMMAND, "fd"),
+                new RawToken(TokenType.CONSTANT, "50"),
+                new RawToken(TokenType.COMMAND, "fd"),
+                new RawToken(TokenType.CONSTANT, "60"),
+                new RawToken(TokenType.COMMAND, "fd"),
+                new RawToken(TokenType.CONSTANT, "70"),
+                new RawToken(TokenType.COMMAND, "fd"),
+                new RawToken(TokenType.CONSTANT, "80"),
+                new RawToken(TokenType.COMMAND, "fd"),
+                new RawToken(TokenType.CONSTANT, "90"))));
+    testPairs.put(
+        new String[] {"FORWARD", "50", "BACKWARD", "60", "fd", "70", "LEFT", "80", "RIGHT", "90"},
+        new ArrayList<RawToken>(
+            List.of(
+                new RawToken(TokenType.COMMAND, "FORWARD"),
+                new RawToken(TokenType.CONSTANT, "50"),
+                new RawToken(TokenType.COMMAND, "BACKWARD"),
+                new RawToken(TokenType.CONSTANT, "60"),
+                new RawToken(TokenType.COMMAND, "fd"),
+                new RawToken(TokenType.CONSTANT, "70"),
+                new RawToken(TokenType.COMMAND, "LEFT"),
+                new RawToken(TokenType.CONSTANT, "80"),
+                new RawToken(TokenType.COMMAND, "RIGHT"),
+                new RawToken(TokenType.CONSTANT, "90"))));
+    for (String[] stringTokensArry : testPairs.keySet()) {
+      Seq<Tuple2<String, RawToken>> rawTokens =
+          Seq.of(stringTokensArry).zip(testPairs.get(stringTokensArry));
+      for (Tuple2<String, RawToken> tokenPair : rawTokens) {
+        RawToken match = TokenFactory.getRawToken(tokenPair.v1);
+        Assertions.assertNotNull(match);
+        Assertions.assertInstanceOf(RawToken.class, match);
+        Assertions.assertEquals(match, tokenPair.v2);
+      }
+    }
+  }
+
+
+
   @ParameterizedTest
   @MethodSource("getTokenEnglishArgumentProvider")
   void getTokenEnglish(RawToken rawToken, Token token) {
@@ -164,20 +166,12 @@ class TokenFactoryTest {
         {"SEtPOsiTION","SetPosition"},
         {"SEtPoSitIOn","SetPosition"},
         {"SetPoSiTiON","SetPosition"},
-        {"pU","PenDown"},
-        {"Pu","PenDown"},
-        {"Pu","PenDown"},
-        {"pU","PenDown"},
         {"PeNDOwN","PenDown"},
         {"PEnDOWN","PenDown"},
         {"PeNDOwn","PenDown"},
         {"PenDoWn","PenDown"},
         {"PeNDOWn","PenDown"},
         {"PenDOWn","PenDown"},
-        {"PD","PenUp"},
-        {"PD","PenUp"},
-        {"Pd","PenUp"},
-        {"pd","PenUp"},
         {"PEnUp","PenUp"},
         {"PeNUP","PenUp"},
         {"PenUp","PenUp"},

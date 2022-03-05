@@ -7,9 +7,9 @@ class RawTokenTest {
 
   @Test
   void getTyoe() {
-    Token t1 = new Token(TokenType.COMMAND, "fd");
-    Token t2 = new Token(TokenType.LISTEND, "]");
-    Token t3 = new Token(TokenType.LISTSTART, "[");
+    RawToken t1 = new RawToken(TokenType.COMMAND, "fd");
+    RawToken t2 = new RawToken(TokenType.LISTEND, "]");
+    RawToken t3 = new RawToken(TokenType.LISTSTART, "[");
     Assertions.assertEquals(t1.getType(), TokenType.valueOf("COMMAND"));
     Assertions.assertEquals(t2.getType(), TokenType.valueOf("LISTEND"));
     Assertions.assertEquals(t3.getType(), TokenType.valueOf("LISTSTART"));
@@ -17,9 +17,9 @@ class RawTokenTest {
 
   @Test
   void getValue() {
-    Token t1 = new Token(TokenType.COMMAND, "fd");
-    Token t2 = new Token(TokenType.LISTEND, "]");
-    Token t3 = new Token(TokenType.LISTSTART, "[");
+    RawToken t1 = new RawToken(TokenType.COMMAND, "fd");
+    RawToken t2 = new RawToken(TokenType.LISTEND, "]");
+    RawToken t3 = new RawToken(TokenType.LISTSTART, "[");
     Assertions.assertEquals(t1.getValue(), "fd");
     Assertions.assertEquals(t2.getValue(), "]");
     Assertions.assertEquals(t3.getValue(), "[");
@@ -27,12 +27,12 @@ class RawTokenTest {
 
   @Test
   void testEquals() {
-    Token t1 = new Token(TokenType.COMMAND, "fd");
-    Token t11 = new Token(TokenType.COMMAND, "fd");
-    Token t2 = new Token(TokenType.LISTEND, "]");
-    Token t22 = new Token(TokenType.LISTEND, "]");
-    Token t3 = new Token(TokenType.LISTSTART, "[");
-    Token t33 = new Token(TokenType.LISTSTART, "[");
+    RawToken t1 = new RawToken(TokenType.COMMAND, "fd");
+    RawToken t11 = new RawToken(TokenType.COMMAND, "fd");
+    RawToken t2 = new RawToken(TokenType.LISTEND, "]");
+    RawToken t22 = new RawToken(TokenType.LISTEND, "]");
+    RawToken t3 = new RawToken(TokenType.LISTSTART, "[");
+    RawToken t33 = new RawToken(TokenType.LISTSTART, "[");
     Assertions.assertEquals(t1, t1);
     Assertions.assertEquals(t2, t2);
     Assertions.assertEquals(t3, t3);
@@ -43,12 +43,12 @@ class RawTokenTest {
 
   @Test
   void testHashCode() {
-    Token t1 = new Token(TokenType.COMMAND, "fd");
-    Token t11 = new Token(TokenType.COMMAND, "fd");
-    Token t2 = new Token(TokenType.LISTEND, "]");
-    Token t22 = new Token(TokenType.LISTEND, "]");
-    Token t3 = new Token(TokenType.LISTSTART, "[");
-    Token t33 = new Token(TokenType.LISTSTART, "[");
+    RawToken t1 = new RawToken(TokenType.COMMAND, "fd");
+    RawToken t11 = new RawToken(TokenType.COMMAND, "fd");
+    RawToken t2 = new RawToken(TokenType.LISTEND, "]");
+    RawToken t22 = new RawToken(TokenType.LISTEND, "]");
+    RawToken t3 = new RawToken(TokenType.LISTSTART, "[");
+    RawToken t33 = new RawToken(TokenType.LISTSTART, "[");
     Assertions.assertEquals(t1.hashCode(), t1.hashCode());
     Assertions.assertEquals(t2.hashCode(), t2.hashCode());
     Assertions.assertEquals(t3.hashCode(), t3.hashCode());
