@@ -129,6 +129,16 @@ class TokenFactoryTest {
     return getArgumentsStream(arguments);
   }
 
+  @ParameterizedTest
+  @MethodSource("getTokenEnglishArgumentProvider")
+  void checkIdempotenceOfEvaluation(RawToken rawToken, Token token) {
+    Token evaluatedToken1 = TokenFactory.getToken(rawToken, CommandLanguage.ENGLISH);
+    Token evaluatedToken2 = TokenFactory.getToken(new RawToken(evaluatedToken1.getType(), evaluatedToken1.getValue()), CommandLanguage.ENGLISH);
+    Token evaluatedToken3 = TokenFactory.getToken(new RawToken(evaluatedToken2.getType(), evaluatedToken2.getValue()), CommandLanguage.ENGLISH);
+    Assertions.assertEquals(evaluatedToken1, evaluatedToken2);
+    Assertions.assertEquals(evaluatedToken2, evaluatedToken3);
+  }
+
   static Stream<Arguments> getTokenSpanishArgumentProvider() {
     String[][] arguments = {
         {"PlUmASuBiDA","PenUp"},
