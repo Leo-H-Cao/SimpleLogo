@@ -10,7 +10,10 @@ import slogo.Backend.State.TurtleHistory;
 import slogo.Backend.State.UserCommands;
 import slogo.Backend.State.UserVariables;
 
-/** The interface Accesses state. */
+/**
+ * This class ____
+ * @author Alex
+ */
 public interface StateManager {
 
   /**

@@ -1,6 +1,9 @@
 package slogo.Backend;
 
-
+/**
+ * This class ____
+ * @author Alex
+ */
 public class Utilities {
   public static String getTitleCaseOf(String str) {
     String firstLetter = str.substring(0,1);
