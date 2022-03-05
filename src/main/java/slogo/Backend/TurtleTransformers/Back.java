@@ -5,6 +5,11 @@ import java.util.Map;
 import slogo.Backend.TurtleState.FieldValue;
 import slogo.Backend.TurtleState.Turtle;
 
+/**
+ * This class contains the implementation of the Back command, which moves a turtle backwards.
+ *
+ * @author Jed Yang
+ */
 public class Back implements TurtleTransformer {
 
   private Turtle myOldTurtle;

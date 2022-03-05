@@ -5,6 +5,11 @@ import java.util.Map;
 import slogo.Backend.TurtleState.FieldValue;
 import slogo.Backend.TurtleState.Turtle;
 
+/**
+ * This class contains the implementation of the Forward command, which moves a turtle forwards.
+ *
+ * @author Jed Yang
+ */
 public class Forward implements TurtleTransformer {
 
   private Turtle myOldTurtle;
