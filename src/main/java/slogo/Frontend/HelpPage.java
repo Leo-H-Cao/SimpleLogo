@@ -11,6 +11,7 @@ public class HelpPage extends Application {
   public static final String HELP_DIALOG = "What do you need help with?";
   public static final String FILENAME = "";
 
+
   public HelpPage() {
     Text helpDialog = new Text(HELP_DIALOG);
     VBox helpBox = new VBox();

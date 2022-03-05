@@ -1,36 +1,31 @@
 package slogo.Frontend;
 
-import static slogo.Frontend.ResourceUtil.getResourceColor;
-
 import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.effect.ColorAdjust;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Line;
 import slogo.FrontendInternalAPIs.DisplayPen;
 
+/**
+ * Pen object that keeps track of stroke width, pen color, pen down
+ * @author Leo Cao
+ */
 public class TurtlePen implements DisplayPen {
   private static final String CONFIGURATION_RESOURCE_PATH = "slogo/Frontend/pen";
-  private Pane penPane;
   private ResourceBundle myResources;
-  private static Color INITIAL_COLOR = Color.BLACK;
-  private static double INITIAL_LINE_WIDTH = 5;
-  private static boolean INITIAL_PEN_DOWN = true;
   private double strokeWidth;
+  private double currentStrokeWidth;
   private Color penColor;
   private boolean penDown;
 
 
   public TurtlePen() {
     setResources();
-    penPane = new Pane();
     penColor = Color.valueOf(myResources.getString("defaultPenColor"));
     penDown = Boolean.parseBoolean(myResources.getString("defaultPenDown"));
     strokeWidth = Double.parseDouble(myResources.getString("defaultPenWidth"));
+    currentStrokeWidth = Double.parseDouble(myResources.getString("defaultPenWidth"));
   }
 
   public void setResources() {
@@ -41,31 +36,45 @@ public class TurtlePen implements DisplayPen {
     }
   }
 
-  // Going to have to find different pen color images (or make them) unless javafx can support
-  // vector images
+  /**
+   * Sets new pen color, black is default
+   * @param color
+   */
   @Override
   public void setPenColor(Color color) {
     penColor = color;
   }
 
+  /**
+   * sets new stroke width, 5 is default
+   * @param size
+   */
   @Override
   public void setPenSize(int size) {
     strokeWidth = size;
   }
 
+  /**
+   * sets pen down
+   * @param down
+   */
   @Override
   public void setPenVisible(boolean down) {
-    penDown = down;
-
+    if(!down){
+      currentStrokeWidth = 0;
+    }
+    else{
+      currentStrokeWidth = strokeWidth;
+    }
   }
 
+  /**
+   * Configures graphics context to current pen settings
+   * @param gc
+   */
   @Override
   public void setGCOptions(GraphicsContext gc) {
-    if(!penDown){
-      gc.setLineWidth(0);
-      return;
-    }
     gc.setStroke(penColor);
-    gc.setLineWidth(strokeWidth);
+    gc.setLineWidth(currentStrokeWidth);
   }
 }

@@ -16,6 +16,9 @@ public class LeftBorderContainer extends ViewUserDefined{
   private Region outputPadding;
   private Text commandOutputTitle;
 
+  /**
+   * Container for left border of border pane, includes user defined variables and command output
+   */
   public LeftBorderContainer(){
     leftBorderContainer = new VBox();
     variablesTitle = new Text(USER_VARIABLES_TITLE);
