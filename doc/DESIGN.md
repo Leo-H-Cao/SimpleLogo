@@ -1,4 +1,4 @@
-# DESIGN Document for PROJECT_NAME
+# DESIGN Document for SLogo
 
 ## NAME(s)
 Leo Cao, Jed Yang, Edison Ooi, Alex Bildner
