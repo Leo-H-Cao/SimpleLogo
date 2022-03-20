@@ -46,6 +46,34 @@ public class TurtleView implements DisplayTurtle {
   }
 
   /**
+   * creates turtle at coordinates specified by turtle object
+   *
+   * @param newTurtle
+   */
+  @Override
+  public void createTurtle(Turtle newTurtle){
+    currentTurtle = newTurtle;
+    initialTurtle = newTurtle;
+    resetTurtle();
+  }
+
+  /**
+   * Change image for turtle (instead of CSS style's default)
+   *
+   * @param turtleImage
+   */
+  @Override
+  public void setTurtleImage(Image turtleImage) {
+    this.turtleImage.setImage(turtleImage);
+  }
+
+  /** clears screen and resets turtle to original position */
+  public void resetTurtle() {
+    turtleImage.setX(initialTurtle.getLocation().getX());
+    turtleImage.setX(initialTurtle.getLocation().getY());
+  }
+
+  /**
    * move turtle to coordinates as specified by turtle object
    *
    * @param turtles Deque of Turtles that the TurtleView must move to
@@ -72,15 +100,6 @@ public class TurtleView implements DisplayTurtle {
     return transition;
   }
 
-//  private void makeLine(Turtle nextTurtle){
-//    double startX = adjustX(currentTurtle.getLocation().getX());
-//    double startY = adjustY(currentTurtle.getLocation().getY());
-//    double endX = adjustX(nextTurtle.getLocation().getX());
-//    double endY = adjustY(nextTurtle.getLocation().getY());
-//    Line newLine = myPen.drawLine(startX,endX,startY,endY);
-//    penPane.getChildren().add(newLine);
-//  }
-
   // Creates an animation from one turtle to the next
   private Animation makeAnimation(Turtle nextTurtle) {
     SequentialTransition transition = new SequentialTransition(turtleImage);
@@ -90,7 +109,7 @@ public class TurtleView implements DisplayTurtle {
         && nextTurtle.getLocation().getY() == currentTurtle.getLocation().getY()) {
       transition.getChildren().add(makeRotateTransition(currentTurtle, nextTurtle));
     } else {
-        transition.getChildren().add(makePathTransition(currentTurtle, nextTurtle));
+      transition.getChildren().add(makePathTransition(currentTurtle, nextTurtle));
     }
     return transition;
   }
@@ -110,13 +129,30 @@ public class TurtleView implements DisplayTurtle {
     return pt;
   }
 
+  // Adjusts x coordinate to refer to the center of the image instead of the top left corner
+  private double adjustX(double actualX) {
+    return actualX + turtleImage.getLayoutBounds().getWidth() / 2;
+  }
+
+  // Adjusts y coordinate to refer to the center of the image instead of the top left corner
+  private double adjustY(double actualY) {
+    return actualY + turtleImage.getLayoutBounds().getHeight() / 2;
+  }
+
+  // Make a rotate transition from one turtle's direction to another
+  private RotateTransition makeRotateTransition(Turtle current, Turtle next) {
+    RotateTransition rt = new RotateTransition(Duration.seconds(DEFAULT_SPEED / myAnimationSpeed));
+    double angleToRotate = -1 * (next.getDirection().getDirectionInDegrees() - current.getDirection().getDirectionInDegrees());
+    rt.setByAngle(angleToRotate);
+    return rt;
+  }
+
+  // Draw a line from the old location to the new location
   private void drawLine(PathTransition pt){
     GraphicsContext gc = canvas.getGraphicsContext2D();
     pt.currentTimeProperty().addListener(new ChangeListener<Duration>() {
       Location oldLocation = null;
-      /**
-       * Draw a line from the old location to the new location
-       */
+
       @Override
       public void changed(ObservableValue<? extends Duration> observable, Duration oldValue,
           Duration newValue) {
@@ -149,38 +185,8 @@ public class TurtleView implements DisplayTurtle {
 
   }
 
-  // Adjusts x coordinate to refer to the center of the image instead of the top left corner
-  private double adjustX(double actualX) {
-    return actualX + turtleImage.getLayoutBounds().getWidth() / 2;
-  }
-
-  // Adjusts y coordinate to refer to the center of the image instead of the top left corner
-  private double adjustY(double actualY) {
-    return actualY + turtleImage.getLayoutBounds().getHeight() / 2;
-  }
-
-  // Make a rotate transition from one turtle's direction to another
-  private RotateTransition makeRotateTransition(Turtle current, Turtle next) {
-    RotateTransition rt = new RotateTransition(Duration.seconds(DEFAULT_SPEED / myAnimationSpeed));
-    double angleToRotate = -1 * (next.getDirection().getDirectionInDegrees() - current.getDirection().getDirectionInDegrees());
-    rt.setByAngle(angleToRotate);
-    return rt;
-  }
-
-  public Canvas getCanvas(){
+  private Canvas getCanvas(){
     return canvas;
-  }
-
-  /**
-   * creates turtle at coordinates specified by turtle object
-   *
-   * @param newTurtle
-   */
-  @Override
-  public void createTurtle(Turtle newTurtle){
-    currentTurtle = newTurtle;
-    initialTurtle = newTurtle;
-    resetTurtle();
   }
 
   // create something to animate
@@ -193,45 +199,7 @@ public class TurtleView implements DisplayTurtle {
     turtleImage.getStyleClass().add("turtle-image");
   }
 
-  public Node getTurtleNode() {
-    return turtleImage;
-  }
-
-  public TurtlePen getTurtlePen(){
-    return myTurtlePen;
-  }
-
-  /**
-   * Change image for turtle (instead of CSS style's default)
-   *
-   * @param turtleImage
-   */
-  @Override
-  public void setTurtleImage(Image turtleImage) {
-    this.turtleImage.setImage(turtleImage);
-  }
-
-  @Override
-  public void rotateTurtle() {}
-
-  /**
-   * returns current turtle graphic
-   *
-   * @return
-   */
-  @Override
-  public Image getCurrentTurtleImage() {
-    return turtleImage.getImage();
-  }
-
-  /** clears screen and resets turtle to original position */
-  public void resetTurtle() {
-    //makeAnimation(initialTurtle).play();
-    turtleImage.setX(initialTurtle.getLocation().getX());
-    turtleImage.setX(initialTurtle.getLocation().getY());
-  }
-
-  public static class Location {
+  private static class Location {
     double x;
     double y;
   }

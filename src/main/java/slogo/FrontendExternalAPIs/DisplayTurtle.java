@@ -26,8 +26,4 @@ public interface DisplayTurtle {
    * @param turtleImage
    */
   void setTurtleImage(Image turtleImage);
-
-  void rotateTurtle();
-
-  Image getCurrentTurtleImage();
 }
