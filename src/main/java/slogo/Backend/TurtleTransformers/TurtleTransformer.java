@@ -4,9 +4,8 @@ import java.util.Map;
 import slogo.Backend.TurtleState.FieldValue;
 
 /**
- * This class tests the Lexical Analyzer
- * @author Alex
- * */
+ * This interface represents classes that represent SLogo commands which cause a turtle to move.
+ */
 public interface TurtleTransformer {
   Map<String, FieldValue> transform();
 

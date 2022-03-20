@@ -8,10 +8,16 @@ import slogo.Backend.SyntaxParser.ListStructure.LogoList;
 import slogo.Backend.TurtleState.Turtle;
 import slogo.SLogoController;
 
+/***
+ * An object that contains the turtle history, variables, custom functions, and turtle ID of a running turtle
+ * @author Jed Yang
+ */
+
 public class LogoRuntimeState {
   private TurtleHistory history;
   private HashMap<String, Double> variableTable;
   private HashMap<String, Operator> functionTable;
+  private int turtleID;
 
   public LogoRuntimeState(){
     Turtle turtle = SLogoController.INITIAL_TURTLE;

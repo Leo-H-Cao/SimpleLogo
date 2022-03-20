@@ -3,7 +3,7 @@ package slogo.BackendExternalAPIs;
 import slogo.Backend.InvalidCommandLanguageException;
 
 /**
- * This class ____
+ * This class indicates that the implementing class can modify the model state
  * @author Alex
  */
 public interface ModifiesModelState {

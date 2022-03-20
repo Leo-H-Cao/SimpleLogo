@@ -10,7 +10,8 @@ import slogo.Backend.Utilities;
 import dk.brics.automaton.Automaton;
 import dk.brics.automaton.SpecialOperations;
 /**
- * This class ____
+ * This class evaluates tokens - it converts the alternative names for commands to their
+ * "canonical name"
  * @author Alex
  */
 public class TokenEvaluator {

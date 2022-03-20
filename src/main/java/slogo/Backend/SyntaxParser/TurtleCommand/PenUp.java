@@ -5,14 +5,14 @@ import java.util.ArrayList;
 import slogo.Backend.SyntaxParser.LogoRuntimeState;
 import slogo.Backend.SyntaxParser.Operator;
 
-public class Penup extends Operator {
+public class PenUp extends Operator {
 
-  public Penup(int seqNum){
+  public PenUp(int seqNum){
     super(seqNum);
     myNumArgs = 0;
   }
 
-  public Penup(Operator op1){
+  public PenUp(Operator op1){
     super(0);
     arguments.add(op1);
   }

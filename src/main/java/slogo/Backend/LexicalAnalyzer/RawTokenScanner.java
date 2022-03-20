@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 /**
- * This class ____
+ * This class scans in Strings and gives back RawTokens according to the syntax rules of Slogo
  * @author Alex
  */
 public class RawTokenScanner {

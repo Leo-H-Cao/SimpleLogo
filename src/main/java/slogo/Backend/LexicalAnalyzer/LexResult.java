@@ -4,7 +4,8 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import slogo.Backend.State.CommandLanguage;
 /**
- * This class ____
+ * This class is the "Brains" of the Lexical Analyzer - is separates a String on its whitespace,
+ * then tokenizes it
  * @author Alex
  */
 public class LexResult {

@@ -3,6 +3,10 @@ package slogo.BackendExternalAPIs;
 import java.util.Optional;
 import slogo.Backend.HelpInformation;
 
+/**
+ * This is the interface which will be implemented by the class that provides the user with help
+ * when it is requested
+ */
 public interface Helps {
   /**
    * This method is called when the user requests help.

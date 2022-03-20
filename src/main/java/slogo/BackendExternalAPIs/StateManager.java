@@ -4,13 +4,12 @@ import java.lang.reflect.InvocationTargetException;
 import slogo.Backend.LexicalAnalyzer.InvalidTokenException;
 import slogo.Backend.Result;
 import slogo.Backend.State.CommandLanguage;
-import slogo.Backend.State.InstructionHistory;
 import slogo.Backend.State.TurtleHistory;
 import slogo.Backend.State.UserCommands;
 import slogo.Backend.State.UserVariables;
 
 /**
- * This class ____
+ * This interface indicates that the implementing class can be used to access data in the model's state
  * @author Alex
  */
 public interface StateManager {
@@ -37,13 +36,6 @@ public interface StateManager {
    * @return the user commands
    */
   UserCommands getUserCommands();
-
-  /**
-   * Gets instruction history
-   *
-   * @return the instruction history in the form of an InstructionHistory object
-   */
-  InstructionHistory getInstructionHistory();
 
   /**
    * Gets command language.

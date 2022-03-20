@@ -1,7 +1,8 @@
 package slogo.Backend.TurtleState;
 
 /**
- * This class tests the Lexical Analyzer
+ * This class is used for holding data field values for use in Turtle transformations and to allow
+ * for type flexibility in Collections
  * @author Alex
  * */
 public class FieldValue<T> {

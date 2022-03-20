@@ -11,7 +11,7 @@ public class UserCommands {
 //  public UserCommands() {
 //    userCommandNames = new HashSet<>();
 ////    commands = new HashMap<>();
-//    //replace null with enum
+//
 //    }
 //  }
 

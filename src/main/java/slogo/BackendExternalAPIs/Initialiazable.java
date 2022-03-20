@@ -10,7 +10,7 @@ import slogo.Backend.State.ModelState;
 import slogo.Backend.className;
 
 /**
- * This class ____
+ * This interface indicates that the implementing class can be the initial backend
  * @author Alex
  */
 public interface Initialiazable {

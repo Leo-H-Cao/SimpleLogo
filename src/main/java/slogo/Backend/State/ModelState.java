@@ -24,7 +24,8 @@ import slogo.Backend.className;
 import slogo.SLogoController;
 
 /**
- * This class ____
+ * This class has the "brains" of the Model - it has the Turtle for model (or Turtles), as well as
+ * other "stateful" information contained in runtimeState
  * @author Alex & Edison
  */
 public class ModelState implements Initialiazable, ModifiesModelState, StateManager {
@@ -37,10 +38,11 @@ public class ModelState implements Initialiazable, ModifiesModelState, StateMana
   /**
    * Class constructor.
    */
-  public ModelState() {
+  public ModelState(Preferences prefs) {
     // All this initialization could go into initializeBackend()
-    this.commandLanguage = CommandLanguage.ENGLISH;
     this.turtle = SLogoController.INITIAL_TURTLE;
+    this.commandLanguage = prefs.getLanguage();
+    //this.tracks = new Tracks();
     this.runtimeState = new LogoRuntimeState();
     this.userVariables = new UserVariables();
     this.userCommands = null; //FIX
@@ -73,7 +75,6 @@ public class ModelState implements Initialiazable, ModifiesModelState, StateMana
     ArrayDeque<Turtle> currentHistory = new ArrayDeque<>();
     currentHistory.addLast(turtle);
     runtimeState.getHistory().getTurtleHistory().addLast(currentHistory);
-    //root.getRetVal(runtimeState);//for testing only; comment this out!
     Result res = new Result(root.getRetVal(runtimeState), runtimeState.getHistory().getTurtleHistory().getLast());
     turtle = runtimeState.getHistory().getTurtleHistory().getLast().getLast();
     return res;
@@ -110,16 +111,6 @@ public class ModelState implements Initialiazable, ModifiesModelState, StateMana
   @Override
   public UserCommands getUserCommands() {
     return userCommands;
-  }
-
-  /**
-   * Gets instruction history
-   *
-   * @return the instruction history in the form of an InstructionHistory object
-   */
-  @Override
-  public InstructionHistory getInstructionHistory() {
-    return null;
   }
 
   /**

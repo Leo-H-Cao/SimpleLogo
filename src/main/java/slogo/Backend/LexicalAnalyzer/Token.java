@@ -1,7 +1,7 @@
 package slogo.Backend.LexicalAnalyzer;
 
 /**
- * This class ____
+ * This class is for "evaluated" tokens
  * @author Alex
  */
 public class Token extends AbstractToken {

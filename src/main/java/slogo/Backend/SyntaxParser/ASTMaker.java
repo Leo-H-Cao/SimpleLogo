@@ -16,6 +16,11 @@ import slogo.Backend.SyntaxParser.ListStructure.ListEnd;
 import slogo.Backend.SyntaxParser.ListStructure.ListStart;
 import slogo.Backend.SyntaxParser.ListStructure.LogoList;
 
+/***
+ * Creates an Abstract Syntax Tree consisting of a list of commands to be executed.
+ * @author Jed Yang
+ */
+
 public class ASTMaker {
 
   private final Deque<Token> tokens;
@@ -41,19 +46,17 @@ public class ASTMaker {
     listsByLayer.add(initArrayList);
   }
 
+
+  /**
+   * Generate the abstract syntax tree (AST) and set a Logolist as its root
+   * @return root of the AST
+   */
+
   public LogoList parse() {
     try {
       createArgumentStacks();
-    } catch (ClassNotFoundException e) {
-      e.printStackTrace();
-    } catch (NoSuchMethodException e) {
-      e.printStackTrace();
-    } catch (InvocationTargetException e) {
-      e.printStackTrace();
-    } catch (InstantiationException e) {
-      e.printStackTrace();
-    } catch (IllegalAccessException e) {
-      e.printStackTrace();
+    } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException | InstantiationException | IllegalAccessException e) {
+      System.out.println("Syntax Error");
     }
     generateAST();
     return root;
@@ -81,8 +84,10 @@ public class ASTMaker {
                     t.getValue()));
           } else {
             if(resources.containsKey(t.getValue())){
+              String s =SlogoToJava.convertSlogoNameToJavaName(resources.getString(t.getValue()));
+              String r = SlogoToJava.convertSlogoNameToJavaName(t.getValue());
               operatorType = Class.forName(
-                  rootdirectory + resources.getString(t.getValue()) + "." + t.getValue());
+                  rootdirectory + SlogoToJava.convertSlogoNameToJavaName(resources.getString(t.getValue())) + "." + SlogoToJava.convertSlogoNameToJavaName(t.getValue()));
             }
             else if(t.getValue().equals("MakeVariable")){
               operatorType = Class.forName(
