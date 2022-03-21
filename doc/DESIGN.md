@@ -11,12 +11,13 @@ Leo Cao, Jed Yang, Edison Ooi, Alex Bildner
   
 
 * Team member #1: Edison Ooi
-	* Controller
-	* "Fullstack", some frontend (turtle animation) and backend (implementing some turtle commands)
-	* Linking frontend and backend through the controller using external API methods
-	* Debugging and testing in general
+    * Controller
+    * "Fullstack", some frontend (turtle animation) and backend (implementing some turtle commands)
+    * Linking frontend and backend through the controller using external API methods
+    * Debugging and testing in general
 
-* Team member #2
+* Team member #2: Leo Cao
+  * Frontend
 
 * Team member #3
 
